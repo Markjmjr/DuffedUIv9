@@ -26,7 +26,7 @@ D['ConstructUFPlayer'] = function(self)
 	self:SetScript('OnLeave', UnitFrame_OnLeave)
 	self:SetAttribute('type2', 'togglemenu')
 
-	local panel = CreateFrame('Frame', nil, self)
+	local panel = CreateFrame('Frame', nil, self, 'BackdropTemplate')
 	if layout == 1 or layout == 4 then
 		panel:Size(222, 21)
 		panel:Point('BOTTOM', self, 'BOTTOM', 0, 0)
@@ -64,7 +64,7 @@ D['ConstructUFPlayer'] = function(self)
 		panel:Point('BOTTOMRIGHT', health, 'TOPRIGHT', 2, 2)
 	end
 
-	local HealthBorder = CreateFrame('Frame', nil, health)
+	local HealthBorder = CreateFrame('Frame', nil, health, 'BackdropTemplate')
 	HealthBorder:Point('TOPLEFT', health, 'TOPLEFT', -2, 2)
 	HealthBorder:Point('BOTTOMRIGHT', health, 'BOTTOMRIGHT', 2, -2)
 	HealthBorder:SetTemplate('Default')
@@ -187,7 +187,7 @@ D['ConstructUFPlayer'] = function(self)
 	end
 
 	if D['Class'] == 'PRIEST' and C['unitframes']['weakenedsoulbar'] then
-		local ws = CreateFrame('StatusBar', self:GetName()..'_WeakenedSoul', power)
+		local ws = CreateFrame('StatusBar', self:GetName()..'_WeakenedSoul', power, 'BackdropTemplate')
 		ws:SetAllPoints(power)
 		ws:SetStatusBarTexture(texture)
 		ws:GetStatusBarTexture():SetHorizTile(false)
@@ -252,12 +252,12 @@ D['ConstructUFPlayer'] = function(self)
 		UnitFrame_OnLeave(self)
 	end)
 
-	--[[if C['unitframes']['playeraggro'] then
+	if C['unitframes']['playeraggro'] then
 		table.insert(self.__elements, D['UpdateThreat'])
 		self:RegisterEvent('PLAYER_TARGET_CHANGED', D['UpdateThreat'])
 		self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', D['UpdateThreat'])
 		self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', D['UpdateThreat'])
-	end]]--
+	end
 
 	if layout == 4 then
 		local Name = health:CreateFontString(nil, 'OVERLAY')

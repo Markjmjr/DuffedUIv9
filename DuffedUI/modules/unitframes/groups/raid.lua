@@ -127,10 +127,10 @@ D['ConstructUFRaid'] = function(self)
 	self.Name = name
 
 	if C['raid']['aggro'] then
-		table.insert(self.__elements, D.UpdateThreat)
-		self:RegisterEvent('PLAYER_TARGET_CHANGED', D.UpdateThreat)
-		self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', D.UpdateThreat)
-		self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', D.UpdateThreat)
+		table.insert(self.__elements, D['UpdateThreat'])
+		self:RegisterEvent('PLAYER_TARGET_CHANGED', D['UpdateThreat'])
+		self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', D['UpdateThreat'])
+		self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', D['UpdateThreat'])
 	end
 
 	if C['raid']['showsymbols'] then
