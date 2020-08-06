@@ -285,7 +285,7 @@ end
 local function HighlightUnit(f, r, g, b)
 	if f.HighlightTarget then return end
 	local glowBorder = {edgeFile = C['media']['blank'], edgeSize = 1}
-	f.HighlightTarget = CreateFrame('Frame', nil, f)
+	f.HighlightTarget = CreateFrame('Frame', nil, f, 'BackdropTemplate')
 	f.HighlightTarget:Point('TOPLEFT', f, 'TOPLEFT', -2, 2)
 	f.HighlightTarget:Point('BOTTOMRIGHT', f, 'BOTTOMRIGHT', 2, -2)
 	f.HighlightTarget:SetBackdrop(glowBorder)
@@ -446,7 +446,7 @@ function SkinScrollBar(frame, thumbTrim)
 				_G[frame:GetName()..'ScrollDownButton'].texture:SetVertexColor(unpack(C['media']['bordercolor']))
 			end
 			if not frame.trackbg then
-				frame.trackbg = CreateFrame('Frame', nil, frame)
+				frame.trackbg = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 				frame.trackbg:Point('TOPLEFT', _G[frame:GetName()..'ScrollUpButton'], 'BOTTOMLEFT', 0, -1)
 				frame.trackbg:Point('BOTTOMRIGHT', _G[frame:GetName()..'ScrollDownButton'], 'TOPRIGHT', 0, 1)
 				frame.trackbg:SetTemplate('Transparent')
@@ -455,7 +455,7 @@ function SkinScrollBar(frame, thumbTrim)
 				if not thumbTrim then thumbTrim = 3 end
 				frame:GetThumbTexture():SetTexture(nil)
 				if not frame.thumbbg then
-					frame.thumbbg = CreateFrame('Frame', nil, frame)
+					frame.thumbbg = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 					frame.thumbbg:Point('TOPLEFT', frame:GetThumbTexture(), 'TOPLEFT', 2, -thumbTrim)
 					frame.thumbbg:Point('BOTTOMRIGHT', frame:GetThumbTexture(), 'BOTTOMRIGHT', -2, thumbTrim)
 					frame.thumbbg:SetTemplate('Default', true)
@@ -483,7 +483,7 @@ function SkinScrollBar(frame, thumbTrim)
 			end
 
 			if not frame.trackbg then
-				frame.trackbg = CreateFrame('Frame', nil, frame)
+				frame.trackbg = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 				frame.trackbg:Point('TOPLEFT', frame.ScrollUpButton, 'BOTTOMLEFT', 0, -1)
 				frame.trackbg:Point('BOTTOMRIGHT', frame.ScrollDownButton, 'TOPRIGHT', 0, 1)
 				frame.trackbg:SetTemplate('Transparent')
@@ -493,7 +493,7 @@ function SkinScrollBar(frame, thumbTrim)
 				if not thumbTrim then thumbTrim = 3 end
 				frame:GetThumbTexture():SetTexture(nil)
 				if not frame.thumbbg then
-					frame.thumbbg = CreateFrame('Frame', nil, frame)
+					frame.thumbbg = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 					frame.thumbbg:Point('TOPLEFT', frame:GetThumbTexture(), 'TOPLEFT', 2, -thumbTrim)
 					frame.thumbbg:Point('BOTTOMRIGHT', frame:GetThumbTexture(), 'BOTTOMRIGHT', -2, thumbTrim)
 					frame.thumbbg:SetTemplate('Default', true)
@@ -605,7 +605,7 @@ local function SkinTab(tab)
 
 	if tab.GetHighlightTexture and tab:GetHighlightTexture() then tab:GetHighlightTexture():SetTexture(nil) else StripTextures(tab) end
 
-	tab.backdrop = CreateFrame('Frame', nil, tab)
+	tab.backdrop = CreateFrame('Frame', nil, tab, 'BackdropTemplate')
 	SetTemplate(tab.backdrop, 'Default')
 	tab.backdrop:SetFrameLevel(tab:GetFrameLevel() - 1)
 	Point(tab.backdrop, 'TOPLEFT', 10, -3)
