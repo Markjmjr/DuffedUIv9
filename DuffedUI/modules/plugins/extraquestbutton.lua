@@ -1,4 +1,4 @@
-local D, C, L = unpack(select(2, ...))
+--[[local D, C, L = unpack(select(2, ...))
 if not C['actionbar']['enable'] and not C['actionbar']['extraquestbutton'] then return end
 
 -- Sourced: ExtraQuestButton, by p3lim
@@ -46,9 +46,9 @@ ExtraQuestButton:SetScript('OnEvent', function(self, event, ...)
 	end
 end)
 
-local visibilityState = '[extrabar][petbattle] hide; show'
-local onAttributeChanged = [[
-if(name == 'item') then
+local visibilityState = '[extrabar][petbattle] hide; show']]--
+--local onAttributeChanged = [[
+--[[if(name == 'item') then
 	if(value and not self:IsShown() and not HasExtraActionBar()) then
 		self:Show()
 	elseif(not value) then
@@ -68,10 +68,10 @@ if(self:IsShown() and (name == 'item' or name == 'binding')) then
 	local key = GetBindingKey('EXTRAACTIONBUTTON1')
 	if(key) then
 		self:SetBindingClick(1, key, self, 'LeftButton')
-	end
-end
-]]
+	end]]--
+--end]]
 
+--[[
 function ExtraQuestButton:BAG_UPDATE_COOLDOWN()
 	if (self:IsShown() and self.itemID) then
 		local start, duration = GetItemCooldown(self.itemID)
@@ -249,9 +249,9 @@ ExtraQuestButton:SetScript('OnDisable', function(self)
 	end
 
 	RegisterStateDriver(self, 'visible', 'show')
-	self:SetAttribute('_onattributechanged', nil)
-	self.Icon:SetTexture([[Interface\Icons\INV_Misc_Wrench_01]])
-	self.HotKey:Hide()
+	self:SetAttribute('_onattributechanged', nil)]]--
+	--self.Icon:SetTexture([[Interface\Icons\INV_Misc_Wrench_01]])
+	--[[self.HotKey:Hide()
 end)
 
 function ExtraQuestButton:SetItem(itemLink, texture)
@@ -422,4 +422,4 @@ function ExtraQuestButton:Update()
 		ticker:Cancel()
 		ticker = nil
 	end
-end
+end]]--
