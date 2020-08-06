@@ -22,4 +22,5 @@ Currently nothing here
 ## Changelog
 Date | Change
 --- | ---
+2020-08-06 | UI initialized
 2020-08-06 | Repository initialized

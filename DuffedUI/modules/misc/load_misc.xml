@@ -1,0 +1,24 @@
+<Ui xmlns='http://www.blizzard.com/wow/ui/'>
+	<Script file='achievements.lua' />
+	<Script file='altpowerbar.lua' />
+	<Script file='azeritepower.lua' />
+	<Script file='blizzbugfix.lua' />
+	<Script file='capturebar.lua' />
+	<Script file='corruption.lua' />
+	<Script file='commands.lua' />
+	<Script file='damage.lua' />
+	<Script file='dropdownlist.lua' />
+	<Script file='experience.lua' />
+	<Script file='font.lua' />
+	<Script file='func_misc.lua' />
+	<Script file='invite.lua' />
+	<Script file='kill.lua' />
+	<Script file='micromenu.lua' />
+	<Script file='objectivetracker.lua' />
+	<Script file='raidutilities.lua' />
+	<Script file='talkinghead.lua' />
+	<Script file='notalkinghead.lua' />
+	<Script file='threatbar.lua' />
+	<Script file='vehicle.lua' />
+	<Script file='welcome.lua' />
+</Ui>
