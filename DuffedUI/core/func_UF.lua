@@ -316,7 +316,7 @@ D['PostCreateAura'] = function(self, button)
 	button.count:SetParent(button.overlayFrame)
 	button.remaining:SetParent(button.overlayFrame)
 
-	button.Glow = CreateFrame('Frame', nil, button)
+	button.Glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
 	button.Glow:Point('TOPLEFT', button, 'TOPLEFT', -3, 3)
 	button.Glow:Point('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
 	button.Glow:SetFrameStrata('BACKGROUND')
