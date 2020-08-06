@@ -22,7 +22,7 @@ local function IsMaxLevel()
 	if UnitLevel('player') == MAX_PLAYER_LEVEL then return true end
 end
 
-local backdrop = CreateFrame('Frame', 'Experience_Backdrop', UIParent)
+local backdrop = CreateFrame('Frame', 'Experience_Backdrop', UIParent, 'BackdropTemplate')
 backdrop:SetSize(barWidth, barHeight)
 backdrop:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 392, 5)
 backdrop:SetBackdropColor(C['general']['backdropcolor'])

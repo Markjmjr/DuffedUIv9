@@ -208,7 +208,7 @@ local function CreateBackdrop(f, t, tex)
 	if f.backdrop then return end
 	if not t then t = 'Default' end
 
-	local b = CreateFrame('Frame', nil, f)
+	local b = CreateFrame('Frame', nil, f, 'BackdropTemplate')
 	b:SetOutside()
 	b:SetTemplate(t, tex)
 

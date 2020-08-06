@@ -34,17 +34,8 @@ AddOn.InfoColor = "|cffC41F3B"
 AddOn.SystemColor = "|cffffcc00"
 AddOn.GUID = UnitGUID("player")
 
--- Table with all frames which need a backdrop 
--- needs testing and frames
-AddOn.BackdropFrames = {
-
-}
-for i = 1, getn(AddOn.BackdropFrames) do
-	local BackdropFrames = AddOn.BackdropFrames[i]
-	if BackdropFrames then Mixin(BackdropFrames, BackdropTemplateMixin) end
-end
-
-AddOn.QualityColors = {}
+-- Empty table on Shadowlands
+--[[AddOn.QualityColors = {}
 local qualityColors = BAG_ITEM_QUALITY_COLORS
 for index, value in pairs(qualityColors) do
 	AddOn.QualityColors[index] = {r = value.r, g = value.g, b = value.b}
@@ -69,7 +60,7 @@ end
 AddOn.r, AddOn.g, AddOn.b = AddOn.ClassColors[AddOn.Class].r, AddOn.ClassColors[AddOn.Class].g, AddOn.ClassColors[AddOn.Class].b
 
 BAG_ITEM_QUALITY_COLORS[LE_ITEM_QUALITY_POOR] = {r = 0.62, g = 0.62, b = 0.62}
-BAG_ITEM_QUALITY_COLORS[LE_ITEM_QUALITY_COMMON] = {r = 1, g = 1, b = 1}
+BAG_ITEM_QUALITY_COLORS[LE_ITEM_QUALITY_COMMON] = {r = 1, g = 1, b = 1}]]--
 
 AddOn.Noop = function()
 	return

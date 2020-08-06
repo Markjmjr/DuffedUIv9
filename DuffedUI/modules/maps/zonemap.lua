@@ -11,7 +11,7 @@ tinymap:SetPoint('CENTER', UIParent, 0, 0)
 tinymap:SetFrameLevel(7)
 tinymap:Hide()
 
-local tinymapbg = CreateFrame('Frame', nil, tinymap)
+local tinymapbg = CreateFrame('Frame', nil, tinymap, 'BackdropTemplate')
 tinymapbg:SetAllPoints()
 tinymapbg:SetFrameLevel(0)
 tinymapbg:SetTemplate('Default')

@@ -23,12 +23,12 @@ hooksecurefunc(DurabilityFrame, 'SetPoint', function(self, _, parent)
 end)
 
 -- GhostFrame at top
-GhostFrame:SetTemplate('Default')
+--[[GhostFrame:SetTemplate('Default')
 GhostFrame:SetBackdropColor(0, 0, 0, 0)
 GhostFrame:SetBackdropBorderColor(0, 0, 0, 0)
 GhostFrame.SetBackdropColor = D['Dummy']
-GhostFrame.SetBackdropBorderColor = D['Dummy']
-GhostFrameContentsFrame:SetTemplate('Default')
+GhostFrame.SetBackdropBorderColor = D['Dummy'] ]]--
+--GhostFrameContentsFrame:SetTemplate('Default')
 GhostFrameContentsFrameIcon:SetTexture(nil)
 GhostFrameContentsFrame:Width(148)
 GhostFrameContentsFrame:ClearAllPoints()
@@ -47,7 +47,7 @@ local function Skin(timer, value, maxvalue, scale, paused, label)
 	for i = 1, total, 1 do
 		local frame = _G['MirrorTimer'..i]
 		if not frame.isSkinned then
-			frame:SetTemplate('Default')
+			--frame:SetTemplate('Default')
 
 			local statusbar = _G[frame:GetName()..'StatusBar']
 			local border = _G[frame:GetName()..'Border']
@@ -121,7 +121,7 @@ local function SkinIt(bar)
 
 	bar.backdrop = CreateFrame('Frame', nil, bar)
 	bar.backdrop:SetFrameLevel(0)
-	bar.backdrop:SetTemplate('Default')
+	--bar.backdrop:SetTemplate('Default')
 	bar.backdrop:SetAllPoints(originalPoint)
 end
 

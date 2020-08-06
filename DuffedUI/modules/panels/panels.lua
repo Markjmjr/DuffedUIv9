@@ -2,21 +2,21 @@ local D, C, L = unpack(select(2, ...))
 
 local move = D['move']
 
-local ileft = CreateFrame('Frame', 'DuffedUIInfoLeft', UIParent)
+local ileft = CreateFrame('Frame', 'DuffedUIInfoLeft', UIParent, 'BackdropTemplate')
 ileft:SetTemplate('Default')
 ileft:Size(D['Scale'](D['InfoLeftRightWidth'] - 9), 19)
 ileft:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 5, 3)
 ileft:SetFrameLevel(2)
 ileft:SetFrameStrata('BACKGROUND')
 
-local iright = CreateFrame('Frame', 'DuffedUIInfoRight', UIParent)
+local iright = CreateFrame('Frame', 'DuffedUIInfoRight', UIParent, 'BackdropTemplate')
 iright:SetTemplate('Default')
 iright:Size(D['Scale'](D['InfoLeftRightWidth'] - 9), 19)
 iright:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -5, 3)
 iright:SetFrameLevel(2)
 iright:SetFrameStrata('BACKGROUND')
 
-local icenter = CreateFrame('Frame', 'DuffedUIInfoCenter', UIParent)
+local icenter = CreateFrame('Frame', 'DuffedUIInfoCenter', UIParent, 'BackdropTemplate')
 icenter:SetTemplate('Default')
 icenter:Size(378, 19)
 icenter:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 3)
@@ -65,13 +65,13 @@ icenter:SetScript('OnEvent', zone_Update)
 icenter:SetScript('OnMouseDown', OnMouseDown)
 
 if C['chat']['lbackground'] then
-	local chatleftbg = CreateFrame('Frame', 'DuffedUIChatBackgroundLeft', DuffedUIInfoLeft)
+	local chatleftbg = CreateFrame('Frame', 'DuffedUIChatBackgroundLeft', DuffedUIInfoLeft, 'BackdropTemplate')
 	chatleftbg:SetTemplate('Transparent')
 	chatleftbg:SetSize(D['InfoLeftRightWidth'] + 12, 145)
 	chatleftbg:Point('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 5, 24)
 	chatleftbg:SetFrameLevel(1)
 
-	local tabsbgleft = CreateFrame('Frame', 'DuffedUITabsLeftBackground', UIParent)
+	local tabsbgleft = CreateFrame('Frame', 'DuffedUITabsLeftBackground', UIParent, 'BackdropTemplate')
 	tabsbgleft:SetTemplate()
 	tabsbgleft:Size((D['InfoLeftRightWidth'] - 62), 20)
 	tabsbgleft:Point('TOPLEFT', chatleftbg, 'TOPLEFT', 4, -4)
@@ -80,13 +80,13 @@ if C['chat']['lbackground'] then
 end
 
 if C['chat']['rbackground'] then
-	local chatrightbg = CreateFrame('Frame', 'DuffedUIChatBackgroundRight', DuffedUIInfoRight)
+	local chatrightbg = CreateFrame('Frame', 'DuffedUIChatBackgroundRight', DuffedUIInfoRight, 'BackdropTemplate')
 	chatrightbg:SetTemplate('Transparent')
 	chatrightbg:Size(D['InfoLeftRightWidth'] + 12, 145)
 	chatrightbg:Point('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -5, 24)
 	chatrightbg:SetFrameLevel(1)
 
-	local tabsbgright = CreateFrame('Frame', 'DuffedUITabsRightBackground', UIParent)
+	local tabsbgright = CreateFrame('Frame', 'DuffedUITabsRightBackground', UIParent, 'BackdropTemplate')
 	tabsbgright:SetTemplate()
 	tabsbgright:Size((D['InfoLeftRightWidth'] - 194), 20)
 	tabsbgright:Point('TOPLEFT', chatrightbg, 'TOPLEFT', 4, -4)
@@ -95,7 +95,7 @@ if C['chat']['rbackground'] then
 end
 
 if C['actionbar']['enable'] then
-	DuffedUIBar1Mover = CreateFrame('Frame', 'DuffedUIBar1Mover', UIParent)
+	DuffedUIBar1Mover = CreateFrame('Frame', 'DuffedUIBar1Mover', UIParent, 'BackdropTemplate')
 	DuffedUIBar1Mover:SetSize((D['buttonsize'] * 12) + (D['buttonspacing'] * 13), (D['buttonsize'] * 1) + (D['buttonspacing'] * 2))
 	if C['actionbar']['rightbarvertical'] then
 		DuffedUIBar1Mover:SetPoint('BOTTOM', icenter, 'TOP', 0, 88)
@@ -105,14 +105,14 @@ if C['actionbar']['enable'] then
 	DuffedUIBar1Mover:SetFrameLevel(6)
 	move:RegisterFrame(DuffedUIBar1Mover)
 
-	local DuffedUIBar1 = CreateFrame('Frame', 'DuffedUIBar1', UIParent, 'SecureHandlerStateTemplate')
+	local DuffedUIBar1 = CreateFrame('Frame', 'DuffedUIBar1', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
 	if not C['actionbar']['hidepanels'] then DuffedUIBar1:SetTemplate('Transparent') end
 	DuffedUIBar1:SetAllPoints(DuffedUIBar1Mover)
 	DuffedUIBar1:SetFrameStrata('BACKGROUND')
 	DuffedUIBar1:SetFrameLevel(1)
 	
 
-	local DuffedUIBar2 = CreateFrame('Frame', 'DuffedUIBar2', UIParent, 'SecureHandlerStateTemplate')
+	local DuffedUIBar2 = CreateFrame('Frame', 'DuffedUIBar2', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
 	if not C['actionbar']['hidepanels'] then DuffedUIBar2:SetTemplate('Transparent') end
 	if C['actionbar']['rightbarvertical'] then
 		DuffedUIBar2:SetPoint('BOTTOM', icenter, 'TOP', 0, 49)
@@ -125,7 +125,7 @@ if C['actionbar']['enable'] then
 	move:RegisterFrame(DuffedUIBar2)
 
 	if (not C['actionbar']['LeftSideBarDisable']) then
-		local DuffedUIBar3 = CreateFrame('Frame', 'DuffedUIBar3', UIParent, 'SecureHandlerStateTemplate')
+		local DuffedUIBar3 = CreateFrame('Frame', 'DuffedUIBar3', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
 		if not C['actionbar']['hidepanels'] then DuffedUIBar3:SetTemplate('Transparent') end
 		if C['misc']['XPBar'] then
 			DuffedUIBar3:Point('BOTTOMLEFT', DuffedUIInfoLeft, 'BOTTOMRIGHT', 37, 0)
@@ -143,7 +143,7 @@ if C['actionbar']['enable'] then
 	end
 
 	if (not C['actionbar']['RightSideBarDisable']) then
-		local DuffedUIBar4 = CreateFrame('Frame', 'DuffedUIBar4', UIParent, 'SecureHandlerStateTemplate')
+		local DuffedUIBar4 = CreateFrame('Frame', 'DuffedUIBar4', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
 		if not C['actionbar']['hidepanels'] then DuffedUIBar4:SetTemplate('Transparent') end
 		if C['misc']['azerite'] then 
 			DuffedUIBar4:SetPoint('BOTTOMRIGHT', DuffedUIInfoRight, 'BOTTOMLEFT', -37, 0)
@@ -161,7 +161,7 @@ if C['actionbar']['enable'] then
 	end
 
 	if (not C['actionbar']['rightbarDisable']) then
-		local DuffedUIBar5 = CreateFrame('Frame', 'DuffedUIBar5', UIParent, 'SecureHandlerStateTemplate')
+		local DuffedUIBar5 = CreateFrame('Frame', 'DuffedUIBar5', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
 		if not C['actionbar']['hidepanels'] then DuffedUIBar5:SetTemplate('Transparent') end
 		if C['actionbar']['rightbarvertical'] then
 			DuffedUIBar5:SetSize((D['buttonsize'] * 12) + (D['buttonspacing'] * 13), (D['buttonsize'] * 1) + (D['buttonspacing'] * 2))
@@ -175,7 +175,7 @@ if C['actionbar']['enable'] then
 		move:RegisterFrame(DuffedUIBar5)
 	end
 
-	DuffedUIPetBarMover = CreateFrame('Frame', 'DuffedUIPetMover', UIParent)
+	DuffedUIPetBarMover = CreateFrame('Frame', 'DuffedUIPetMover', UIParent, 'BackdropTemplate')
 	if C['actionbar']['petbarhorizontal'] ~= true and C['actionbar']['rightbarvertical'] ~= true then
 		DuffedUIPetBarMover:SetSize(D['petbuttonsize'] + (D['petbuttonspacing'] * 2), (D['petbuttonsize'] * 10) + (D['petbuttonspacing'] * 11))
 		DuffedUIPetBarMover:SetPoint('RIGHT', DuffedUIBar5, 'LEFT', -6, 0)
@@ -189,12 +189,12 @@ if C['actionbar']['enable'] then
 	DuffedUIPetBarMover:SetFrameLevel(6)
 	move:RegisterFrame(DuffedUIPetBarMover)
 
-	local petbg = CreateFrame('Frame', 'DuffedUIPetBar', UIParent, 'SecureHandlerStateTemplate')
+	local petbg = CreateFrame('Frame', 'DuffedUIPetBar', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
 	if not C['actionbar']['hidepanels'] then petbg:SetTemplate('Transparent') end
 	petbg:SetAllPoints(DuffedUIPetBarMover)
 end
 
-local chatmenu = CreateFrame('Frame', 'DuffedUIChatMenu', UIParent)
+local chatmenu = CreateFrame('Frame', 'DuffedUIChatMenu', UIParent, 'BackdropTemplate')
 chatmenu:SetTemplate('Default')
 chatmenu:Size(20)
 if C['chat']['lbackground'] then
@@ -226,7 +226,7 @@ end)
 chatmenu:SetScript('OnLeave', function() GameTooltip:Hide() end)
 
 
-local chatchannel = CreateFrame('Frame', 'DuffedUIChatChannels', UIParent)
+local chatchannel = CreateFrame('Frame', 'DuffedUIChatChannels', UIParent, 'BackdropTemplate')
 chatchannel:SetTemplate('Default')
 chatchannel:Size(20)
 chatchannel:Point('LEFT', chatmenu, 'RIGHT', 2, 0)
@@ -251,7 +251,7 @@ end)
 chatchannel:SetScript('OnLeave', function() GameTooltip:Hide() end)
 
 if C['datatext']['battleground'] then
-	local bgframe = CreateFrame('Frame', 'DuffedUIInfoLeftBattleGround', UIParent)
+	local bgframe = CreateFrame('Frame', 'DuffedUIInfoLeftBattleGround', UIParent, 'BackdropTemplate')
 	bgframe:SetTemplate()
 	bgframe:SetAllPoints(icenter)
 	bgframe:SetFrameStrata('HIGH')

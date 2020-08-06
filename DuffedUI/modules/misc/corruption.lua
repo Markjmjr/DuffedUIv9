@@ -6,7 +6,7 @@ local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D.Class]
 local move = D['move']
 
-local backdrop = CreateFrame('Frame', 'Corruption_Backdrop', UIParent)
+local backdrop = CreateFrame('Frame', 'Corruption_Backdrop', UIParent, 'BackdropTemplate')
 backdrop:SetSize(barWidth, barHeight)
 backdrop:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 392, 5)
 backdrop:SetBackdropColor(C['general']['backdropcolor'])

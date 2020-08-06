@@ -12,7 +12,7 @@ local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D.Class]
 local move = D['move']
 
-local backdrop = CreateFrame('Frame', 'Azerite_Backdrop', UIParent)
+local backdrop = CreateFrame('Frame', 'Azerite_Backdrop', UIParent, 'BackdropTemplate')
 backdrop:SetSize(barWidth, barHeight)
 backdrop:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -392, 5)
 backdrop:SetBackdropColor(C['general']['backdropcolor'])

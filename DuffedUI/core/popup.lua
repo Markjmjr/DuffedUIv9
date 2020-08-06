@@ -10,7 +10,7 @@ local function Hide(self)
 end
 
 for i = 1, total do
-	frame[i] = CreateFrame('Frame', 'DuffedUIPopupDialog' .. i, UIParent)
+	frame[i] = CreateFrame('Frame', 'DuffedUIPopupDialog' .. i, UIParent, 'BackdropTemplate')
 	frame[i]:SetSize(250, 100)
 	frame[i]:SetFrameLevel(3)
 	frame[i]:SetTemplate('Transparent')
@@ -25,7 +25,7 @@ for i = 1, total do
 	frame[i].Text:SetFading(false)
 	frame[i].Text:AddMessage('')
 
-	frame[i].button1 = CreateFrame('Button', 'DuffedUIPopupDialogButtonAccept' .. i, frame[i])
+	frame[i].button1 = CreateFrame('Button', 'DuffedUIPopupDialogButtonAccept' .. i, frame[i], 'BackdropTemplate')
 	frame[i].button1:SetPoint('BOTTOMLEFT', frame[i], 'BOTTOMLEFT', 6, 7)
 	frame[i].button1:SetSize(100, 20)
 	frame[i].button1:SetTemplate('Default')
@@ -36,7 +36,7 @@ for i = 1, total do
 	frame[i].button1:HookScript('OnClick', Hide)
 	frame[i].button1:SkinButton()
 
-	frame[i].button2 = CreateFrame('Button', 'DuffedUIPopupDialogButtonCancel' .. i, frame[i])
+	frame[i].button2 = CreateFrame('Button', 'DuffedUIPopupDialogButtonCancel' .. i, frame[i], 'BackdropTemplate')
 	frame[i].button2:SetPoint('BOTTOMRIGHT', frame[i], 'BOTTOMRIGHT', -6, 7)
 	frame[i].button2:SetSize(100, 20)
 	frame[i].button2:SetTemplate('Default')
@@ -47,7 +47,7 @@ for i = 1, total do
 	frame[i].button2:HookScript('OnClick', Hide)
 	frame[i].button2:SkinButton()
 
-	frame[i].EditBox = CreateFrame('EditBox', 'DuffedUIPopupDialogEditBox' .. i, frame[i])
+	frame[i].EditBox = CreateFrame('EditBox', 'DuffedUIPopupDialogEditBox' .. i, frame[i], 'BackdropTemplate')
 	frame[i].EditBox:SetMultiLine(false)
 	frame[i].EditBox:EnableMouse(true)
 	frame[i].EditBox:SetAutoFocus(true)

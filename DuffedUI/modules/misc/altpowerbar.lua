@@ -14,7 +14,7 @@ PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_SHOW')
 PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_HIDE')
 PlayerPowerBarAlt:UnregisterEvent('PLAYER_ENTERING_WORLD')
 
-local AltPowerBar = CreateFrame('Frame', 'DuffedUIAltPowerBar', UIParent)
+local AltPowerBar = CreateFrame('Frame', 'DuffedUIAltPowerBar', UIParent, 'BackdropTemplate')
 AltPowerBar:SetTemplate('Default')
 AltPowerBar:SetAllPoints(DuffedUIInfoLeft)
 AltPowerBar:SetFrameStrata('HIGH')

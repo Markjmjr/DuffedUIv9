@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 
 local move = D['move']
-local DuffedUIMinimap = CreateFrame('Frame', 'DuffedUIMinimap', oUFDuffedUI_PetBattleFrameHider)
+local DuffedUIMinimap = CreateFrame('Frame', 'DuffedUIMinimap', oUFDuffedUI_PetBattleFrameHider, 'BackdropTemplate')
 DuffedUIMinimap:SetTemplate()
 DuffedUIMinimap:RegisterEvent('ADDON_LOADED')
 DuffedUIMinimap:Point('TOPRIGHT', UIParent, 'TOPRIGHT', -5, -5)
@@ -31,7 +31,7 @@ MiniMapMailFrame:SetFrameStrata(Minimap:GetFrameStrata())
 MiniMapMailBorder:Hide()
 MiniMapMailIcon:SetTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\mail')
 
-local DuffedUITicket = CreateFrame('Frame', 'DuffedUITicket', DuffedUIMinimap)
+local DuffedUITicket = CreateFrame('Frame', 'DuffedUITicket', DuffedUIMinimap, 'BackdropTemplate')
 DuffedUITicket:SetTemplate()
 DuffedUITicket:Size(DuffedUIMinimap:GetWidth() - 4, 24)
 DuffedUITicket:SetFrameLevel(Minimap:GetFrameLevel() + 4)
@@ -66,7 +66,8 @@ QueueStatusMinimapButton:ClearAllPoints()
 QueueStatusMinimapButton:SetPoint('BOTTOMRIGHT', 0, 0)
 QueueStatusMinimapButtonBorder:Kill()
 QueueStatusFrame:StripTextures()
-QueueStatusFrame:SetTemplate('Transparent')
+-- Needs revision for Shadowlands
+--QueueStatusFrame:SetTemplate('Transparent')
 QueueStatusFrame:SetFrameStrata('HIGH')
 
 local function UpdateLFGTooltip()
