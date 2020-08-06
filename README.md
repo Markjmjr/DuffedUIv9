@@ -25,5 +25,5 @@ Currently nothing here
 ## Changelog
 Date | Change
 --- | ---
-2020-08-06 | UI initialized<br />Update .toc-files to match the new UI and Game version<br />Update Changelog with new informations<br />Added most of the backdrops<br />Setup fixed<br />Fixed threat indicator on raid, player and target<br />Fixed questicons on nameplates
+2020-08-06 | UI initialized<br />Update .toc-files to match the new UI and Game version<br />Update Changelog with new informations<br />Added most of the backdrops<br />Setup fixed<br />Fixed threat indicator on raid, player and target<br />Fixed questicons on nameplates<br />Fixing Division by zero for power on playerframe<br />Fixing rangecheck
 2020-08-06 | Repository initialized
