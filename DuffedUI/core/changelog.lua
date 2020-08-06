@@ -12,12 +12,10 @@ local CLOSE = _G.CLOSE
 
 local ChangeLogData = {
 	"Changes:",
-		"• Fixed config vaulues for group frames",
-		"• Fixed config issue for group layout",
-		"• Code-Cleanup",
 		--"• ",
 	" ",
 	"Important:",
+		"• Please Report all bugs on the issue tracker => https://github.com/liquidbase/DuffedUIv9/issues",
 		"• Please reset your SavedVars using the 'Reset' function in the ConfigUI to apply the fix completely.",
 	" ",
 	"Special:",
@@ -59,7 +57,7 @@ _G.StaticPopupDialogs['BUGREPORT'] = {
 	editBoxWidth = 325,
 	OnShow = function(self, ...)
 		self.editBox:SetFocus()
-		self.editBox:SetText('https://github.com/liquidbase/DuffedUIv8/issues')
+		self.editBox:SetText('https://github.com/liquidbase/DuffedUIv9/issues')
 		self.editBox:HighlightText()
 	end,
 	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
