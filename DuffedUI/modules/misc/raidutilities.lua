@@ -39,7 +39,8 @@ local function CreateButton(name, parent, template, width, height, point, relati
 	end
 end
 
-CreateButton('RaidUtilityShowButton', UIParent, 'UIPanelButtonTemplate, SecureHandlerClickTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'TOP', 0, 0, RAID_CONTROL)
+CreateButton('RaidUtilityShowButton', UIParent, 'UIPanelButtonTemplate, SecureHandlerClickTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'TOP', 0, 0, RAID_CONTROL)
+Mixin(RaidUtilityShowButton, BackdropTemplateMixin)
 RaidUtilityShowButton:SetFrameRef('RaidUtilityPanel', RaidUtilityPanel)
 RaidUtilityShowButton:SetAttribute('_onclick', [=[self:Hide(); self:GetFrameRef('RaidUtilityPanel'):Show();]=])
 RaidUtilityShowButton:SetScript('OnMouseUp', function(self, button)
@@ -53,7 +54,8 @@ RaidUtilityShowButton:SetScript('OnMouseUp', function(self, button)
 	end
 end)
 
-CreateButton('RaidUtilityCloseButton', RaidUtilityPanel, 'UIPanelButtonTemplate, SecureHandlerClickTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'BOTTOM', 0, -1, CLOSE)
+CreateButton('RaidUtilityCloseButton', RaidUtilityPanel, 'UIPanelButtonTemplate, SecureHandlerClickTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'BOTTOM', 0, -1, CLOSE)
+Mixin(RaidUtilityCloseButton, BackdropTemplateMixin)
 RaidUtilityCloseButton:SetFrameRef('RaidUtilityShowButton', RaidUtilityShowButton)
 RaidUtilityCloseButton:SetAttribute('_onclick', [=[self:GetParent():Hide(); self:GetFrameRef('RaidUtilityShowButton'):Show();]=])
 RaidUtilityCloseButton:SetScript('OnMouseUp', function(self) RaidUtilityPanel.toggled = false end)

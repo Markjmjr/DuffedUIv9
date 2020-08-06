@@ -140,7 +140,7 @@ D['SpawnUF'] = function(self)
 		for i = 1, 5 do
 			--local arena = _G['oUF_Arena'..i]
 
-			oUF_PrepArena[i] = CreateFrame('Frame', 'oUF_PrepArena' .. i, UIParent)
+			oUF_PrepArena[i] = CreateFrame('Frame', 'oUF_PrepArena' .. i, UIParent, 'BackdropTemplate')
 			if i == 1 then oUF_PrepArena[i]:SetPoint('RIGHT', UIParent, 'RIGHT', -163, -250) else oUF_PrepArena[i]:SetPoint('BOTTOM', oUF_PrepArena[i - 1], 'TOP', 0, 35) end
 			oUF_PrepArena[i]:SetBackdrop(backdrop)
 			oUF_PrepArena[i]:SetBackdropColor(0, 0, 0)

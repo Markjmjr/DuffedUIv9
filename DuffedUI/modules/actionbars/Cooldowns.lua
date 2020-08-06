@@ -156,4 +156,4 @@ end
 if _G['ActionBarButtonEventsFrame'].frames then
 	for i, frame in pairs(_G['ActionBarButtonEventsFrame'].frames) do actionButton_Register(frame) end
 end
-hooksecurefunc('ActionBarButtonEventsFrame_RegisterFrame', actionButton_Register)
+--hooksecurefunc('ActionBarButtonEventsFrame_RegisterFrame', actionButton_Register)

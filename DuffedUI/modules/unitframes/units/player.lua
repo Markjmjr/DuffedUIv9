@@ -252,12 +252,12 @@ D['ConstructUFPlayer'] = function(self)
 		UnitFrame_OnLeave(self)
 	end)
 
-	if C['unitframes']['playeraggro'] then
+	--[[if C['unitframes']['playeraggro'] then
 		table.insert(self.__elements, D['UpdateThreat'])
 		self:RegisterEvent('PLAYER_TARGET_CHANGED', D['UpdateThreat'])
 		self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', D['UpdateThreat'])
 		self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', D['UpdateThreat'])
-	end
+	end]]--
 
 	if layout == 4 then
 		local Name = health:CreateFontString(nil, 'OVERLAY')

@@ -15,7 +15,7 @@ local function ShortenValue(value)
 	end
 end
 
-oUF.Tags.Events['DuffedUI:perchp'] = 'UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED'
+oUF.Tags.Events['DuffedUI:perchp'] = 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED'
 oUF.Tags.Methods['DuffedUI:perchp'] = function(unit)
 	local m = UnitHealthMax(unit)
 	if(m == 0) then
@@ -25,7 +25,7 @@ oUF.Tags.Methods['DuffedUI:perchp'] = function(unit)
 	end
 end
 
-oUF.Tags.Events['DuffedUI:perchpnp'] = 'UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED'
+oUF.Tags.Events['DuffedUI:perchpnp'] = 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED'
 oUF.Tags.Methods['DuffedUI:perchpnp'] = function(unit)
 	local m = UnitHealthMax(unit)
 	if(m == 0) then

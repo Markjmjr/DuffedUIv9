@@ -27,30 +27,30 @@ DuffedUIOnLogon:SetScript('OnEvent', function(self, event)
 		button:SetAttribute('showgrid', 1)
 		button:SetAttribute('statehidden', true)
 		button:Show()
-		ActionButton_ShowGrid(button, reason)
+		--ActionButton_ShowGrid(button, reason)
 
 		button = _G[format('MultiBarRightButton%d', i)]
 		button:SetAttribute('showgrid', 1)
 		button:SetAttribute('statehidden', true)
 		button:Show()
-		ActionButton_ShowGrid(button, reason)
+		--ActionButton_ShowGrid(button, reason)
 
 		button = _G[format('MultiBarBottomRightButton%d', i)]
 		button:SetAttribute('showgrid', 1)
 		button:SetAttribute('statehidden', true)
 		button:Show()
-		ActionButton_ShowGrid(button, reason)
+		--ActionButton_ShowGrid(button, reason)
 
 		button = _G[format('MultiBarLeftButton%d', i)]
 		button:SetAttribute('showgrid', 1)
 		button:SetAttribute('statehidden', true)
 		button:Show()
-		ActionButton_ShowGrid(button, reason)
+		--ActionButton_ShowGrid(button, reason)
 
 		button = _G[format('MultiBarBottomLeftButton%d', i)]
 		button:SetAttribute('showgrid', 1)
 		button:SetAttribute('statehidden', true)
 		button:Show()
-		ActionButton_ShowGrid(button, reason)
+		--ActionButton_ShowGrid(button, reason)
 	end
 end)

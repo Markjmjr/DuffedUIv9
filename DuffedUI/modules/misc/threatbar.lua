@@ -7,7 +7,7 @@ local aggroColors = {
 	[3] = {163 / 255,  24 / 255,  24 / 255},
 }
 
-local DuffedUIThreatBar = CreateFrame('StatusBar', 'DuffedUIThreatBar', DuffedUIInfoRight)
+local DuffedUIThreatBar = CreateFrame('StatusBar', 'DuffedUIThreatBar', DuffedUIInfoRight, 'BackdropTemplate')
 DuffedUIThreatBar:Point('TOPLEFT', 2, -2)
 DuffedUIThreatBar:Point('BOTTOMRIGHT', -2, 2)
 DuffedUIThreatBar:SetFrameLevel(0)

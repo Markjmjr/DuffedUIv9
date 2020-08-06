@@ -43,7 +43,6 @@ local GetReagentBankCost = _G.GetReagentBankCost
 local hooksecurefunc = _G.hooksecurefunc
 local IsBattlePayItem = _G.IsBattlePayItem
 local IsShiftKeyDown = _G.IsShiftKeyDown
-local LE_ITEM_QUALITY_POOR = _G.LE_ITEM_QUALITY_POOR
 local MAX_WATCHED_TOKENS = _G.MAX_WATCHED_TOKENS
 local MoneyFrame_Update = _G.MoneyFrame_Update
 local NEW_ITEM_ATLAS_BY_QUALITY = _G.NEW_ITEM_ATLAS_BY_QUALITY
@@ -311,7 +310,7 @@ function Stuffing:SlotUpdate(b)
 		b.frame.Corrupt:Hide()
 	end
 	
-	b.frame.isJunk = (quality and quality== LE_ITEM_QUALITY_POOR) and not noValue
+	b.frame.isJunk = (quality and quality== Enum.ItemQuality.Poor) and not noValue
 	if b.frame.JunkIcon then
 		if b.frame.isJunk and C['bags'].JunkIcon then
 			b.frame.JunkIcon:Show()
@@ -429,7 +428,7 @@ function Stuffing:SlotUpdate(b)
 			_G[b.frame:GetName()..'IconTexture']:SetVertexColor(1, 1, 1)
 		end
 
-		if not b.frame.lock and quality and quality > LE_ITEM_QUALITY_COMMON and not (isQuestItem or questId) then
+		if not b.frame.lock and quality and quality > Enum.ItemQuality.Common and not (isQuestItem or questId) then
 			b.frame:SetBackdropBorderColor(GetItemQualityColor(quality))
 		elseif isQuestItem or questId then
 			b.frame:SetBackdropBorderColor(1, 1, 0)

@@ -105,14 +105,16 @@ if C['actionbar']['enable'] then
 	DuffedUIBar1Mover:SetFrameLevel(6)
 	move:RegisterFrame(DuffedUIBar1Mover)
 
-	local DuffedUIBar1 = CreateFrame('Frame', 'DuffedUIBar1', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
+	local DuffedUIBar1 = CreateFrame('Frame', 'DuffedUIBar1', UIParent, 'SecureHandlerStateTemplate')
+	Mixin(DuffedUIBar1, BackdropTemplateMixin)
 	if not C['actionbar']['hidepanels'] then DuffedUIBar1:SetTemplate('Transparent') end
 	DuffedUIBar1:SetAllPoints(DuffedUIBar1Mover)
 	DuffedUIBar1:SetFrameStrata('BACKGROUND')
 	DuffedUIBar1:SetFrameLevel(1)
 	
 
-	local DuffedUIBar2 = CreateFrame('Frame', 'DuffedUIBar2', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
+	local DuffedUIBar2 = CreateFrame('Frame', 'DuffedUIBar2', UIParent, 'SecureHandlerStateTemplate')
+	Mixin(DuffedUIBar2, BackdropTemplateMixin)
 	if not C['actionbar']['hidepanels'] then DuffedUIBar2:SetTemplate('Transparent') end
 	if C['actionbar']['rightbarvertical'] then
 		DuffedUIBar2:SetPoint('BOTTOM', icenter, 'TOP', 0, 49)
@@ -125,7 +127,8 @@ if C['actionbar']['enable'] then
 	move:RegisterFrame(DuffedUIBar2)
 
 	if (not C['actionbar']['LeftSideBarDisable']) then
-		local DuffedUIBar3 = CreateFrame('Frame', 'DuffedUIBar3', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
+		local DuffedUIBar3 = CreateFrame('Frame', 'DuffedUIBar3', UIParent, 'SecureHandlerStateTemplate')
+		Mixin(DuffedUIBar3, BackdropTemplateMixin)
 		if not C['actionbar']['hidepanels'] then DuffedUIBar3:SetTemplate('Transparent') end
 		if C['misc']['XPBar'] then
 			DuffedUIBar3:Point('BOTTOMLEFT', DuffedUIInfoLeft, 'BOTTOMRIGHT', 37, 0)
@@ -143,7 +146,8 @@ if C['actionbar']['enable'] then
 	end
 
 	if (not C['actionbar']['RightSideBarDisable']) then
-		local DuffedUIBar4 = CreateFrame('Frame', 'DuffedUIBar4', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
+		local DuffedUIBar4 = CreateFrame('Frame', 'DuffedUIBar4', UIParent, 'SecureHandlerStateTemplate')
+		Mixin(DuffedUIBar4, BackdropTemplateMixin)
 		if not C['actionbar']['hidepanels'] then DuffedUIBar4:SetTemplate('Transparent') end
 		if C['misc']['azerite'] then 
 			DuffedUIBar4:SetPoint('BOTTOMRIGHT', DuffedUIInfoRight, 'BOTTOMLEFT', -37, 0)
@@ -161,7 +165,8 @@ if C['actionbar']['enable'] then
 	end
 
 	if (not C['actionbar']['rightbarDisable']) then
-		local DuffedUIBar5 = CreateFrame('Frame', 'DuffedUIBar5', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
+		local DuffedUIBar5 = CreateFrame('Frame', 'DuffedUIBar5', UIParent, 'SecureHandlerStateTemplate')
+		Mixin(DuffedUIBar5, BackdropTemplateMixin)
 		if not C['actionbar']['hidepanels'] then DuffedUIBar5:SetTemplate('Transparent') end
 		if C['actionbar']['rightbarvertical'] then
 			DuffedUIBar5:SetSize((D['buttonsize'] * 12) + (D['buttonspacing'] * 13), (D['buttonsize'] * 1) + (D['buttonspacing'] * 2))
@@ -189,7 +194,8 @@ if C['actionbar']['enable'] then
 	DuffedUIPetBarMover:SetFrameLevel(6)
 	move:RegisterFrame(DuffedUIPetBarMover)
 
-	local petbg = CreateFrame('Frame', 'DuffedUIPetBar', UIParent, 'SecureHandlerStateTemplate, BackdropTemplate')
+	local petbg = CreateFrame('Frame', 'DuffedUIPetBar', UIParent, 'SecureHandlerStateTemplate')
+	Mixin(petbg, BackdropTemplateMixin)
 	if not C['actionbar']['hidepanels'] then petbg:SetTemplate('Transparent') end
 	petbg:SetAllPoints(DuffedUIPetBarMover)
 end

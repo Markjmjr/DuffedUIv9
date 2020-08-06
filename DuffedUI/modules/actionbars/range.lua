@@ -40,6 +40,6 @@ function DuffedUIRange:RangeUpdate()
     end
 end
 
-hooksecurefunc('ActionButton_OnUpdate', DuffedUIRange.RangeOnUpdate)
-hooksecurefunc('ActionButton_Update', DuffedUIRange.RangeUpdate)
-hooksecurefunc('ActionButton_UpdateUsable', DuffedUIRange.RangeUpdate)
+--hooksecurefunc('ActionButton_OnUpdate', DuffedUIRange.RangeOnUpdate)
+--hooksecurefunc('ActionButton_Update', DuffedUIRange.RangeUpdate)
+--hooksecurefunc('ActionButton_UpdateUsable', DuffedUIRange.RangeUpdate)

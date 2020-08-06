@@ -192,7 +192,7 @@ D['UpdateKeybind'] = function(self, actionButtonType)
 
 	if HotKey:GetText() == _G['RANGE_INDICATOR'] then HotKey:SetText('') else HotKey:SetText(Text) end
 end
-hooksecurefunc('ActionButton_OnEvent', function(self, event, ...) if event == 'PLAYER_ENTERING_WORLD' then ActionButton_UpdateHotkeys(self, self.buttonType) end end)
+--hooksecurefunc('ActionButton_OnEvent', function(self, event, ...) if event == 'PLAYER_ENTERING_WORLD' then ActionButton_UpdateHotkeys(self, self.buttonType) end end)
 hooksecurefunc('PetActionButton_OnEvent', function(self, event, ...) if event == 'PLAYER_ENTERING_WORLD' then PetActionButton_SetHotkeys(self, self.buttonType) end end)
 
 local buttons = 0
@@ -327,7 +327,7 @@ end
 
 hooksecurefunc('ActionButton_ShowOverlayGlow', D['ShowHighlightActionButton'])
 hooksecurefunc('ActionButton_HideOverlayGlow', D['HideHighlightActionButton'])
-hooksecurefunc('ActionButton_Update', D['StyleActionBarButton'])
-hooksecurefunc('ActionButton_UpdateHotkeys', D['UpdateKeybind'])
+--hooksecurefunc('ActionButton_Update', D['StyleActionBarButton'])
+--hooksecurefunc('ActionButton_UpdateHotkeys', D['UpdateKeybind'])
 hooksecurefunc('PetActionButton_SetHotkeys', D['UpdateKeybind'])
 hooksecurefunc('ActionButton_UpdateFlyout', D['StyleActionBarFlyout'])

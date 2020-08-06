@@ -219,8 +219,6 @@ local function Enable(self)
 		element.ForceUpdate = ForceUpdate
 
 		if(element.frequentUpdates) then
-			self:RegisterEvent('UNIT_HEALTH_FREQUENT', Path)
-		else
 			self:RegisterEvent('UNIT_HEALTH', Path)
 		end
 
@@ -304,7 +302,7 @@ local function Disable(self)
 
 		self:UnregisterEvent('UNIT_HEALTH', Path)
 		self:UnregisterEvent('UNIT_MAXHEALTH', Path)
-		self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
+		--self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
 		self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
 		self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
 		self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)

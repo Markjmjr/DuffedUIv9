@@ -1342,14 +1342,11 @@ D['ClassTimer'] = function(self)
 			background:SetTemplate('Transparent')
 			result.background = background
 
-			local border = CreateFrame('Frame', nil, result, nil)
+			local border = CreateFrame('Frame', nil, result, nil, 'BackdropTemplate')
 			border:SetFrameStrata('BACKGROUND')
 			border:Point('TOPLEFT', result, 'TOPLEFT', 21, 1)
 			border:Point('BOTTOMRIGHT', result, 'BOTTOMRIGHT', 1, -1)
-			border:SetBackdrop {
-				edgeFile = C['media']['blank'], edgeSize = 1,
-				insets = {left = 0, right = 0, top = 0, bottom = 0}
-			}
+			border:SetTemplate('Default')
 			border:SetBackdropColor(0, 0, 0, 0)
 			border:SetBackdropBorderColor(unpack(C['media']['backdropcolor']))
 			result.border = border

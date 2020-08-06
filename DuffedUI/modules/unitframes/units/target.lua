@@ -202,7 +202,7 @@ D['ConstructUFTarget'] = function(self)
 		self.WeakenedSoul = ws
 	end
 
-	local AltPowerBar = CreateFrame('StatusBar', self:GetName()..'_AltPowerBar', self.Health)
+	local AltPowerBar = CreateFrame('StatusBar', self:GetName()..'_AltPowerBar', self.Health, 'BackdropTemplate')
 	AltPowerBar:SetFrameLevel(0)
 	AltPowerBar:SetFrameStrata('LOW')
 	AltPowerBar:SetHeight(5)
@@ -235,12 +235,12 @@ D['ConstructUFTarget'] = function(self)
 	RaidIcon:Size(20, 20)
 	RaidIcon:Point('TOP', health, 'TOP', 0, 11)
 
-	if C['unitframes']['playeraggro'] then
+	--[[if C['unitframes']['playeraggro'] then
 		table.insert(self.__elements, D['UpdateThreat'])
 		self:RegisterEvent('PLAYER_TARGET_CHANGED', D['UpdateThreat'])
 		self:RegisterEvent('UNIT_THREAT_LIST_UPDATE', D['UpdateThreat'])
 		self:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', D['UpdateThreat'])
-	end
+	end]]--
 
 	-- Buffs & Debuffs
 	if C['unitframes']['targetauras'] then

@@ -1,4 +1,4 @@
-local L = select(2,...)
+--[[local L = select(2,...)
 
 CurrencyData = CurrencyData or {}
 CurrencyData['order'] = CurrencyData['order'] or {}
@@ -239,4 +239,4 @@ UnusedHidingFrame:SetScript('OnEvent', function()
 		local name, _, isExpanded = GetCurrencyListInfo(i)
 		if CurrencyData['collapsed'][name] and CurrencyData['collapsed'][name] == 0 and isExpanded then ExpandCurrencyList(i, 0) end
 	end
-end)
+end)]]--

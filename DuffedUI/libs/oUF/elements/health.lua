@@ -185,7 +185,7 @@ local function Enable(self, unit)
 		element.ForceUpdate = ForceUpdate
 
 		if(element.frequentUpdates) then
-			self:RegisterEvent('UNIT_HEALTH_FREQUENT', Path)
+			self:RegisterEvent('UNIT_HEALTH', Path)
 		else
 			self:RegisterEvent('UNIT_HEALTH', Path)
 		end
@@ -213,7 +213,7 @@ local function Disable(self)
 	if(element) then
 		element:Hide()
 
-		self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
+		--self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
 		self:UnregisterEvent('UNIT_HEALTH', Path)
 		self:UnregisterEvent('UNIT_MAXHEALTH', Path)
 		self:UnregisterEvent('UNIT_CONNECTION', Path)

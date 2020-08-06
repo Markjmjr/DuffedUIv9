@@ -242,7 +242,7 @@ D['ConstructUFRaid'] = function(self)
 
 		-- RaidDebuffs
 		if C['raid']['raidunitdebuffwatch'] then
-			local RaidDebuffs = CreateFrame('Frame', nil, self)
+			local RaidDebuffs = CreateFrame('Frame', nil, self, 'BackdropTemplate')
 			RaidDebuffs:SetHeight(22)
 			RaidDebuffs:SetWidth(22)
 			RaidDebuffs:SetPoint('CENTER', self.Health, 'CENTER', 1, 0)

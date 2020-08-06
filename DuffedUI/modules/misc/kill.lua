@@ -37,11 +37,11 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 	end
 
 	StreamingIcon:Kill()
-	Advanced_UseUIScale:Kill()
-	Advanced_UIScaleSlider:Kill()
+	--Advanced_UseUIScale:Kill()
+	--Advanced_UIScaleSlider:Kill()
 	PartyMemberBackground:Kill()
 	TutorialFrameAlertButton:Kill()
-	if D['MyName'] == 'Merith' then TalentMicroButtonAlert:Kill() end
+	--if D['MyName'] == 'Merith' then TalentMicroButtonAlert:Kill() end
 
 	if C['unitframes']['classbar'] then
 		SetCVar('nameplateShowSelf', 0)

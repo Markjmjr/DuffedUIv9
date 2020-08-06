@@ -113,7 +113,7 @@ D['ConstructUFBoss'] = function(self)
 	self:Tag(Name, '[DuffedUI:getnamecolor][DuffedUI:nameshort]')
 	self.Name = Name
 
-	local AltPowerBar = CreateFrame('StatusBar', nil, self.Health)
+	local AltPowerBar = CreateFrame('StatusBar', nil, self.Health, 'BackdropTemplate')
 	AltPowerBar:SetFrameLevel(self.Health:GetFrameLevel() + 1)
 	AltPowerBar:Height(4)
 	AltPowerBar:SetStatusBarTexture(texture)
