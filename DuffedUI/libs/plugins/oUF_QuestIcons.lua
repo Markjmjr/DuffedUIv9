@@ -94,7 +94,7 @@ local QuestTypes = QuestTypesLocalized[UsedLocale] or QuestTypesLocalized.enUS
 
 local function QUEST_ACCEPTED(self, event, questLogIndex, questID)
 	if questLogIndex and questLogIndex > 0 then
-		local questName = GetQuestLogTitle(questLogIndex)
+		local questName = C_TaskQuest.GetQuestInfoByQuestID(questLogIndex)
 		if questName and (questID and questID > 0) then
 			ActiveQuests[questName] = questID
 		end

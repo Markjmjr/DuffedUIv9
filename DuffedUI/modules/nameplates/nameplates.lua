@@ -84,7 +84,7 @@ D['ConstructNameplates'] = function(self)
 
 	-- threat
 	if health.colorThreat and health.colorThreatInvers then
-		table.insert(self.__elements, D.UpdateThreat)
+		table.insert(self.__elements, D['UpdateThreat'])
 		self:RegisterEvent('PLAYER_ENTER_COMBAT', UpdateThreat)
 		self:RegisterEvent('PLAYER_LEAVE_COMBAT', UpdateThreat)
 		self:RegisterEvent('PLAYER_TARGET_CHANGED', UpdateThreat)
