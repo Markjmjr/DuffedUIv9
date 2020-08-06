@@ -40,7 +40,6 @@ local function CreateButton(name, parent, template, width, height, point, relati
 end
 
 CreateButton('RaidUtilityShowButton', UIParent, 'UIPanelButtonTemplate, SecureHandlerClickTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'TOP', 0, 0, RAID_CONTROL)
-Mixin(RaidUtilityShowButton, BackdropTemplateMixin)
 RaidUtilityShowButton:SetFrameRef('RaidUtilityPanel', RaidUtilityPanel)
 RaidUtilityShowButton:SetAttribute('_onclick', [=[self:Hide(); self:GetFrameRef('RaidUtilityPanel'):Show();]=])
 RaidUtilityShowButton:SetScript('OnMouseUp', function(self, button)
@@ -55,7 +54,6 @@ RaidUtilityShowButton:SetScript('OnMouseUp', function(self, button)
 end)
 
 CreateButton('RaidUtilityCloseButton', RaidUtilityPanel, 'UIPanelButtonTemplate, SecureHandlerClickTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'BOTTOM', 0, -1, CLOSE)
-Mixin(RaidUtilityCloseButton, BackdropTemplateMixin)
 RaidUtilityCloseButton:SetFrameRef('RaidUtilityShowButton', RaidUtilityShowButton)
 RaidUtilityCloseButton:SetAttribute('_onclick', [=[self:GetParent():Hide(); self:GetFrameRef('RaidUtilityShowButton'):Show();]=])
 RaidUtilityCloseButton:SetScript('OnMouseUp', function(self) RaidUtilityPanel.toggled = false end)
@@ -90,7 +88,6 @@ RaidUtilityMainAssistButton:SetAttribute('action', 'toggle')
 CreateButton('RaidUtilityReadyCheckButton', RaidUtilityPanel, 'UIPanelButtonTemplate, BackdropTemplate', RaidUtilityRoleButton:GetWidth() * 0.75, 18, 'TOPLEFT', RaidUtilityMainTankButton, 'BOTTOMLEFT', 0, -5, READY_CHECK)
 RaidUtilityReadyCheckButton:SetScript('OnMouseUp', function(self) DoReadyCheck() end)
 
-Mixin(CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton, BackdropTemplateMixin)
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:ClearAllPoints()
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetPoint('TOPRIGHT', RaidUtilityMainAssistButton, 'BOTTOMRIGHT', 0, -5)
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetParent('RaidUtilityPanel')

@@ -116,7 +116,6 @@ local function SkinObjectiveTracker()
 		if not bar then
 			return
 		end
-		Mixin(bar, BackdropTemplateMixin)
 
 		local icon = bar.Icon
 		local label = bar.Label

@@ -23,13 +23,11 @@ hooksecurefunc(DurabilityFrame, 'SetPoint', function(self, _, parent)
 end)
 
 -- GhostFrame at top
-Mixin(GhostFrame, BackdropTemplateMixin)
 GhostFrame:SetTemplate('Default')
 GhostFrame:SetBackdropColor(0, 0, 0, 0)
 GhostFrame:SetBackdropBorderColor(0, 0, 0, 0)
 GhostFrame.SetBackdropColor = D['Dummy']
 GhostFrame.SetBackdropBorderColor = D['Dummy']
-Mixin(GhostFrameContentsFrame, BackdropTemplateMixin)
 GhostFrameContentsFrame:SetTemplate('Default')
 GhostFrameContentsFrameIcon:SetTexture(nil)
 GhostFrameContentsFrame:Width(148)
@@ -49,7 +47,6 @@ local function Skin(timer, value, maxvalue, scale, paused, label)
 	for i = 1, total, 1 do
 		local frame = _G['MirrorTimer'..i]
 		if not frame.isSkinned then
-			Mixin(frame, BackdropTemplateMixin)
 			frame:SetTemplate('Default')
 
 			local statusbar = _G[frame:GetName()..'StatusBar']

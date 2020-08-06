@@ -91,11 +91,9 @@ function WorldMap:Skin()
 	QuestMapFrame.DetailsFrame.CompleteQuestFrame.CompleteButton:SkinButton()
 	QuestMapFrame:StripTextures()
 	StoryTooltip:StripTextures()
-	Mixin(StoryTooltip, BackdropTemplateMixin)
 	StoryTooltip:SetTemplate('Transparent')
 	QuestBackground:SetAlpha(0)
 
-	Mixin(QuestScrollFrame, BackdropTemplateMixin)
 	QuestScrollFrame:SetTemplate('Transparent')
 	QuestScrollFrame:ClearAllPoints()
 	QuestScrollFrame:Size(299, 496)
@@ -107,7 +105,6 @@ function WorldMap:Skin()
 	QuestScrollFrame.DetailFrame.BottomDetail:Hide()
 
 	QuestScrollFrameScrollBar:SkinScrollBar()
-	Mixin(QuestMapFrame, BackdropTemplateMixin)
 	QuestMapFrame.DetailsFrame:CreateBackdrop()
 	QuestMapFrame.DetailsFrame.backdrop:SetAllPoints(QuestScroll.backdrop)
 	QuestMapFrame.DetailsFrame.backdrop:SetTemplate('Transparent')
@@ -129,7 +126,6 @@ function WorldMap:Skin()
 	TrackButton:StripTextures()
 	TrackButton:SkinButton()
 
-	Mixin(QuestModelScene, BackdropTemplateMixin)
 	QuestModelScene:SetTemplate('Transparent')
 
 	-- Quests Buttons
@@ -137,7 +133,6 @@ function WorldMap:Skin()
 		local Button = i == 1 and WorldMapFrame.SidePanelToggle.OpenButton or WorldMapFrame.SidePanelToggle.CloseButton
 		local Text = (i == 1 and ' ->') or ('<- ')
 
-		Mixin(Button, BackdropTemplateMixin)
 		Button:ClearAllPoints()
 		Button:SetPoint('BOTTOMRIGHT', 0, 0)
 		Button:Size(32, 32)

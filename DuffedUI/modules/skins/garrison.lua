@@ -4,7 +4,6 @@ local D, C, L = unpack(select(2, ...))
 
 local function LoadSkin()
 	-- Garrison Building frame
-	Mixin(GarrisonBuildingFrame, BackdropTemplateMixin)
 	GarrisonBuildingFrame:StripTextures()
 	GarrisonBuildingFrame:SetTemplate('Transparent')
 	GarrisonBuildingFrame.CloseButton:SkinCloseButton()
@@ -16,7 +15,6 @@ local function LoadSkin()
 
 	-- Confirmation popup
 	local Confirmation = GarrisonBuildingFrame.Confirmation
-	Mixin(Confirmation, BackdropTemplateMixin)
 	Confirmation:StripTextures()
 	Confirmation:SetTemplate('Transparent')
 
@@ -28,7 +26,6 @@ local function LoadSkin()
 	Confirmation.SwitchButton:SkinButton()
 
 	-- Mission UI
-	Mixin(GarrisonMissionFrame, BackdropTemplateMixin)
 	GarrisonMissionFrame:StripTextures()
 	GarrisonMissionFrame.GarrCorners:StripTextures()
 	GarrisonMissionFrame.TitleText:Show()
@@ -50,7 +47,6 @@ local function LoadSkin()
 	GarrisonMissionFrame.MissionComplete.NextMissionButton:SkinButton()
 
 	GarrisonMissionFrameHelpBoxButton:SkinButton()
-	Mixin(GarrisonMissionFrameHelpBox, BackdropTemplateMixin)
 	GarrisonMissionFrameHelpBox:StripTextures()
 	GarrisonMissionFrameHelpBox:SetTemplate('Transparent')
 

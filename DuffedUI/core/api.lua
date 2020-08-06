@@ -13,6 +13,7 @@ local inset = 0
 local noinset = C['media']['noinset']
 local UIFrameFadeIn = UIFrameFadeIn
 local UIFrameFadeOut = UIFrameFadeOut
+local Mixin = Mixin
 local mult = 768 / string.match(GetCVar('gxWindowedResolution'), '%d+x(%d+)') / C['general']['uiscale']
 local Scale = function(x) return mult * math.floor(x / mult + 0.5) end
 

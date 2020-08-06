@@ -66,7 +66,6 @@ QueueStatusMinimapButton:ClearAllPoints()
 QueueStatusMinimapButton:SetPoint('BOTTOMRIGHT', 0, 0)
 QueueStatusMinimapButtonBorder:Kill()
 QueueStatusFrame:StripTextures()
-Mixin(QueueStatusFrame, BackdropTemplateMixin)
 QueueStatusFrame:SetTemplate('Transparent')
 QueueStatusFrame:SetFrameStrata('HIGH')
 

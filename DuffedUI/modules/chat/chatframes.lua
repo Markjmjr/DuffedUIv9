@@ -155,7 +155,6 @@ local function SetChatStyle(frame)
 		origs[_G[chat]] = _G[chat].AddMessage
 		_G[chat].AddMessage = AddMessage
 	else
-		Mixin(CombatLogQuickButtonFrame_Custom, BackdropTemplateMixin)
 		CombatLogQuickButtonFrame_Custom:StripTextures()
 		CombatLogQuickButtonFrame_Custom:SetTemplate('Default')
 		CombatLogQuickButtonFrame_CustomAdditionalFilterButton:SkinCloseButton()
@@ -225,7 +224,6 @@ QuickJoinToastButton.ClearAllPoints = function() end
 QuickJoinToastButton.SetPoint = function() end
 QuickJoinToastButton:SetAlpha(0)
 
-Mixin(BNToastFrame, BackdropTemplateMixin)
 BNToastFrame:SetTemplate('Transparent')
 BNToastFrame.CloseButton:SkinCloseButton()
 
