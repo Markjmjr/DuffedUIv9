@@ -34,6 +34,16 @@ AddOn.InfoColor = "|cffC41F3B"
 AddOn.SystemColor = "|cffffcc00"
 AddOn.GUID = UnitGUID("player")
 
+-- Table with all frames which need a backdrop 
+-- needs testing and frames
+AddOn.BackdropFrames = {
+
+}
+for i = 1, getn(AddOn.BackdropFrames) do
+	local BackdropFrames = AddOn.BackdropFrames[i]
+	if BackdropFrames then Mixin(BackdropFrames, BackdropTemplateMixin) end
+end
+
 AddOn.QualityColors = {}
 local qualityColors = BAG_ITEM_QUALITY_COLORS
 for index, value in pairs(qualityColors) do
