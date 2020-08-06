@@ -59,7 +59,7 @@ D['ConstructEnergy'] = function(name, width, height)
 			self:SetMinMaxValues(0, UnitPowerMax('player'))
 			local power = UnitPower("player") or 0
 			local maxPower = UnitPowerMax("player") or 0
-			local perc = (math.floor(power/maxPower * 100)) or 0
+			local perc = maxpower and maxpower > 0 and (math.floor(power/maxPower * 100)) or 0
 			self:SetValue(power)
 			if self.text then self.text:SetText(D['ShortValue'](power)) end
 			if self.perctext and maxPower >= 0 then
