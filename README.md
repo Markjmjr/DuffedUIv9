@@ -11,8 +11,6 @@ If you find bugs, and you will find them, please report them at the following UR
 After Shadowlands is released, this repository will be converted to the live version.
 
 ## Open Issues
-- Setup not working
-- Backdrops not available
 - Actionbars not working
 - GetCurrency() not working
 - Skinning for frames currently not available
@@ -26,5 +24,5 @@ Currently nothing here
 ## Changelog
 Date | Change
 --- | ---
-2020-08-06 | UI initialized<br />Update .toc-files to match the new UI and Game version<br />Update Changelog with new informations
+2020-08-06 | UI initialized<br />Update .toc-files to match the new UI and Game version<br />Update Changelog with new informations<br />Added most of the backdrops<br />Setup fixed
 2020-08-06 | Repository initialized
