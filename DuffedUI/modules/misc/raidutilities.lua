@@ -40,7 +40,8 @@ local function CreateButton(name, parent, template, width, height, point, relati
 end
 
 CreateButton('RaidUtilityShowButton', UIParent, 'UIPanelButtonTemplate, SecureHandlerClickTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'TOP', 0, 0, RAID_CONTROL)
---RaidUtilityShowButton:SetFrameRef('RaidUtilityPanel', RaidUtilityPanel)
+Mixin(RaidUtilityShowButton, BackdropTemplateMixin)
+RaidUtilityShowButton:SetFrameRef('RaidUtilityPanel', RaidUtilityPanel)
 RaidUtilityShowButton:SetAttribute('_onclick', [=[self:Hide(); self:GetFrameRef('RaidUtilityPanel'):Show();]=])
 RaidUtilityShowButton:SetScript('OnMouseUp', function(self, button)
 	if InCombatLockdown() then return end
@@ -54,14 +55,15 @@ RaidUtilityShowButton:SetScript('OnMouseUp', function(self, button)
 end)
 
 CreateButton('RaidUtilityCloseButton', RaidUtilityPanel, 'UIPanelButtonTemplate, SecureHandlerClickTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth(), 18, 'TOP', RaidUtilityPanel, 'BOTTOM', 0, -1, CLOSE)
---RaidUtilityCloseButton:SetFrameRef('RaidUtilityShowButton', RaidUtilityShowButton)
+Mixin(RaidUtilityCloseButton, BackdropTemplateMixin)
+RaidUtilityCloseButton:SetFrameRef('RaidUtilityShowButton', RaidUtilityShowButton)
 RaidUtilityCloseButton:SetAttribute('_onclick', [=[self:GetParent():Hide(); self:GetFrameRef('RaidUtilityShowButton'):Show();]=])
 RaidUtilityCloseButton:SetScript('OnMouseUp', function(self) RaidUtilityPanel.toggled = false end)
 
-CreateButton('RaidUtilityDisbandButton', RaidUtilityPanel, 'UIPanelButtonTemplate', RaidUtilityPanel:GetWidth() * 0.8, 18, 'TOP', RaidUtilityPanel, 'TOP', 0, -5, L['group']['disband'])
+CreateButton('RaidUtilityDisbandButton', RaidUtilityPanel, 'UIPanelButtonTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth() * 0.8, 18, 'TOP', RaidUtilityPanel, 'TOP', 0, -5, L['group']['disband'])
 RaidUtilityDisbandButton:SetScript('OnMouseUp', function(self) D.ShowPopup('DUFFEDUIDISBAND_RAID') end)
 
-CreateButton('RaidUtilityConvertButton', RaidUtilityPanel, 'UIPanelButtonTemplate', RaidUtilityPanel:GetWidth() * 0.8, 18, 'TOP', RaidUtilityDisbandButton, 'BOTTOM', 0, -5, UnitInRaid('player') and CONVERT_TO_PARTY or CONVERT_TO_RAID)
+CreateButton('RaidUtilityConvertButton', RaidUtilityPanel, 'UIPanelButtonTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth() * 0.8, 18, 'TOP', RaidUtilityDisbandButton, 'BOTTOM', 0, -5, UnitInRaid('player') and CONVERT_TO_PARTY or CONVERT_TO_RAID)
 RaidUtilityConvertButton:SetScript('OnMouseUp', function(self)
 	if UnitInRaid('player') then
 		ConvertToParty()
@@ -75,7 +77,7 @@ end)
 CreateButton('RaidUtilityRoleButton', RaidUtilityPanel, 'UIPanelButtonTemplate, BackdropTemplate', RaidUtilityPanel:GetWidth() * 0.8, 18, 'TOP', RaidUtilityConvertButton, 'BOTTOM', 0, -5, ROLE_POLL)
 RaidUtilityRoleButton:SetScript('OnMouseUp', function(self) InitiateRolePoll() end)
 
-CreateButton('RaidUtilityMainTankButton', RaidUtilityPanel, 'UIPanelButtonTemplate, SecureActionButtonTemplate', (RaidUtilityDisbandButton:GetWidth() / 2) - 2, 18, 'TOPLEFT', RaidUtilityRoleButton, 'BOTTOMLEFT', 0, -5, TANK)
+CreateButton('RaidUtilityMainTankButton', RaidUtilityPanel, 'UIPanelButtonTemplate, SecureActionButtonTemplate, BackdropTemplate', (RaidUtilityDisbandButton:GetWidth() / 2) - 2, 18, 'TOPLEFT', RaidUtilityRoleButton, 'BOTTOMLEFT', 0, -5, TANK)
 RaidUtilityMainTankButton:SetAttribute('type', 'maintank')
 RaidUtilityMainTankButton:SetAttribute('unit', 'target')
 RaidUtilityMainTankButton:SetAttribute('action', 'toggle')
@@ -88,13 +90,14 @@ RaidUtilityMainAssistButton:SetAttribute('action', 'toggle')
 CreateButton('RaidUtilityReadyCheckButton', RaidUtilityPanel, 'UIPanelButtonTemplate, BackdropTemplate', RaidUtilityRoleButton:GetWidth() * 0.75, 18, 'TOPLEFT', RaidUtilityMainTankButton, 'BOTTOMLEFT', 0, -5, READY_CHECK)
 RaidUtilityReadyCheckButton:SetScript('OnMouseUp', function(self) DoReadyCheck() end)
 
+Mixin(CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton, BackdropTemplateMixin)
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:ClearAllPoints()
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetPoint('TOPRIGHT', RaidUtilityMainAssistButton, 'BOTTOMRIGHT', 0, -5)
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetParent('RaidUtilityPanel')
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetHeight(18)
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetWidth(RaidUtilityRoleButton:GetWidth() * 0.22)
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:StripTextures(true)
---CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetTemplate()
+CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetTemplate()
 CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:StyleButton()
 
 local MarkTexture = CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:CreateTexture(nil, 'OVERLAY')

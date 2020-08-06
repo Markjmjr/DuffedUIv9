@@ -93,7 +93,7 @@ D['ConstructNameplates'] = function(self)
 	end
 
 	-- health border
-	local HealthBorder = CreateFrame('Frame', nil, health)
+	local HealthBorder = CreateFrame('Frame', nil, health, 'BackdropTemplate')
 	HealthBorder:Point('TOPLEFT', health, 'TOPLEFT', -1, 1)
 	HealthBorder:Point('BOTTOMRIGHT', health, 'BOTTOMRIGHT', 1, -1)
 	HealthBorder:SetTemplate('Transparent')
@@ -169,7 +169,7 @@ D['ConstructNameplates'] = function(self)
 	hooksecurefunc(shield, 'Show', SetCastBarColorShielded)
 	hooksecurefunc(shield, 'Hide', SetCastBarColorDefault)
 
-	castbar.button = CreateFrame('Frame', nil, castbar)
+	castbar.button = CreateFrame('Frame', nil, castbar, 'BackdropTemplate')
 	castbar.button:SetTemplate('Default')
 
 	castbar.button:Size(nHeight + 12)
@@ -185,7 +185,7 @@ D['ConstructNameplates'] = function(self)
 	RaidIcon:Point('LEFT', health, 'LEFT', -25, 0)
 
 	-- NazjatarFollowerXP
-	local bar = CreateFrame('StatusBar', self:GetDebugName() .. 'NazjatarFollowerXP', self)
+	local bar = CreateFrame('StatusBar', self:GetDebugName() .. 'NazjatarFollowerXP', self, 'BackdropTemplate')
 	bar:SetFrameStrata(self:GetFrameStrata())
 	bar:SetFrameLevel(5)
 	bar:SetHeight(9)

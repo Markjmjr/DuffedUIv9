@@ -65,7 +65,7 @@ local abbrev = function(name)
 	return UTF(newname, 20, false)
 end
  
-local f = CreateFrame('Frame', 'DuffedUITeleportMenu', UIParent)
+local f = CreateFrame('Frame', 'DuffedUITeleportMenu', UIParent, 'BackdropTemplate')
 f:Size(DuffedUIMinimap:GetWidth(),(#spells + 1) * 21 + 3)
 f:SetPoint('BOTTOMLEFT', DuffedUIInfoCenter, 'TOPLEFT', 0, 2)
 f:SetFrameStrata('HIGH')
@@ -80,7 +80,7 @@ l:SetPoint('CENTER', r, 'CENTER')
 r:SetFrameStrata('HIGH')
  
 for i, spell in pairs(spells) do
-	local b = CreateFrame('Button', nil, f, 'SecureActionButtonTemplate')
+	local b = CreateFrame('Button', nil, f, 'SecureActionButtonTemplate, BackdropTemplate')
 	b:Size(DuffedUIMinimap:GetWidth() - 4, 20)
 	b:SetPoint('TOPLEFT', f, 'TOPLEFT', 2, -(i * 21) - 2)
 	b:SetFrameStrata('HIGH')
@@ -110,7 +110,7 @@ for i, spell in pairs(spells) do
 end
 f:Hide()
  
-local b = CreateFrame('Button', nil, DuffedUIInfoCenter)
+local b = CreateFrame('Button', nil, DuffedUIInfoCenter, 'BackdropTemplate')
 b:SetAllPoints(DuffedUIInfoCenter)
 b:SetScript('OnClick', function(self)
 	if DuffedUITeleportMenu:IsShown() then

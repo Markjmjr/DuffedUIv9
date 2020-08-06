@@ -191,7 +191,7 @@ function D.CreateStatusFrame()
 	end
 
 	--Main frame
-	local StatusFrame = CreateFrame('Frame', 'DuffedUIStatusReport', UIParent)
+	local StatusFrame = CreateFrame('Frame', 'DuffedUIStatusReport', UIParent, 'BackdropTemplate')
 	StatusFrame:SetSize(320, 555)
 	StatusFrame:SetPoint('CENTER', UIParent, 'CENTER')
 	StatusFrame:SetFrameStrata('HIGH')

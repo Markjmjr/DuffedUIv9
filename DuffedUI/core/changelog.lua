@@ -65,7 +65,7 @@ _G.StaticPopupDialogs['BUGREPORT'] = {
 }
 
 function Module:CreateChangelog()
-	local frame = CreateFrame('Frame', 'DuffedUIChangeLog', UIParent)
+	local frame = CreateFrame('Frame', 'DuffedUIChangeLog', UIParent, 'BackdropTemplate')
 	frame:SetPoint('CENTER')
 	frame:SetSize(445, 430)  -- was 445, 245
 	frame:SetTemplate('Transparent')
@@ -78,7 +78,7 @@ function Module:CreateChangelog()
 	frame:SetScript('OnDragStop', frame.StopMovingOrSizing)
 	frame:SetClampedToScreen(true)
 	
-	local icon = CreateFrame('Frame', nil, frame)
+	local icon = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 	icon:SetPoint('BOTTOMLEFT', frame, 'TOPLEFT', 0, 3)
 	icon:SetSize(20, 20)
 	icon:SetTemplate('Transparent')
@@ -87,7 +87,7 @@ function Module:CreateChangelog()
 	icon.bg:Point('BOTTOMRIGHT', -2, 2)
 	icon.bg:SetTexture(C['media'].duffed)
 	
-	local title = CreateFrame('Frame', nil, frame)
+	local title = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 	title:SetPoint('LEFT', icon, 'RIGHT', 3, 0)
 	title:SetSize(422, 20)
 	title:SetTemplate('Transparent')
@@ -96,7 +96,7 @@ function Module:CreateChangelog()
 	title.text:SetFont(C['media']['font'], 15)
 	title.text:SetText('|cffC41F3BDuffedUI|r - ChangeLog ' .. D['Version'])
 
-	local close = CreateFrame('Button', nil, frame, 'UIPanelButtonTemplate')
+	local close = CreateFrame('Button', nil, frame, 'UIPanelButtonTemplate, BackdropTemplate')
 	close:SetPoint('BOTTOMRIGHT', frame, -5, 5)
 	close:SetText(CLOSE)
 	close:SetSize(95, 19)

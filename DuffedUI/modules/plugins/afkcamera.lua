@@ -84,7 +84,7 @@ function SpinStop()
 end
 
 -- Frames
-local DuffedUIAFKPanel = CreateFrame('Frame', 'DuffedUIAFKPanel', nil)
+local DuffedUIAFKPanel = CreateFrame('Frame', 'DuffedUIAFKPanel', nil, 'BackdropTemplate')
 DuffedUIAFKPanel:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 100)
 DuffedUIAFKPanel:SetSize((ScreenWidth/2), 80)
 DuffedUIAFKPanel:SetTemplate('Transparent')
@@ -92,7 +92,7 @@ DuffedUIAFKPanel:SetFrameStrata('FULLSCREEN')
 DuffedUIAFKPanel:Hide()
 DuffedUIAFKPanel:SetScript("OnKeyDown", OnKeyDown)
 
-local DuffedUIAFKPanelIcon = CreateFrame('Frame', 'DuffedUIAFKPanelIcon', DuffedUIAFKPanel)
+local DuffedUIAFKPanelIcon = CreateFrame('Frame', 'DuffedUIAFKPanelIcon', DuffedUIAFKPanel, 'BackdropTemplate')
 DuffedUIAFKPanelIcon:Size(48)
 DuffedUIAFKPanelIcon:Point('CENTER', DuffedUIAFKPanel, 'TOP', 0, 0)
 DuffedUIAFKPanelIcon:SetTemplate('Default')

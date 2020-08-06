@@ -5,6 +5,7 @@ if C['bags']['Enable'] then return end
 local function LoadSkin()
 	for i = 1, 12 do
 		local Bag = _G["ContainerFrame"..i]
+		Mixin(Bag, BackdropTemplateMixin)
 		Bag:CreateBackdrop()
 		Bag:SetTemplate('Transparent')
 
@@ -97,6 +98,7 @@ local function LoadSkin()
 		_G["ContainerFrame"..i.."CloseButton"]:SetPoint("TOPRIGHT", 5, 2)
 		_G["ContainerFrame"..i.."CloseButton"]:SkinCloseButton()
 
+		Mixin(Bag.PortraitButton, BackdropTemplateMixin)
 		Bag.PortraitButton:SetSize(38, 38)
 		Bag.PortraitButton:SetTemplate()
 		Bag.PortraitButton.Highlight:SetAlpha(0)

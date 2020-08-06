@@ -7,7 +7,7 @@ local editBox = nil
 local isf = nil
 
 local function CreateCopyFrame()
-	frame = CreateFrame('Frame', 'DuffedUIChatCopyFrame', UIParent)
+	frame = CreateFrame('Frame', 'DuffedUIChatCopyFrame', UIParent, 'BackdropTemplate')
 	frame:SetTemplate('Transparent')
 	frame:Width(600)
 	frame:Height(700)
@@ -67,7 +67,7 @@ end
 
 for i = 1, NUM_CHAT_WINDOWS do
 	local cf = _G[format('ChatFrame%d',  i)]
-	local button = CreateFrame('Button', format('DuffedUIButtonCF%d', i), cf)
+	local button = CreateFrame('Button', format('DuffedUIButtonCF%d', i), cf, 'BackdropTemplate')
 	button:Height(20)
 	button:Width(20)
 	button:SetNormalTexture(C['media']['copyicon'])

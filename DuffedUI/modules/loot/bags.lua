@@ -481,8 +481,8 @@ end
 local function Stuffing_CreateReagentContainer()
 	ReagentBankFrame:StripTextures()
 
-	local Reagent = CreateFrame('Frame', 'StuffingFrameReagent', UIParent)
-	local SwitchBankButton = CreateFrame('Button', nil, Reagent)
+	local Reagent = CreateFrame('Frame', 'StuffingFrameReagent', UIParent, 'BackdropTemplate')
+	local SwitchBankButton = CreateFrame('Button', nil, Reagent, 'BackdropTemplate')
 	local NumRows, LastRowButton, NumButtons, LastButton = 0, ReagentBankFrameItem1, 1, ReagentBankFrameItem1
 	local Deposit = ReagentBankFrame.DespositButton
 
@@ -523,7 +523,7 @@ local function Stuffing_CreateReagentContainer()
 		PlaySound(PlaySoundKitID and 'igbackpackopen' or SOUNDKIT.IG_BACKPACK_OPEN)
 	end)
 
-	local SortReagentButton = CreateFrame('Button', nil, Reagent)
+	local SortReagentButton = CreateFrame('Button', nil, Reagent, 'BackdropTemplate')
 	SortReagentButton:SetSize(16, 16)
 	SortReagentButton:SetTemplate('Transparent')
 	SortReagentButton:StyleButton(true)
@@ -543,6 +543,7 @@ local function Stuffing_CreateReagentContainer()
 	SortReagentButton:SetScript('OnLeave', Stuffing_TooltipHide)
 	SortReagentButton:SetScript('OnMouseUp', SortReagentBankBags)
 
+	Mixin(Deposit, BackdropTemplateMixin)
 	Deposit:SetParent(Reagent)
 	Deposit:ClearAllPoints()
 	Deposit:SetText('')
@@ -625,6 +626,8 @@ local function Stuffing_CreateReagentContainer()
 	Reagent:SetHeight(((C['bags'].ButtonSize + C['bags'].ButtonSpace) * (NumRows + 1) + 40) - C['bags'].ButtonSpace)
 
 	MoneyFrame_Update(ReagentBankFrame.UnlockInfo.CostMoneyFrame, GetReagentBankCost())
+	Mixin(ReagentBankFrameUnlockInfo, BackdropTemplateMixin)
+	Mixin(ReagentBankFrameUnlockInfoPurchaseButton, BackdropTemplateMixin)
 	ReagentBankFrameUnlockInfo:StripTextures()
 	ReagentBankFrameUnlockInfo:SetAllPoints(Reagent)
 	ReagentBankFrameUnlockInfo:SetTemplate('Transparent')
@@ -925,7 +928,7 @@ end
 
 function Stuffing:CreateBagFrame(w)
 	local n = 'StuffingFrame' .. w
-	local f = CreateFrame('Frame', n, UIParent)
+	local f = CreateFrame('Frame', n, UIParent, 'BackdropTemplate')
 	f:EnableMouse(true)
 	f:SetMovable(true)
 	f:SetFrameStrata('MEDIUM')
@@ -977,7 +980,7 @@ function Stuffing:CreateBagFrame(w)
 	end
 
 	if w == 'Bank' then
-		f.reagentToggle = CreateFrame('Button', 'StuffingReagentButton' .. w, f)
+		f.reagentToggle = CreateFrame('Button', 'StuffingReagentButton' .. w, f, 'BackdropTemplate')
 		f.reagentToggle:SetSize(16, 16)
 		f.reagentToggle:SetTemplate('Transparent')
 		f.reagentToggle:SetPoint('TOPRIGHT', f, -32, -7)
@@ -1004,7 +1007,7 @@ function Stuffing:CreateBagFrame(w)
 			_G['StuffingFrameBank']:SetAlpha(0)
 		end)
 
-		f.bagsButton = CreateFrame('Button', nil, f)
+		f.bagsButton = CreateFrame('Button', nil, f, 'BackdropTemplate')
 		f.bagsButton:SetSize(16, 16)
 		f.bagsButton:SetTemplate('Transparent')
 		f.bagsButton:SetPoint('RIGHT', f.reagentToggle, 'LEFT', -5, 0)
@@ -1031,7 +1034,7 @@ function Stuffing:CreateBagFrame(w)
 			end
 		end)
 
-		f.sortButton = CreateFrame('Button', nil, f)
+		f.sortButton = CreateFrame('Button', nil, f, 'BackdropTemplate')
 		f.sortButton:SetSize(16, 16)
 		f.sortButton:SetTemplate('Transparent')
 		f.sortButton:StyleButton(true)
@@ -1057,7 +1060,7 @@ function Stuffing:CreateBagFrame(w)
 			end
 		end)
 
-		f.purchaseBagButton = CreateFrame('Button', 'StuffingPurchaseButton' .. w, f)
+		f.purchaseBagButton = CreateFrame('Button', 'StuffingPurchaseButton' .. w, f, 'BackdropTemplate')
 		f.purchaseBagButton:SetSize(16, 16)
 		f.purchaseBagButton:SetTemplate('Transparent')
 		f.purchaseBagButton:SetPoint('RIGHT', f.sortButton, 'LEFT', -5, 0)
@@ -1354,7 +1357,7 @@ function Stuffing:InitBags()
 	button:SetScript('OnEnter', Stuffing_TooltipShow)
 	button:SetScript('OnLeave', Stuffing_TooltipHide)
 
-	f.bagsButton = CreateFrame('Button', nil, f)
+	f.bagsButton = CreateFrame('Button', nil, f, 'BackdropTemplate')
 	f.bagsButton:SetSize(16, 16)
 	f.bagsButton:SetTemplate('Transparent')
 	f.bagsButton:SetPoint('TOPRIGHT', f, -32, -7)
@@ -1381,7 +1384,7 @@ function Stuffing:InitBags()
 		end
 	end)
 
-	f.sortButton = CreateFrame('Button', nil, f)
+	f.sortButton = CreateFrame('Button', nil, f, 'BackdropTemplate')
 	f.sortButton:SetSize(16, 16)
 	f.sortButton:SetTemplate('Transparent')
 	f.sortButton:StyleButton(nil, true)

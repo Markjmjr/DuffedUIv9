@@ -3,7 +3,7 @@ local D, C, L = unpack(select(2, ...))
 -- Modified Script from Tukui T16
 -- Credits got to Tukz & Hydra
 local _G = _G
-local WorldMap = CreateFrame('Frame')
+local WorldMap = CreateFrame('Frame', 'BackdropTemplate')
 local fontflag = 'THINOUTLINE'
 
 WorldMap.QuestTexts = {
@@ -73,7 +73,7 @@ function WorldMap:Skin()
 	Map.backdrop:ClearAllPoints()
 	Map.backdrop:Size(701, 470)
 	Map.backdrop:Point('TOPLEFT', 0, -66)
-	Map.Header = CreateFrame('Frame', nil, Map)
+	Map.Header = CreateFrame('Frame', nil, Map, 'BackdropTemplate')
 	Map.Header:Size(Map.backdrop:GetWidth(), 23)
 	Map.Header:SetPoint('BOTTOMLEFT', Map.backdrop, 'TOPLEFT', 0, 2)
 	Map.Header:SetTemplate()
@@ -91,9 +91,11 @@ function WorldMap:Skin()
 	QuestMapFrame.DetailsFrame.CompleteQuestFrame.CompleteButton:SkinButton()
 	QuestMapFrame:StripTextures()
 	StoryTooltip:StripTextures()
+	Mixin(StoryTooltip, BackdropTemplateMixin)
 	StoryTooltip:SetTemplate('Transparent')
 	QuestBackground:SetAlpha(0)
 
+	Mixin(QuestScrollFrame, BackdropTemplateMixin)
 	QuestScrollFrame:SetTemplate('Transparent')
 	QuestScrollFrame:ClearAllPoints()
 	QuestScrollFrame:Size(299, 496)
@@ -105,6 +107,7 @@ function WorldMap:Skin()
 	QuestScrollFrame.DetailFrame.BottomDetail:Hide()
 
 	QuestScrollFrameScrollBar:SkinScrollBar()
+	Mixin(QuestMapFrame, BackdropTemplateMixin)
 	QuestMapFrame.DetailsFrame:CreateBackdrop()
 	QuestMapFrame.DetailsFrame.backdrop:SetAllPoints(QuestScroll.backdrop)
 	QuestMapFrame.DetailsFrame.backdrop:SetTemplate('Transparent')
@@ -126,6 +129,7 @@ function WorldMap:Skin()
 	TrackButton:StripTextures()
 	TrackButton:SkinButton()
 
+	Mixin(QuestModelScene, BackdropTemplateMixin)
 	QuestModelScene:SetTemplate('Transparent')
 
 	-- Quests Buttons
@@ -133,6 +137,7 @@ function WorldMap:Skin()
 		local Button = i == 1 and WorldMapFrame.SidePanelToggle.OpenButton or WorldMapFrame.SidePanelToggle.CloseButton
 		local Text = (i == 1 and ' ->') or ('<- ')
 
+		Mixin(Button, BackdropTemplateMixin)
 		Button:ClearAllPoints()
 		Button:SetPoint('BOTTOMRIGHT', 0, 0)
 		Button:Size(32, 32)

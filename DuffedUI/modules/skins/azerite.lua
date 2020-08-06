@@ -2,6 +2,7 @@ local D, C, L = unpack(select(2, ...))
 -- Thx Wetxius and Shestak
 
 local function LoadSkin()
+	Mixin(AzeriteEssenceUI, BackdropTemplateMixin)
 	AzeriteEssenceUI:StripTextures()
 	AzeriteEssenceUI:SetTemplate("Transparent")
 

@@ -25,7 +25,7 @@ local RightClickMenu = { }
 RightClickMenu[1] = { text = L['ses']['eqmanager'], isTitle = true, notCheckable = true}
 
 -- Setting up the menu for later for each spec regardless of class, thanks to Simca for helping out with the function.
-local DuffedUISpecSwap = CreateFrame('Frame', 'DuffedUISpecSwap', UIParent, 'UIDropDownMenuTemplate')
+local DuffedUISpecSwap = CreateFrame('Frame', 'DuffedUISpecSwap', UIParent, 'UIDropDownMenuTemplate, BackdropTemplate')
 DuffedUISpecSwap:SetTemplate('Transparent')
 DuffedUISpecSwap:RegisterEvent('PLAYER_LOGIN')
 DuffedUISpecSwap:RegisterEvent('PLAYER_EQUIPMENT_CHANGED')
@@ -69,7 +69,7 @@ DuffedUISpecSwap:SetScript('OnEvent', function(...)
 	end
 end)
 
-local spec = CreateFrame('Button', 'DuffedUI_Spechelper', DuffedUIInfoLeft)
+local spec = CreateFrame('Button', 'DuffedUI_Spechelper', DuffedUIInfoLeft, 'BackdropTemplate')
 spec:SetTemplate('Default')
 if C['chat']['rbackground'] then
 	spec:SetPoint('LEFT', DuffedUITabsRightBackground, 'RIGHT', 2, 0)
@@ -199,7 +199,7 @@ local menuList = {
 }
 
 -- toggle button
-local toggle = CreateFrame('Button', nil, spec)
+local toggle = CreateFrame('Button', nil, spec, 'BackdropTemplate')
 toggle:SetTemplate('Default')
 toggle:Size(25, 20)
 toggle:Point('LEFT', spec, 'RIGHT', 2, 0)

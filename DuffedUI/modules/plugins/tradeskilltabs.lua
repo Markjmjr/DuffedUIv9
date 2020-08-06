@@ -16,7 +16,7 @@ local function addTab(id, index, isSub)
 	local name, _, icon = GetSpellInfo(id)
 	if (not name) or (not icon) then return end
 
-	local tab = _G['TSTab' .. index] or CreateFrame('CheckButton', 'TSTab' .. index, TradeSkillFrame, 'SpellBookSkillLineTabTemplate,SecureActionButtonTemplate')
+	local tab = _G['TSTab' .. index] or CreateFrame('CheckButton', 'TSTab' .. index, TradeSkillFrame, 'SpellBookSkillLineTabTemplate, SecureActionButtonTemplate, BackdropTemplate')
 	tab:StripTextures()
 	tab:SetTemplate('Transparent')
 	tab:CreateBackdrop()

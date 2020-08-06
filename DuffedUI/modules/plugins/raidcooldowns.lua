@@ -83,7 +83,7 @@ local CreateFS = CreateFS or function(frame)
 end
 
 local CreateBG = CreateBG or function(parent)
-	local bg = CreateFrame('Frame', nil, parent)
+	local bg = CreateFrame('Frame', nil, parent, 'BackdropTemplate')
 	bg:SetPoint('TOPLEFT', parent, 'TOPLEFT', -1, 1)
 	bg:SetPoint('BOTTOMRIGHT', parent, 'BOTTOMRIGHT', 1, -1)
 	bg:SetFrameStrata('LOW')

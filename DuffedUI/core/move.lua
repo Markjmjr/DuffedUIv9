@@ -62,7 +62,7 @@ function Move:OnDragStop()
 end
 
 function Move:CreateDragInfo()
-	self.DragInfo = CreateFrame('Button', nil, self)
+	self.DragInfo = CreateFrame('Button', nil, self, 'BackdropTemplate')
 	self.DragInfo:SetAllPoints(self)
 	self.DragInfo:SetTemplate('Transparent')
 	self.DragInfo:SetBackdropBorderColor(1, 0, 0)

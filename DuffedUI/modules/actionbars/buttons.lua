@@ -116,7 +116,7 @@ local function UpdateBar(self, bar)
 	MoveButtonBar(button, bar)
 end
 
-local DuffedUIBar3Button = CreateFrame('Button', 'DuffedUIBar3Button', UIParent)
+local DuffedUIBar3Button = CreateFrame('Button', 'DuffedUIBar3Button', UIParent, 'BackdropTemplate')
 DuffedUIBar3Button:SetTemplate('Default')
 DuffedUIBar3Button:RegisterForClicks('AnyUp')
 DuffedUIBar3Button.text = D['SetFontString'](DuffedUIBar3Button, C['media']['font'], 11, 'THINOUTLINE')
@@ -135,7 +135,7 @@ DuffedUIBar3Button:SetScript('OnEnter', function(self) self:SetBackdropBorderCol
 DuffedUIBar3Button:SetScript('OnLeave', function(self) self:SetBackdropBorderColor(unpack(C['media']['bordercolor'])) end)
 DuffedUIBar3Button.text:SetText(cm .. '-|r')
 
-local DuffedUIBar4Button = CreateFrame('Button', 'DuffedUIBar4Button', UIParent)
+local DuffedUIBar4Button = CreateFrame('Button', 'DuffedUIBar4Button', UIParent, 'BackdropTemplate')
 DuffedUIBar4Button:SetTemplate('Default')
 DuffedUIBar4Button:RegisterForClicks('AnyUp')
 DuffedUIBar4Button.text = D['SetFontString'](DuffedUIBar4Button, C['media']['font'], 11, 'THINOUTLINE') 
@@ -150,7 +150,7 @@ DuffedUIBar4Button:SetScript('OnEnter', function(self) self:SetBackdropBorderCol
 DuffedUIBar4Button:SetScript('OnLeave', function(self) self:SetBackdropBorderColor(unpack(C['media']['bordercolor'])) end)
 DuffedUIBar4Button.text:SetText(cm .. '-|r')
 
-local DuffedUIBar5Button = CreateFrame('Button', 'DuffedUIBar5Button', UIParent)
+local DuffedUIBar5Button = CreateFrame('Button', 'DuffedUIBar5Button', UIParent, 'BackdropTemplate')
 DuffedUIBar5Button:Width(12)
 DuffedUIBar5Button:Height(130)
 DuffedUIBar5Button:Point('RIGHT', UIParent, 'RIGHT', 1, -14)
@@ -185,7 +185,7 @@ local function Vehicle_OnClick(self)
 	if UnitOnTaxi('player') then TaxiRequestEarlyLanding() else VehicleExit() end
 end
 
-local vehicleleft = CreateFrame('Button', 'DuffedUIExitVehicleButtonLeft', UIParent)
+local vehicleleft = CreateFrame('Button', 'DuffedUIExitVehicleButtonLeft', UIParent, 'BackdropTemplate')
 vehicleleft:SetPoint('TOP', UIParent, 'TOP', 0, -5)
 vehicleleft:SetSize(225, 20)
 vehicleleft:SetFrameStrata('LOW')

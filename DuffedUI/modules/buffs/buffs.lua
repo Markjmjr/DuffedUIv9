@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 
 -- This is a forked file by Haste
-local frame = CreateFrame('Frame', 'DuffedUIAuras')
+local frame = CreateFrame('Frame', 'DuffedUIAuras', 'BackdropTemplate')
 frame.content = {}
 
 local icon
@@ -158,7 +158,7 @@ local Skin = function(self)
 	self.Count = Count
 
 	if not proxy then
-		local Holder = CreateFrame('Frame', nil, self)
+		local Holder = CreateFrame('Frame', nil, self, 'BackdropTemplate')
 		Holder:Size(self:GetWidth(), 7)
 		Holder:SetPoint('TOP', self, 'BOTTOM', 0, -1)
 		Holder:SetTemplate('Transparent')

@@ -61,7 +61,7 @@ function Module:CreateItemTexture(slot, relF, x, y)
 	icon:SetSize(14, 14)
 	icon:SetTexCoord(unpack(D['IconCoord']))
 
-	icon.bg = CreateFrame('Frame', nil, slot)
+	icon.bg = CreateFrame('Frame', nil, slot, 'BackdropTemplate')
 	icon.bg:SetPoint('TOPLEFT', icon, -1, 1)
 	icon.bg:SetPoint('BOTTOMRIGHT', icon, 1, -1)
 	icon.bg:SetFrameLevel(3)

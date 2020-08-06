@@ -199,7 +199,7 @@ end
 
 D['CreateBtn'] = function(name, parent, w, h, tt_txt, txt)
 	local f, fs, ff = C['media']['font'], 11, 'THINOUTLINE'
-	local b = CreateFrame('Button', name, parent, 'SecureActionButtonTemplate')
+	local b = CreateFrame('Button', name, parent, 'SecureActionButtonTemplate, BackdropTemplate')
 	b:Width(w)
 	b:Height(h)
 	b:SetTemplate('Default')

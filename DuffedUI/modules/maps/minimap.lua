@@ -66,8 +66,8 @@ QueueStatusMinimapButton:ClearAllPoints()
 QueueStatusMinimapButton:SetPoint('BOTTOMRIGHT', 0, 0)
 QueueStatusMinimapButtonBorder:Kill()
 QueueStatusFrame:StripTextures()
--- Needs revision for Shadowlands
---QueueStatusFrame:SetTemplate('Transparent')
+Mixin(QueueStatusFrame, BackdropTemplateMixin)
+QueueStatusFrame:SetTemplate('Transparent')
 QueueStatusFrame:SetFrameStrata('HIGH')
 
 local function UpdateLFGTooltip()

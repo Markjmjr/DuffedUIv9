@@ -252,7 +252,7 @@ local RightClickMenu = {
 	end	},
 }
 
-local DuffedUIImprovedCurrencyDropDown = CreateFrame('Frame', 'DuffedUIImprovedCurrencyDropDown', UIParent, 'UIDropDownMenuTemplate')
+local DuffedUIImprovedCurrencyDropDown = CreateFrame('Frame', 'DuffedUIImprovedCurrencyDropDown', UIParent, 'UIDropDownMenuTemplate, BackdropTemplate')
 DuffedUIImprovedCurrencyDropDown:SetTemplate('Transparent')
 
 local function RESETGOLD()
