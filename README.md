@@ -22,5 +22,6 @@ Currently nothing here
 ## Changelog
 Date | Change
 --- | ---
+2020-08-06 | Update .toc-files to match the new UI and Game version
 2020-08-06 | UI initialized
 2020-08-06 | Repository initialized
