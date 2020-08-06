@@ -11,7 +11,11 @@ If you find bugs, and you will find them, please report them at the following UR
 After Shadowlands is released, this repository will be converted to the live version.
 
 ## Open Issues
-Currently nothing here
+- Setup not working
+- Backdrops not available
+- Actionbars not working
+- GetCurrency() not working
+- Skinning for frames currently not available
 
 ## ToDo
 Currently nothing here
