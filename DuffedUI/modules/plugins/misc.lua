@@ -74,7 +74,7 @@ local function hook()
 	PlayerTalentFrame_Toggle = function()
 	if not PlayerTalentFrame:IsShown() then
 		ShowUIPanel(PlayerTalentFrame)
-		TalentMicroButtonAlert:Hide()
+		--TalentMicroButtonAlert:Hide()
 	else
 		PlayerTalentFrame_Close()
 	end 
