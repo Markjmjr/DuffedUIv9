@@ -21,10 +21,11 @@ SetCVar('alwaysShowActionBars', 1)
 
 hooksecurefunc('TalentFrame_LoadUI', function() PlayerTalentFrame:UnregisterEvent('ACTIVE_TALENT_GROUP_CHANGED') end)
 
---hooksecurefunc('ActionButton_OnEvent', function(self, event, ...)
+hide:RegisterEvent('PLAYER_ENTERING_WORLD')
+hide:SetScript('OnEvent', function(self, event, ...)
 	if event == 'PLAYER_ENTERING_WORLD' then
-		self:UnregisterEvent('ACTIONBAR_SHOWGRID')
-		self:UnregisterEvent('ACTIONBAR_HIDEGRID')
-		self:UnregisterEvent('PLAYER_ENTERING_WORLD')
+		ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_SHOWGRID')
+		ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_HIDEGRID')
+		ActionBarButtonEventsFrame:UnregisterEvent('PLAYER_ENTERING_WORLD')
 	end
---end)
+end)
