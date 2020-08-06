@@ -391,7 +391,7 @@ local MAP_AND_QUEST_LOG=MAP_AND_QUEST_LOG
 
 numQuests:RegisterEvent('QUEST_LOG_UPDATE')
 numQuests:SetScript('OnEvent',function()
-	local numQuests = tostring(select(2,GetNumQuestLogEntries()))
+	local numQuests = tostring(select(2, C_QuestLog.GetNumQuestLogEntries()))
 	local Quests = numQuests..'/'..MAX_QUESTS..' '..TRACKER_HEADER_QUESTS
 	local Objectives = numQuests..'/'..MAX_QUESTS..' '..OBJECTIVES_TRACKER_LABEL
 	local WorldMap = MAP_AND_QUEST_LOG..' ('..numQuests..'/'..MAX_QUESTS..')'
