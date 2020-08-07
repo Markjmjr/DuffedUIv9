@@ -12,15 +12,20 @@ After Shadowlands is released, this repository will be converted to the live ver
 
 ## Open Issues
 - Actionbars not working
-- Some frames are not properly skinned (worldmap, zonemap, accept-popup)
-- GetCurrency() not working
 - Skinning for frames (charscreen, etc.) currently not available
 
 ## ToDo
-Currently nothing here
+- Actionbars
 
 ## Done
-Currently nothing here
+- Backdrops
+- Popups
+- Worldmaps
+- Currencys
+- Bank & Bags
+- Functions
+- Some Plugins
+- Datatext
 
 ## Changelog
 Date | Change
