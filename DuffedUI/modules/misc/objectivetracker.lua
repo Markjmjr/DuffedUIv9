@@ -73,24 +73,22 @@ local function SkinObjectiveTracker()
 
 	local MinimizeButton = ObjectiveTrackerFrame.HeaderMenu.MinimizeButton
 	MinimizeButton:SetSize(22, 22)
-	MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton')
-	MinimizeButton:SetPushedTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton')
+	MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton2up')
+	MinimizeButton:SetPushedTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton2up')
 	MinimizeButton:SetHighlightTexture(false or '')
 	MinimizeButton:SetDisabledTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbuttondisabled')
 	MinimizeButton:HookScript('OnClick', function()
 		if ObjectiveTrackerFrame.collapsed then
-			MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton')
+			MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton2up')
 		else
-			MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton')
+			MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton1down')
 		end
 	end)
 
 	local function ColorProgressBars(self, value)
-		if not (self.Bar and value) then
-			return
-		end
+		if not (self.Bar and value) then return end
 
-		D.StatusBarColorGradient(self.Bar, value, 100)
+		D['StatusBarColorGradient'](self.Bar, value, 100)
 	end
 
 	local function SkinItemButton(_, block)
@@ -113,9 +111,7 @@ local function SkinObjectiveTracker()
 	local function SkinProgressBars(_, _, line)
 		local progressBar = line and line.ProgressBar
 		local bar = progressBar and progressBar.Bar
-		if not bar then
-			return
-		end
+		if not bar then return end
 
 		local icon = bar.Icon
 		local label = bar.Label
@@ -294,17 +290,13 @@ local function IsFramePositionedLeft(frame)
 	local screenWidth = GetScreenWidth()
 	local positionedLeft = false
 
-	if x and x < (screenWidth / 2) then
-		positionedLeft = true
-	end
+	if x and x < (screenWidth / 2) then positionedLeft = true end
 
 	return positionedLeft
 end
 
 function Module:SetObjectiveFrameAutoHide()
-	if not _G.ObjectiveTrackerFrame.AutoHider then -- Kaliel's Tracker prevents Module:MoveObjectiveFrame() from executing
-		return
-	end
+	if not _G.ObjectiveTrackerFrame.AutoHider then return end -- Kaliel's Tracker prevents Module:MoveObjectiveFrame() from executing
 
 	if C['general']['autocollapse'] then
 		RegisterStateDriver(_G.ObjectiveTrackerFrame.AutoHider, "objectiveHider", "[@arena1,exists][@arena2,exists][@arena3,exists][@arena4,exists][@arena5,exists][@boss1,exists][@boss2,exists][@boss3,exists][@boss4,exists] 1;0")
@@ -364,9 +356,7 @@ function Module:MoveObjectiveFrame()
 
 	ObjectiveTrackerFrame.AutoHider:SetScript("OnHide", function()
 		local _, _, difficulty = GetInstanceInfo()
-		if difficulty ~= 8 then
-			_G.ObjectiveTracker_Collapse()
-		end
+		if difficulty ~= 8 then _G.ObjectiveTracker_Collapse() end
 	end)
 
 	ObjectiveTrackerFrame.AutoHider:SetScript("OnShow", _G.ObjectiveTracker_Expand)
