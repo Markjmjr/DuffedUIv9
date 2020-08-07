@@ -1,5 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 local Module = D:NewModule('Corruption Ranks', 'AceTimer-3.0', 'AceHook-3.0', 'AceEvent-3.0')
+if D['Toc'] >= 90000 then return end
 
 local select, strmatch, gmatch, format, next, wipe, max = select, strmatch, gmatch, format, next, wipe, max
 local IsCorruptedItem, GetSpellInfo = IsCorruptedItem, GetSpellInfo

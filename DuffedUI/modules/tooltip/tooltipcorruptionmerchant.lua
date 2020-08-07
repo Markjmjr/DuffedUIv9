@@ -1,5 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 local Module = D:NewModule('Corruption Merchant', 'AceTimer-3.0', 'AceHook-3.0', 'AceEvent-3.0')
+if D['Toc'] >= 90000 then return end
 
 -- All the fame to siweia
 
