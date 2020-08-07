@@ -16,6 +16,7 @@ After Shadowlands is released, this repository will be converted to the live ver
 
 ## ToDo
 - Actionbars
+- Check ConfigUI
 
 ## Done
 - Backdrops
