@@ -55,6 +55,8 @@ local function LoadSkin()
 	for i = 1, 4 do
 		for j = 1, 3 do
 			_G['StaticPopup' .. i .. 'Button' .. j]:SkinButton()
+			_G['StaticPopup' .. i].Border:Kill()
+			_G['StaticPopup' .. i].Border.Bg:Kill()
 			_G['StaticPopup' .. i .. 'EditBox']:SkinEditBox()
 			_G['StaticPopup' .. i .. 'MoneyInputFrameGold']:SkinEditBox()
 			_G['StaticPopup' .. i .. 'MoneyInputFrameSilver']:SkinEditBox()
