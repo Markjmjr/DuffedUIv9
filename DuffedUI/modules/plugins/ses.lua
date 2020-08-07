@@ -123,7 +123,7 @@ spec:SetScript('OnEnter', function(self)
 				if selected then GameTooltip:AddLine(AddTexture(icon)..' '..name) end
 			end
 		end
-		if D['Level'] >= C_SpecializationInfo.CanPlayerUsePVPTalentUI() then
+		if C_SpecializationInfo.CanPlayerUsePVPTalentUI() then
 			local pvpTalents = C_SpecializationInfo_GetAllSelectedPvpTalentIDs()
 
 			if #pvpTalents > 0 then
