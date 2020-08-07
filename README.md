@@ -25,5 +25,6 @@ Currently nothing here
 ## Changelog
 Date | Change
 --- | ---
+2020-08-07 | Fixed Worldmap<br />Fixed StaticPopup to show not the border<br />Fixed bank and bags<br />Disabled Corruption-Plugins for Shadowlands (not needed anymore)<br />Fixed SpecSwitcher tooltip for current choosen talents<br />Fixed GetBackpackCurrencyInfo and removed two currencys<br />Fixed DataText BFA-Missons<br />Disabled UpdateKeybinds<br />Fixed GetCurrencyInfo()
 2020-08-06 | UI initialized<br />Update .toc-files to match the new UI and Game version<br />Update Changelog with new informations<br />Added most of the backdrops<br />Setup fixed<br />Fixed threat indicator on raid, player and target<br />Fixed questicons on nameplates<br />Fixed Division by zero for power on playerframe<br />Fixed rangecheck
 2020-08-06 | Repository initialized
