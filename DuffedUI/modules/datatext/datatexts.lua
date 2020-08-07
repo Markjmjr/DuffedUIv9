@@ -34,14 +34,10 @@ EventFrame:SetScript('OnEvent', function(self, event, ...)
 	self[event](self, ...)
 end)
 
-function EventFrame:PLAYER_LOGIN()
-	D.DataTexts_Init()
-end
+function EventFrame:PLAYER_LOGIN() D['DataTexts_Init']() end
 
 function DataTexts:AddToMenu(name, data)
-	if (self.Texts[name]) then
-		return
-	end
+	if (self.Texts[name]) then return end
 
 	self.Texts[name] = data
 	table_insert(self.Menu, {text = name, notCheckable = true, func = self.Toggle, arg1 = data})
@@ -57,9 +53,7 @@ local function RemoveData(self)
 end
 
 local function SetData(self, object)
-	if (self.Data) then
-		RemoveData(self)
-	end
+	if (self.Data) then RemoveData(self) end
 
 	self.Data = object
 	self.Data:Enable()
@@ -166,9 +160,7 @@ local function GetTooltipAnchor(self)
 	return From, Anchor, X, Y
 end
 
-function DataTexts:GetDataText(name)
-	return self.Texts[name]
-end
+function DataTexts:GetDataText(name) return self.Texts[name] end
 
 local function OnEnable(self)
 	if (not self.FontUpdated) then
@@ -207,9 +199,7 @@ end
 
 function DataTexts:ForceUpdate()
 	for _, data in pairs(self.Texts) do
-		if data.Enabled then
-			data:Update(1)
-		end
+		if data.Enabled then data:Update(1) end
 	end
 end
 
@@ -217,20 +207,14 @@ function DataTexts:Save()
 	local playerName = UnitName('player')
 	local playerRealm = GetRealmName()
 	
-	if (not DuffedUIData) then
-		DuffedUIData = {}
-	end
+	if (not DuffedUIData) then DuffedUIData = {} end
 
 	local Data = DuffedUIData
 
-	if (not Data.Texts) then
-		Data.Texts = {}
-	end
+	if (not Data.Texts) then Data.Texts = {} end
 
 	for Name, DataText in pairs(self.Texts) do
-		if (DataText.Position) then
-			Data.Texts[Name] = {DataText.Enabled, DataText.Position}
-		end
+		if (DataText.Position) then Data.Texts[Name] = {DataText.Enabled, DataText.Position} end
 	end
 end
 
@@ -256,14 +240,10 @@ function DataTexts:Reset()
 	
 	DuffedUIData['Texts'] = {}
 
-	for i = 1, self.NumAnchors do
-		RemoveData(self.Anchors[i])
-	end
+	for i = 1, self.NumAnchors do RemoveData(self.Anchors[i]) end
 
 	for _, Data in pairs(self.Texts) do
-		if (Data.Enabled) then
-			Data:Disable()
-		end
+		if (Data.Enabled) then Data:Disable() end
 	end
 
 	self:AddDefaults()
@@ -293,13 +273,9 @@ function DataTexts:Load()
 	
 	self:CreateAnchors()
 
-	if (not DuffedUIData) then
-		DuffedUIData = {}
-	end
+	if (not DuffedUIData) then DuffedUIData = {} end
 
-	if (not DuffedUIData['Texts']) then
-		self:AddDefaults()
-	end
+	if (not DuffedUIData['Texts']) then self:AddDefaults() end
 
 	if (DuffedUIData and DuffedUIData['Texts']) then
 		for name, info in pairs(DuffedUIData['Texts']) do
@@ -325,26 +301,18 @@ DataTexts:SetScript('OnEvent', function(self, event, ...)
 	self[event](self, ...)
 end)
 
-D.DataTexts_Init = function()
-	DataTexts:Load()
-end
+D['DataTexts_Init'] = function() DataTexts:Load() end
 
-function DataTexts:PLAYER_LOGOUT()
-	self:Save()
-end
+function DataTexts:PLAYER_LOGOUT() self:Save() end
 
-D.DataTexts = DataTexts
+D['DataTexts'] = DataTexts
 
 function D.FlashLoopFinished(self, requested)
-	if not requested then
-		self:Play()
-	end
+	if not requested then self:Play() end
 end
 
 function D.SetUpAnimGroup(obj, Type, ...)
-	if not Type then
-		Type = 'Flash'
-	end
+	if not Type then Type = 'Flash' end
 
 	if string.sub(Type, 1, 5) == 'Flash' then
 		obj.anim = obj:CreateAnimationGroup('Flash')
@@ -363,9 +331,7 @@ function D.SetUpAnimGroup(obj, Type, ...)
 		end
 	else
 		local x, y, duration, customName = ...
-		if not customName then
-			customName = 'anim'
-		end
+		if not customName then customName = 'anim' end
 
 		local anim = obj:CreateAnimationGroup('Move_In')
 		obj[customName] = anim

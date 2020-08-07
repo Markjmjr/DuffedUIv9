@@ -13,7 +13,7 @@ if class ~= 'MAGE' then return end
 D['ClassRessource']['MAGE'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 	
-	local ArcaneCharge = CreateFrame('Frame', 'ArcaneChargeBar', UIParent)
+	local ArcaneCharge = CreateFrame('Frame', 'ArcaneChargeBar', UIParent, 'BackdropTemplate')
 	ArcaneCharge:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
