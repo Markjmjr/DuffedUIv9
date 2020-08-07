@@ -51,7 +51,7 @@ function Module.UpdateDurability()
 		local id, _ = GetInventorySlotInfo(item..'Slot')
 		local v1, v2 = GetInventoryItemDurability(id)
 		v1, v2 = tonumber(v1) or 0, tonumber(v2) or 0
-		local percent = v1 / v2
+		local percent = v1 or 0 / v2 or 0
 		local SlotDurStr = GetDurStrings(item)
 
 		if ((v2 ~= 0) and (percent ~= 1)) then
