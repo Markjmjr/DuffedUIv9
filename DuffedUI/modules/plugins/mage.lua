@@ -109,17 +109,21 @@ for i, spell in pairs(spells) do
 	end)
 end
 f:Hide()
+
+local OnMouseDown = function(self, btn)
+	if (btn == "RightButton") then 
+		if DuffedUITeleportMenu:IsShown() then
+			DuffedUITeleportMenu:Hide()
+		else
+			Title:SetText(D['PanelColor']..'Portal / Teleportlist')
+			DuffedUITeleportMenu:Show()
+		end
+	end
+end
  
 local b = CreateFrame('Button', nil, DuffedUIInfoCenter, 'BackdropTemplate')
 b:SetAllPoints(DuffedUIInfoCenter)
-b:SetScript('OnClick', function(self)
-	if DuffedUITeleportMenu:IsShown() then
-		DuffedUITeleportMenu:Hide()
-	else
-		Title:SetText(D['PanelColor']..'Portal / Teleportlist')
-		DuffedUITeleportMenu:Show()
-	end
-end)
+b:SetScript('OnMouseDown', OnMouseDown)
  
 f:RegisterEvent('UNIT_SPELLCAST_START')
 f:SetScript('OnEvent',

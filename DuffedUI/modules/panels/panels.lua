@@ -49,12 +49,15 @@ local zone_Update = function()
 	end
 end
  
- local OnMouseDown = function(self, btn)
-	if (btn ~= "LeftButton") then
-		return
+local OnMouseDown = function(self, btn)
+	if not C['misc']['magemenu'] then
+		if (btn ~= "LeftButton") then return end
+		ToggleWorldMap()
+	else
+		if (btn == "LeftButton") then
+			ToggleWorldMap()
+		end
 	end
-
-	ToggleWorldMap()
 end
  
 icenter:RegisterEvent('PLAYER_ENTERING_WORLD')
