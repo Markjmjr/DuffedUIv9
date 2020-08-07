@@ -44,9 +44,8 @@ end
 D['HyperlinkMouseover']()
 
 -- Currencys
-local GetCurrencyInfo = GetCurrencyInfo
 D['Currency'] = function(id, weekly, capped)
-	local name, amount, tex, week, weekmax, maxed, discovered = GetCurrencyInfo(id)
+	local name, amount, tex, week, weekmax, maxed, discovered = C_CurrencyInfo.GetCurrencyInfo(id)
 
 	local r, g, b = 1, 1, 1
 	for i = 1, GetNumWatchedTokens() do

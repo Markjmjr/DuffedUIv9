@@ -10,7 +10,6 @@ local join = string.join
 local format = string.format
 local tsort = table.sort
 
-local GetCurrencyInfo = GetCurrencyInfo
 local C_GarrisonRequestLandingPageShipmentInfo = C_Garrison.RequestLandingPageShipmentInfo
 local C_GarrisonGetBuildings = C_Garrison.GetBuildings
 local C_GarrisonGetInProgressMissions = C_Garrison.GetInProgressMissions
@@ -158,10 +157,10 @@ local OnEnter = function(self)
 		GameTooltip:AddLine(' ')
 	end
 
-	local name, amount, tex = GetCurrencyInfo(GARRISON_CURRENCY)
+	local name, amount, tex = C_CurrencyInfo.GetCurrencyInfo(GARRISON_CURRENCY)
 	GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount, 1, 1, 1, selectioncolor)
 
-	local name, amount, tex = GetCurrencyInfo(GARRISON_CURRENCY_OIL)
+	local name, amount, tex = C_CurrencyInfo.GetCurrencyInfo(GARRISON_CURRENCY_OIL)
 	GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount, 1, 1, 1, selectioncolor)
 	GameTooltip:Show()
 end

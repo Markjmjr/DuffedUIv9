@@ -26,7 +26,6 @@ local IsQuestFlaggedCompleted = IsQuestFlaggedCompleted
 local GetMaxLevelForExpansionLevel = GetMaxLevelForExpansionLevel
 local GetRGB = GetRGB
 local HideUIPanel = HideUIPanel
-local GetCurrencyInfo = GetCurrencyInfo
 local GetMouseFocus = GetMouseFocus
 local SecondsToTime = SecondsToTime
 local GOAL_COMPLETED = GOAL_COMPLETED
@@ -77,7 +76,7 @@ local Widget_IDs = {
 }
 
 local WARRESOURCES_CURRENCY = 1560
---local WARRESOURCES_ICON = format('|T%s:16:16:0:0:64:64:4:60:4:60|t', select(3, GetCurrencyInfo(WARRESOURCES_CURRENCY)))
+local WARRESOURCES_ICON = format('|T%s:16:16:0:0:64:64:4:60:4:60|t', select(3, C_CurrencyInfo.GetCurrencyInfo(WARRESOURCES_CURRENCY)))
 local BODYGUARD_LEVEL_XP_FORMAT = L['dt']['Rank'] .. ' %d (%d/%d)'
 local NAZJATAR_MAP_ID = 1718
 
@@ -120,7 +119,7 @@ local function Update(self, event)
 		if(event == 'GARRISON_LANDINGPAGE_SHIPMENTS') then
 		end
 
-		local _, numGarrisonResources = GetCurrencyInfo(WARRESOURCES_CURRENCY)
+		local _, numGarrisonResources = C_CurrencyInfo.GetCurrencyInfo(WARRESOURCES_CURRENCY)
 		
 		local Missions = {}
 		C_Garrison_GetInProgressMissions(Missions, LE_FOLLOWER_TYPE_GARRISON_8_0)
