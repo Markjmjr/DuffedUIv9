@@ -14,7 +14,7 @@ D['ClassRessource']['PRIEST'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 
 	if C['unitframes']['EnableAltMana'] then
-		local PMB = CreateFrame('StatusBar', 'PriestManaBar', self.Health)
+		local PMB = CreateFrame('StatusBar', 'PriestManaBar', self.Health, 'BackdropTemplate')
 		PMB:Size(218, 3)
 		if C['unitframes']['attached'] then
 			if layout == 1 then

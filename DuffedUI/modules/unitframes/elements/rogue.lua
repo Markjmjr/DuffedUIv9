@@ -13,7 +13,7 @@ if class ~= 'ROGUE' then return end
 D['ClassRessource']['ROGUE'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 	
-	local ComboPoints = CreateFrame('Frame', 'ComboPoints', UIParent)
+	local ComboPoints = CreateFrame('Frame', 'ComboPoints', UIParent, 'BackdropTemplate')
 	ComboPoints:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
@@ -33,7 +33,7 @@ D['ClassRessource']['ROGUE'] = function(self)
 	ComboPoints:SetBackdropBorderColor(0, 0, 0)
 
 	for i = 1, 6 do
-		ComboPoints[i] = CreateFrame("StatusBar", nil, ComboPoints)
+		ComboPoints[i] = CreateFrame("StatusBar", nil, ComboPoints, 'BackdropTemplate')
 		ComboPoints[i]:SetHeight(5)
 		ComboPoints[i]:SetStatusBarTexture(texture)
 

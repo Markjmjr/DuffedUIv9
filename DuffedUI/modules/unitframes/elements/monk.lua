@@ -13,7 +13,7 @@ if class ~= 'MONK' then return end
 D['ClassRessource']['MONK'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 
-	local HarmonyBar = CreateFrame('Frame', 'HarmonyBar', UIParent)
+	local HarmonyBar = CreateFrame('Frame', 'HarmonyBar', UIParent, 'BackdropTemplate')
 	HarmonyBar:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
@@ -33,7 +33,7 @@ D['ClassRessource']['MONK'] = function(self)
 	HarmonyBar:SetBackdropBorderColor(0, 0, 0)
 
 	for i = 1, 6 do
-		HarmonyBar[i] = CreateFrame('StatusBar', 'HarmonyBar' .. i, HarmonyBar)
+		HarmonyBar[i] = CreateFrame('StatusBar', 'HarmonyBar' .. i, HarmonyBar, 'BackdropTemplate')
 		HarmonyBar[i]:Height(5)
 		HarmonyBar[i]:SetStatusBarTexture(texture)
 		if i == 1 then

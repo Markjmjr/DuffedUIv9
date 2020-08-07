@@ -8,7 +8,7 @@ if class ~= 'DEATHKNIGHT' then return end
 
 D['ClassRessource']['DEATHKNIGHT'] = function(self)
 	local Runes = {}
-	Runes = CreateFrame('Frame', Runes, UIParent)
+	Runes = CreateFrame('Frame', Runes, UIParent, 'BackdropTemplate')
 	Runes:SetSize(216, 5)
 	Runes:CreateBackdrop()
 	Runes:SetParent(DuffedUIPetBattleHider)
@@ -28,7 +28,7 @@ D['ClassRessource']['DEATHKNIGHT'] = function(self)
 		end
 
 	for index = 1, 6 do
-		local Rune = CreateFrame("StatusBar", 'Rune'..index, Runes)
+		local Rune = CreateFrame("StatusBar", 'Rune'..index, Runes, 'BackdropTemplate')
 		Rune:SetStatusBarTexture(texture)
 		Rune:SetStatusBarColor(.84, .75, .65)
 		Rune:SetMinMaxValues(0, 10)

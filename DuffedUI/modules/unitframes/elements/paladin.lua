@@ -13,7 +13,7 @@ if class ~= 'PALADIN' then return end
 D['ClassRessource']['PALADIN'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 	
-	local HolyPower = CreateFrame('Frame', 'HolyPowerBar', UIParent)
+	local HolyPower = CreateFrame('Frame', 'HolyPowerBar', UIParent, 'BackdropTemplate')
 	HolyPower:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
@@ -33,7 +33,7 @@ D['ClassRessource']['PALADIN'] = function(self)
 	HolyPower:SetBackdropBorderColor(0, 0, 0, 0)
 
 	for i = 1, 5 do
-		HolyPower[i]=CreateFrame('StatusBar', 'HolyPowerBar' .. i, HolyPower)
+		HolyPower[i]=CreateFrame('StatusBar', 'HolyPowerBar' .. i, HolyPower, 'BackdropTemplate')
 		HolyPower[i]:Height(5)
 		HolyPower[i]:SetStatusBarTexture(texture)
 		HolyPower[i]:GetStatusBarTexture():SetHorizTile(false)

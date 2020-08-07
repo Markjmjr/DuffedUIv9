@@ -14,7 +14,7 @@ D['ClassRessource']['DRUID'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 
 	if C['unitframes']['EnableAltMana'] then
-		local DruidMana = CreateFrame('StatusBar', nil, self.Health)
+		local DruidMana = CreateFrame('StatusBar', nil, self.Health, 'BackdropTemplate')
 		DruidMana:Size(218, 3)
 		if C['unitframes']['attached'] then
 			if layout == 1 then
@@ -50,7 +50,7 @@ D['ClassRessource']['DRUID'] = function(self)
 		if C['unitframes']['oocHide'] then D['oocHide'](DruidMana) end
 	end
 
-	local ComboPoints = CreateFrame('Frame', 'ComboPoints', UIParent)
+	local ComboPoints = CreateFrame('Frame', 'ComboPoints', UIParent, 'BackdropTemplate')
 	ComboPoints:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
@@ -70,7 +70,7 @@ D['ClassRessource']['DRUID'] = function(self)
 	ComboPoints:SetBackdropBorderColor(0, 0, 0)
 
 	for i = 1, 6 do
-		ComboPoints[i] = CreateFrame("StatusBar", nil, ComboPoints)
+		ComboPoints[i] = CreateFrame("StatusBar", nil, ComboPoints), 'BackdropTemplate'
 		ComboPoints[i]:SetHeight(5)
 		ComboPoints[i]:SetStatusBarTexture(texture)
 

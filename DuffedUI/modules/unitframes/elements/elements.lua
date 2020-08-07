@@ -32,7 +32,7 @@ end
 
 -- Energybar
 D['ConstructEnergy'] = function(name, width, height)
-	local eb = CreateFrame('StatusBar', name, UIParent)
+	local eb = CreateFrame('StatusBar', name, UIParent, 'BackdropTemplate')
 	eb:SetPoint('TOP', RessourceMover, 'BOTTOM', 0, 5)
 	eb:Size(D['Scale'](width), D['Scale'](height))
 	eb:SetStatusBarTexture(texture)

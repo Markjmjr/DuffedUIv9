@@ -13,7 +13,7 @@ if class ~= 'SHAMAN' then return end
 D['ClassRessource']['SHAMAN'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 
-	local TotemBar = CreateFrame('Frame', 'TotemBar', UIParent)
+	local TotemBar = CreateFrame('Frame', 'TotemBar', UIParent, 'BackdropTemplate')
 	TotemBar:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
@@ -30,7 +30,7 @@ D['ClassRessource']['SHAMAN'] = function(self)
 	end
 
 	for i = 1, MAX_TOTEMS do
-		TotemBar[i] = CreateFrame('StatusBar', 'TotemBar' .. i, TotemBar)
+		TotemBar[i] = CreateFrame('StatusBar', 'TotemBar' .. i, TotemBar, 'BackdropTemplate')
 		TotemBar[i]:SetHeight(5)
 		TotemBar[i]:EnableMouse(true)
 		TotemBar[i].Icon = TotemBar[i]:CreateTexture(nil, 'BORDER')
@@ -52,7 +52,7 @@ D['ClassRessource']['SHAMAN'] = function(self)
 	if C['unitframes']['oocHide'] then D['oocHide'](TotemBar) end
 
 	if C['unitframes']['EnableAltMana'] then
-		local SMB = CreateFrame('StatusBar', 'ShamanManaBar', self.Health)
+		local SMB = CreateFrame('StatusBar', 'ShamanManaBar', self.Health, 'BackdropTemplate')
 		SMB:Size(218, 3)
 		if C['unitframes']['attached'] then
 			if layout == 1 then

@@ -13,7 +13,7 @@ if class ~= 'WARLOCK' then return end
 D['ClassRessource']['WARLOCK'] = function(self)
 	if not C['unitframes']['attached'] then D['ConstructEnergy']('Energy', 216, 5) end
 	
-	local WarlockBar = CreateFrame('Frame', 'WarlockBar', UIParent)
+	local WarlockBar = CreateFrame('Frame', 'WarlockBar', UIParent, 'BackdropTemplate')
 	WarlockBar:Size(216, 5)
 	if C['unitframes']['attached'] then
 		if layout == 1 then
@@ -31,7 +31,7 @@ D['ClassRessource']['WARLOCK'] = function(self)
 	WarlockBar:CreateBackdrop()
 
 	for i = 1, 5 do
-		WarlockBar[i] = CreateFrame('StatusBar', 'WarlockBar' .. i, WarlockBar)
+		WarlockBar[i] = CreateFrame('StatusBar', 'WarlockBar' .. i, WarlockBar, 'BackdropTemplate')
 		WarlockBar[i]:Height(5)
 		WarlockBar[i]:SetStatusBarTexture(texture)
 		if i == 1 then
