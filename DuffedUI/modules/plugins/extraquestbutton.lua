@@ -1,4 +1,4 @@
---[[local D, C, L = unpack(select(2, ...))
+local D, C, L = unpack(select(2, ...))
 if not C['actionbar']['enable'] and not C['actionbar']['extraquestbutton'] then return end
 
 -- Sourced: ExtraQuestButton, by p3lim
@@ -46,9 +46,9 @@ ExtraQuestButton:SetScript('OnEvent', function(self, event, ...)
 	end
 end)
 
-local visibilityState = '[extrabar][petbattle] hide; show']]--
---local onAttributeChanged = [[
---[[if(name == 'item') then
+local visibilityState = '[extrabar][petbattle] hide; show'
+local onAttributeChanged = [[
+if(name == 'item') then
 	if(value and not self:IsShown() and not HasExtraActionBar()) then
 		self:Show()
 	elseif(not value) then
@@ -68,10 +68,10 @@ if(self:IsShown() and (name == 'item' or name == 'binding')) then
 	local key = GetBindingKey('EXTRAACTIONBUTTON1')
 	if(key) then
 		self:SetBindingClick(1, key, self, 'LeftButton')
-	end]]--
---end]]
+	end
+end
+]]
 
---[[
 function ExtraQuestButton:BAG_UPDATE_COOLDOWN()
 	if (self:IsShown() and self.itemID) then
 		local start, duration = GetItemCooldown(self.itemID)
@@ -113,9 +113,7 @@ function ExtraQuestButton:PLAYER_LOGIN()
 	self:SetAttribute('_onattributechanged', onAttributeChanged)
 	self:SetAttribute('type', 'item')
 
-	if (not self:GetPoint()) then
-		self:SetPoint('CENTER', ExtraActionButton1)
-	end
+	if (not self:GetPoint()) then self:SetPoint('CENTER', ExtraActionButton1) end
 
 	self:SetSize(ExtraActionButton1:GetSize())
 	self:SetScale(ExtraActionButton1:GetScale())
@@ -244,35 +242,27 @@ ExtraQuestButton:SetScript('OnEnable', function(self)
 end)
 
 ExtraQuestButton:SetScript('OnDisable', function(self)
-	if (not self:IsMovable()) then
-		self:SetMovable(true)
-	end
+	if (not self:IsMovable()) then self:SetMovable(true) end
 
 	RegisterStateDriver(self, 'visible', 'show')
-	self:SetAttribute('_onattributechanged', nil)]]--
-	--self.Icon:SetTexture([[Interface\Icons\INV_Misc_Wrench_01]])
-	--[[self.HotKey:Hide()
+	self:SetAttribute('_onattributechanged', nil)
+	self.Icon:SetTexture([[Interface\Icons\INV_Misc_Wrench_01]])
+	self.HotKey:Hide()
 end)
 
 function ExtraQuestButton:SetItem(itemLink, texture)
-	if (HasExtraActionBar()) then
-		return
-	end
+	if (HasExtraActionBar()) then return end
 
 	if (itemLink) then
 		self.Icon:SetTexture(texture)
 
-		if(itemLink == self.itemLink and self:IsShown()) then
-			return
-		end
+		if(itemLink == self.itemLink and self:IsShown()) then return end
 
 		local itemID = strmatch(itemLink, '|Hitem:(.-):.-|h%[(.+)%]|h')
 		self.itemID = tonumber(itemID)
 		self.itemLink = itemLink
 
-		if (D.ExtraQuestButton_BlackList[itemID]) then
-			return
-		end
+		if (D['ExtraQuestButton_BlackList'][itemID]) then return end
 	end
 
 	if (self.itemID) then
@@ -319,9 +309,7 @@ local function GetClosestQuestItem()
 		local itemLink, texture, _, showCompleted = GetQuestLogSpecialItemInfo(questLogIndex)
 		if(itemLink) then
 			local areaID = D.ExtraQuestButton_QuestAreas[questID]
-			if(not areaID) then
-				areaID = D.ExtraQuestButton_ItemAreas[tonumber(strmatch(itemLink, 'item:(%d+)'))]
-			end
+			if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
 
 			local _, _, _, _, _, isComplete = GetQuestLogTitle(questLogIndex)
 			if(areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
@@ -341,15 +329,13 @@ local function GetClosestQuestItem()
 	end
 
 	if (not closestQuestLink) then
-		for index = 1, GetNumQuestWatches() do
-			local questID, _, questLogIndex, _, _, isComplete = GetQuestWatchInfo(index)
+		for index = 1, C_QuestLog.GetNumQuestWatches() do
+			local _, _, _, questLogIndex, _, _, _, _, _, questID = C_QuestLog.GetInfo(index)
 			if(questID and QuestHasPOIInfo(questID)) then
 				local itemLink, texture, _, showCompleted = GetQuestLogSpecialItemInfo(questLogIndex)
 				if(itemLink) then
 					local areaID = D.ExtraQuestButton_QuestAreas[questID]
-					if(not areaID) then
-						areaID = D.ExtraQuestButton_ItemAreas[tonumber(strmatch(itemLink, 'item:(%d+)'))]
-					end
+					if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
 
 					if (areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
 						closestQuestLink = itemLink
@@ -370,15 +356,13 @@ local function GetClosestQuestItem()
 	end
 
 	if (not closestQuestLink) then
-		for questLogIndex = 1, GetNumQuestLogEntries() do
-			local _, _, _, isHeader, _, isComplete, _, questID = GetQuestLogTitle(questLogIndex)
-			if(not isHeader and QuestHasPOIInfo(questID)) then
+		for questLogIndex = 1, C_QuestLog.GetNumQuestLogEntries() do
+			local _, _, isHeader, _, _, _, _, _, _, questID = C_QuestLog.GetInfo(questLogIndex)
+			if(questID and QuestHasPOIInfo(questID)) then
 				local itemLink, texture, _, showCompleted = GetQuestLogSpecialItemInfo(questLogIndex)
 				if(itemLink) then
 					local areaID = D.ExtraQuestButton_QuestAreas[questID]
-					if(not areaID) then
-						areaID = D.ExtraQuestButton_ItemAreas[tonumber(strmatch(itemLink, 'item:(%d+)'))]
-					end
+					if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
 
 					if(areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
 						closestQuestLink = itemLink
@@ -403,9 +387,7 @@ end
 
 local ticker
 function ExtraQuestButton:Update()
-	if (HasExtraActionBar() or self.locked) then
-		return
-	end
+	if (HasExtraActionBar() or self.locked) then return end
 
 	local itemLink, texture, numItems = GetClosestQuestItem()
 	if (itemLink) then
@@ -415,11 +397,9 @@ function ExtraQuestButton:Update()
 	end
 
 	if(numItems > 0 and not ticker) then
-		ticker = C_Timer_NewTicker(30, function() -- Might Want To Lower This
-			ExtraQuestButton:Update()
-		end)
+		ticker = C_Timer_NewTicker(30, function() ExtraQuestButton:Update() end) -- Might Want To Lower This
 	elseif(numItems == 0 and ticker) then
 		ticker:Cancel()
 		ticker = nil
 	end
-end]]--
+end
