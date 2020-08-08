@@ -230,7 +230,7 @@ D['ConstructUFRaid'] = function(self)
 
 		-- WeakenedSoul-Bar
 		if D['Class'] == 'PRIEST' and C['unitframes']['weakenedsoulbar'] then
-			local ws = CreateFrame('StatusBar', self:GetName()..'_WeakenedSoul', power)
+			local ws = CreateFrame('StatusBar', self:GetName()..'_WeakenedSoul', power, 'BackdropTemplate')
 			ws:SetAllPoints(power)
 			ws:SetStatusBarTexture(texture)
 			ws:GetStatusBarTexture():SetHorizTile(false)
