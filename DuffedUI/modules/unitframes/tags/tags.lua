@@ -90,7 +90,7 @@ oUF.Tags.Methods['DuffedUI:diffcolor'] = function(unit)
 			r, g, b = 0.71, 0.43, 0.27
 		elseif (DiffColor >= -2) then
 			r, g, b = 0.84, 0.75, 0.65
-		elseif (-DiffColor <= GetQuestGreenRange()) then
+		elseif (-DiffColor <= UnitQuestTrivialLevelRange('player')) then
 			r, g, b = 0.33, 0.59, 0.33
 		else
 			r, g, b = 0.55, 0.57, 0.61
