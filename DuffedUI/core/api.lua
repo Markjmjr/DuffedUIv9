@@ -118,7 +118,7 @@ end
 local function SetTemplate(f, t, tex)
 	if tex then texture = C['media']['normTex'] else texture = C['media']['blank'] end
 
-	Mixin(f, BackdropTemplateMixin)
+	if not f.SetBackdrop then Mixin(f, BackdropTemplateMixin) end
 	UpdateColor(t)
 	f:SetBackdrop({
 	  bgFile = texture,
