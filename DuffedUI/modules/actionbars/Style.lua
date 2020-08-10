@@ -192,7 +192,16 @@ D['UpdateKeybind'] = function(self, actionButtonType)
 
 	if HotKey:GetText() == _G['RANGE_INDICATOR'] then HotKey:SetText('') else HotKey:SetText(Text) end
 end
---hooksecurefunc('ActionButton_OnEvent', function(self, event, ...) if event == 'PLAYER_ENTERING_WORLD' then ActionButton_UpdateHotkeys(self, self.buttonType) end end)
+
+for k, v in pairs(ActionBarActionButtonMixin) do
+	if type(v) == "function" then
+			hooksecurefunc(ActionBarActionButtonMixin, k, function(self, event)
+				if event == 'PLAYER_ENTERING_WORLD' then
+					self:UpdateHotkeys(self, self.buttonType)
+				end
+			end)
+	end
+end
 hooksecurefunc('PetActionButton_OnEvent', function(self, event, ...) if event == 'PLAYER_ENTERING_WORLD' then PetActionButton_SetHotkeys(self, self.buttonType) end end)
 
 local buttons = 0
@@ -277,7 +286,7 @@ local HideOverlayGlow = function(self)
 	end
 end
 
-D.ShowHighlightActionButton = function(self)
+D['ShowHighlightActionButton'] = function(self)
 	if C['actionbar']['borderhighlight'] then
 		if self.overlay then
 			self.overlay:Hide()
@@ -328,6 +337,21 @@ end
 hooksecurefunc('ActionButton_ShowOverlayGlow', D['ShowHighlightActionButton'])
 hooksecurefunc('ActionButton_HideOverlayGlow', D['HideHighlightActionButton'])
 --hooksecurefunc('ActionButton_Update', D['StyleActionBarButton'])
+for k, v in pairs(ActionBarActionButtonMixin) do
+	if type(v) == "function" then
+		hooksecurefunc(ActionBarActionButtonMixin, k, function(self)
+			self:Update(self, D['StyleActionBarButton']())
+		end)
+	end
+end
+
 --hooksecurefunc('ActionButton_UpdateHotkeys', D['UpdateKeybind'])
+for k, v in pairs(ActionBarActionButtonMixin) do
+	if type(v) == "function" then
+		hooksecurefunc(ActionBarActionButtonMixin, k, function(self)
+			self:UpdateHotkeys(self, D['UpdateKeybind']())
+		end)
+	end
+end
 --hooksecurefunc('PetActionButton_SetHotkeys', D['UpdateKeybind'])
 hooksecurefunc('ActionButton_UpdateFlyout', D['StyleActionBarFlyout'])
