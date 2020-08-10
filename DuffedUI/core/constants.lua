@@ -26,6 +26,7 @@ D['build'] = tonumber(D['BuildText'])
 D['InfoLeftRightWidth'] = 370
 D['IconCoord'] = {.08, .92, .08, .92}
 D['Guild'] = select(1, GetGuildInfo('player'))
+D['Actions'] = CreateFrame('Frame')
 
 D['Credits'] = {
 	'Dejablue',
