@@ -30,7 +30,7 @@ local StaticPopup_Show = StaticPopup_Show
 
 local bind, localmacros = CreateFrame("Frame", "HoverBind", UIParent), 0
 
-function D.BindingUI()
+D['BindingUI'] = function()
 		if InCombatLockdown() then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
 	if not bind.loaded then
 		local find = string.find
@@ -308,12 +308,12 @@ function D.BindingUI()
 		StaticPopup_Show("KEYBIND_MODE")
 	end
 end
-D:RegisterChatCommand("dkb", D.BindingUI)
+D:RegisterChatCommand("dkb", D['BindingUI'])
 
 if not IsAddOnLoaded("Bartender4") and not IsAddOnLoaded("Dominos") then
-	D:RegisterChatCommand("kb", D.BindingUI)
+	D:RegisterChatCommand("kb", D['BindingUI'])
 end
 
 if not IsAddOnLoaded("HealBot") then
-	D:RegisterChatCommand("hb", D.BindingUI)
+	D:RegisterChatCommand("hb", D['BindingUI'])
 end

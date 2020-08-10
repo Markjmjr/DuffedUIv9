@@ -61,7 +61,8 @@ function WorldMap:Skin()
 	local ScrollBar = QuestScrollFrame.ScrollBar
 	local Title = WorldMapFrameTitleText
 	local CloseButton = WorldMapFrameCloseButton
-	local SizeButton = WorldMapFrameSizeUpButton
+	local SizeUpButton = WorldMapFrame.BorderFrame.MaximizeMinimizeFrame.MaximizeButton
+	local SizeDownButton = WorldMapFrame.BorderFrame.MaximizeMinimizeFrame.MinimizeButton
 	local RewardsInfo = MapQuestInfoRewardsFrame
 	local Money = MapQuestInfoRewardsFrame.MoneyFrame
 	local XP = MapQuestInfoRewardsFrame.XPFrame
@@ -174,6 +175,33 @@ function WorldMap:Skin()
 	XP.backdrop:SetOutside(XP.Icon)
 end
 
+function WorldMap:AddMoving()
+	WorldMap.MoveButton = CreateFrame("Frame", nil, WorldMapFrame)
+	WorldMap.MoveButton:SetSize(16, 16)
+	WorldMap.MoveButton:SetPoint("TOPRIGHT", -78, -77)
+	WorldMap.MoveButton:SetFrameLevel(WorldMapFrameCloseButton:GetFrameLevel())
+	WorldMap.MoveButton:EnableMouse(true)
+	WorldMap.MoveButton:RegisterForDrag("LeftButton")
+	
+	WorldMap.MoveButton.Texture = WorldMap.MoveButton:CreateTexture(nil, 'OVERLAY')
+	WorldMap.MoveButton.Texture:SetSize(16, 16)
+	WorldMap.MoveButton.Texture:SetPoint("CENTER")
+	WorldMap.MoveButton.Texture:SetTexture([[Interface\Buttons\UI-RefreshButton]])
+
+	WorldMapFrame:SetMovable(true)
+	WorldMapFrame:SetUserPlaced(true)
+
+	WorldMap.MoveButton:SetScript("OnDragStart", function(self) WorldMapFrame:StartMoving() end)
+	WorldMap.MoveButton:SetScript("OnDragStop", function(self)
+		WorldMapFrame:StopMovingOrSizing()
+
+		local A1, P, A2, X, Y = WorldMapFrame:GetPoint()
+		local Data = DuffedUIDataPerChar['Move']
+
+		Data.WorldMapPosition = {A1, "UIParent", A2, X, Y}
+	end)
+end
+
 function WorldMap:Coords()
 	local coords = CreateFrame('Frame', 'CoordsFrame', WorldMapFrame)
 	local fontheight = 11 * 1.1
@@ -229,11 +257,12 @@ function WorldMap:Enable()
 
 		if not SmallerMap then
 			ToggleWorldMap()
-			WorldMapFrameSizeUpButton:Click()
+			SizeDownButton:Click()
 			ToggleWorldMap()
 		end
 		self:Skin()
 		self:AddHooks()
+		self:AddMoving()
 	end
 	self:Coords()
 end
