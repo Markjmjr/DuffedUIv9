@@ -13,6 +13,7 @@ C['general'] = {
 	['moveblizzardframes'] = false,
 	['minimapsize'] = 144,
 	['welcome'] = true,
+	['welcomeSound'] = true,
 	['minimapbuttons'] = true,
 	['notalkinghead'] = false,
 	['autocollapse'] = true,

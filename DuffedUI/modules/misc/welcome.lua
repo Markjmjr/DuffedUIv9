@@ -100,9 +100,11 @@ function Module:Logo_Create()
 	anim:SetScript('OnFinished', function()
 		frame:Hide()
 	end)
-	anim.fadeIn:SetScript('OnFinished', function()
-		PlaySound(soundID, 'master')
-	end)
+	if C['general']['welcomeSound'] then
+		anim.fadeIn:SetScript('OnFinished', function()
+			PlaySound(soundID, 'master')
+		end)
+	end
 
 	Module.logoFrame = frame
 end
@@ -119,6 +121,6 @@ function Module:LoginAnimation()
 end
 
 function Module:OnEnable()
-	if not C['general'].welcome then return end
+	if not C['general']['welcome'] then return end
 	self:LoginAnimation()
 end	
