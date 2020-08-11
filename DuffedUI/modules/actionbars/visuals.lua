@@ -22,13 +22,10 @@ function ab:SkinButton(button)
 	if not Button.IsSkinned then
 		Flash:SetTexture("")
 		Button:SetNormalTexture("")
-
 		Count:ClearAllPoints()
 		Count:SetPoint("BOTTOMRIGHT", 0, 2)
-
 		HotKey:ClearAllPoints()
 		HotKey:SetPoint("TOPRIGHT", 0, -3)
-
 		Count:SetFont(Font, 11, 'THINOUTLINE')
 
 		if (Btname) then
@@ -67,35 +64,6 @@ function ab:SkinButton(button)
 		Button:StyleButton()
 		Button.isSkinned = true
 	end
-	
-	
-	-- WORKLATER (note: Need to be moved into another hook)
-	--[[
-	if (Border and C.ActionBars.EquipBorder) then
-		if (Border:IsShown()) then
-			Button.Backdrop:SetBorderColor(.08, .70, 0)
-		else
-			Button.Backdrop:SetBorderColor(unpack(C['General'].BorderColor))
-		end
-	end
-
-
-	if (Action and Btname and Normal and C.ActionBars.Macro) then
-		local String = GetActionText(Action)
-
-		if String then
-			local Text
-
-			if string.byte(String, 1) > 223 then
-				Text = string.sub(String, 1, 9)
-			else
-				Text = string.sub(String, 1, 4)
-			end
-
-			Btname:SetText(Text)
-		end
-	end
-	--]]
 end
 
 function ab:SkinPetAndShiftButton(Normal, Button, Icon, Name, Pet)
@@ -108,7 +76,6 @@ function ab:SkinPetAndShiftButton(Normal, Button, Icon, Name, Pet)
 	local Font = C['media']['font']
 	
 	Cooldown:SetAlpha(0)
-
 	Button:SetWidth(PetSize)
 	Button:SetHeight(PetSize)
 	Button:CreateBackdrop()
@@ -161,7 +128,7 @@ function ab:SkinPetButtons()
 end
 
 function ab:SkinStanceButtons()
-	for i=1, NUM_STANCE_SLOTS do
+	for i = 1, NUM_STANCE_SLOTS do
 		local Name = "StanceButton"..i
 		local Button = _G[Name]
 		local Icon = _G[Name.."Icon"]
@@ -189,9 +156,7 @@ function ab:SkinFlyoutButtons()
 end
 
 function ab:StyleFlyout()
-	if (self.FlyoutArrow) and (not self.FlyoutArrow:IsShown()) then
-		return
-	end
+	if (self.FlyoutArrow) and (not self.FlyoutArrow:IsShown()) then return end
 
 	local HB = SpellFlyoutHorizontalBackground
 	local VB = SpellFlyoutVerticalBackground
@@ -212,7 +177,6 @@ function ab:StyleFlyout()
 		
 		if IsKnown then
 			FlyoutButtons = NumSlots
-			
 			break
 		end
 	end
@@ -230,9 +194,7 @@ end
 function ab:GetKeyText()
 	local Text = self
 	
-	if not Text then
-		return
-	end
+	if not Text then return end
 	
 	Text = Replace(Text, "(s%-)", "S")
 	Text = Replace(Text, "(a%-)", "A")
@@ -280,27 +242,22 @@ function ab:UpdateHotKeys()
 	for i = 1, NUM_ACTIONBAR_BUTTONS do
 		Button = _G["ActionButton"..i]
 		HotKey = _G["ActionButton"..i.."HotKey"]
-
 		HotKey:SetText(GetKeyText(HotKey:GetText()))
 
 		Button = _G["MultiBarBottomLeftButton"..i]
 		HotKey = _G["MultiBarBottomLeftButton"..i.."HotKey"]
-		
 		HotKey:SetText(GetKeyText(HotKey:GetText()))
 
 		Button = _G["MultiBarBottomRightButton"..i]
 		HotKey = _G["MultiBarBottomRightButton"..i.."HotKey"]
-		
 		HotKey:SetText(GetKeyText(HotKey:GetText()))
 
 		Button = _G["MultiBarRightButton"..i]
 		HotKey = _G["MultiBarRightButton"..i.."HotKey"]
-		
 		HotKey:SetText(GetKeyText(HotKey:GetText()))
 
 		Button = _G["MultiBarLeftButton"..i]
 		HotKey = _G["MultiBarLeftButton"..i.."HotKey"]
-		
 		HotKey:SetText(GetKeyText(HotKey:GetText()))
 	end
 	
@@ -308,7 +265,6 @@ function ab:UpdateHotKeys()
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		Button = _G["PetActionButton"..i]
 		HotKey = _G["PetActionButton"..i.."HotKey"]
-
 		HotKey:SetText(GetKeyText(HotKey:GetText()))
 	end
 end

@@ -5,8 +5,8 @@ local NUM_PET_ACTION_SLOTS = NUM_PET_ACTION_SLOTS
 
 function ab:CreatePetBar()
 	local pet = DuffedUIPetBar
-	local PetSize = C['actionbar']['petbuttonsize']
-	local Spacing = C['actionbar']['buttonspacing']
+	local PetSize = D['petbuttonsize']
+	local Spacing = D['buttonspacing']
 	local PetActionBarFrame = PetActionBarFrame
 	local PetActionBar_UpdateCooldowns = PetActionBar_UpdateCooldowns
 
@@ -24,9 +24,6 @@ function ab:CreatePetBar()
 
 		if (i == 1) then
 			Button:SetPoint("TOPLEFT", pet, "TOPLEFT", Spacing, -Spacing)
-
-			pet:SetWidth(Button:GetWidth() + (Spacing * 2))
-			pet:SetHeight((Button:GetWidth() * 10) + (Spacing * 11))
 		else
 			Button:SetPoint("TOP", _G["PetActionButton"..(i - 1)], "BOTTOM", 0, -Spacing)
 		end

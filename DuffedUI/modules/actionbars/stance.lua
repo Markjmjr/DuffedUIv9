@@ -3,13 +3,13 @@ local D, C, L = unpack(select(2, ...))
 local ab = D['Actions']
 
 function ab:CreateStanceBar()
-	local PetSize = C['actionbar']['petbuttonsize']
-	local Spacing = C['actionbar']['buttonspacing']
+	local PetSize = D['petbuttonsize']
+	local Spacing = D['buttonspacing']
 	local move = D['move']
 
 	local StanceBar = CreateFrame('Frame', 'DuffedUIStance', UIParent, 'SecureHandlerStateTemplate')
 	StanceBar:SetHeight(15)
-	StanceBar:SetWidth((D['petbuttonsize'] * 4) + (D['petbuttonsize'] * 3))
+	StanceBar:SetWidth((PetSize * 4) + (PetSize * 3))
 	StanceBar:ClearAllPoints()
 	StanceBar:Point('TOPLEFT', 0, -200)
 	StanceBarFrame.ignoreFramePositionManager = true
@@ -26,7 +26,6 @@ function ab:CreateStanceBar()
 
 		if (i ~= 1) then
 			local Previous = _G["StanceButton"..i-1]
-
 			Button:ClearAllPoints()
 			if C['actionbar']['verticalshapeshift'] then
 				Button:Point('TOP', Previous, 'BOTTOM', 0, -Spacing)
@@ -53,6 +52,5 @@ function ab:CreateStanceBar()
 			ab:UpdateStanceBar()
 		end
 	end)
-
 	move:RegisterFrame(StanceBar)
 end

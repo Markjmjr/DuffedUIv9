@@ -64,11 +64,7 @@ function ab:MovePetBar()
 	-- Don't run if player moved bar 5 or pet bar
 	if Data1 or Data2 then return end
 
-	if RightBar:IsShown() then
-		PetBar:SetPoint("RIGHT", RightBar, "LEFT", -6, 0)
-	else
-		PetBar:SetPoint("RIGHT", UIParent, "RIGHT", -28, 8)
-	end
+	if RightBar:IsShown() then PetBar:SetPoint("RIGHT", RightBar, "LEFT", -6, 0) else PetBar:SetPoint("RIGHT", UIParent, "RIGHT", -28, 8) end
 end
 
 function ab:UpdatePetBar()
@@ -85,15 +81,14 @@ function ab:UpdateStanceBar()
 	
 	local NumForms = GetNumShapeshiftForms()
 	local Texture, Name, IsActive, IsCastable, Button, Icon, Cooldown, Start, Duration, Enable
-	local PetSize = C['actionbar']['petbuttonsize']
-	local Spacing = C['actionbar']['buttonspacing']
+	local PetSize = D['petbuttonsize']
+	local Spacing = D['buttonspacing']
 
 	if NumForms == 0 then
 		DuffedUIStance:SetAlpha(0)
 	else
 		DuffedUIStance:SetAlpha(1)
 		DuffedUIStance:SetSize((PetSize * NumForms) + (Spacing * (NumForms + 1)), PetSize + (Spacing * 2))
-		--DuffedUIStance.Backdrop:SetPoint("TOPLEFT", 0, 0)
 
 		for i = 1, NUM_STANCE_SLOTS do
 			local ButtonName = "StanceButton"..i
@@ -172,26 +167,18 @@ function ab:StartHighlight()
 	end
 	
 	-- Hide Blizard Proc
-	if self.overlay and self.overlay:GetParent() ~= T.Hider then
-		self.overlay:SetParent(T.Hider)
-	end
+	if self.overlay and self.overlay:GetParent() ~= DuffedUIUIHider then self.overlay:SetParent(DuffedUIUIHider) end
 	
 	if not self.Animation:IsPlaying() then
 		self.Animation:Play()
-		
-		if self.Backdrop then
-			self.Backdrop:SetBorderColor(1, 1, 0)
-		end
+		if self.Backdrop then self.Backdrop:SetBorderColor(1, 1, 0) end
 	end
 end
 
 function ab:StopHightlight()
 	if self.Animation and self.Animation:IsPlaying() then
 		self.Animation:Stop()
-		
-		if self.Backdrop then
-			self.Backdrop:SetBorderColor(unpack(C.General.BorderColor))
-		end
+		if self.Backdrop then self.Backdrop:SetBorderColor(unpack(Cg['eneral']['bordercolor'])) end
 	end
 end
 

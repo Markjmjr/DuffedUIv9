@@ -4,8 +4,8 @@ local ab = D['Actions']
 local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS
 
 function ab:CreateBar5()
-	local Size = C['actionbar']['buttonsize']
-	local Spacing = C['actionbar']['buttonspacing']
+	local Size = D['buttonsize']
+	local Spacing = D['buttonspacing']
 	local MultiBarRight = MultiBarRight
 	local ab5 = DuffedUIBar5
 

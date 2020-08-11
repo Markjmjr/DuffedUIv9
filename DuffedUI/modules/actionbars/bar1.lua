@@ -35,9 +35,9 @@ end
 
 function ab:CreateBar1()
 	local move = D['Move']
-	local Size = C['actionbar']['buttonsize']
-	local PetSize = C['actionbar']['petbuttonsize']
-	local Spacing = C['actionbar']['buttonspacing']
+	local Size = D['buttonsize']
+	local PetSize = D['petbuttonsize']
+	local Spacing = D['buttonspacing']
 	local ab1 = DuffedUIBar1
 
 	ab1.Page = {
@@ -96,9 +96,7 @@ function ab:CreateBar1()
 						Icon:SetTexture(Texture)
 						Icon:Show()
 					else
-						if Icon:IsShown() then
-							Icon:Hide()
-						end
+						if Icon:IsShown() then Icon:Hide() end
 					end
 				end
 			end
