@@ -129,6 +129,7 @@ local function cvarsetup()
 	SetCVar('NamePlateHorizontalScale', 1)
 	SetCVar('nameplateMaxDistance', 43)
 	SetCVar('fstack_preferParentKeys', 0)
+	SetCVar('countdownForCooldowns', 1)
 	-- Disable CVar after Beta ends
 	SetCVar('taintlog', 1)
 end

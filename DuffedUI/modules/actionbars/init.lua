@@ -181,6 +181,34 @@ function ab:StopHightlight()
 	end
 end
 
+function ab:Cooldown(start, duration, enable, charges, maxcharges, forceShowdrawedge)
+	local Enabled = GetCVar("countdownForCooldowns")
+
+	if (Enabled) then
+		if not self:IsForbidden() then
+			if not self.IsCooldownTextEdited then
+				local NumRegions = self:GetNumRegions()
+
+				for i = 1, NumRegions do
+					local Region = select(i, self:GetRegions())
+
+					if Region.GetText then
+						local Font = C['media']['font']
+						
+						--Font = _G[Font]:GetFont()
+
+						Region:SetFont(Font, 14, "OUTLINE")
+						Region:SetPoint("CENTER", 1, 0)
+						Region:SetTextColor(1, 0, 0)
+					end
+				end
+
+				self.IsCooldownTextEdited = true
+			end
+		end
+	end
+end
+
 function ab:AddHooks()
 	hooksecurefunc('ActionButton_UpdateFlyout', self.StyleFlyout)
 	hooksecurefunc('SpellButton_OnClick', self.StyleFlyout)
@@ -188,6 +216,9 @@ function ab:AddHooks()
 	if C['actionbar']['borderhighlight'] then
 		hooksecurefunc('ActionButton_ShowOverlayGlow', ab.StartHighlight)
 		hooksecurefunc('ActionButton_HideOverlayGlow', ab.StopHightlight)
+	end
+	if (not IsAddOnLoaded('OmniCC') or IsAddOnLoaded('ncCooldown') or C['cooldown']['enable']) then
+		hooksecurefunc("CooldownFrame_Set", ab.Cooldown)
 	end
 end
 
@@ -218,6 +249,7 @@ function ab:Enable()
 	self:SetupExtraButton()
 	self:AddHooks()
 	self:FixMBBR()
+	--self:Cooldown()
 	
 	self:RegisterEvent('UPDATE_BINDINGS')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
