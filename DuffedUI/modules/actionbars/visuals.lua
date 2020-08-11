@@ -47,7 +47,6 @@ function ab:SkinButton(button)
 		end
 
 		if (Name:match("Extra")) then Button.Pushed = true end
-
 		Button:CreateBackdrop()
 
 		Icon:SetTexCoord(unpack(D['IconCoord']))
@@ -74,7 +73,7 @@ function ab:SkinPetAndShiftButton(Normal, Button, Icon, Name, Pet)
 	local Cooldown = _G[Button:GetName().."Cooldown"]
 	local Flash = _G[Name.."Flash"]
 	local Font = C['media']['font']
-	
+
 	Cooldown:SetAlpha(0)
 	Button:SetWidth(PetSize)
 	Button:SetHeight(PetSize)
@@ -144,11 +143,7 @@ function ab:SkinFlyoutButtons()
 
 		if Button and not Button.IsSkinned then
 			ab:SkinButton(Button)
-			
-
-			if Button:GetChecked() then
-				Button:SetChecked(nil)
-			end
+			if Button:GetChecked() then Button:SetChecked(nil) end
 
 			Button.IsSkinned = true
 		end

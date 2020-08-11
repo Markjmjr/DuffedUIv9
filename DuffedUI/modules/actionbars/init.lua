@@ -51,7 +51,7 @@ function ab:DisableBlizzard()
 		j:Disable()
 		j:SetScale(0.001)
 	end
-	
+
 	MultiActionBar_Update = D['Dummy']
 end
 
@@ -63,7 +63,6 @@ function ab:MovePetBar()
 
 	-- Don't run if player moved bar 5 or pet bar
 	if Data1 or Data2 then return end
-
 	if RightBar:IsShown() then PetBar:SetPoint("RIGHT", RightBar, "LEFT", -6, 0) else PetBar:SetPoint("RIGHT", UIParent, "RIGHT", -28, 8) end
 end
 
@@ -186,8 +185,10 @@ function ab:AddHooks()
 	hooksecurefunc("ActionButton_UpdateFlyout", self.StyleFlyout)
 	hooksecurefunc("SpellButton_OnClick", self.StyleFlyout)
 	hooksecurefunc("ActionButton_UpdateRangeIndicator", ab.RangeUpdate)
-	hooksecurefunc("ActionButton_ShowOverlayGlow", ab.StartHighlight)
-	hooksecurefunc("ActionButton_HideOverlayGlow", ab.StopHightlight)
+	if C['actionbar']['borderhighlight'] then
+		hooksecurefunc("ActionButton_ShowOverlayGlow", ab.StartHighlight)
+		hooksecurefunc("ActionButton_HideOverlayGlow", ab.StopHightlight)
+	end
 end
 
 function ab:OnEvent() self:UpdateHotKeys() end

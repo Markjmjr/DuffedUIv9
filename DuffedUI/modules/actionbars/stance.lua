@@ -40,7 +40,7 @@ function ab:CreateStanceBar()
 			for i = 1, NUM_STANCE_SLOTS do
 				local Button = _G['StanceButton' .. i] Button:SetAlpha(alpha) end
 			end
-	
+
 		for i = 1, NUM_STANCE_SLOTS do
 			_G['StanceButton' .. i]:SetAlpha(C['actionbar']['shapeshiftmouseovervalue'])
 			_G['StanceButton' .. i .. 'Cooldown']:SetDrawBling(false)
