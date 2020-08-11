@@ -215,7 +215,17 @@ function ab:Enable()
 end
 
 ab:RegisterEvent('ADDON_LOADED')
+ab:RegisterEvent('PLAYER_LOGIN')
 ab:RegisterEvent('PLAYER_ENTERING_WORLD')
 ab:SetScript('OnEvent', function(self, event, ...)
-	ab:Enable()
+	if event == 'PLAYER_LOGIN' then
+		ab:Enable()
+	elseif event == 'PLAYER_ENTERING_WORLD' then
+		for i = 1, 6 do
+			local Button = _G['MultiBarBottomRightButton'..i]
+
+			Button:SetAttribute('showgrid', 1)
+			Button:Show()
+		end
+	end
 end)
