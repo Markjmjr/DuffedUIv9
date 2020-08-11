@@ -35,6 +35,21 @@ function ab:CreateStanceBar()
 		end
 	end
 
+	if C['actionbar']['shapeshiftmouseover'] then
+		local function mouseover(alpha)
+			for i = 1, NUM_STANCE_SLOTS do
+				local Button = _G['StanceButton' .. i] Button:SetAlpha(alpha) end
+			end
+	
+		for i = 1, NUM_STANCE_SLOTS do
+			_G['StanceButton' .. i]:SetAlpha(C['actionbar']['shapeshiftmouseovervalue'])
+			_G['StanceButton' .. i .. 'Cooldown']:SetDrawBling(false)
+			_G['StanceButton' .. i .. 'Cooldown']:SetSwipeColor(0, 0, 0, 0)
+			_G['StanceButton' .. i]:HookScript('OnEnter', function(self) mouseover(1) end)
+			_G['StanceButton' .. i]:HookScript('OnLeave', function(self) mouseover(C['actionbar']['shapeshiftmouseovervalue']) end)
+		end
+	end
+
 	StanceBar:RegisterEvent("PLAYER_ENTERING_WORLD")
 	StanceBar:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
 	StanceBar:RegisterEvent("UPDATE_SHAPESHIFT_USABLE")
