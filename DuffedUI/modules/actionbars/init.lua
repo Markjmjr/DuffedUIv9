@@ -56,8 +56,8 @@ function ab:DisableBlizzard()
 end
 
 function ab:MovePetBar()
-	local PetBar = TukuiPetActionBar
-	local RightBar = TukuiActionBar5
+	local PetBar = DuffedUIPetBar
+	local RightBar = DuffedUIBar5
 	local Data1 = DuffedUIDataPerChar['Move']['DuffedUIPetBar']
 	local Data2 = DuffedUIDataPerChar['Move']['DuffedUIBar5']
 
