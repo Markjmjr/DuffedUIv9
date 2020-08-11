@@ -193,6 +193,15 @@ end
 
 function ab:OnEvent() self:UpdateHotKeys() end
 
+function ab:FixMBBR()
+	for i = 1, 6 do
+		local Button = _G['MultiBarBottomRightButton'..i]
+
+		Button:SetAttribute('showgrid', 1)
+		Button:Show()
+	end
+end
+
 function ab:Enable()
 	if not C['actionbar']['enable'] then return end
 	
@@ -208,6 +217,7 @@ function ab:Enable()
 	self:CreateStanceBar()
 	self:SetupExtraButton()
 	self:AddHooks()
+	self:FixMBBR()
 	
 	self:RegisterEvent('UPDATE_BINDINGS')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -221,11 +231,6 @@ ab:SetScript('OnEvent', function(self, event, ...)
 	if event == 'PLAYER_LOGIN' then
 		ab:Enable()
 	elseif event == 'PLAYER_ENTERING_WORLD' then
-		for i = 1, 6 do
-			local Button = _G['MultiBarBottomRightButton'..i]
-
-			Button:SetAttribute('showgrid', 1)
-			Button:Show()
-		end
+		ab:FixMBBR()
 	end
 end)
