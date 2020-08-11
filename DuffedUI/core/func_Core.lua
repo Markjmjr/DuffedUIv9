@@ -146,28 +146,6 @@ RoleUpdater:RegisterEvent('UNIT_INVENTORY_CHANGED')
 RoleUpdater:RegisterEvent('UPDATE_BONUS_ACTIONBAR')
 RoleUpdater:SetScript('OnEvent', CheckRole)
 
---[[local myPlayerName = D['MyName']
-local myPlayerRealm = D['MyRealm']
-D['SetValue'] = function(group, option, value)
-	local mergesettings
-	if DuffedUIConfigPrivate == DuffedUIConfigPublic then mergesettings = true else mergesettings = false end
-
-	if DuffedUIConfigAll[myPlayerRealm][myPlayerName] == true then
-		if not DuffedUIConfigPrivate then DuffedUIConfigPrivate = {} end
-		if not DuffedUIConfigPrivate[group] then DuffedUIConfigPrivate[group] = {} end
-		DuffedUIConfigPrivate[group][option] = value
-	else
-		if mergesettings == true then
-			if not DuffedUIConfigPrivate then DuffedUIConfigPrivate = {} end
-			if not DuffedUIConfigPrivate[group] then DuffedUIConfigPrivate[group] = {} end
-			DuffedUIConfigPrivate[group][option] = value
-		end
-		if not DuffedUIConfigPublic then DuffedUIConfigPublic = {} end
-		if not DuffedUIConfigPublic[group] then DuffedUIConfigPublic[group] = {} end
-		DuffedUIConfigPublic[group][option] = value
-	end
-end]]--
-
 local waitTable = {}
 local waitFrame
 D['Delay'] = function(delay, func, ...)
