@@ -37,12 +37,12 @@ function ab:DisableBlizzard()
 		InterfaceOptionsActionBarsPanelAlwaysShowActionBars,
 	}
 	
-	ActionBarButtonEventsFrame:UnregisterEvent("ACTIONBAR_SHOWGRID")
-	ActionBarButtonEventsFrame:UnregisterEvent("ACTIONBAR_HIDEGRID")
-	ActionBarButtonEventsFrame:UnregisterEvent("UPDATE_BINDINGS")
+	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_SHOWGRID')
+	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_HIDEGRID')
+	ActionBarButtonEventsFrame:UnregisterEvent('UPDATE_BINDINGS')
 	
-	PetActionBarFrame:UnregisterEvent("PET_BAR_SHOWGRID")
-	PetActionBarFrame:UnregisterEvent("PET_BAR_HIDEGRID")
+	PetActionBarFrame:UnregisterEvent('PET_BAR_SHOWGRID')
+	PetActionBarFrame:UnregisterEvent('PET_BAR_HIDEGRID')
 	
 	PetActionBar_ShowGrid()
 
@@ -63,15 +63,15 @@ function ab:MovePetBar()
 
 	-- Don't run if player moved bar 5 or pet bar
 	if Data1 or Data2 then return end
-	if RightBar:IsShown() then PetBar:SetPoint("RIGHT", RightBar, "LEFT", -6, 0) else PetBar:SetPoint("RIGHT", UIParent, "RIGHT", -28, 8) end
+	if RightBar:IsShown() then PetBar:SetPoint('RIGHT', RightBar, 'LEFT', -6, 0) else PetBar:SetPoint('RIGHT', UIParent, 'RIGHT', -28, 8) end
 end
 
 function ab:UpdatePetBar()
 	for i=1, NUM_PET_ACTION_SLOTS, 1 do
-		local ButtonName = "PetActionButton" .. i
+		local ButtonName = 'PetActionButton' .. i
 		local PetActionButton = _G[ButtonName]
 
-		PetActionButton:SetNormalTexture("")
+		PetActionButton:SetNormalTexture('')
 	end
 end
 
@@ -90,12 +90,12 @@ function ab:UpdateStanceBar()
 		DuffedUIStance:SetSize((PetSize * NumForms) + (Spacing * (NumForms + 1)), PetSize + (Spacing * 2))
 
 		for i = 1, NUM_STANCE_SLOTS do
-			local ButtonName = "StanceButton"..i
+			local ButtonName = 'StanceButton'..i
 
 			Button = _G[ButtonName]
-			Icon = _G[ButtonName.."Icon"]
+			Icon = _G[ButtonName..'Icon']
 
-			Button:SetNormalTexture("")
+			Button:SetNormalTexture('')
 
 			if i <= NumForms then
 				Texture, IsActive, IsCastable = GetShapeshiftFormInfo(i)
@@ -103,7 +103,7 @@ function ab:UpdateStanceBar()
 				if not Icon then return end
 
 				Icon:SetTexture(Texture)
-				Cooldown = _G[ButtonName.."Cooldown"]
+				Cooldown = _G[ButtonName..'Cooldown']
 
 				if Texture then Cooldown:SetAlpha(1) else Cooldown:SetAlpha(0) end
 
@@ -156,13 +156,13 @@ end
 function ab:StartHighlight()
 	if not self.Animation then
 		self.Animation = self:CreateAnimationGroup()
-		self.Animation:SetLooping("BOUNCE")
+		self.Animation:SetLooping('BOUNCE')
 
-		self.Animation.FadeOut = self.Animation:CreateAnimation("Alpha")
+		self.Animation.FadeOut = self.Animation:CreateAnimation('Alpha')
 		self.Animation.FadeOut:SetFromAlpha(1)
 		self.Animation.FadeOut:SetToAlpha(.3)
 		self.Animation.FadeOut:SetDuration(.3)
-		self.Animation.FadeOut:SetSmoothing("IN_OUT")
+		self.Animation.FadeOut:SetSmoothing('IN_OUT')
 	end
 	
 	-- Hide Blizard Proc
@@ -182,12 +182,12 @@ function ab:StopHightlight()
 end
 
 function ab:AddHooks()
-	hooksecurefunc("ActionButton_UpdateFlyout", self.StyleFlyout)
-	hooksecurefunc("SpellButton_OnClick", self.StyleFlyout)
-	hooksecurefunc("ActionButton_UpdateRangeIndicator", ab.RangeUpdate)
+	hooksecurefunc('ActionButton_UpdateFlyout', self.StyleFlyout)
+	hooksecurefunc('SpellButton_OnClick', self.StyleFlyout)
+	hooksecurefunc('ActionButton_UpdateRangeIndicator', ab.RangeUpdate)
 	if C['actionbar']['borderhighlight'] then
-		hooksecurefunc("ActionButton_ShowOverlayGlow", ab.StartHighlight)
-		hooksecurefunc("ActionButton_HideOverlayGlow", ab.StopHightlight)
+		hooksecurefunc('ActionButton_ShowOverlayGlow', ab.StartHighlight)
+		hooksecurefunc('ActionButton_HideOverlayGlow', ab.StopHightlight)
 	end
 end
 
@@ -196,7 +196,7 @@ function ab:OnEvent() self:UpdateHotKeys() end
 function ab:Enable()
 	if not C['actionbar']['enable'] then return end
 	
-	SetCVar("alwaysShowActionBars", 1)
+	SetCVar('alwaysShowActionBars', 1)
 
 	self:DisableBlizzard()
 	self:CreateBar1()
@@ -209,9 +209,9 @@ function ab:Enable()
 	self:SetupExtraButton()
 	self:AddHooks()
 	
-	self:RegisterEvent("UPDATE_BINDINGS")
-	self:RegisterEvent("PLAYER_ENTERING_WORLD")
-	self:SetScript("OnEvent", self.OnEvent)
+	self:RegisterEvent('UPDATE_BINDINGS')
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:SetScript('OnEvent', self.OnEvent)
 end
 
 ab:RegisterEvent('ADDON_LOADED')

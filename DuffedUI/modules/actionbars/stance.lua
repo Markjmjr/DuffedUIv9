@@ -16,16 +16,16 @@ function ab:CreateStanceBar()
 	StanceBarFrame:StripTextures()
 	StanceBarFrame:SetParent(StanceBar)
 	StanceBarFrame:ClearAllPoints()
-	StanceBarFrame:SetPoint("TOPLEFT", StanceBar, "TOPLEFT", -7, 0)
+	StanceBarFrame:SetPoint('TOPLEFT', StanceBar, 'TOPLEFT', -7, 0)
 	StanceBarFrame:EnableMouse(false)
 
 	for i = 1, NUM_STANCE_SLOTS do
-		local Button = _G["StanceButton"..i]
+		local Button = _G['StanceButton'..i]
 
 		Button:Show()
 
 		if (i ~= 1) then
-			local Previous = _G["StanceButton"..i-1]
+			local Previous = _G['StanceButton'..i-1]
 			Button:ClearAllPoints()
 			if C['actionbar']['verticalshapeshift'] then
 				Button:Point('TOP', Previous, 'BOTTOM', 0, -Spacing)
@@ -50,17 +50,17 @@ function ab:CreateStanceBar()
 		end
 	end
 
-	StanceBar:RegisterEvent("PLAYER_ENTERING_WORLD")
-	StanceBar:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
-	StanceBar:RegisterEvent("UPDATE_SHAPESHIFT_USABLE")
-	StanceBar:RegisterEvent("UPDATE_SHAPESHIFT_COOLDOWN")
-	StanceBar:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
-	StanceBar:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
-	StanceBar:RegisterEvent("SPELLS_CHANGED")
-	StanceBar:SetScript("OnEvent", function(self, event, ...)
-		if (event == "UPDATE_SHAPESHIFT_FORMS") then
+	StanceBar:RegisterEvent('PLAYER_ENTERING_WORLD')
+	StanceBar:RegisterEvent('UPDATE_SHAPESHIFT_FORMS')
+	StanceBar:RegisterEvent('UPDATE_SHAPESHIFT_USABLE')
+	StanceBar:RegisterEvent('UPDATE_SHAPESHIFT_COOLDOWN')
+	StanceBar:RegisterEvent('UPDATE_SHAPESHIFT_FORM')
+	StanceBar:RegisterEvent('ACTIONBAR_PAGE_CHANGED')
+	StanceBar:RegisterEvent('SPELLS_CHANGED')
+	StanceBar:SetScript('OnEvent', function(self, event, ...)
+		if (event == 'UPDATE_SHAPESHIFT_FORMS') then
 
-		elseif (event == "PLAYER_ENTERING_WORLD") then
+		elseif (event == 'PLAYER_ENTERING_WORLD') then
 			ab:UpdateStanceBar()
 			ab:SkinStanceButtons()
 		else

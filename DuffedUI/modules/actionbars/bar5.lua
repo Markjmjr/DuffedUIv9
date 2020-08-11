@@ -13,12 +13,12 @@ function ab:CreateBar5()
 	MultiBarRight:SetParent(ab5)
 
 	for i = 1, NUM_ACTIONBAR_BUTTONS do
-		local Button = _G["MultiBarRightButton"..i]
-		local PreviousButton = _G["MultiBarRightButton"..i-1]
+		local Button = _G['MultiBarRightButton'..i]
+		local PreviousButton = _G['MultiBarRightButton'..i-1]
 
 		Button:SetSize(Size, Size)
 		Button:ClearAllPoints()
-		Button:SetAttribute("showgrid", 1)
+		Button:SetAttribute('showgrid', 1)
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
 		
 		ab:SkinButton(Button)
@@ -31,9 +31,9 @@ function ab:CreateBar5()
 			end
 		else
 			if (i == 1) then
-				Button:SetPoint("TOPRIGHT", ab5, -Spacing, -Spacing)
+				Button:SetPoint('TOPRIGHT', ab5, -Spacing, -Spacing)
 			else
-				Button:SetPoint("TOP", PreviousButton, "BOTTOM", 0, -Spacing)
+				Button:SetPoint('TOP', PreviousButton, 'BOTTOM', 0, -Spacing)
 			end
 		end
 
@@ -81,6 +81,6 @@ function ab:CreateBar5()
 			end
 		end
 
-		ab5["Button"..i] = Button
+		ab5['Button'..i] = Button
 	end
 end

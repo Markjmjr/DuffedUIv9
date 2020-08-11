@@ -11,7 +11,7 @@ function ab:DisableExtraButtonTexture()
 	local Bar = ExtraActionBarFrame
 	
 	if (HasExtraActionBar()) then
-		Button.style:SetTexture("")
+		Button.style:SetTexture('')
 		Icon:SetInside()
 	end
 end
@@ -32,30 +32,30 @@ function ab:SkinZoneAbilities()
 end
 
 function ab:SetupExtraButton()
-	local Holder = CreateFrame("Frame", "DuffedUIExtraActionButton", UIParent)
+	local Holder = CreateFrame('Frame', 'DuffedUIExtraActionButton', UIParent)
 	local Bar = ExtraActionBarFrame
 	local Icon = ExtraActionButton1Icon
 
 	Holder:SetSize(160, 80)
-	Holder:SetPoint("BOTTOM", 0, 250)
+	Holder:SetPoint('BOTTOM', 0, 250)
 	
 	Container:SetParent(Holder)
 	Container:ClearAllPoints()
-	Container:SetPoint("CENTER", Holder, "CENTER", 0, 0)
+	Container:SetPoint('CENTER', Holder, 'CENTER', 0, 0)
 	Container.ignoreFramePositionManager = true
 	
 	Button:StripTextures()
 	Button:CreateBackdrop()
 	Button:StyleButton()
-	Button:SetNormalTexture("")
+	Button:SetNormalTexture('')
 	Button.HotKey:Kill()
 	
-	Icon:SetDrawLayer("ARTWORK")
+	Icon:SetDrawLayer('ARTWORK')
 	Icon:SetTexCoord(unpack(D['IconCoord']))
 	
 	ZoneAbilities.Style:SetAlpha(0)
 	move:RegisterFrame(Holder)
 
-	hooksecurefunc("ExtraActionBar_Update", self.DisableExtraButtonTexture)
-	hooksecurefunc(ZoneAbilities, "UpdateDisplayedZoneAbilities", ab.SkinZoneAbilities)
+	hooksecurefunc('ExtraActionBar_Update', self.DisableExtraButtonTexture)
+	hooksecurefunc(ZoneAbilities, 'UpdateDisplayedZoneAbilities', ab.SkinZoneAbilities)
 end

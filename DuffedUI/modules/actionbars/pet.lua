@@ -15,11 +15,11 @@ function ab:CreatePetBar()
 	PetActionBarFrame:SetParent(hide)
 
 	for i = 1, NUM_PET_ACTION_SLOTS do
-		local Button = _G["PetActionButton"..i]
+		local Button = _G['PetActionButton'..i]
 		Button:SetParent(pet)
 		Button:ClearAllPoints()
 		Button:SetSize(PetSize, PetSize)
-		Button:SetNormalTexture("")
+		Button:SetNormalTexture('')
 		Button:Show()
 
 		if C['actionbar']['petbarhorizontal'] then
@@ -30,19 +30,19 @@ function ab:CreatePetBar()
 			end
 		else
 			if (i == 1) then
-				Button:SetPoint("TOPLEFT", pet, "TOPLEFT", Spacing, -Spacing)
+				Button:SetPoint('TOPLEFT', pet, 'TOPLEFT', Spacing, -Spacing)
 			else
-				Button:SetPoint("TOP", _G["PetActionButton"..(i - 1)], "BOTTOM", 0, -Spacing)
+				Button:SetPoint('TOP', _G['PetActionButton'..(i - 1)], 'BOTTOM', 0, -Spacing)
 			end
 		end
 		
-		if Button:IsEventRegistered("UPDATE_BINDINGS") then Button:UnregisterEvent("UPDATE_BINDINGS") end
+		if Button:IsEventRegistered('UPDATE_BINDINGS') then Button:UnregisterEvent('UPDATE_BINDINGS') end
 
-		pet:SetAttribute("addchild", Button)
-		pet["Button"..i] = Button
+		pet:SetAttribute('addchild', Button)
+		pet['Button'..i] = Button
 	end
 
-	hooksecurefunc("PetActionBar_Update", ab.UpdatePetBar)
+	hooksecurefunc('PetActionBar_Update', ab.UpdatePetBar)
 	ab:SkinPetButtons()
-	RegisterStateDriver(pet, "visibility", "[@pet,exists,nopossessbar]show;hide")
+	RegisterStateDriver(pet, 'visibility', '[@pet,exists,nopossessbar]show;hide')
 end

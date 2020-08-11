@@ -9,28 +9,28 @@ function ab:UpdateBar1()
 	local Button
 
 	for i = 1, Num do
-		Button = _G["ActionButton"..i]
-		ab1:SetFrameRef("ActionButton"..i, Button)
+		Button = _G['ActionButton'..i]
+		ab1:SetFrameRef('ActionButton'..i, Button)
 	end
 
 	ab1:Execute([[
 		Button = table.new()
 		for i = 1, 12 do
-			table.insert(Button, self:GetFrameRef("ActionButton"..i))
+			table.insert(Button, self:GetFrameRef('ActionButton'..i))
 		end
 	]])
 
-	ab1:SetAttribute("_onstate-page", [[
+	ab1:SetAttribute('_onstate-page', [[
 		if HasTempShapeshiftActionBar() then
 			newstate = GetTempShapeshiftBarIndex() or newstate
 		end
 
 		for i, Button in ipairs(Button) do
-			Button:SetAttribute("actionpage", tonumber(newstate))
+			Button:SetAttribute('actionpage', tonumber(newstate))
 		end
 	]])
 
-	RegisterStateDriver(ab1, "page", ab1.GetBar())
+	RegisterStateDriver(ab1, 'page', ab1.GetBar())
 end
 
 function ab:CreateBar1()
@@ -50,42 +50,42 @@ function ab:CreateBar1()
 	}
 
 	function ab1:GetBar()
-		local Condition = ab1.Page["DEFAULT"]
-		local Class = select(2, UnitClass("player"))
+		local Condition = ab1.Page['DEFAULT']
+		local Class = select(2, UnitClass('player'))
 		local Page = ab1.Page[Class]
 
-		if Page then Condition = Condition .. " " .. Page end
-		Condition = Condition .. " [form] 1; 1"
+		if Page then Condition = Condition .. ' ' .. Page end
+		Condition = Condition .. ' [form] 1; 1'
 		return Condition
 	end
 
 	ab:UpdateBar1()
 
-	ab1:RegisterEvent("PLAYER_ENTERING_WORLD")
-	ab1:RegisterEvent("UPDATE_VEHICLE_ACTIONBAR")
-	ab1:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
-	ab1:SetScript("OnEvent", function(self, event, unit, ...)
-		if (event == "PLAYER_ENTERING_WORLD") then
+	ab1:RegisterEvent('PLAYER_ENTERING_WORLD')
+	ab1:RegisterEvent('UPDATE_VEHICLE_ACTIONBAR')
+	ab1:RegisterEvent('UPDATE_OVERRIDE_ACTIONBAR')
+	ab1:SetScript('OnEvent', function(self, event, unit, ...)
+		if (event == 'PLAYER_ENTERING_WORLD') then
 			for i = 1, Num do
-				local Button = _G["ActionButton"..i]
+				local Button = _G['ActionButton'..i]
 				Button:SetSize(Size, Size)
 				Button:ClearAllPoints()
 				Button:SetParent(self)
-				Button:SetAttribute("showgrid", 1)
+				Button:SetAttribute('showgrid', 1)
 				Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
 					
 				ab:SkinButton(Button)
 
 				if (i == 1) then
-					Button:SetPoint("BOTTOMLEFT", Spacing, Spacing)
+					Button:SetPoint('BOTTOMLEFT', Spacing, Spacing)
 				else
-					local Previous = _G["ActionButton"..i-1]
-					Button:SetPoint("LEFT", Previous, "RIGHT", Spacing, 0)
+					local Previous = _G['ActionButton'..i-1]
+					Button:SetPoint('LEFT', Previous, 'RIGHT', Spacing, 0)
 				end
 			end
-		elseif (event == "UPDATE_VEHICLE_ACTIONBAR") or (event == "UPDATE_OVERRIDE_ACTIONBAR") then
+		elseif (event == 'UPDATE_VEHICLE_ACTIONBAR') or (event == 'UPDATE_OVERRIDE_ACTIONBAR') then
 			for i = 1, 12 do
-				local Button = _G["ActionButton"..i]
+				local Button = _G['ActionButton'..i]
 				local Action = Button.action
 				local Icon = Button.icon
 
@@ -104,7 +104,7 @@ function ab:CreateBar1()
 	end)
 
 	for i = 1, Num do
-		local Button = _G["ActionButton"..i]
-		ab1["Button"..i] = Button
+		local Button = _G['ActionButton'..i]
+		ab1['Button'..i] = Button
 	end
 end

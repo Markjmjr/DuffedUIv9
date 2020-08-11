@@ -13,28 +13,28 @@ function ab:CreateBar2()
 	MultiBarBottomLeft:SetParent(ab2)
 
 	for i = 1, NUM_ACTIONBAR_BUTTONS do
-		local Button = _G["MultiBarBottomLeftButton"..i]
-		local PreviousButton = _G["MultiBarBottomLeftButton"..i-1]
+		local Button = _G['MultiBarBottomLeftButton'..i]
+		local PreviousButton = _G['MultiBarBottomLeftButton'..i-1]
 
 		Button:SetSize(Size, Size)
 		Button:ClearAllPoints()
-		Button:SetAttribute("showgrid", 1)
+		Button:SetAttribute('showgrid', 1)
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
 		
 		ab:SkinButton(Button)
 
 		if (i == 1) then
-			Button:SetPoint("BOTTOMLEFT", ab2, Spacing, Spacing)
+			Button:SetPoint('BOTTOMLEFT', ab2, Spacing, Spacing)
 		else
-			Button:SetPoint("LEFT", PreviousButton, "RIGHT", Spacing, 0)
+			Button:SetPoint('LEFT', PreviousButton, 'RIGHT', Spacing, 0)
 		end
 
-		ab2["Button"..i] = Button
+		ab2['Button'..i] = Button
 	end
 
 	for i = 7, 12 do
-		local Button = _G["MultiBarBottomLeftButton"..i]
-		local Button1 = _G["MultiBarBottomLeftButton1"]
+		local Button = _G['MultiBarBottomLeftButton'..i]
+		local Button1 = _G['MultiBarBottomLeftButton1']
 
 		Button:SetFrameLevel(Button1:GetFrameLevel() - 2)
 	end

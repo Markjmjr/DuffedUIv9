@@ -13,23 +13,23 @@ function ab:CreateBar4()
 	MultiBarLeft:SetParent(ab4)
 
 	for i = 1, NUM_ACTIONBAR_BUTTONS do
-		local Button = _G["MultiBarLeftButton"..i]
-		local PreviousButton = _G["MultiBarLeftButton"..i-1]
+		local Button = _G['MultiBarLeftButton'..i]
+		local PreviousButton = _G['MultiBarLeftButton'..i-1]
 
 		Button:SetSize(Size, Size)
 		Button:ClearAllPoints()
-		Button:SetAttribute("flyoutDirection", "UP")
-		Button:SetAttribute("showgrid", 1)
+		Button:SetAttribute('flyoutDirection', 'UP')
+		Button:SetAttribute('showgrid', 1)
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
 		
 		ab:SkinButton(Button)
 
 		if (i == 1) then
-			Button:SetPoint("TOPLEFT", ab4, Spacing, -Spacing)
+			Button:SetPoint('TOPLEFT', ab4, Spacing, -Spacing)
 		elseif (i == 7) then
-			Button:SetPoint("TOPRIGHT", ab4, -Spacing, -Spacing)
+			Button:SetPoint('TOPRIGHT', ab4, -Spacing, -Spacing)
 		else
-			Button:SetPoint("TOP", PreviousButton, "BOTTOM", 0, -Spacing)
+			Button:SetPoint('TOP', PreviousButton, 'BOTTOM', 0, -Spacing)
 		end
 
 		if C['actionbar']['Rightsidebars'] then
@@ -55,6 +55,6 @@ function ab:CreateBar4()
 			end
 		end
 
-		ab4["Button"..i] = Button
+		ab4['Button'..i] = Button
 	end
 end
