@@ -22,10 +22,18 @@ function ab:CreatePetBar()
 		Button:SetNormalTexture("")
 		Button:Show()
 
-		if (i == 1) then
-			Button:SetPoint("TOPLEFT", pet, "TOPLEFT", Spacing, -Spacing)
+		if C['actionbar']['petbarhorizontal'] then
+			if i == 1 then 
+				Button:SetPoint('TOPLEFT', pet, Spacing, -Spacing) 
+			else 
+				Button:SetPoint('LEFT', _G['PetActionButton' .. (i - 1)], 'RIGHT', Spacing, 0)
+			end
 		else
-			Button:SetPoint("TOP", _G["PetActionButton"..(i - 1)], "BOTTOM", 0, -Spacing)
+			if (i == 1) then
+				Button:SetPoint("TOPLEFT", pet, "TOPLEFT", Spacing, -Spacing)
+			else
+				Button:SetPoint("TOP", _G["PetActionButton"..(i - 1)], "BOTTOM", 0, -Spacing)
+			end
 		end
 		
 		if Button:IsEventRegistered("UPDATE_BINDINGS") then Button:UnregisterEvent("UPDATE_BINDINGS") end
