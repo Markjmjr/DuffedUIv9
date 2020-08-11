@@ -24,12 +24,20 @@ function ab:CreateBar4()
 		
 		ab:SkinButton(Button)
 
-		if (i == 1) then
-			Button:SetPoint('TOPLEFT', ab4, Spacing, -Spacing)
-		elseif (i == 7) then
-			Button:SetPoint('TOPRIGHT', ab4, -Spacing, -Spacing)
+		if C['actionbar']['RightSideBar'] then
+			if i == 1 then
+				Button:SetPoint('BOTTOMLEFT', ab4, Spacing, Spacing)
+			else
+				Button:SetPoint('LEFT', PreviousButton, 'RIGHT', Spacing, 0)
+			end
 		else
-			Button:SetPoint('TOP', PreviousButton, 'BOTTOM', 0, -Spacing)
+			if (i == 1) then
+				Button:SetPoint('TOPLEFT', ab4, Spacing, -Spacing)
+			elseif (i == 7) then
+				Button:SetPoint('TOPRIGHT', ab4, -Spacing, -Spacing)
+			else
+				Button:SetPoint('TOP', PreviousButton, 'BOTTOM', 0, -Spacing)
+			end
 		end
 
 		if C['actionbar']['Rightsidebars'] then

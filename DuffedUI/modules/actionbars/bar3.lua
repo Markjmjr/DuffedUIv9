@@ -23,12 +23,20 @@ function ab:CreateBar3()
 		
 		ab:SkinButton(Button)
 
-		if (i == 1) then
-			Button:SetPoint('TOPLEFT', ab3, Spacing, -Spacing)
-		elseif (i == 7) then
-			Button:SetPoint('TOPRIGHT', ab3, -Spacing, -Spacing)
+		if C['actionbar']['LeftSideBar'] then
+			if i == 1 then
+				Button:SetPoint('BOTTOMLEFT', ab3, Spacing, Spacing)
+			else
+				Button:SetPoint('LEFT', PreviousButton, 'RIGHT', Spacing, 0)
+			end
 		else
-			Button:SetPoint('TOP', PreviousButton, 'BOTTOM', 0, -Spacing)
+			if (i == 1) then
+				Button:SetPoint('TOPLEFT', ab3, Spacing, -Spacing)
+			elseif (i == 7) then
+				Button:SetPoint('TOPRIGHT', ab3, -Spacing, -Spacing)
+			else
+				Button:SetPoint('TOP', PreviousButton, 'BOTTOM', 0, -Spacing)
+			end
 		end
 
 		if C['actionbar']['Leftsidebars'] then

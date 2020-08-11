@@ -138,7 +138,7 @@ if C['actionbar']['enable'] then
 		DuffedUIBar3:Point('BOTTOMLEFT', DuffedUIInfoLeft, 'BOTTOMRIGHT', 23, 0)
 	end
 	if C['actionbar']['LeftSideBar'] then
-		DuffedUIBar3:SetSize((D['buttonsize'] * 12) + (D['buttonspacing'] * 13), (D['buttonsize'] * 1) + (D['buttonspacing'] * 2))
+		DuffedUIBar3:SetSize((D['SidebarButtonsize'] * 12) + (D['buttonspacing'] * 13), (D['SidebarButtonsize'] * 1) + (D['buttonspacing'] * 2))
 	else
 		DuffedUIBar3:SetSize((D['SidebarButtonsize'] * 2) + (D['buttonspacing'] * 3), (D['SidebarButtonsize'] * 6) + (D['buttonspacing'] * 7))
 	end
@@ -156,7 +156,7 @@ if C['actionbar']['enable'] then
 		DuffedUIBar4:SetPoint('BOTTOMRIGHT', DuffedUIInfoRight, 'BOTTOMLEFT', -23, 0)
 	end
 	if C['actionbar']['RightSideBar'] then
-		DuffedUIBar4:SetSize((D['buttonsize'] * 12) + (D['buttonspacing'] * 13), (D['buttonsize'] * 1) + (D['buttonspacing'] * 2))
+		DuffedUIBar4:SetSize((D['SidebarButtonsize'] * 12) + (D['buttonspacing'] * 13), (D['SidebarButtonsize'] * 1) + (D['buttonspacing'] * 2))
 	else
 		DuffedUIBar4:SetSize((D['SidebarButtonsize'] * 2) + (D['buttonspacing'] * 3), (D['SidebarButtonsize'] * 6) + (D['buttonspacing'] * 7))
 	end
