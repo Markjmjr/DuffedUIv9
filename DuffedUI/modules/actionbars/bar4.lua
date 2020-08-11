@@ -32,6 +32,29 @@ function ab:CreateBar4()
 			Button:SetPoint("TOP", PreviousButton, "BOTTOM", 0, -Spacing)
 		end
 
+		if C['actionbar']['Rightsidebars'] then
+			function RightSideBar(alpha)
+				ab4:SetAlpha(alpha)
+				MultiBarLeft:SetAlpha(alpha)
+			end
+	
+			local function mouseover(f)
+				f:EnableMouse(true)
+				f:SetAlpha(0)
+				f:HookScript('OnEnter', function() RightSideBar(1) end)
+				f:HookScript('OnLeave', function() RightSideBar(0) end)
+			end
+			mouseover(ab4)
+	
+			for i = 1, 12 do
+				_G['MultiBarLeftButton' .. i]:EnableMouse(true)
+				_G['MultiBarLeftButton' .. i .. 'Cooldown']:SetDrawBling(false)
+				_G['MultiBarLeftButton' .. i .. 'Cooldown']:SetSwipeColor(0, 0, 0, 0)
+				_G['MultiBarLeftButton' .. i]:HookScript('OnEnter', function() RightSideBar(1) end)
+				_G['MultiBarLeftButton' .. i]:HookScript('OnLeave', function() RightSideBar(0) end)
+			end
+		end
+
 		ab4["Button"..i] = Button
 	end
 end
