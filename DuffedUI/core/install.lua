@@ -123,7 +123,6 @@ local function cvarsetup()
 	SetCVar('spamFilter', 0)
 	SetCVar('violenceLevel', 5)
 	SetCVar('synchronizeBindings', 0)
-	SetCVar('countdownForCooldowns', 0)
 	SetCVar('autoSelfCast', 1)
 	SetCVar('NamePlateVerticalScale', 1)
 	SetCVar('NamePlateHorizontalScale', 1)
@@ -133,15 +132,6 @@ local function cvarsetup()
 	-- Disable CVar after Beta ends
 	SetCVar('taintlog', 1)
 end
-
-local OnLogon = CreateFrame('Frame')
-OnLogon:RegisterEvent('PLAYER_ENTERING_WORLD')
-OnLogon:SetScript('OnEvent', function(self, event)
-	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-
-	local CD = GetCVar('countdownForCooldowns')
-	if CD == '1' then SetCVar('countdownForCooldowns', '0') end
-end)
 
 local function positionsetup()
 	D['SetPerCharVariable']('DuffedUIDataPerChar', {})
@@ -358,7 +348,7 @@ local step1 = function()
 		step2()
 	end)
 	SetActionBarToggles(1, 1, 1, 1, 0)
-	SetCVar('alwaysShowActionBars', 0)
+	--SetCVar('alwaysShowActionBars', 0)
 end
 
 local function install()
