@@ -200,9 +200,9 @@ function ab:Enable()
 	self:DisableBlizzard()
 	self:CreateBar1()
 	self:CreateBar2()
-	self:CreateBar3()
-	self:CreateBar4()
-	self:CreateBar5()
+	if not C['actionbar']['LeftSideBarDisable'] then self:CreateBar3() end
+	if not C['actionbar']['RightSideBarDisable'] then self:CreateBar4() end
+	if not C['actionbar']['rightbarDisable'] then self:CreateBar5() end
 	self:CreatePetBar()
 	self:CreateStanceBar()
 	self:SetupExtraButton()
