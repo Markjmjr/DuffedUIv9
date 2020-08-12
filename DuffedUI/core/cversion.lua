@@ -2,6 +2,7 @@
 local D, C, L = unpack(select(2, ...))
 
 local Version = tonumber(GetAddOnMetadata('DuffedUI', 'Version'))
+local prefix = 'DuffedUIVersion'
 
 _G.StaticPopupDialogs['OUTDATED'] = {
 	text = 'Download DuffedUI',
@@ -38,7 +39,10 @@ local check = function(self, event, prefix, message, channel, sender)
 			Channel = 'GUILD'
 		end
 
-		if Channel then C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, Channel) end
+		if Channel then
+			C_ChatInfo.RegisterAddonMessagePrefix(prefix)
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, Channel)
+		end
 	end
 end
 
@@ -47,7 +51,6 @@ frame:RegisterEvent('PLAYER_ENTERING_WORLD')
 frame:RegisterEvent('GROUP_ROSTER_UPDATE')
 frame:RegisterEvent('CHAT_MSG_ADDON')
 frame:SetScript('OnEvent', check)
-C_ChatInfo.RegisterAddonMessagePrefix('DuffedUIVersion')
 
 -- Whisper UI version --
 local whisp = CreateFrame('Frame')
