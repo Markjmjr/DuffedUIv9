@@ -11,11 +11,13 @@ If you find bugs, and you will find them, please report them at the following UR
 After Shadowlands is released, this repository will be converted to the live version.
 
 ## Open Issues
-- Actionbars not working
+- Currently the left sidebar is not displayed correctly (missing actionbuttons)
 - Skinning for frames (charscreen, etc.) currently not available
 
 ## ToDo
-- Actionbars
+- Groups
+- Debufffilter
+- Testing
 
 ## Done
 - Backdrops
@@ -28,6 +30,7 @@ After Shadowlands is released, this repository will be converted to the live ver
 - Datatext
 - ConfigUI
 - Classcheck
+- Actionbars
 
 ## Changelog
 Date | Change
