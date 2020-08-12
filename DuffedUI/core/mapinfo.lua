@@ -45,7 +45,7 @@ local coordsWatcher = CreateFrame('Frame')
 function D:MapInfo_CoordsStart()
 	D['MapInfo']['coordsWatching'] = true
 	D['MapInfo']['coordsFalling'] = nil
-	coordsWatcher:SetScript('OnUpdate', D.MapInfo_OnUpdate)
+	coordsWatcher:SetScript('OnUpdate', D['MapInfo_OnUpdate'])
 
 	if D['MapInfo']['coordsStopTimer'] then
 		D:CancelTimer(D['MapInfo']['coordsStopTimer'])
@@ -106,7 +106,8 @@ function D:GetPlayerMapPos(mapID)
 	if not mapRect then
 		mapRect = {
 			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(0, 0))), 
-			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(1, 1)))}
+			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(1, 1)))
+		}
 		mapRect[2]:Subtract(mapRect[1])
 		mapRects[mapID] = mapRect
 	end
