@@ -611,22 +611,6 @@ DuffedUIConfig ["enUS"] = {
 			["Name"] = "Height of Azerite Bar",
 		},
 		
-		["corruption"] = {
-			["Name"] = "Height of experience bar",
-		},
-		
-		["corruptioneffects"] = {
-			["Name"] = "Show corruptionbar",
-		},
-		
-		["corruptionwidth"] = {
-			["Name"] = "Width of corruptionbar",
-		},
-		
-		["corruptionheight"] = {
-			["Name"] = "Height of corruptionbar",
-		},
-		
 		["gemenchantinfo"] = {
 			["Name"] = "Gems and Enchantment Info on the Character Screen",
 		},
@@ -837,22 +821,10 @@ DuffedUIConfig ["enUS"] = {
 			["Name"] = "Show faction icon",
 		},
 
-		["CorruptionRank"] = {
-			["Name"] = "Show Corruption Ranks",
-		},
-
-		["CheckCorruption"] = {
-			["Name"] = "Statecheck for corrupted items",
-			["Desc"] = "Possible states:\n\n |cffff3377[Corrupted]|r, |cffff66cc[Corrupted (Craftet)]|r, |cffaadd44[Purified (New)], |cffffbb00[Purified (Old)|r und |cff66ff99[Pristine]|r",
-		},
-		
 		["SpecHelper"] = {
 			["Name"] = "Show Talents on Specframe",
 		},
 		
-		["CorruptionMerchant"] = {
-			["Name"] = "Show Corruptionranks on merchant",
-		},
 	},
 
 	["unitframes"] = {

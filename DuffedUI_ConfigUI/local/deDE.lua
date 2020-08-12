@@ -606,22 +606,6 @@ DuffedUIConfig["deDE"] = {
 			["Name"] = "Höhe Azeriteleiste",
 		},
 		
-		["corruption"] = {
-			["Name"] = "Höhe Erfahrungsleiste",
-		},
-		
-		["corruptioneffects"] = {
-			["Name"] = "Verderbnisleiste anzeigen",
-		},
-		
-		["corruptionwidth"] = {
-			["Name"] = "Breite Verderbnisleiste",
-		},
-		
-		["corruptionheight"] = {
-			["Name"] = "Höhe Verderbnisleiste",
-		},
-		
 		["gemenchantinfo"] = {
 			["Name"] = "Juwelen- und Verzauberungsinfo im Charakterbildschirm",
 		},
@@ -831,22 +815,10 @@ DuffedUIConfig["deDE"] = {
 			["Name"] = "Fraktionssymbol anzeigen",
 		},
 		
-		["CorruptionRank"] = {
-			["Name"] = "Verderbnisränge anzeigen",
-		},
-		
-		["CheckCorruption"] = {
-			["Name"] = "Überprüft den Reinigungsstatus des Gegenstandes",
-			["Desc"] = "Folgende Rückmeldungen sind möglich:\n\n |cffff3377[Verdorben]|r, |cffff66cc[Verdorben (Hergestellt)]|r, |cffaadd44[Gereinigt (Neu)], |cffffbb00[Gereinigt (Alt)|r und |cff66ff99[Makellos]|r",
-		},
-		
 		["SpecHelper"] = {
 			["Name"] = "Talente am Spezialisierungsfenster anzeigen",
 		},
 		
-		["CorruptionMerchant"] = {
-			["Name"] = "Verderbnisränge beim Händler anzeigen",
-		},
 	},
 	
 	["unitframes"] = {

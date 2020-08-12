@@ -239,10 +239,6 @@ C['misc'] = {
 	['azerite'] = true,
 	['azeritewidth'] = 5,
 	['azeriteheight'] = 162,
-	['corruption'] = true,
-	['corruptioneffects'] = true,
-	['corruptionwidth'] = 5,
-	['corruptionheight'] = 162,
 	['gemenchantinfo'] = true,
 	['itemlevel'] = true,
 }
@@ -299,10 +295,7 @@ C['tooltip'] = {
 	['SpellID'] = false,
 	['ShowMount'] = true,
 	['FactionIcon'] = true,
-	['CorruptionRank'] = true,
-	['CheckCorruption'] = true,
 	['SpecHelper'] = true,
-	['CorruptionMerchant'] = true,
 }
 
 C['merchant'] = {

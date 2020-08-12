@@ -4,7 +4,6 @@
 	<Script file='azeritepower.lua' />
 	<Script file='blizzbugfix.lua' />
 	<Script file='capturebar.lua' />
-	<Script file='corruption.lua' />
 	<Script file='commands.lua' />
 	<Script file='damage.lua' />
 	<Script file='dropdownlist.lua' />
