@@ -28,15 +28,6 @@ function ab:DisableBlizzard()
 		frame:SetParent(DuffedUIUIHider)
 	end
 
-	local Options = {
-		InterfaceOptionsActionBarsPanelBottomLeft,
-		InterfaceOptionsActionBarsPanelBottomRight,
-		InterfaceOptionsActionBarsPanelRight,
-		InterfaceOptionsActionBarsPanelRightTwo,
-		InterfaceOptionsActionBarsPanelStackRightBars,
-		InterfaceOptionsActionBarsPanelAlwaysShowActionBars,
-	}
-	
 	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_SHOWGRID')
 	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_HIDEGRID')
 	ActionBarButtonEventsFrame:UnregisterEvent('UPDATE_BINDINGS')
@@ -45,12 +36,6 @@ function ab:DisableBlizzard()
 	PetActionBarFrame:UnregisterEvent('PET_BAR_HIDEGRID')
 	
 	PetActionBar_ShowGrid()
-
-	for i, j in pairs(Options) do
-		j:Hide()
-		j:Disable()
-		j:SetScale(0.001)
-	end
 
 	MultiActionBar_Update = D['Dummy']
 end
@@ -229,6 +214,7 @@ function ab:FixMBBR()
 		local Button = _G['MultiBarBottomRightButton'..i]
 
 		Button:SetAttribute('showgrid', 1)
+		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 		Button:Show()
 	end
 end
@@ -249,7 +235,6 @@ function ab:Enable()
 	self:SetupExtraButton()
 	self:AddHooks()
 	self:FixMBBR()
-	--self:Cooldown()
 	
 	self:RegisterEvent('UPDATE_BINDINGS')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')

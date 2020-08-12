@@ -348,7 +348,7 @@ local step1 = function()
 		step2()
 	end)
 	SetActionBarToggles(1, 1, 1, 1, 0)
-	--SetCVar('alwaysShowActionBars', 0)
+	SetCVar('alwaysShowActionBars', 0)
 end
 
 local function install()

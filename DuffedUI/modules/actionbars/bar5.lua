@@ -19,7 +19,7 @@ function ab:CreateBar5()
 		Button:SetSize(Size, Size)
 		Button:ClearAllPoints()
 		Button:SetAttribute('showgrid', 1)
-		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_EVENT)
+		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 		
 		ab:SkinButton(Button)
 
