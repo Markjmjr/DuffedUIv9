@@ -1,4 +1,3 @@
--- All codingfame to Shestak
 local D, C, L = unpack(select(2, ...))
 
 local Version = tonumber(GetAddOnMetadata('DuffedUI', 'Version'))
@@ -21,7 +20,7 @@ _G.StaticPopupDialogs['OUTDATED'] = {
 }
 
 -- Check outdated UI version
-local check = function(self, event, prefix, message, channel, sender)
+local check = function(_, event, prefix, message, _, sender)
 	if event == 'CHAT_MSG_ADDON' then
 		if prefix ~= 'DuffedUIVersion' or sender == D['MyName'] then return end
 		if tonumber(message) ~= nil and tonumber(message) > tonumber(D['Version']) then
@@ -40,11 +39,11 @@ local check = function(self, event, prefix, message, channel, sender)
 		end
 
 		if Channel then
-			C_ChatInfo.RegisterAddonMessagePrefix(prefix)
-			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, Channel)
+			_G.C_ChatInfo.SendAddonMessage(prefix, Version, Channel)
 		end
 	end
 end
+_G.C_ChatInfo.RegisterAddonMessagePrefix(prefix)
 
 local frame = CreateFrame('Frame')
 frame:RegisterEvent('PLAYER_ENTERING_WORLD')
