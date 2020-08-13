@@ -24,7 +24,6 @@
 	<Script file='core\media.lua' />
 	<Script file='core\move.lua' />
 	<Script file='core\func_Core.lua' />
-	<Script file='core\func_Actionbars.lua' />
 	<Script file='core\func_Font.lua' />
 	<Script file='core\func_UF.lua' />
 	<Script file='core\func_Skins.lua' />
