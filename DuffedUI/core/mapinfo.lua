@@ -108,12 +108,11 @@ function D:GetPlayerMapPos(mapID)
 			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(0, 0))), 
 			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(1, 1)))
 		}
-		mapRect[2]:Subtract(mapRect[1])
+		if (not mapRect[1] == nil and mapRect[2] == nil) then mapRect[2]:Subtract(mapRect[1]) end
 		mapRects[mapID] = mapRect
 	end
-	tempVec2D:Subtract(mapRect[1])
-
-	return (tempVec2D.y / mapRect[2].y), (tempVec2D.x / mapRect[2].x)
+	if (not mapRect[1] == nil) then tempVec2D:Subtract(mapRect[1]) 	end
+	if (not mapRect[2] == nil) then return (tempVec2D.y / mapRect[2].y), (tempVec2D.x / mapRect[2].x) end
 end
 
 -- Code taken from LibTourist-3.0 and rewritten to fit our purpose
