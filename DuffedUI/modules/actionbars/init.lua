@@ -180,8 +180,6 @@ function ab:Cooldown(start, duration, enable, charges, maxcharges, forceShowdraw
 					if Region.GetText then
 						local Font = C['media']['font']
 						
-						--Font = _G[Font]:GetFont()
-
 						Region:SetFont(Font, 14, "OUTLINE")
 						Region:SetPoint("CENTER", 1, 0)
 						Region:SetTextColor(1, 0, 0)
@@ -214,6 +212,7 @@ function ab:FixMBBR()
 		local Button = _G['MultiBarBottomRightButton'..i]
 
 		Button:SetAttribute('showgrid', 1)
+		Button.noGrid = nil
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 		Button:Show()
 	end
