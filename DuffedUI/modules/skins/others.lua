@@ -99,7 +99,7 @@ local function LoadSkin()
 	end
 
 	local BlizzardHeader = {
-		--'GameMenuFrameHeader', 
+		'GameMenuFrameHeader', 
 		'InterfaceOptionsFrame', 
 		'AudioOptionsFrame', 
 		'VideoOptionsFrame',
@@ -266,6 +266,7 @@ local function LoadSkin()
 			'CombatPanelAutoSelfCast',
 			'CombatPanelEnableFloatingCombatText',
 			-- Display --
+			'Display_UseUIScale',
 			'DisplayPanelRotateMinimap',
 			'DisplayPanelAJAlerts',
 			'DisplayPanelShowTutorials',
@@ -328,6 +329,7 @@ local function LoadSkin()
 			'DisplayPanelSelfHighlightDropDown',
 			'DisplayPanelDisplayDropDown',
 			'DisplayPanelChatBubblesDropDown',
+			'Graphics_SpellDensityDropDown',
 			-- Social --
 			'SocialPanelWhisperMode',
 			'SocialPanelTimestamps',
@@ -468,6 +470,9 @@ local function LoadSkin()
 			'InterfaceOptionsCameraPanelFollowSpeedSlider',
 			'InterfaceOptionsMousePanelMouseSensitivitySlider',
 			'InterfaceOptionsMousePanelMouseLookSpeedSlider',
+			-- Display --
+			'Display_RenderScaleSlider',
+			'Display_UIScaleSlider',
 			-- Base --
 			'Graphics_ViewDistanceSlider',
 			'Graphics_EnvironmentalDetailSlider',
