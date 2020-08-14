@@ -11,7 +11,6 @@ If you find bugs, and you will find them, please report them at the following UR
 After Shadowlands is released, this repository will be converted to the live version.
 
 ## Open Issues
-- Currently the left sidebar is not displayed correctly (missing actionbuttons)
 - Skinning for frames (charscreen, etc.) currently not available
 
 ## ToDo
@@ -31,10 +30,12 @@ After Shadowlands is released, this repository will be converted to the live ver
 - ConfigUI
 - Classcheck
 - Actionbars
+- FFixed left sidebar
 
 ## Changelog
 Date | Change
 --- | ---
+3020-08-14 | Removed second changelogscript<br />Disabled skins<br />Reenabled Skins<br />Fixed skin issue on system settings<br />Attempt 3rd to fix versioncheck<br />Set small Worldmap as default<br />Fixed backdrop ExtraActionButton
 2020-08-13 | Fixed versioncheck<br />Fixed mapinfo<br />New attempt to fix missing buttons on left sidebar
 2020-08-11 | Attempt to fix missing buttons on MultiBarBottomRight<br />Added vertical function to sidebars<br />Fixed loading für keybinds<br />Added customizable proc highlighting<br />Added mouseover to stance bar<br />Added vertical option to petbar<br />Added mouseover funtion to sidebars<br />Added vertical and mouseover function to rightbar<br />Added possibility to disable sidebars<br />Removed deprecated function<br />Fixed missed scaling for buttonsize on actionbars<br />Correct code ident<br />Added XML-Code for micromenu.lua<br />Fixed two locals
 2020-08-10 | New code for actionbar, some parts are not finished<br />Removed current actionbar code for rebuild
