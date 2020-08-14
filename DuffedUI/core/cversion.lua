@@ -1,7 +1,5 @@
 local D, C, L = unpack(select(2, ...))
 
-local Version = tonumber(GetAddOnMetadata('DuffedUI', 'Version'))
-
 _G.StaticPopupDialogs['OUTDATED'] = {
 	text = 'Download DuffedUI',
 	button1 = OKAY,
