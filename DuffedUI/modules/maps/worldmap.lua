@@ -257,7 +257,7 @@ function WorldMap:Enable()
 
 		if not SmallerMap then
 			ToggleWorldMap()
-			SizeDownButton:Click()
+			SetCVar("miniWorldMap", 1)
 			ToggleWorldMap()
 		end
 		self:Skin()

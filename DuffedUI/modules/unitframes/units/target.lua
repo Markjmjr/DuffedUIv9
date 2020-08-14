@@ -415,7 +415,7 @@ D['ConstructUFTarget'] = function(self)
 	end
 	
 	if C['unitframes']['focusbutton'] then
-		D.CreateBtn('Focus', oUF_Target, 50, 10, '', 'Focus')
+		D['CreateBtn']('Focus', oUF_Target, 50, 10, '', 'Focus')
 		if layout == 1 then
 			Focus:Point('BOTTOMRIGHT', power, 'BOTTOMRIGHT', 14, -14)
 		elseif layout == 2 then
@@ -429,9 +429,7 @@ D['ConstructUFTarget'] = function(self)
 		Focus:SetAttribute('macrotext1', '/focus')
 	end
 	
-	if C['unitframes']['showrange'] then	
-		self.Range = Module.CreateRangeIndicator(self)
-	end
+	if C['unitframes']['showrange'] then self.Range = Module.CreateRangeIndicator(self) end
 	self.panel = panel
 	self.Health = health
 	self.Health.bg = healthBG
