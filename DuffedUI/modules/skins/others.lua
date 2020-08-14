@@ -117,6 +117,7 @@ local function LoadSkin()
 			if title == _G['GameMenuFrame.Header'] then title:SetPoint('TOP', GameMenuFrame, 0, 7) else title:SetPoint('TOP', BlizzardHeader[i], 0, 0) end
 		end
 	end
+	VideoOptionsFrame.Header:StripTextures()
 
 	if GameMenuFrame_UpdateVisibleButtons then
 		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function()
@@ -180,6 +181,7 @@ local function LoadSkin()
 		_G['AudioOptionsFrameOkay']:SetPoint('RIGHT',_G['AudioOptionsFrameCancel'],'LEFT',-4,0)
 		_G['InterfaceOptionsFrameOkay']:ClearAllPoints()
 		_G['InterfaceOptionsFrameOkay']:SetPoint('RIGHT',_G['InterfaceOptionsFrameCancel'],'LEFT', -4,0)
+		VideoOptionsFrame.Border:SetAlpha(0)
 
 		_G['StackSplitFrame']:GetRegions():Hide()
 		_G['GeneralDockManagerOverflowButtonList']:SetTemplate()
