@@ -252,18 +252,16 @@ function WorldMap:AddHooks()
 end
 
 function WorldMap:Enable()
-	if not IsAddOnLoaded('AddOnSkins') then
-		local SmallerMap = GetCVarBool('miniWorldMap')
+	local SmallerMap = GetCVarBool('miniWorldMap')
 
-		if not SmallerMap then
-			ToggleWorldMap()
-			SetCVar("miniWorldMap", 1)
-			ToggleWorldMap()
-		end
-		self:Skin()
-		self:AddHooks()
-		self:AddMoving()
+	if not SmallerMap then
+		ToggleWorldMap()
+		SetCVar("miniWorldMap", 1)
+		ToggleWorldMap()
 	end
+	self:Skin()
+	self:AddHooks()
+	self:AddMoving()
 	self:Coords()
 end
 
