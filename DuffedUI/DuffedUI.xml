@@ -37,7 +37,6 @@
 	<Script file='core\uicommands.lua' />
 	<Script file='core\uiquestions.lua' />
 	<Script file='core\changelog.lua' />
-	<!-- <Script file='core\uichangelog.lua' /> -->
 
 	<!-- modules -->
 	<Script file='modules\maps\minimap.lua' />
