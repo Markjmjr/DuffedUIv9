@@ -21,7 +21,7 @@ function ab:SkinZoneAbilities()
 		if not SpellButton.IsSkinned then
 			SpellButton:CreateBackdrop()
 			SpellButton:StyleButton()
-			SpellButton.Backdrop:SetFrameLevel(SpellButton:GetFrameLevel() - 1)
+			SpellButton.backdrop:SetFrameLevel(SpellButton:GetFrameLevel() - 1)
 			SpellButton.Icon:SetTexCoord(unpack(D['IconCoord']))
 			SpellButton.Icon:ClearAllPoints()
 			SpellButton.Icon:SetInside(SpellButton.Backdrop)
