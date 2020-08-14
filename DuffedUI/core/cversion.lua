@@ -1,7 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
 local Version = tonumber(GetAddOnMetadata('DuffedUI', 'Version'))
-local prefix = 'DuffedUIVersion'
 
 _G.StaticPopupDialogs['OUTDATED'] = {
 	text = 'Download DuffedUI',
@@ -20,7 +19,7 @@ _G.StaticPopupDialogs['OUTDATED'] = {
 }
 
 -- Check outdated UI version
-local check = function(_, event, prefix, message, _, sender)
+local check = function(self, event, prefix, message, _, sender)
 	if event == 'CHAT_MSG_ADDON' then
 		if prefix ~= 'DuffedUIVersion' or sender == D['MyName'] then return end
 		if tonumber(message) ~= nil and tonumber(message) > tonumber(D['Version']) then
@@ -29,27 +28,24 @@ local check = function(_, event, prefix, message, _, sender)
 			self:UnregisterEvent('CHAT_MSG_ADDON')
 		end
 	else
-		local Channel
-		if IsInRaid() then
-			Channel = (not IsInRaid(LE_PARTY_CATEGORY_HOME) and IsInRaid(LE_PARTY_CATEGORY_INSTANCE)) and 'INSTANCE_CHAT' or 'RAID'
-		elseif IsInGroup() then
-			Channel = (not IsInGroup(LE_PARTY_CATEGORY_HOME) and IsInGroup(LE_PARTY_CATEGORY_INSTANCE)) and 'INSTANCE_CHAT' or 'PARTY'
+		if IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "INSTANCE_CHAT")
+		elseif IsInRaid(LE_PARTY_CATEGORY_HOME) then
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "RAID")
+		elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "PARTY")
 		elseif IsInGuild() then
-			Channel = 'GUILD'
-		end
-
-		if Channel then
-			_G.C_ChatInfo.SendAddonMessage(prefix, Version, Channel)
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "GUILD")
 		end
 	end
 end
-_G.C_ChatInfo.RegisterAddonMessagePrefix(prefix)
 
 local frame = CreateFrame('Frame')
 frame:RegisterEvent('PLAYER_ENTERING_WORLD')
 frame:RegisterEvent('GROUP_ROSTER_UPDATE')
 frame:RegisterEvent('CHAT_MSG_ADDON')
 frame:SetScript('OnEvent', check)
+C_ChatInfo.RegisterAddonMessagePrefix('DuffedUIVersion')
 
 -- Whisper UI version --
 local whisp = CreateFrame('Frame')
