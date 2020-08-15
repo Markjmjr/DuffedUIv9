@@ -11,10 +11,9 @@ If you find bugs, and you will find them, please report them at the following UR
 After Shadowlands is released, this repository will be converted to the live version.
 
 ## Open Issues
-- Skinning for frames (charscreen, etc.) currently not available
+- Versioncheck works not correctly
 
 ## ToDo
-- Groups
 - Debufffilter
 - Testing
 
@@ -31,6 +30,8 @@ After Shadowlands is released, this repository will be converted to the live ver
 - Classcheck
 - Actionbars
 - Fixed left sidebar
+- Groupframes finished
+- Skinning enabled
 
 ## Changelog
 Date | Change
