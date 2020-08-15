@@ -21,6 +21,8 @@ function ab:CreatePetBar()
 		Button:SetSize(PetSize, PetSize)
 		Button:SetNormalTexture('')
 		Button:Show()
+		local Icon = _G['PetActionButton'..i..'Icon']
+		Icon:SetInside()
 
 		if C['actionbar']['petbarhorizontal'] then
 			if i == 1 then 

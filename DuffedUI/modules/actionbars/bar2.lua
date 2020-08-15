@@ -22,6 +22,8 @@ function ab:CreateBar2()
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 		
 		ab:SkinButton(Button)
+		local Icon = _G['MultiBarBottomLeftButton'..i..'Icon']
+		Icon:SetInside()
 
 		if (i == 1) then
 			Button:SetPoint('BOTTOMLEFT', ab2, Spacing, Spacing)

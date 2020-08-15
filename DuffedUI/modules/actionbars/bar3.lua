@@ -22,6 +22,8 @@ function ab:CreateBar3()
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 		
 		ab:SkinButton(Button)
+		local Icon = _G['MultiBarBottomRightButton'..i..'Icon']
+		Icon:SetInside()
 
 		if C['actionbar']['LeftSideBar'] then
 			if i == 1 then

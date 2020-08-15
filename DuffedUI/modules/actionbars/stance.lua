@@ -23,6 +23,8 @@ function ab:CreateStanceBar()
 		local Button = _G['StanceButton'..i]
 
 		Button:Show()
+		local Icon = _G['StanceButton'..i..'Icon']
+		Icon:SetInside()
 
 		if (i ~= 1) then
 			local Previous = _G['StanceButton'..i-1]

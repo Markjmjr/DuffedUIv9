@@ -22,6 +22,8 @@ function ab:CreateBar5()
 		Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 		
 		ab:SkinButton(Button)
+		local Icon = _G['MultiBarRightButton'..i..'Icon']
+		Icon:SetInside()
 
 		if C['actionbar']['rightbarvertical'] then
 			if i == 1 then

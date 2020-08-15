@@ -75,6 +75,8 @@ function ab:CreateBar1()
 				Button:ShowGrid(ACTION_BUTTON_SHOW_GRID_REASON_CVAR)
 					
 				ab:SkinButton(Button)
+				local Icon = _G['ActionButton'..i..'Icon']
+				Icon:SetInside()
 
 				if (i == 1) then
 					Button:SetPoint('BOTTOMLEFT', Spacing, Spacing)
