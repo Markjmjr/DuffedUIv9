@@ -37,9 +37,7 @@ local Colors = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[Class] or RAID_CLASS_
 
 local DropDownMenus = {}
 
-if (Locale == 'enGB') then
-	Locale = 'enUS'
-end
+if (Locale == 'enGB') then Locale = 'enUS' end
 
 local myPlayerRealm = GetRealmName()
 local myPlayerName  = UnitName('player')
@@ -69,10 +67,7 @@ function DuffedUIConfig:SetOption(group, option, value)
 end
 
 function DuffedUIConfig:SetCallback(group, option, func)
-	if (not self.Functions[group]) then
-		self.Functions[group] = {}
-	end
-
+	if (not self.Functions[group]) then self.Functions[group] = {} end
 	self.Functions[group][option] = func
 end
 
@@ -128,21 +123,14 @@ DuffedUIConfig.Filter = {
 
 local function TrimHex(s)
 	local Subbed = string.match(s, '|c%x%x%x%x%x%x%x%x(.-)|r')
-
 	return Subbed or s
 end
 
 local function GetOrderedIndex(t)
 	local OrderedIndex = {}
 
-	for key in pairs(t) do
-		table_insert(OrderedIndex, key)
-	end
-
-	table_sort(OrderedIndex, function(a, b)
-		return TrimHex(a) < TrimHex(b)
-	end)
-
+	for key in pairs(t) do table_insert(OrderedIndex, key) end
+	table_sort(OrderedIndex, function(a, b) return TrimHex(a) < TrimHex(b) end)
 	return OrderedIndex
 end
 
@@ -152,26 +140,17 @@ local function OrderedNext(t, state)
 
 	if (state == nil) then
 		Key = OrderedIndex[1]
-
 		return Key, t[Key]
 	end
 
 	for i = 1, #OrderedIndex do
-		if (OrderedIndex[i] == state) then
-			Key = OrderedIndex[i + 1]
-		end
+		if (OrderedIndex[i] == state) then Key = OrderedIndex[i + 1] end
 	end
-
-	if Key then
-		return Key, t[Key]
-	end
-
+	if Key then return Key, t[Key] end
 	return
 end
 
-local function PairsByKeys(t)
-	return OrderedNext, t, nil
-end
+local function PairsByKeys(t) return OrderedNext, t, nil end
 
 local function ControlOnEnter(self)
 	local D = DuffedUI[1]
@@ -183,26 +162,19 @@ local function ControlOnEnter(self)
 	GameTooltip:Show()
 end
 
-local function ControlOnLeave()
-	GameTooltip:Hide()
-end
+local function ControlOnLeave() GameTooltip:Hide() end
 
 local function SetControlInformation(control, group, option)
 	if (not DuffedUIConfig[Locale] or not DuffedUIConfig[Locale][group]) then
 		control.Label:SetText(option or UNKNOWN)
-
 		return
 	end
 
-	if (not DuffedUIConfig[Locale][group][option]) then
-		control.Label:SetText(option or UNKNOWN)
-	end
+	if (not DuffedUIConfig[Locale][group][option]) then control.Label:SetText(option or UNKNOWN) end
 
 	local Info = DuffedUIConfig[Locale][group][option]
 
-	if (not Info) then
-		return
-	end
+	if (not Info) then return end
 
 	control.Label:SetText(Info.Name)
 
@@ -217,21 +189,13 @@ local function SetControlInformation(control, group, option)
 	end
 end
 
-local function EditBoxOnMouseDown(self)
-	self:SetAutoFocus(true)
-end
-
-local function EditBoxOnEditFocusLost(self)
-	self:SetAutoFocus(false)
-end
+local function EditBoxOnMouseDown(self) self:SetAutoFocus(true) end
+local function EditBoxOnEditFocusLost(self) self:SetAutoFocus(false) end
 
 local function EditBoxOnTextChange(self)
 	local Value = self:GetText()
 
-	if (type(tonumber(Value)) == 'number') then
-		Value = tonumber(Value)
-	end
-
+	if (type(tonumber(Value)) == 'number') then Value = tonumber(Value) end
 	DuffedUIConfig:SetOption(self.Group, self.Option, Value)
 end
 
@@ -241,22 +205,14 @@ local function EditBoxOnEnterPressed(self)
 
 	local Value = self:GetText()
 
-	if (type(tonumber(Value)) == 'number') then
-		Value = tonumber(Value)
-	end
-
+	if (type(tonumber(Value)) == 'number') then Value = tonumber(Value) end
 	DuffedUIConfig:SetOption(self.Group, self.Option, Value)
 end
 
 local function EditBoxOnMouseWheel(self, delta)
 	local Number = tonumber(self:GetText())
 
-	if (delta > 0) then
-		Number = Number + 2
-	else
-		Number = Number - 2
-	end
-
+	if (delta > 0) then Number = Number + 2 else Number = Number - 2 end
 	self:SetText(Number)
 end
 
@@ -305,15 +261,12 @@ local function SetSelectedValue(dropdown, value)
 		for k, v in pairs(dropdown.Info.Options) do
 			if (v == value) then
 				Key = k
-
 				break
 			end
 		end
 	end
 
-	if Key then
-		value = Key
-	end
+	if Key then value = Key end
 
 	if dropdown[value] then
 		if (dropdown.Type == 'Texture') then
@@ -362,13 +315,8 @@ local function ListItemOnClick(self)
 	end
 end
 
-local function ListItemOnEnter(self)
-	self.Hover:SetVertexColor(1, 0.82, 0, 0.4)
-end
-
-local function ListItemOnLeave(self)
-	self.Hover:SetVertexColor(1, 0.82, 0, 0)
-end
+local function ListItemOnEnter(self) self.Hover:SetVertexColor(1, 0.82, 0, 0.4) end
+local function ListItemOnLeave(self) self.Hover:SetVertexColor(1, 0.82, 0, 0) end
 
 local function AddListItems(self, info)
 	local DropDown = self.Owner
@@ -492,12 +440,7 @@ end
 local function SliderOnMouseWheel(self, delta)
 	local Value = self:GetValue()
 
-	if (delta > 0) then
-		Value = Value - 10
-	else
-		Value = Value + 10
-	end
-
+	if (delta > 0) then Value = Value - 10 else Value = Value + 10 end
 	self:SetValue(Value)
 end
 
@@ -527,11 +470,7 @@ local function CreateConfigButton(parent, group, option, value)
 	Button.Label:SetShadowColor(0, 0, 0)
 	Button.Label:SetShadowOffset(s, -s/2)
 
-	if value then
-		Button:Check()
-	else
-		Button:Uncheck()
-	end
+	if value then Button:Check() else Button:Uncheck() end
 
 	return Button
 end
@@ -598,9 +537,7 @@ local function CreateConfigColorPicker(parent, group, option, value)
 		if (button == 'RightButton') then
 			ResetColor(self)
 		else
-			if ColorPickerFrame:IsShown() then
-				return
-			end
+			if ColorPickerFrame:IsShown() then return end
 
 			local OldR, OldG, OldB, OldA = unpack(value)
 
@@ -619,9 +556,7 @@ local function CreateConfigColorPicker(parent, group, option, value)
 			end
 
 			local function ColorCallback(restore)
-				if (restore ~= nil or self ~= ColorPickerFrame.button) then
-					return
-				end
+				if (restore ~= nil or self ~= ColorPickerFrame.button) then return end
 
 				local NewA, NewR, NewG, NewB = OpacitySliderFrame:GetValue(), ColorPickerFrame:GetColorRGB()
 
@@ -675,9 +610,9 @@ local function CreateConfigDropDown(parent, group, option, value, type)
 	local Info
 
 	if (type == 'Font') then
-		Info = D.FontTable
+		Info = D['FontTable']
 	elseif (type == 'Texture') then
-		Info = D.TextureTable
+		Info = D['TextureTable']
 	else
 		Info = value
 	end
@@ -735,28 +670,18 @@ local function CreateConfigDropDown(parent, group, option, value, type)
 	List:HookScript('OnHide', CloseList)
 	List.Owner = DropDown
 
-	if (type == 'Custom') then
-		AddListItems(List, Info.Options)
-	else
-		AddListItems(List, Info)
-	end
+	if (type == 'Custom') then AddListItems(List, Info.Options) else AddListItems(List, Info) end
 
 	DropDown.Label = Label
 	DropDown.Button = Button
 	DropDown.Current = Current
 	DropDown.List = List
-	DropDown:HookScript('OnHide', function()
-		List:Hide()
-	end)
+	DropDown:HookScript('OnHide', function() List:Hide() end)
 
 	Button.Tex = ButtonTex
 	Button:SetScript('OnClick', DropDownButtonOnClick)
 
-	if (type == 'Custom') then
-		SetSelectedValue(DropDown, value.Value)
-	else
-		SetSelectedValue(DropDown, value)
-	end
+	if (type == 'Custom') then SetSelectedValue(DropDown, value.Value) else SetSelectedValue(DropDown, value) end
 	table_insert(DropDownMenus, DropDown)
 
 	return DropDown
@@ -791,9 +716,7 @@ local function CreateGroupOptions(group)
 
 		SetControlInformation(Control, Group, Option) -- Set the label and tooltip
 
-		if (not GroupPage.Controls[Control.Type]) then
-			GroupPage.Controls[Control.Type] = {}
-		end
+		if (not GroupPage.Controls[Control.Type]) then GroupPage.Controls[Control.Type] = {} end
 
 		table_insert(GroupPage.Controls[Control.Type], Control)
 	end
@@ -905,20 +828,12 @@ local function CreateGroupOptions(group)
 end
 
 local function ShowGroup(group)
-	if (not GroupPages[group]) then
-		return
-	end
-
-	if (not GroupPages[group].Handled) then
-		CreateGroupOptions(group)
-	end
+	if (not GroupPages[group]) then return end
+	if (not GroupPages[group].Handled) then CreateGroupOptions(group) end
 
 	for _, page in pairs(GroupPages) do
 		page:Hide()
-
-		if page.Slider then
-			page.Slider:Hide()
-		end
+		if page.Slider then page.Slider:Hide() end
 	end
 
 	GroupPages[group]:Show()
@@ -932,14 +847,10 @@ local function ShowGroup(group)
 	end
 	DuffedUIConfigFrameTitle.Text:SetTextColor(196 / 255, 31 / 255, 59 / 255)
 
-	if GroupPages[group].Slider then
-		GroupPages[group].Slider:Show()
-	end
+	if GroupPages[group].Slider then GroupPages[group].Slider:Show() end
 end
 
-local function GroupButtonOnClick(self)
-	ShowGroup(self.Group)
-end
+local function GroupButtonOnClick(self) ShowGroup(self.Group) end
 
 -- Create the config window
 function DuffedUIConfig:CreateConfigWindow()
@@ -953,9 +864,7 @@ function DuffedUIConfig:CreateConfigWindow()
 	local NumGroups = 0
 
 	for Group in pairs(C) do
-		if (not self.Filter[Group]) then
-			NumGroups = NumGroups + 1
-		end
+		if (not self.Filter[Group]) then NumGroups = NumGroups + 1 end
 	end
 
 	local Height = (12 + (NumGroups * 20) + ((NumGroups - 1) * 4)) -- Padding + (NumButtons * ButtonSize) + ((NumButtons - 1) * ButtonSpacing)
@@ -1169,9 +1078,7 @@ function DuffedUIConfig:CreateConfigWindow()
 	local ReloadButton = CreateFrame('Button', nil, InfoFrame)
 	ReloadButton:SkinButton()
 	ReloadButton:SetSize(624/3, 22)
-	ReloadButton:SetScript('OnClick', function()
-		ReloadUI()
-	end)
+	ReloadButton:SetScript('OnClick', function() ReloadUI() end)
 	
 	ReloadButton:SetFrameLevel(InfoFrame2:GetFrameLevel() + 1)
 	ReloadButton:SetPoint('LEFT', CloseButton, 'RIGHT', 6, 0)
@@ -1229,9 +1136,7 @@ function DuffedUIConfig:CreateConfigWindow()
 		if (not self.Filter[Group]) then
 			local NumOptions = 0
 
-			for _ in pairs(Table) do
-				NumOptions = NumOptions + 1
-			end
+			for _ in pairs(Table) do NumOptions = NumOptions + 1 end
 
 			local GroupHeight = 8 + (NumOptions * 25)
 
@@ -1316,19 +1221,9 @@ function DuffedUIConfig:CreateConfigWindow()
 			Button.Active:SetAllPoints()
 			Button.Active:Hide()
 
-			GroupPage:HookScript('OnShow', function()
-				Button.Active:Show()
-			end)
-			
-			GroupPage:HookScript('OnHide', function()
-				Button.Active:Hide()
-			end)
-
-			if (ButtonCount == 0) then
-				Button:SetPoint('TOP', LeftWindow, 0, -6)
-			else
-				Button:SetPoint('TOP', LastButton, 'BOTTOM', 0, -4)
-			end
+			GroupPage:HookScript('OnShow', function() Button.Active:Show() end)
+			GroupPage:HookScript('OnHide', function() Button.Active:Hide() end)
+			if (ButtonCount == 0) then Button:SetPoint('TOP', LeftWindow, 0, -6) else Button:SetPoint('TOP', LastButton, 'BOTTOM', 0, -4) end
 
 			ButtonCount = ButtonCount + 1
 			LastButton = Button
@@ -1339,9 +1234,7 @@ function DuffedUIConfig:CreateConfigWindow()
 	
 	ConfigFrame:Hide()
 	
-	GameMenuFrame:HookScript('OnShow', function()
-		ConfigFrame:Hide()
-	end)
+	GameMenuFrame:HookScript('OnShow', function() ConfigFrame:Hide() end)
 end
 
 do
