@@ -43,29 +43,6 @@ end
 
 ChatFrameMenuButton:Kill()
 
-local function UpdateEditBoxColor(self)
-	local type = self:GetAttribute('chatType')
-	local bd = self.backdrop
-
-	if bd then
-		if ( type == 'CHANNEL' ) then
-			local id = GetChannelName(self:GetAttribute('channelTarget'))
-			if id == 0 then
-				bd:SetBackdropBorderColor(unpack(C['media']['bordercolor']))
-			else
-				bd:SetBackdropBorderColor(ChatTypeInfo[type..id].r,ChatTypeInfo[type..id].g,ChatTypeInfo[type..id].b)
-			end
-		else
-			bd:SetBackdropBorderColor(ChatTypeInfo[type].r,ChatTypeInfo[type].g,ChatTypeInfo[type].b)
-		end
-	end
-end
-
-hooksecurefunc('ChatEdit_UpdateHeader', function()
-	local EditBox = ChatEdit_ChooseBoxForSend()	
-	UpdateEditBoxColor(EditBox)
-end)
-
 local function SetChatStyle(frame)
 	local id = frame:GetID()
 	local chat = frame:GetName()
@@ -225,7 +202,6 @@ QuickJoinToastButton.SetPoint = function() end
 QuickJoinToastButton:SetAlpha(0)
 
 BNToastFrame:SetTemplate('Transparent')
-BNToastFrame.CloseButton:SkinCloseButton()
 
 ChatConfigFrameDefaultButton:Kill()
 

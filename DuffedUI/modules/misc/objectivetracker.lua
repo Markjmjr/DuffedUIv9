@@ -71,7 +71,7 @@ local function SkinObjectiveTracker()
 		end
 	end
 
-	local MinimizeButton = ObjectiveTrackerFrame.HeaderMenu.MinimizeButton
+	--[[local MinimizeButton = ObjectiveTrackerFrame.HeaderMenu.MinimizeButton
 	MinimizeButton:SetSize(22, 22)
 	MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton2up')
 	MinimizeButton:SetPushedTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton2up')
@@ -83,7 +83,7 @@ local function SkinObjectiveTracker()
 		else
 			MinimizeButton:SetNormalTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\trackerbutton1down')
 		end
-	end)
+	end)]]--
 
 	local function ColorProgressBars(self, value)
 		if not (self.Bar and value) then return end
@@ -217,8 +217,8 @@ local function SkinObjectiveTracker()
 	hooksecurefunc('ScenarioTrackerProgressBar_SetValue', ColorProgressBars)
 	hooksecurefunc('QuestObjectiveSetupBlockButton_AddRightButton', PositionFindGroupButton)
 	hooksecurefunc('ObjectiveTracker_Update', SkinOjectiveTrackerHeaders)
-	hooksecurefunc('QuestObjectiveSetupBlockButton_FindGroup', SkinFindGroupButton)
-	hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
+	--hooksecurefunc('QuestObjectiveSetupBlockButton_FindGroup', SkinFindGroupButton)
+	--[[hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
 	hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
 	hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
 	hooksecurefunc(_G.SCENARIO_TRACKER_MODULE,'AddProgressBar',SkinProgressBars)
@@ -226,7 +226,7 @@ local function SkinObjectiveTracker()
 	hooksecurefunc(_G.SCENARIO_TRACKER_MODULE,'AddTimerBar', SkinTimerBars)
 	hooksecurefunc(_G.ACHIEVEMENT_TRACKER_MODULE,'AddTimerBar', SkinTimerBars)
 	hooksecurefunc(_G.QUEST_TRACKER_MODULE, 'SetBlockHeader', SkinItemButton)
-	hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, 'AddObjective', SkinItemButton)
+	hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, 'AddObjective', SkinItemButton)]]--
 end
 
 _G.StaticPopupDialogs['WATCHFRAME_URL'] = {

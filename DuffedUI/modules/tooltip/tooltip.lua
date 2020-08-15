@@ -773,7 +773,6 @@ function Module:SetStyle(tt)
 
 	GameTooltipStatusBar:CreateBackdrop()
 	tt:SetTemplate('Transparent')
-	ItemRefCloseButton:SkinCloseButton()
 end
 
 function Module:MODIFIER_STATE_CHANGED(_, key)

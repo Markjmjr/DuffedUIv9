@@ -7,6 +7,13 @@ D['buttonspacing'] = D['Scale'](C['actionbar']['buttonspacing'])
 D['petbuttonsize'] = D['Scale'](C['actionbar']['petbuttonsize'])
 D['petbuttonspacing'] = D['Scale'](C['actionbar']['buttonspacing'])
 
+if GameMenuFrame_UpdateVisibleButtons then
+	hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function()
+		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight())
+		if IsAddOnLoaded('Enhanced_Config') then GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight()) end
+	end)
+end
+
 -- Hover tooltip
 local orig1, orig2 = {}, {}
 local GameTooltip = GameTooltip

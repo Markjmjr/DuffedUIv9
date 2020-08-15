@@ -36,7 +36,6 @@ tinymap:SetScript('OnEvent', function(self, event, addon)
 		BattlefieldMinimapCloseButton:SetFrameLevel(8)
 		tinymap:SetScale(1)
 		tinymap:SetAlpha(1)
-		BattlefieldMinimapCloseButton:SkinCloseButton()
 		BattlefieldMinimap_Update()
 	end)
 

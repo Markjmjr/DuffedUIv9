@@ -183,9 +183,7 @@ for i, tt in pairs(tooltips) do
 	tt.BorderBottomRight:SetTexture(nil)
 	tt.BorderBottomLeft:SetTexture(nil)
 	tt:SetTemplate('Transparent')
-	
-	if tt.CloseButton then tt.CloseButton:SkinCloseButton() end
-end
+	end
 
 -- TOOLTIP DEFAULT POSITION
 hooksecurefunc('PetBattleAbilityTooltip_Show', function()

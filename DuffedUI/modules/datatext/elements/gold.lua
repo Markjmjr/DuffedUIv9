@@ -34,7 +34,7 @@ local function FormatTooltipMoney(money)
 end	
 
 local Update = function(self, event)
-	if event == 'PLAYER_ENTERING_WORLD' then OldMoney = GetMoney() end
+	if event == 'PLAYER_LOGIN' then OldMoney = GetMoney() end
 
 	local NewMoney	= GetMoney()
 	local Change = NewMoney - OldMoney
@@ -288,6 +288,7 @@ local function Enable(self)
 	self:RegisterEvent('PLAYER_TRADE_MONEY')
 	self:RegisterEvent('TRADE_MONEY_CHANGED')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('PLAYER_LOGIN')
 	self:SetScript('OnEvent', Update)
 	self:SetScript('OnMouseDown', OnMouseDown)
 	self:SetScript('OnEnter', OnEnter)
