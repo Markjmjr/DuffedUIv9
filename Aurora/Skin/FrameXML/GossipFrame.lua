@@ -57,12 +57,12 @@ do --[[ FrameXML\GossipFrame.lua ]]
         function Hook.GossipFrameOptionsUpdate()
             local gossipOptions = _G.C_GossipInfo.GetOptions()
             for button in _G.GossipFrame.titleButtonPool:EnumerateActive() do
-                local gossipText = gossipOptions[button:GetID()].name
-                local color = gossipText:match("|c(%x+)%(")
-                if color then
+                --local gossipText = gossipOptions[button:GetID()].name
+                --local color = gossipText:match("|c(%x+)%(")
+                --if color then
                     --print("GossipFrameOptionsUpdate Found gossip color")
-                    button:SetText(gossipText:gsub("|c(%x+)", "|cFF8888FF"))
-                end
+                    --button:SetText(gossipText:gsub("|c(%x+)", "|cFF8888FF"))
+                --end
             end
         end
     else
