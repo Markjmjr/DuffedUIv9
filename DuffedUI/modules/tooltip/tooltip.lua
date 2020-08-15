@@ -765,7 +765,7 @@ function Module:SetStyle(tt)
 		insets = {left = D['mult'], right = D['mult'], top = D['mult'], bottom = D['mult']}
 	})
 
-	tt:SetBackdropBorderColor(C['general']['bordercolor'])
+	if not IsAddOnLoaded('Aurora') then tt:SetBackdropBorderColor(C['general']['bordercolor']) end
 	tt:SetBackdropColor(C['media']['backdropcolor'][1],C['media']['backdropcolor'][2], C['media']['backdropcolor'][3], C['media']['backdropcolor'][4])
 
 	local r, g, b = tt:GetBackdropColor()

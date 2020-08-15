@@ -144,10 +144,10 @@ do --[[ FrameXML\ChatConfigFrame.xml ]]
         bg:SetColorTexture(Color.button:GetRGB())
         bg:SetAllPoints()
 
-        local texture = Button:GetNormalTexture()
+        --[[local texture = Button:GetNormalTexture()
         texture:SetColorTexture(1, 1, 1)
         texture:SetPoint("TOPLEFT", bg, 1, -1)
-        texture:SetPoint("BOTTOMRIGHT", bg, -1, 1)
+        texture:SetPoint("BOTTOMRIGHT", bg, -1, 1)]]--
     end
 end
 
