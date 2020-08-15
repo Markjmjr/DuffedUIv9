@@ -27,11 +27,11 @@ local check = function(self, event, prefix, message, _, sender)
 			self:UnregisterEvent('CHAT_MSG_ADDON')
 		end
 	else
-		if IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
+		if IsInGroup(Enum.ChatChannelType.Public_Party) then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "INSTANCE_CHAT")
-		elseif IsInRaid(LE_PARTY_CATEGORY_HOME) then
+		elseif IsInRaid(Enum.ChatChannelType.Private_Party) then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "RAID")
-		elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then
+		elseif IsInGroup(Enum.ChatChannelType.Private_Party) then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "PARTY")
 		elseif IsInGuild() then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(D['Version']), "GUILD")
