@@ -8,6 +8,7 @@ local PRace = UnitRace('player')
 local PFaction = UnitFactionGroup('player')
 local color = D['RGBToHex'](unpack(C['media'].datatextcolor1))
 local Version = D['Version']
+local Revision = D['Revision']
 local ScreenWidth = GetScreenWidth()
 local ScreenHeight = GetScreenHeight()
 

@@ -986,7 +986,7 @@ function DuffedUIConfig:CreateConfigWindow()
 	
 	local version = DuffedUIConfigUIIcon:CreateFontString(nil, 'OVERLAY', nil)
 	version:SetFont(C['media']['font'], 11)
-	version:SetText('Version: '..D['Version'])
+	version:SetText('Version: '..D['Version'] .. ' ' .. 'Revision: ' .. D['Revision'])
 	version:SetPoint('LEFT', DuffedUIConfigUIIcon, 'RIGHT')
 
 	local InfoFrame = CreateFrame('Frame', 'DuffedUIConfigFrameCredit', ConfigFrame)

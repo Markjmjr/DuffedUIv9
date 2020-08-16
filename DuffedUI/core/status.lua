@@ -243,13 +243,13 @@ function D.CreateStatusFrame()
 	StatusFrame.Section4.Content:SetPoint('TOP', StatusFrame.Section4.Header, 'BOTTOM', 0, 0)
 
 	--Content lines
-	StatusFrame.Section1.Content.Line1.Text:SetFormattedText('Version of DuffedUI: |cff4beb2c%s|r', D.Version)
+	StatusFrame.Section1.Content.Line1.Text:SetFormattedText('Version of DuffedUI: |cff4beb2cv%s - r%s|r', D['Version'], D['Revision'])
 	StatusFrame.Section1.Content.Line2.Text:SetFormattedText('Other AddOns Enabled: |cff4beb2c%s|r', AreOtherAddOnsEnabled() )
 	StatusFrame.Section1.Content.Line3.Text:SetFormattedText('Scale: |cff4beb2c%s|r', (C['general']['uiscale']))
 	StatusFrame.Section1.Content.Line3.Text:SetFormattedText('Recommended Scale: |cff4beb2c%s|r', PixelClip(PixelBestSize()))
 	StatusFrame.Section1.Content.Line4.Text:SetFormattedText('UI Scale Is: |cff4beb2c%s|r', C['general']['uiscale'])
 
-	StatusFrame.Section2.Content.Line1.Text:SetFormattedText('Version of WoW: |cff4beb2c%s (build %s)|r', D.WowPatch, D.WowBuild)
+	StatusFrame.Section2.Content.Line1.Text:SetFormattedText('Version of WoW: |cff4beb2c%s (build %s)|r', D['WowPatch'], D['WowBuild'])
 	StatusFrame.Section2.Content.Line2.Text:SetFormattedText('Client Language: |cff4beb2c%s|r', GetLocale())
 	StatusFrame.Section2.Content.Line3.Text:SetFormattedText('Display Mode: |cff4beb2c%s|r', GetDisplayMode())
 	StatusFrame.Section2.Content.Line4.Text:SetFormattedText('Resolution: |cff4beb2c%s|r', GetResolution())

@@ -95,7 +95,7 @@ function Module:CreateChangelog()
 	title.text = title:CreateFontString(nil, 'OVERLAY')
 	title.text:SetPoint('CENTER', title, 0, -1)
 	title.text:SetFont(C['media']['font'], 15)
-	title.text:SetText('|cffC41F3BDuffedUI|r - ChangeLog ' .. D['Version'])
+	title.text:SetText('|cffC41F3BDuffedUI|r - ChangeLog' .. ' v' .. D['Version'] .. ' r' .. D['Revision'])
 
 	local close = CreateFrame('Button', nil, frame, 'UIPanelButtonTemplate, BackdropTemplate')
 	close:SetPoint('BOTTOMRIGHT', frame, -5, 5)
@@ -174,7 +174,7 @@ end
 
 function Module:CheckVersion()
 	if not DuffedUIData['Version'] or (DuffedUIData['Version'] and DuffedUIData['Version'] ~= D['Version']) then
-		DuffedUIData['Version'] = D['Version']
+		DuffedUIData['Version'] = D['Version'] ..' ' .. D['Revision']
 		Module:ToggleChangeLog()
 	end
 end
