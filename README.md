@@ -35,7 +35,7 @@ After Shadowlands is released, this repository will be converted to the live ver
 ## Changelog
 Date | Change
 --- | ---
-2020-08-16 | Testing changes\nFixed versionscheck and rebuild the Versioning from DuffedUI
+2020-08-16 | Testing changes<br />Fixed versionscheck and rebuild the Versioning from DuffedUI
 2020-08-15 | Removed Button no longer needed<br />Attempt to fix versioncheck<br />Apply changes for skinning with Aurora<br />Fixed temporary Aurora<br />Fixed icon position on actionbars<br />Removed remaining skins<br />Removed button for Enhanced_Config<br />Added Aurora for skin support
 2020-08-14 | Removed second changelogscript<br />Disabled skins<br />Reenabled Skins<br />Fixed skin issue on system settings<br />Attempt 3rd to fix versioncheck<br />Set small Worldmap as default<br />Fixed backdrop ExtraActionButton
 2020-08-13 | Fixed versioncheck<br />Fixed mapinfo<br />New attempt to fix missing buttons on left sidebar
