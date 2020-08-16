@@ -30,13 +30,13 @@ local check = function(self, event, prefix, message, _, sender)
 		end
 	else
 		if IsInGroup(Enum.ChatChannelType.Public_Party) then
-			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(Version), "INSTANCE_CHAT")
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, "INSTANCE_CHAT")
 		elseif IsInRaid(Enum.ChatChannelType.Private_Party) then
-			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(Version), "RAID")
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, "RAID")
 		elseif IsInGroup(Enum.ChatChannelType.Private_Party) then
-			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(Version), "PARTY")
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, "PARTY")
 		elseif IsInGuild() then
-			C_ChatInfo.SendAddonMessage('DuffedUIVersion', tonumber(Version), "GUILD")
+			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Version, "GUILD")
 		end
 	end
 end
