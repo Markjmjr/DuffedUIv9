@@ -199,7 +199,7 @@ logo.bg:SetTexture(C['media']['duffed_logo'])
 local name = title:CreateFontString(nil, 'OVERLAY')
 name:SetFont(C['media']['font'], 16)
 name:SetPoint('LEFT', title, 7, -1)
-name:SetText(D['Version'])
+name:SetText('v' .. D['Version'] .. ' r' .. D['Revision'])
 
 local sb = CreateFrame('StatusBar', nil, f)
 sb:SetStatusBarTexture(C['media']['normTex'])
