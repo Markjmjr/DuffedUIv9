@@ -30,11 +30,11 @@ local check = function(self, event, prefix, message, _, sender)
 			self:UnregisterEvent('CHAT_MSG_ADDON')
 		end
 	else
-		if IsInGroup(Enum.ChatChannelType.Public_Party) then
+		if IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Revision, "INSTANCE_CHAT")
-		elseif IsInRaid(Enum.ChatChannelType.Private_Party) then
+		elseif IsInRaid(LE_PARTY_CATEGORY_HOME) then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Revision, "RAID")
-		elseif IsInGroup(Enum.ChatChannelType.Private_Party) then
+		elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Revision, "PARTY")
 		elseif IsInGuild() then
 			C_ChatInfo.SendAddonMessage('DuffedUIVersion', Revision, "GUILD")
@@ -56,9 +56,9 @@ whisp:RegisterEvent('CHAT_MSG_BN_WHISPER')
 whisp:SetScript('OnEvent', function(self, event, text, name, ...)
 	if text:lower():match('ui_version') then
 		if event == 'CHAT_MSG_WHISPER' then
-			SendChatMessage('DuffedUI' .. Version ..' ' .. Revision, 'WHISPER', nil, name)
+			SendChatMessage('DuffedUI v' .. Version ..' r' .. Revision, 'WHISPER', nil, name)
 		elseif event == 'CHAT_MSG_BN_WHISPER' then
-			BNSendWhisper(select(11, ...), 'DuffedUI' .. Version ..' ' .. Revision)
+			BNSendWhisper(select(11, ...), 'DuffedUI v' .. Version ..' r' .. Revision)
 		end
 	end
 end)

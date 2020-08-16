@@ -243,7 +243,7 @@ function D.CreateStatusFrame()
 	StatusFrame.Section4.Content:SetPoint('TOP', StatusFrame.Section4.Header, 'BOTTOM', 0, 0)
 
 	--Content lines
-	StatusFrame.Section1.Content.Line1.Text:SetFormattedText('Version of DuffedUI: |cff4beb2cv%s - r%s|r', D['Version'], D['Revision'])
+	StatusFrame.Section1.Content.Line1.Text:SetFormattedText('Version of DuffedUI: |cff4beb2cv%s r%s|r', D['Version'], D['Revision'])
 	StatusFrame.Section1.Content.Line2.Text:SetFormattedText('Other AddOns Enabled: |cff4beb2c%s|r', AreOtherAddOnsEnabled() )
 	StatusFrame.Section1.Content.Line3.Text:SetFormattedText('Scale: |cff4beb2c%s|r', (C['general']['uiscale']))
 	StatusFrame.Section1.Content.Line3.Text:SetFormattedText('Recommended Scale: |cff4beb2c%s|r', PixelClip(PixelBestSize()))
