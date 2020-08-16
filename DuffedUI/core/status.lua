@@ -35,7 +35,7 @@ end
 
 local function GetUiScale()
 	local uiScale = GetCVar('uiScale')
-	local minUiScale = '0.6'
+	local minUiScale = '0.4'
 
 	return math_max(uiScale, minUiScale)
 end
