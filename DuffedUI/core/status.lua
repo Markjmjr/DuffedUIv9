@@ -131,7 +131,7 @@ local function PixelClip(num)
 	return num
 end
 
-function D['CreateStatusFrame']()
+D['CreateStatusFrame'] = function()
 	local function CreateSection(width, height, parent, anchor1, anchorTo, anchor2, yOffset)
 		local section = CreateFrame('Frame', nil, parent)
 		section:SetSize(width, height)
