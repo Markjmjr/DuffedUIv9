@@ -62,10 +62,8 @@ D['Currency'] = function(id, weekly, capped)
 
 	if (amount == 0 and r == 1) then return end
 	if weekly then
-		--if id == 390 then week = floor(math.abs(week) / 100) end
 		if discovered then GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, 'Current: ' .. amount .. ' - ' .. WEEKLY .. ': ' .. week .. ' / ' .. weekmax, r, g, b, r, g, b) end
 	elseif capped  then
-		--if id == 392 then maxed = 4000 end
 		if discovered then GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount .. ' / ' .. maxed, r, g, b, r, g, b) end
 	else
 		if discovered then GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount, r, g, b, r, g, b) end
@@ -114,7 +112,7 @@ D['RGBToHex'] = function(r, g, b)
 	return string.format('|cff%02x%02x%02x', r*255, g*255, b*255)
 end
 
-if C['general']['classcolor'] then C['media']['datatextcolor1'] = D['UnitColor']['class'][D.Class] end
+if C['general']['classcolor'] then C['media']['datatextcolor1'] = D['UnitColor']['class'][D['Class']] end
 D['PanelColor'] = D['RGBToHex'](unpack(C['media']['datatextcolor1']))
 
 D['ShortValue'] = function(v)
@@ -207,37 +205,32 @@ end
 D['GetAnchors'] = function(frame)
 	local x, y = frame:GetCenter()
 
-	if not x or not y then return "CENTER" end
-	local hhalf = (x > UIParent:GetWidth() * 2 / 3) and "RIGHT" or (x < UIParent:GetWidth() / 3) and "LEFT" or ""
-	local vhalf = (y > UIParent:GetHeight() / 2) and "TOP" or "BOTTOM"
+	if not x or not y then return 'CENTER' end
+	local hhalf = (x > UIParent:GetWidth() * 2 / 3) and 'RIGHT' or (x < UIParent:GetWidth() / 3) and 'LEFT' or ''
+	local vhalf = (y > UIParent:GetHeight() / 2) and 'TOP' or 'BOTTOM'
 
-	return vhalf..hhalf, frame, (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
+	return vhalf..hhalf, frame, (vhalf == 'TOP' and 'BOTTOM' or 'TOP')..hhalf
 end
 
 D['HideTooltip'] = function()
-	if GameTooltip:IsForbidden() then
-		return
-	end
-
+	if GameTooltip:IsForbidden() then return end
 	GameTooltip:Hide()
 end
 
 local function tooltipOnEnter(self)
-	GameTooltip:SetOwner(self, "ANCHOR_NONE")
+	GameTooltip:SetOwner(self, 'ANCHOR_NONE')
 	GameTooltip:SetPoint(D.GetAnchors(self))
 	GameTooltip:ClearLines()
-	if self.title then
-		GameTooltip:AddLine(self.title)
-	end
+	if self.title then GameTooltip:AddLine(self.title) end
 	if tonumber(self.text) then
 		GameTooltip:SetSpellByID(self.text)
 	elseif self.text then
 		local r, g, b = 1, 1, 1
-		if self.color == "class" then
+		if self.color == 'class' then
 			r, g, b = D.Color.r, D.Color.g, D.Color.b
-		elseif self.color == "system" then
+		elseif self.color == 'system' then
 			r, g, b = 1, .8, 0
-		elseif self.color == "info" then
+		elseif self.color == 'info' then
 			r, g, b = .6, .8, 1
 		end
 		GameTooltip:AddLine(self.text, r, g, b, 1)
@@ -250,37 +243,31 @@ D['AddTooltip'] = function(self, anchor, text, color)
 	self.text = text
 	self.color = color
 
-	self:SetScript("OnEnter", tooltipOnEnter)
-	self:SetScript("OnLeave", D.HideTooltip)
+	self:SetScript('OnEnter', tooltipOnEnter)
+	self:SetScript('OnLeave', D.HideTooltip)
 end
 
 -- Itemlevel
 local iLvlDB = {}
-local itemLevelString = gsub(ITEM_LEVEL, "%%d", "")
-local enchantString = gsub(ENCHANTED_TOOLTIP_LINE, "%%s", "(.+)")
+local itemLevelString = gsub(ITEM_LEVEL, '%%d', '')
+local enchantString = gsub(ENCHANTED_TOOLTIP_LINE, '%%s', '(.+)')
 local essenceTextureID = 2975691
 local essenceDescription = GetSpellDescription(277253)
 local ITEM_SPELL_TRIGGER_ONEQUIP = ITEM_SPELL_TRIGGER_ONEQUIP
-local tip = CreateFrame("GameTooltip", "DuffedUI_iLvlTooltip", nil, "GameTooltipTemplate")
+local tip = CreateFrame('GameTooltip', 'DuffedUI_iLvlTooltip', nil, 'GameTooltipTemplate')
 
 local function InspectItemTextures()
-	if not tip.gems then
-		tip.gems = {}
-	else
-		wipe(tip.gems)
-	end
+	if not tip.gems then tip.gems = {} else wipe(tip.gems) end
 
 	if not tip.essences then
 		tip.essences = {}
 	else
-		for _, essences in pairs(tip.essences) do
-			wipe(essences)
-		end
+		for _, essences in pairs(tip.essences) do wipe(essences) end
 	end
 
 	local step = 1
 	for i = 1, 10 do
-		local tex = _G[tip:GetName().."Texture"..i]
+		local tex = _G[tip:GetName()..'Texture'..i]
 		local texture = tex and tex:IsShown() and tex:GetTexture()
 		if texture then
 			if texture == essenceTextureID then
@@ -302,15 +289,11 @@ local function InspectItemTextures()
 end
 
 local function InspectItemInfo(text, slotInfo)
-	local itemLevel = strfind(text, itemLevelString) and strmatch(text, "(%d+)%)?$")
-	if itemLevel then
-		slotInfo.iLvl = tonumber(itemLevel)
-	end
+	local itemLevel = strfind(text, itemLevelString) and strmatch(text, '(%d+)%)?$')
+	if itemLevel then slotInfo.iLvl = tonumber(itemLevel) end
 
 	local enchant = strmatch(text, enchantString)
-	if enchant then
-		slotInfo.enchantText = enchant
-	end
+	if enchant then slotInfo.enchantText = enchant end
 end
 
 local function CollectEssenceInfo(index, lineText, slotInfo)
@@ -318,10 +301,10 @@ local function CollectEssenceInfo(index, lineText, slotInfo)
 	local essence = slotInfo.essences[step]
 	if essence and next(essence) and (strfind(lineText, ITEM_SPELL_TRIGGER_ONEQUIP, nil, true) and strfind(lineText, essenceDescription, nil, true)) then
 		for i = 5, 2, -1 do
-			local line = _G[tip:GetName().."TextLeft"..index-i]
+			local line = _G[tip:GetName()..'TextLeft'..index-i]
 			local text = line and line:GetText()
 
-			if text and (not strmatch(text, "^[ +]")) and essence and next(essence) then
+			if text and (not strmatch(text, '^[ +]')) and essence and next(essence) then
 				local r, g, b = line:GetTextColor()
 				essence[4] = r
 				essence[5] = g
@@ -336,7 +319,7 @@ end
 
 D['GetItemLevel'] = function(link, arg1, arg2, fullScan)
 	if fullScan then
-		tip:SetOwner(UIParent, "ANCHOR_NONE")
+		tip:SetOwner(UIParent, 'ANCHOR_NONE')
 		tip:SetInventoryItem(arg1, arg2)
 
 		if not tip.slotInfo then tip.slotInfo = {} else wipe(tip.slotInfo) end
@@ -345,9 +328,9 @@ D['GetItemLevel'] = function(link, arg1, arg2, fullScan)
 		slotInfo.gems, slotInfo.essences = InspectItemTextures()
 
 		for i = 1, tip:NumLines() do
-			local line = _G[tip:GetName().."TextLeft"..i]
+			local line = _G[tip:GetName()..'TextLeft'..i]
 			if line then
-				local text = line:GetText() or ""
+				local text = line:GetText() or ''
 				InspectItemInfo(text, slotInfo)
 				CollectEssenceInfo(i, text, slotInfo)
 			end
@@ -357,22 +340,22 @@ D['GetItemLevel'] = function(link, arg1, arg2, fullScan)
 	else
 		if iLvlDB[link] then return iLvlDB[link] end
 
-		tip:SetOwner(UIParent, "ANCHOR_NONE")
-		if arg1 and type(arg1) == "string" then
+		tip:SetOwner(UIParent, 'ANCHOR_NONE')
+		if arg1 and type(arg1) == 'string' then
 			tip:SetInventoryItem(arg1, arg2)
-		elseif arg1 and type(arg1) == "number" then
+		elseif arg1 and type(arg1) == 'number' then
 			tip:SetBagItem(arg1, arg2)
 		else
 			tip:SetHyperlink(link)
 		end
 
 		for i = 2, 5 do
-			local line = _G[tip:GetName().."TextLeft"..i]
+			local line = _G[tip:GetName()..'TextLeft'..i]
 			if line then
-				local text = line:GetText() or ""
+				local text = line:GetText() or ''
 				local found = strfind(text, itemLevelString)
 				if found then
-					local level = strmatch(text, "(%d+)%)?$")
+					local level = strmatch(text, '(%d+)%)?$')
 					iLvlDB[link] = tonumber(level)
 					break
 				end
@@ -384,28 +367,28 @@ D['GetItemLevel'] = function(link, arg1, arg2, fullScan)
 end
 
 D['CreateFontString'] = function(self, size, text, textstyle, classcolor, anchor, x, y)
-	local fs = self:CreateFontString(nil, "OVERLAY")
+	local fs = self:CreateFontString(nil, 'OVERLAY')
 
-	if textstyle == " " or textstyle == "" or textstyle == nil then
-		fs:SetFont(C['media']['font'], size, "")
+	if textstyle == ' ' or textstyle == '' or textstyle == nil then
+		fs:SetFont(C['media']['font'], size, '')
 		fs:SetShadowOffset(1, -1 / 2)
 	else
-		fs:SetFont(C['media']['font'], size, "OUTLINE")
+		fs:SetFont(C['media']['font'], size, 'OUTLINE')
 		fs:SetShadowOffset(0, 0)
 	end
 	fs:SetText(text)
 	fs:SetWordWrap(false)
 
-	if classcolor and type(classcolor) == "boolean" then
+	if classcolor and type(classcolor) == 'boolean' then
 		fs:SetTextColor(D.r, D.g, D.b)
-	elseif classcolor == "system" then
+	elseif classcolor == 'system' then
 		fs:SetTextColor(1, .8, 0)
 	end
 
 	if anchor and x and y then
 		fs:SetPoint(anchor, x, y)
 	else
-		fs:SetPoint("CENTER", 1, 0)
+		fs:SetPoint('CENTER', 1, 0)
 	end
 
 	return fs
@@ -413,12 +396,12 @@ end
 
 D['CreateGF'] = function(self, w, h, o, r, g, b, a1, a2)
 	self:SetSize(w, h)
-	self:SetFrameStrata("BACKGROUND")
+	self:SetFrameStrata('BACKGROUND')
 
-	local gradientFrame = self:CreateTexture(nil, "BACKGROUND")
+	local gradientFrame = self:CreateTexture(nil, 'BACKGROUND')
 	gradientFrame:SetAllPoints()
 	gradientFrame:SetTexture(C['media']['blank'])
 	gradientFrame:SetGradientAlpha(o, r, g, b, a1, r, g, b, a2)
 end
 
-D['Print'] = function(...) print("|cffC41F3B"..D['Title'].."|r:", ...) end
+D['Print'] = function(...) print('|cffC41F3B'..D['Title']..'|r:', ...) end

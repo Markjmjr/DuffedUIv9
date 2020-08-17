@@ -61,15 +61,7 @@ D['Credits'] = {
 }
 
 D['DuffedCredits'] = {
-	'Chrisey',
-	'Rolfman',
-	'Lhunephel',
 	'Elenarda',
-	'fiffzek',
-	'Skunkzord',
-	'exodors',
-	'Voodoom',
-	'Lock85',
-	'EviReborn',
-	'SidDii',
+	'Auxiliotest',
+	'rages4calm',
 }
