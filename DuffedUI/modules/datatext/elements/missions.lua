@@ -315,7 +315,7 @@ local OnEnter = function(self)
 				if name and shipmentsTotal then
 					if AddLine then
 						GameTooltip:AddLine(' ')
-						GameTooltip:AddLine('L['dt']['missionbreport']')
+						GameTooltip:AddLine(L['dt']['missionbreport'])
 						AddLine = false
 					end
 
@@ -367,13 +367,17 @@ local function Update(self, event, ...)
 		+ #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_6_0)
 		+ #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_6_2)
 
-		-- C_Garrison_GetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_8_0)
-		C_Garrison_GetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_9_0)
+		-- Workaround für BfA to use the Datatext ccorrectly
+		if D['Toc'] < 90001 then
+			C_Garrison_GetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_8_0)
+		else
+			C_Garrison_GetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_9_0)
+		end
 		for i = 1, #inProgressMissions do
 			if inProgressMissions[i].inProgress then
-				local TimeLeft = inProgressMissions[i].timeLeft:match("%d")
+				local TimeLeft = inProgressMissions[i].timeLeft:match('%d')
 
-				if (TimeLeft ~= "0") then
+				if (TimeLeft ~= '0') then
 					CountInProgress = CountInProgress + 1
 				end
 			end
@@ -381,9 +385,9 @@ local function Update(self, event, ...)
 	end
 
 	if (CountInProgress > 0) then
-		self.Text:SetFormattedText(NameColor.. "%s: |cffffffff%d/%d|r", GARRISON_MISSIONS, CountCompleted, #inProgressMissions)
+		self.Text:SetFormattedText(NameColor.. '%s: |cffffffff%d/%d|r', GARRISON_MISSIONS, CountCompleted, #inProgressMissions)
 	elseif (CountInProgress == 0) and CountCompleted > 0 then
-		self.Text:SetFormattedText("|cff00ff00%s: %d|r", GOAL_COMPLETED, CountCompleted)
+		self.Text:SetFormattedText('|cff00ff00%s: %d|r', GOAL_COMPLETED, CountCompleted)
 	else
 		self.Text:SetFormattedText(L['dt']['nomissions'])
 	end
