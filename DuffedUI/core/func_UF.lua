@@ -563,6 +563,7 @@ D['AuraWatch_AddSpell'] = function(id, point, color, anyUnit, onlyShowMissing, d
 end
 
 function D:CreateAuraWatch()
+	local class = D['Class']
 	local auras = CreateFrame("Frame", nil, self)
 	auras:SetFrameLevel(self:GetFrameLevel() + 10)
 	auras:SetPoint("TOPLEFT", self, 2, -2)
@@ -572,12 +573,7 @@ function D:CreateAuraWatch()
 	auras.PostCreateIcon = D['AuraWatchPostCreateIcon']
 	auras.PostUpdateIcon = D['AuraWatchPostUpdateIcon']
 
-	if (self.unit == "pet") then
-		auras.watched = D['BuffsTracking'].PET
-	else
-		auras.watched = D['BuffsTracking'][D['Class']]
-	end
-
+	if (self.unit == "pet") then auras.watched = D['BuffsTracking'].PET else auras.watched = D['BuffsTracking'][class] end
 	auras.size = C['raid']['aurawatchiconsize']
 
 	return auras
