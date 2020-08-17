@@ -173,8 +173,8 @@ function Module:ToggleChangeLog()
 end
 
 function Module:CheckVersion()
-	if not DuffedUIData['Version'] or (DuffedUIData['Version'] and DuffedUIData['Version'] ~= D['Version']) then
-		DuffedUIData['Version'] = D['Version'] ..' ' .. D['Revision']
+	if not DuffedUIData['Version'] or (DuffedUIData['Version'] and DuffedUIData['Version'] ~= D['Revision']) then
+		DuffedUIData['Version'] = D['Revision']
 		Module:ToggleChangeLog()
 	end
 end
