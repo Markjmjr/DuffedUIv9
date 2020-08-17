@@ -137,6 +137,7 @@ function Module:ItemLevel_UpdateTraits(button, id, link)
 	end
 
 	for i = 1, 2 do
+		if not powerIDs then return end
 		local powerIDs = allTierInfo[i].azeritePowerIDs
 		if not powerIDs or powerIDs[1] == 13 then
 			break
