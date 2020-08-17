@@ -1,14 +1,14 @@
 local D, C, L = unpack(select(2, ...))
 
 -- Warlords of Draenor intro quest items which inspired this addon
-D.ExtraQuestButton_BlackList = {
+D['ExtraQuestButton_BlackList'] = {
 	[113191] = true,
 	[110799] = true,
 	[109164] = true,
 }
 
 -- Quests with incorrect or missing quest area blobs
-D.ExtraQuestButton_QuestAreas = {
+D['ExtraQuestButton_QuestAreas'] = {
 	-- Global
 	[24629] = true,
 	-- Icecrown
@@ -33,7 +33,7 @@ D.ExtraQuestButton_QuestAreas = {
 }
 
 -- Quests items with incorrect or missing quest area blobs
-D.ExtraQuestButton_ItemAreas = {
+D['ExtraQuestButton_ItemAreas'] = {
 	-- Global
 	[34862] = true,
 	[34833] = true,

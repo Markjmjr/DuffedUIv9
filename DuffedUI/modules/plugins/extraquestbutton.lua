@@ -4,11 +4,11 @@ if not C['actionbar']['enable'] and not C['actionbar']['extraquestbutton'] then 
 -- Sourced: ExtraQuestButton, by p3lim
 
 local _G = _G
-local unpack = unpack
-local type = type
-local tonumber = tonumber
-local strmatch = strmatch
-local next = next
+local next = _G.next
+local strmatch = _G.strmatch
+local tonumber = _G.tonumber
+local type = _G.type
+local unpack = _G.unpack
 
 local C_Map_GetBestMapForUnit =_G.C_Map.GetBestMapForUnit
 local C_Timer_NewTicker =_G.C_Timer.NewTicker
@@ -176,7 +176,7 @@ end
 
 function ExtraQuestButton:QUEST_ACCEPTED(_, questLogIndex, questID)
 	if (questID and not IsQuestBounty(questID) and IsQuestTask(questID)) then
-		local _, _, worldQuestType = GetQuestTagInfo(questID)
+		local _, _, worldQuestType = C_QuestLog.GetQuestTagInfo(questID)
 		if(worldQuestType and not activeWorldQuests[questID]) then
 			activeWorldQuests[questID] = questLogIndex
 
@@ -195,8 +195,6 @@ ExtraQuestButton:SetScript("OnUpdate", function(self, elapsed)
 		if ((self.rangeTimer or 0) > TOOLTIP_UPDATE_TIME) then
 			local HotKey = self.HotKey
 			local Icon = self.Icon
-
-			-- BUG: IsItemInRange() is broken versus friendly npcs (and possibly others)
 			local inRange = IsItemInRange(self.itemLink, "target")
 			if (HotKey:GetText() == RANGE_INDICATOR) then
 				if(inRange == false) then
@@ -299,24 +297,22 @@ function ExtraQuestButton:RemoveItem()
 end
 
 local function GetClosestQuestItem()
-	-- Basically a copy of QuestSuperTracking_ChooseClosestQuest from Blizzard_ObjectiveTracker
 	local closestQuestLink, closestQuestTexture
 	local shortestDistanceSq = 62500 -- 250 yards²
 	local numItems = 0
 
-	-- XXX: temporary solution for the above
 	for questID, questLogIndex in next, activeWorldQuests do
 		local itemLink, texture, _, showCompleted = GetQuestLogSpecialItemInfo(questLogIndex)
 		if(itemLink) then
-			local areaID = D.ExtraQuestButton_QuestAreas[questID]
+			local areaID = D['ExtraQuestButton_ItemAreas'][questID]
 			if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
 
-			local _, _, _, _, _, isComplete = GetQuestLogTitle(questLogIndex)
-			if(areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
+			local isComplete = C_QuestLog.IsComplete(questID)
+			if(areaID and (type(areaID) == "boolean" or areaID == C_Map_GetBestMapForUnit("player"))) then
 				closestQuestLink = itemLink
 				closestQuestTexture = texture
 			elseif(not isComplete or (isComplete and showCompleted)) then
-				local distanceSq, onContinent = GetDistanceSqToQuest(questLogIndex)
+				local distanceSq, onContinent = C_QuestLog.GetDistanceSqToQuest(questLogIndex)
 				if(onContinent and distanceSq <= shortestDistanceSq) then
 					shortestDistanceSq = distanceSq
 					closestQuestLink = itemLink
@@ -330,18 +326,22 @@ local function GetClosestQuestItem()
 
 	if (not closestQuestLink) then
 		for index = 1, C_QuestLog.GetNumQuestWatches() do
-			local _, _, _, questLogIndex, _, _, _, _, _, questID = C_QuestLog.GetInfo(index)
+			local questID = C_QuestLog.GetQuestIDForQuestWatchIndex(index)
 			if(questID and QuestHasPOIInfo(questID)) then
+				local isComplete = C_QuestLog.IsComplete(questID)
+				local questLogIndex = C_QuestLog.GetLogIndexForQuestID(questID)
 				local itemLink, texture, _, showCompleted = GetQuestLogSpecialItemInfo(questLogIndex)
 				if(itemLink) then
-					local areaID = D.ExtraQuestButton_QuestAreas[questID]
-					if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
+					local areaID = D['ExtraQuestButton_QuestAreas'][questID]
+					if(not areaID) then
+						areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, "item:(%d+)"))]
+					end
 
-					if (areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
+					if (areaID and (type(areaID) == "boolean" or areaID == C_Map_GetBestMapForUnit("player"))) then
 						closestQuestLink = itemLink
 						closestQuestTexture = texture
 					elseif(not isComplete or (isComplete and showCompleted)) then
-						local distanceSq, onContinent = GetDistanceSqToQuest(questLogIndex)
+						local distanceSq, onContinent = C_QuestLog.GetDistanceSqToQuest(questLogIndex)
 						if(onContinent and distanceSq <= shortestDistanceSq) then
 							shortestDistanceSq = distanceSq
 							closestQuestLink = itemLink
@@ -357,18 +357,23 @@ local function GetClosestQuestItem()
 
 	if (not closestQuestLink) then
 		for questLogIndex = 1, C_QuestLog.GetNumQuestLogEntries() do
-			local _, _, isHeader, _, _, _, _, _, _, questID = C_QuestLog.GetInfo(questLogIndex)
-			if(questID and QuestHasPOIInfo(questID)) then
+			local info = C_QuestLog.GetInfo(questLogIndex)
+			local questID = info.questID
+			local isHeader = info.isHeader
+			local isComplete = C_QuestLog.IsComplete(questID)
+			if(not isHeader and QuestHasPOIInfo(questID)) then
 				local itemLink, texture, _, showCompleted = GetQuestLogSpecialItemInfo(questLogIndex)
 				if(itemLink) then
-					local areaID = D.ExtraQuestButton_QuestAreas[questID]
-					if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
+					local areaID = D['ExtraQuestButton_QuestAreas'][questID]
+					if(not areaID) then
+						areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, "item:(%d+)"))]
+					end
 
-					if(areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
+					if(areaID and (type(areaID) == "boolean" or areaID == C_Map_GetBestMapForUnit("player"))) then
 						closestQuestLink = itemLink
 						closestQuestTexture = texture
 					elseif(not isComplete or (isComplete and showCompleted)) then
-						local distanceSq, onContinent = GetDistanceSqToQuest(questLogIndex)
+						local distanceSq, onContinent = C_QuestLog.GetDistanceSqToQuest(questLogIndex)
 						if(onContinent and distanceSq <= shortestDistanceSq) then
 							shortestDistanceSq = distanceSq
 							closestQuestLink = itemLink
