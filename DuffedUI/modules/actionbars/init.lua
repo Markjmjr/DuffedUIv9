@@ -25,7 +25,7 @@ local Frames = {
 function ab:DisableBlizzard()
 	for _, frame in pairs(Frames) do
 		frame:UnregisterAllEvents()
-		frame:SetParent(DuffedUIUIHider)
+		frame:SetParent(DuffedUIHider)
 	end
 
 	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_SHOWGRID')
@@ -151,7 +151,7 @@ function ab:StartHighlight()
 	end
 	
 	-- Hide Blizard Proc
-	if self.overlay and self.overlay:GetParent() ~= DuffedUIUIHider then self.overlay:SetParent(DuffedUIUIHider) end
+	if self.overlay and self.overlay:GetParent() ~= DuffedUIHider then self.overlay:SetParent(DuffedUIHider) end
 	
 	if not self.Animation:IsPlaying() then
 		self.Animation:Play()

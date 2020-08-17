@@ -29,17 +29,13 @@ local function FadeIn(f) UIFrameFadeIn(f, .4, f:GetAlpha(), 1) end
 local function FadeOut(f) UIFrameFadeOut(f, .8, f:GetAlpha(), 0) end
 
 local function CreateBorder(f, bLayer, bOffset, bPoints, strip)
-	if f.Backgrounds then
-		return
-	end
+	if f.Backgrounds then return end
 
 	bLayer = bLayer or 0
 	bOffset = bOffset or 4
 	bPoints = bPoints or 0
 
-	if strip then
-		f:StripTextures()
-	end
+	if strip then f:StripTextures() end
 
 	D['CreateBorder'](f, bOffset)
 
@@ -72,7 +68,7 @@ local function UpdateColor(t)
 	template = t
 end
 
-local UIHider = CreateFrame('Frame', 'DuffedUIUIHider', UIParent)
+local UIHider = CreateFrame('Frame', 'DuffedUIHider', UIParent)
 UIHider:Hide()
 
 local PetBattleHider = CreateFrame('Frame', 'DuffedUIPetBattleHider', UIParent, 'SecureHandlerStateTemplate');

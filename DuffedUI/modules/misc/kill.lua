@@ -12,14 +12,14 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 		InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
 		InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
 
-		CompactRaidFrameManager:SetParent(DuffedUIUIHider)
+		CompactRaidFrameManager:SetParent(DuffedUIHider)
 		CompactUnitFrameProfiles:UnregisterAllEvents()
 
 		for i = 1, MAX_PARTY_MEMBERS do
 			local member = 'PartyMemberFrame'..i
 
 			_G[member]:UnregisterAllEvents()
-			_G[member]:SetParent(DuffedUIUIHider)
+			_G[member]:SetParent(DuffedUIHider)
 			_G[member]:Hide()
 			_G[member..'HealthBar']:UnregisterAllEvents()
 			_G[member..'ManaBar']:UnregisterAllEvents()
@@ -27,7 +27,7 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 			local pet = member..'PetFrame'
 
 			_G[pet]:UnregisterAllEvents()
-			_G[pet]:SetParent(DuffedUIUIHider)
+			_G[pet]:SetParent(DuffedUIHider)
 			_G[pet..'HealthBar']:UnregisterAllEvents()
 
 			HidePartyFrame()
@@ -70,7 +70,7 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 	if C['chat']['enable'] then SetCVar('WholeChatWindowClickable', 0) end
 
 	if C['unitframes']['enable'] then
-		PlayerFrame:SetParent(DuffedUIUIHider)
+		PlayerFrame:SetParent(DuffedUIHider)
 		InterfaceOptionsFrameCategoriesButton9:SetScale(0.00001)
 		InterfaceOptionsFrameCategoriesButton9:SetAlpha(0)
 	end
