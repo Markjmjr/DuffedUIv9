@@ -7,7 +7,7 @@ local LFG_ROLE_NUM_SHORTAGE_TYPES = LFG_ROLE_NUM_SHORTAGE_TYPES
 local GetLFGRoleShortageRewards = GetLFGRoleShortageRewards
 local InCombatLockdown = InCombatLockdown
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

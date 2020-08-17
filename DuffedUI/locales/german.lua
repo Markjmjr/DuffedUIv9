@@ -349,7 +349,7 @@ if D.Client == 'deDE' then
 	}
 
 	L['welcome'] = {
-		['welcome_1'] = "Willkommen beim |cffc41f3bDuffedUI|r v"..D['Version'] .. " r" .. D['Revision'] .. " ".. D['Client']..", "..string.format("|cff%02x%02x%02x%s|r", D.Color.r * 255, D.Color.g * 255, D.Color.b * 255, D['MyName']),
+		['welcome_1'] = "Willkommen beim |cffc41f3bDuffedUI|r v"..D['Version'] .. " r" .. D['Revision'] .. " ".. D['Client']..", "..string.format("|cff%02x%02x%02x%s|r", D['Color'].r * 255, D['Color'].g * 255, D['Color'].b * 255, D['MyName']),
 		['welcome_2'] = "Viel Spaß im Spiel und den besten Loot wünschen wir Dir!",
 	}
 	

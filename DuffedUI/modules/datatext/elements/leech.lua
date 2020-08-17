@@ -3,7 +3,7 @@ local D, C, L = unpack(select(2, ...))
 local format = string.format
 local GetCombatRating = GetCombatRating
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

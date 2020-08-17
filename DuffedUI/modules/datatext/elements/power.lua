@@ -1,6 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 
@@ -24,9 +24,9 @@ local function Update(self)
 		Spell = SpellPower
 	end
 
-	if (AttackPower > Spell and D.MyClass ~= 'HUNTER') then
+	if (AttackPower > Spell and D['MyClass'] ~= 'HUNTER') then
 		Value = AttackPower
-	elseif (D.MyClass == 'HUNTER') then
+	elseif (D['MyClass'] == 'HUNTER') then
 		Value = RangedEffective
 	else
 		Value = Spell

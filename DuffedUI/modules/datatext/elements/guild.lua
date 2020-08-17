@@ -23,7 +23,7 @@ local UnitGetGuildXP = UnitGetGuildXP
 local UnitInParty = UnitInParty
 local UnitInRaid = UnitInRaid
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

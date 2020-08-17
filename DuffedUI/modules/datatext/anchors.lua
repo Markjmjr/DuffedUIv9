@@ -1,6 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
-local DataTexts = D.DataTexts
+local DataTexts = D['DataTexts']
 
 local MenuFrame = CreateFrame('Frame', 'DataTextToggleDropDown', UIParent, 'UIDropDownMenuTemplate')
 local Anchors = DataTexts.Anchors
@@ -49,7 +49,7 @@ tinsert(Menu, {text = '|cffFF0000'..REMOVE..'|r', notCheckable = true, func = Da
 tinsert(Menu, {text = '', notCheckable = true})
 
 SlashCmdList.DATATEXT = function(msg)
-	local DataText = D.DataTexts
+	local DataText = D['DataTexts']
 
 	if msg == 'reset' then
 		DataText:Reset() ReloadUI()

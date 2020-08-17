@@ -5,7 +5,7 @@ local strform = string.format
 local tonumber = tonumber
 local tostring = tostring
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

@@ -23,7 +23,7 @@ local MemoryTable = {}
 local bandwidthString = '%.2f Mbps'
 local percentageString = '%.2f%%'
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 local MemoryColor = D.RGBToHex(1, 1, 1 or 1, 1, 1)

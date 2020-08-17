@@ -1,6 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

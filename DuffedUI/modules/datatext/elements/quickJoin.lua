@@ -1,10 +1,10 @@
 local D, C, L = unpack(select(2, ...))
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 
-local classcolor = ('|cff%.2x%.2x%.2x'):format(D.Color.r * 255, D.Color.g * 255, D.Color.b * 255)
+local classcolor = ('|cff%.2x%.2x%.2x'):format(D['Color'].r * 255, D['Color'].g * 255, D['Color'].b * 255)
 
 local UNKNOWN = UNKNOWN
 local QUICK_JOIN = QUICK_JOIN

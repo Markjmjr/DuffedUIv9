@@ -156,7 +156,7 @@ local function ControlOnEnter(self)
 	local D = DuffedUI[1]
 
 	GameTooltip:SetOwner(self, 'NONE')
-	GameTooltip:SetPoint(D.GetAnchors(self))
+	GameTooltip:SetPoint(D['GetAnchors'](self))
 	GameTooltip:ClearLines()
 	GameTooltip:AddLine(self.Tooltip, nil, nil, nil, 1)
 	GameTooltip:Show()

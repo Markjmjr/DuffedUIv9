@@ -131,7 +131,7 @@ local function PixelClip(num)
 	return num
 end
 
-function D.CreateStatusFrame()
+function D['CreateStatusFrame']()
 	local function CreateSection(width, height, parent, anchor1, anchorTo, anchor2, yOffset)
 		local section = CreateFrame('Frame', nil, parent)
 		section:SetSize(width, height)
@@ -271,28 +271,28 @@ function D.CreateStatusFrame()
 		StaticPopup_Show('BUGREPORT')
 	end)
 
-	D.StatusFrame = StatusFrame
+	D['StatusFrame'] = StatusFrame
 end
 
 local function UpdateDynamicValues()
-	D.StatusFrame.Section2.Content.Line3.Text:SetFormattedText('Display Mode: |cff4beb2c%s|r', GetDisplayMode())
-	D.StatusFrame.Section2.Content.Line4.Text:SetFormattedText('Resolution: |cff4beb2c%s|r', GetResolution())
-	D.StatusFrame.Section3.Content.Line4.Text:SetFormattedText('Specialization: |cff4beb2c%s|r', GetSpecName())
-	D.StatusFrame.Section3.Content.Line5.Text:SetFormattedText('Level: |cff4beb2c%s|r', UnitLevel('player'))
-	D.StatusFrame.Section3.Content.Line6.Text:SetFormattedText('Zone: |cff4beb2c%s|r', GetRealZoneText())
+	D['StatusFrame'].Section2.Content.Line3.Text:SetFormattedText('Display Mode: |cff4beb2c%s|r', GetDisplayMode())
+	D['StatusFrame'].Section2.Content.Line4.Text:SetFormattedText('Resolution: |cff4beb2c%s|r', GetResolution())
+	D['StatusFrame'].Section3.Content.Line4.Text:SetFormattedText('Specialization: |cff4beb2c%s|r', GetSpecName())
+	D['StatusFrame'].Section3.Content.Line5.Text:SetFormattedText('Level: |cff4beb2c%s|r', UnitLevel('player'))
+	D['StatusFrame'].Section3.Content.Line6.Text:SetFormattedText('Zone: |cff4beb2c%s|r', GetRealZoneText())
 end
 
 function D.ShowStatusReport()
-	if not D.StatusFrame then
-		D.CreateStatusFrame()
+	if not D['StatusFrame'] then
+		D['CreateStatusFrame']()
 	end
 
-	if not D.StatusFrame:IsShown() then
+	if not D['StatusFrame']:IsShown() then
 		UpdateDynamicValues()
-		D.StatusFrame:Raise() -- Set framelevel above everything else
-		D.StatusFrame:SetShown(true)
+		D['StatusFrame']:Raise() -- Set framelevel above everything else
+		D['StatusFrame']:SetShown(true)
 	else
-		D.StatusFrame:SetShown(false)
+		D['StatusFrame']:SetShown(false)
 	end
 end
 D:RegisterChatCommand('status', 'ShowStatusReport')

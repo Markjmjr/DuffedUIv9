@@ -42,7 +42,7 @@ local WINTERGRASP_IN_PROGRESS = _G.WINTERGRASP_IN_PROGRESS
 local EuropeString = '%s%02d|r:%s%02d|r'
 local UKString = '%s%d|r:%s%02d|r %s%s|r'
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

@@ -7,7 +7,7 @@ local UnitLevel = UnitLevel
 local UnitArmor = UnitArmor
 local InCombatLockdown = InCombatLockdown
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

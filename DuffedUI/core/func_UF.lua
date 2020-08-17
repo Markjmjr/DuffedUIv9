@@ -573,9 +573,9 @@ function D:CreateAuraWatch()
 	auras.PostUpdateIcon = D['AuraWatchPostUpdateIcon']
 
 	if (self.unit == "pet") then
-		auras.watched = D.BuffsTracking.PET
+		auras.watched = D['BuffsTracking'].PET
 	else
-		auras.watched = D.BuffsTracking[D['Class']]
+		auras.watched = D['BuffsTracking'][D['Class']]
 	end
 
 	auras.size = C['raid']['aurawatchiconsize']

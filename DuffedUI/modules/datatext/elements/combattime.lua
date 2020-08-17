@@ -5,7 +5,7 @@ local format, join = string.format, string.join
 local GetTime = GetTime
 local IsInInstance = IsInInstance
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 

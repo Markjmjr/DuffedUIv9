@@ -21,7 +21,7 @@ local CR_CRIT_MELEE_TOOLTIP = CR_CRIT_MELEE_TOOLTIP
 local CR_CRIT_MELEE = CR_CRIT_MELEE
 local CRIT_ABBR = CRIT_ABBR
 
-local DataText = D.DataTexts
+local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 
@@ -41,7 +41,7 @@ local OnEnter = function(self)
 		Text = HIGHLIGHT_FONT_COLOR_CODE .. format(PAPERDOLLFRAME_TOOLTIP_FORMAT, SPELL_CRIT_CHANCE) .. ' ' .. format('%.2f%%', GetSpellCritChance(1)) .. FONT_COLOR_CODE_CLOSE
 		Tooltip = format(CR_CRIT_SPELL_TOOLTIP, BreakUpLargeNumbers(GetCombatRating(CR_CRIT_SPELL)), GetCombatRatingBonus(CR_CRIT_SPELL))
 	else
-		if (D.MyClass == 'HUNTER') then
+		if (D['MyClass'] == 'HUNTER') then
 			Text = HIGHLIGHT_FONT_COLOR_CODE .. format(PAPERDOLLFRAME_TOOLTIP_FORMAT, RANGED_CRIT_CHANCE) .. ' ' .. format('%.2f%%', GetRangedCritChance()) .. FONT_COLOR_CODE_CLOSE
 			Tooltip = format(CR_CRIT_RANGED_TOOLTIP, BreakUpLargeNumbers(GetCombatRating(CR_CRIT_RANGED)), GetCombatRatingBonus(CR_CRIT_RANGED))
 		else
@@ -63,7 +63,7 @@ local Update = function(self)
 
 	if (Spell > Melee) then
 		Value = Spell
-	elseif (D.MyClass == 'HUNTER') then
+	elseif (D['MyClass'] == 'HUNTER') then
 		Value = Ranged
 	else
 		Value = Melee

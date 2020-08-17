@@ -219,7 +219,7 @@ end
 
 local function tooltipOnEnter(self)
 	GameTooltip:SetOwner(self, 'ANCHOR_NONE')
-	GameTooltip:SetPoint(D.GetAnchors(self))
+	GameTooltip:SetPoint(D['GetAnchors'](self))
 	GameTooltip:ClearLines()
 	if self.title then GameTooltip:AddLine(self.title) end
 	if tonumber(self.text) then
@@ -227,7 +227,7 @@ local function tooltipOnEnter(self)
 	elseif self.text then
 		local r, g, b = 1, 1, 1
 		if self.color == 'class' then
-			r, g, b = D.Color.r, D.Color.g, D.Color.b
+			r, g, b = D['Color'].r, D['Color'].g, D['Color'].b
 		elseif self.color == 'system' then
 			r, g, b = 1, .8, 0
 		elseif self.color == 'info' then
@@ -244,7 +244,7 @@ D['AddTooltip'] = function(self, anchor, text, color)
 	self.color = color
 
 	self:SetScript('OnEnter', tooltipOnEnter)
-	self:SetScript('OnLeave', D.HideTooltip)
+	self:SetScript('OnLeave', D['HideTooltip'])
 end
 
 -- Itemlevel
