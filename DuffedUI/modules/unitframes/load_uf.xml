@@ -1,6 +1,4 @@
 <Ui xmlns='http://www.blizzard.com/wow/ui/'>
-	<Script file='elements\ctclass-filter.lua' />
-	<Script file='elements\cttrinket-filter.lua' />
 	<Script file='elements\classtimer.lua' />
 	<Script file='elements\elements.lua' />
 	<Script file='elements\deathknight.lua' />
