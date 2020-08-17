@@ -190,12 +190,12 @@ ExtraQuestButton:SetScript('OnEnter', function(self)
 	GameTooltip:SetHyperlink(self.itemLink)
 end)
 
-ExtraQuestButton:SetScript("OnUpdate", function(self, elapsed)
+ExtraQuestButton:SetScript('OnUpdate', function(self, elapsed)
 	if self.updateRange then
 		if ((self.rangeTimer or 0) > TOOLTIP_UPDATE_TIME) then
 			local HotKey = self.HotKey
 			local Icon = self.Icon
-			local inRange = IsItemInRange(self.itemLink, "target")
+			local inRange = IsItemInRange(self.itemLink, 'target')
 			if (HotKey:GetText() == RANGE_INDICATOR) then
 				if(inRange == false) then
 					HotKey:SetTextColor(1, .1, .1)
@@ -308,7 +308,7 @@ local function GetClosestQuestItem()
 			if(not areaID) then areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))] end
 
 			local isComplete = C_QuestLog.IsComplete(questID)
-			if(areaID and (type(areaID) == "boolean" or areaID == C_Map_GetBestMapForUnit("player"))) then
+			if(areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
 				closestQuestLink = itemLink
 				closestQuestTexture = texture
 			elseif(not isComplete or (isComplete and showCompleted)) then
@@ -334,10 +334,10 @@ local function GetClosestQuestItem()
 				if(itemLink) then
 					local areaID = D['ExtraQuestButton_QuestAreas'][questID]
 					if(not areaID) then
-						areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, "item:(%d+)"))]
+						areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))]
 					end
 
-					if (areaID and (type(areaID) == "boolean" or areaID == C_Map_GetBestMapForUnit("player"))) then
+					if (areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
 						closestQuestLink = itemLink
 						closestQuestTexture = texture
 					elseif(not isComplete or (isComplete and showCompleted)) then
@@ -366,10 +366,10 @@ local function GetClosestQuestItem()
 				if(itemLink) then
 					local areaID = D['ExtraQuestButton_QuestAreas'][questID]
 					if(not areaID) then
-						areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, "item:(%d+)"))]
+						areaID = D['ExtraQuestButton_ItemAreas'][tonumber(strmatch(itemLink, 'item:(%d+)'))]
 					end
 
-					if(areaID and (type(areaID) == "boolean" or areaID == C_Map_GetBestMapForUnit("player"))) then
+					if(areaID and (type(areaID) == 'boolean' or areaID == C_Map_GetBestMapForUnit('player'))) then
 						closestQuestLink = itemLink
 						closestQuestTexture = texture
 					elseif(not isComplete or (isComplete and showCompleted)) then
