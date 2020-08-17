@@ -104,9 +104,7 @@ function GetWidgetInfoBase(widgetID)
 	return cur, toNext, total, rank, maxRank
 end
 
-local function sortFunction(a, b)
-	return a.missionEndTime < b.missionEndTime
-end
+local function sortFunction(a, b) return a.missionEndTime < b.missionEndTime end
 
 local function LandingPage(_, ...)
 	if not C_Garrison_HasGarrison(...) then	return end
@@ -213,9 +211,7 @@ local function AddInfo(id)
 end
 
 local OnEnter = function(self)
-	if not C['datatext']['ShowInCombat'] then
-		if InCombatLockdown() then return end
-	end
+	if not C['datatext']['ShowInCombat'] then if InCombatLockdown() then return end end
 
 	GameTooltip:SetOwner(self:GetTooltipAnchor())
 	GameTooltip:ClearLines()
@@ -259,9 +255,7 @@ local OnEnter = function(self)
 			for i = 2, 4 do
 				local npcName, widgetID = unpack(widgetGroup[i])
 				local cur, toNext, _, rank, maxRank = GetWidgetInfoBase(widgetID)
-				if npcName and rank then
-					GameTooltip:AddDoubleLine(npcName, (maxRank and 'Max Rank') or BODYGUARD_LEVEL_XP_FORMAT:format(rank, cur, toNext), 1, 1, 1)
-				end
+				if npcName and rank then GameTooltip:AddDoubleLine(npcName, (maxRank and 'Max Rank') or BODYGUARD_LEVEL_XP_FORMAT:format(rank, cur, toNext), 1, 1, 1) end
 			end
 		end
 
@@ -346,19 +340,11 @@ local CountInProgress = 0
 local CountCompleted = 0
 
 local function Update(self, event, ...)
-	if event == 'CURRENCY_DISPLAY_UPDATE' and select(1, ...) ~= MAIN_CURRENCY then
-		return
-	end
+	if event == 'CURRENCY_DISPLAY_UPDATE' and select(1, ...) ~= MAIN_CURRENCY then return end
 
-	if event == 'PLAYER_LOGIN' or event == 'GARRISON_SHIPMENT_RECEIVED' or (event == 'SHIPMENT_UPDATE' and select(1, ...) == true) then
-		C_Garrison_RequestLandingPageShipmentInfo()
-	end
+	if event == 'PLAYER_LOGIN' or event == 'GARRISON_SHIPMENT_RECEIVED' or (event == 'SHIPMENT_UPDATE' and select(1, ...) == true) then C_Garrison_RequestLandingPageShipmentInfo() end
 
-	if event == 'GARRISON_MISSION_NPC_OPENED' then
-		self:RegisterEvent('GARRISON_MISSION_LIST_UPDATE')
-	elseif event == 'GARRISON_MISSION_NPC_CLOSED' then
-		self:UnregisterEvent('GARRISON_MISSION_LIST_UPDATE')
-	end
+	if event == 'GARRISON_MISSION_NPC_OPENED' then self:RegisterEvent('GARRISON_MISSION_LIST_UPDATE') elseif event == 'GARRISON_MISSION_NPC_CLOSED' then self:UnregisterEvent('GARRISON_MISSION_LIST_UPDATE') end
 
 	if event == 'PLAYER_LOGIN' or event == 'GARRISON_LANDINGPAGE_SHIPMENTS' or event == 'GARRISON_MISSION_FINISHED' or event == 'GARRISON_MISSION_NPC_CLOSED' or event == 'GARRISON_MISSION_LIST_UPDATE' then
 		CountCompleted = #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_9_0)
@@ -376,10 +362,7 @@ local function Update(self, event, ...)
 		for i = 1, #inProgressMissions do
 			if inProgressMissions[i].inProgress then
 				local TimeLeft = inProgressMissions[i].timeLeft:match('%d')
-
-				if (TimeLeft ~= '0') then
-					CountInProgress = CountInProgress + 1
-				end
+				if (TimeLeft ~= '0') then CountInProgress = CountInProgress + 1 end
 			end
 		end
 	end
