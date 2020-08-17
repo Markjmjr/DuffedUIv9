@@ -26,7 +26,6 @@
 	<Script file='core\func_Core.lua' />
 	<Script file='core\func_Font.lua' />
 	<Script file='core\func_UF.lua' />
-	<Script file='core\func_Skins.lua' />
 	<Script file='core\install.lua' />
 	<Script file='core\filters\f_cbticks.lua' />
 	<Script file='core\filters\extraquestbutton.lua' />
