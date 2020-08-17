@@ -40,6 +40,17 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 	PartyMemberBackground:Kill()
 	TutorialFrameAlertButton:Kill()
 
+	local uioptionFrames = {
+		Display_RenderScaleSlider,
+		Display_UseUIScale,
+		Display_UIScaleSlider,
+	}
+	for i, f in pairs(uioptionFrames) do
+		f:Hide()
+		f:Disable()
+		f:SetScale(0.001)
+	end
+
 	if C['unitframes']['classbar'] then
 		SetCVar('nameplateShowSelf', 0)
 		SetCVar('nameplateResourceOnTarget', 0)
@@ -76,11 +87,19 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 	end
 
 	if C['actionbar']['enable'] then
-		InterfaceOptionsActionBarsPanelBottomLeft:Kill()
-		InterfaceOptionsActionBarsPanelBottomRight:Kill()
-		InterfaceOptionsActionBarsPanelRight:Kill()
-		InterfaceOptionsActionBarsPanelRightTwo:Kill()
-		InterfaceOptionsActionBarsPanelAlwaysShowActionBars:Kill()
+		local optionFrames = {
+			InterfaceOptionsActionBarsPanelBottomLeft,
+			InterfaceOptionsActionBarsPanelBottomRight,
+			InterfaceOptionsActionBarsPanelRight,
+			InterfaceOptionsActionBarsPanelRightTwo,
+			InterfaceOptionsActionBarsPanelStackRightBars,
+			InterfaceOptionsActionBarsPanelAlwaysShowActionBars,
+		}
+		for i, j in pairs(optionFrames) do
+			j:Hide()
+			j:Disable()
+			j:SetScale(0.001)
+		end	
 	end
 
 	local TaintFix = CreateFrame('Frame')
