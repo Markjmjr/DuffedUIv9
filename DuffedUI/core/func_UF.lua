@@ -5,6 +5,10 @@ local oUF = ns.oUF
 oUFDuffedUI = ns.oUF
 assert(oUF, 'DuffedUI was unable to locate oUF install.')
 
+D['CreateSpellEntry'] = function(id, castByAnyone, color, unitType, castSpellId)
+	return { id = id, castByAnyone = castByAnyone, color = color, unitType = unitType or 0, castSpellId = castSpellId }
+end
+
 D['updateAllElements'] = function(frame)
 	for _, v in ipairs(frame.__elements) do v(frame, 'UpdateElement', frame.unit) end
 end
