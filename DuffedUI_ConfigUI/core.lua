@@ -1262,6 +1262,7 @@ do
 	loaded:RegisterEvent('PLAYER_LOGIN')
 	loaded:SetScript('OnEvent', function(self, event, addon)
 		D, C, L = unpack(DuffedUI)
+		if IsAddOnLoaded('Aurora') then F = unpack(Aurora) end
 		local menu = GameMenuFrame
 		local menuy = menu:GetHeight()
 		local quit = GameMenuButtonQuit
@@ -1278,7 +1279,7 @@ do
 		button:SetSize(continuex, continuey)
 		button:Point('TOP', interface, 'BOTTOM', 0, -1)
 		button:SetText('DuffedUI')
-		button:SkinButton()
+		if IsAddOnLoaded('Aurora') then F.Reskin(button) end
 		button:SetScript('OnClick', function(self)
 			if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
 			if (not DuffedUIConfigFrame) then
