@@ -589,112 +589,6 @@ local function SkinCloseButton(f, point)
 	f.t:SetText('x')
 end
 
--- Tab Regions
-local tabs = {
-	'LeftDisabled',
-	'MiddleDisabled',
-	'RightDisabled',
-	'Left',
-	'Middle',
-	'Right',
-}
-local function SkinTab(tab)
-	if not tab then return end
-	for _, object in pairs(tabs) do
-		local tex = _G[tab:GetName()..object]
-		if tex then tex:SetTexture(nil) end
-	end
-
-	if tab.GetHighlightTexture and tab:GetHighlightTexture() then tab:GetHighlightTexture():SetTexture(nil) else StripTextures(tab) end
-
-	tab.backdrop = CreateFrame('Frame', nil, tab, 'BackdropTemplate')
-	SetTemplate(tab.backdrop, 'Default')
-	tab.backdrop:SetFrameLevel(tab:GetFrameLevel() - 1)
-	Point(tab.backdrop, 'TOPLEFT', 10, -3)
-	Point(tab.backdrop, 'BOTTOMRIGHT', -10, 3)
-end
-
-function SkinMaxMinFrame(Frame)
-	Frame:StripTextures(true)
-
-	for _, name in pairs({"MaximizeButton", "MinimizeButton"}) do
-		local button = Frame[name]
-
-		if button then
-			button:SetSize(16, 16)
-			button:ClearAllPoints()
-			button:SetPoint('CENTER')
-			button:SetHitRectInsets(1, 1, 1, 1)
-			button:StripTextures(nil, true)
-			button:SetTemplate()
-
-			button.Text = button:CreateFontString(nil, 'OVERLAY')
-			button.Text:SetFont([[Interface\AddOns\DuffedUI\media\fonts\Arial.ttf]], 12)
-			button.Text:SetText(name == 'MaximizeButton' and '▲' or '▼')
-			button.Text:SetPoint('CENTER', 0, 0)
-
-			button:HookScript('OnShow', function(self)
-				if not self:IsEnabled() then
-					self.Text:SetTextColor(.3, .3, .3)
-				end
-			end)
-
-			button:HookScript('OnEnter', SetModifiedBackdrop)
-			button:HookScript('OnLeave', SetOriginalBackdrop)
-		end
-	end
-end
-
-local function SkinDropDownBox(frame, width)
-	local button = _G[frame:GetName()..'Button']
-	if not width then width = 155 end
-
-	frame:StripTextures()
-	frame:Width(width)
-
-	_G[frame:GetName()..'Text']:ClearAllPoints()
-	_G[frame:GetName()..'Text']:Point('RIGHT', button, 'LEFT', -2, 0)
-
-	button:ClearAllPoints()
-	button:Point('RIGHT', frame, 'RIGHT', -10, 3)
-	hooksecurefunc(button, 'SetPoint', function(self, point, attachTo, anchorPoint, xOffset, yOffset, noReset)
-		if not noReset then
-			button:ClearAllPoints()
-			button:SetPoint('RIGHT', frame, 'RIGHT', -10, 3, true)
-		end
-	end)
-	button.SetPoint = D['Dummy']
-
-	button:SkinNextPrevButton(true)
-
-	frame:CreateBackdrop('Default')
-	frame.backdrop:Point('TOPLEFT', 20, -2)
-	frame.backdrop:Point('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 2, -2)
-end
-
-local function SkinSlideBar(frame, height, movetext)
-	frame:SetTemplate( 'Default' )
-	frame:SetBackdropColor( 0, 0, 0, .8 )
-
-	if not height then height = frame:GetHeight() end
-
-	if movetext then
-		if(_G[frame:GetName() .. 'Low']) then _G[frame:GetName() .. 'Low']:Point('BOTTOM', 0, -18) end
-		if(_G[frame:GetName() .. 'High']) then _G[frame:GetName() .. 'High']:Point('BOTTOM', 0, -18) end
-		if(_G[frame:GetName() .. 'Text']) then _G[frame:GetName() .. 'Text']:Point('TOP', 0, 19) end
-	end
-
-	_G[frame:GetName()]:SetThumbTexture( [[Interface\AddOns\DuffedUI\media\textures\blank.tga]] )
-	_G[frame:GetName()]:GetThumbTexture():SetVertexColor(unpack( C['media']['bordercolor']))
-	if( frame:GetWidth() < frame:GetHeight() ) then
-		frame:Width(height)
-		_G[frame:GetName()]:GetThumbTexture():Size(frame:GetWidth(), frame:GetWidth() + 4)
-	else
-		frame:Height(height)
-		_G[frame:GetName()]:GetThumbTexture():Size(height + 4, height)
-	end
-end
-
 -- merge api
 local function addapi(object)
 	local mt = getmetatable(object).__index
@@ -718,10 +612,6 @@ local function addapi(object)
 	if not object.SkinEditBox then mt.SkinEditBox = SkinEditBox end
 	if not object.SkinCheckBox then mt.SkinCheckBox = SkinCheckBox end
 	if not object.SkinCloseButton then mt.SkinCloseButton = SkinCloseButton end
-	if not object.SkinTab then mt.SkinTab = SkinTab end
-	if not object.SkinMaxMinFrame then mt.SkinMaxMinFrame = SkinMaxMinFrame end
-	if not object.SkinDropDownBox then mt.SkinDropDownBox = SkinDropDownBox end
-	if not object.SkinSlideBar then mt.SkinSlideBar = SkinSlideBar end
 	if not object.CreateOverlay then mt.CreateOverlay = CreateOverlay end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
