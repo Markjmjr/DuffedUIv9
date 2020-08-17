@@ -35,6 +35,7 @@ After Shadowlands is released, this repository will be converted to the live ver
 ## Changelog
 Date | Change
 --- | ---
+2020-08-17 | Removed debuff from Legion raids and dungeons<br />Moved filter for Debuffs and Buffs<br />Update extraquestbutton by [Rav99](https://github.com/Rav99)<br />Moved classtimer from testing to correct position<br />Moved filterlists for classtimer<br />Fixed SavedVar-Value for versioncheck<br />Renamed frame for UIHider<br />Removed skinning functions no longer needed
 2020-08-16 | Testing changes<br />Fixed versionscheck and rebuild the Versioning from DuffedUI
 2020-08-15 | Removed Button no longer needed<br />Attempt to fix versioncheck<br />Apply changes for skinning with Aurora<br />Fixed temporary Aurora<br />Fixed icon position on actionbars<br />Removed remaining skins<br />Removed button for Enhanced_Config<br />Added Aurora for skin support
 2020-08-14 | Removed second changelogscript<br />Disabled skins<br />Reenabled Skins<br />Fixed skin issue on system settings<br />Attempt 3rd to fix versioncheck<br />Set small Worldmap as default<br />Fixed backdrop ExtraActionButton
