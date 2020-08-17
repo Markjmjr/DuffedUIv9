@@ -35,6 +35,7 @@
 	<Script file='core\filters\cttrinket-filter.lua' />
 	<Script file='core\filters\raid-debuff-filter.lua' />
 	<Script file='core\filters\buff-filter.lua' />
+	<Script file='core\filters\rangecheck-filter.lua' />
 	<Script file='core\cversion.lua' />
 	<Script file='core\mapinfo.lua' />
 	<Script file='core\status.lua' />
