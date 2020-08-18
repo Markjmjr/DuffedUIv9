@@ -10,6 +10,13 @@ If you find bugs, and you will find them, please report them at the following UR
 
 After Shadowlands is released, this repository will be converted to the live version.
 
+## Informations for coding
+All code that was inserted to continue to work during the PrePatch must be tagged with the following:
+
+   --[[needs to be removed after release of Shadowlands]]--
+
+This is to ensure that, after the release of Shadowlands, you can find the relevant jobs faster using the search term.
+
 ## Open Issues
 
 ## ToDo

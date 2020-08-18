@@ -353,7 +353,7 @@ local function Update(self, event, ...)
 		+ #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_6_0)
 		+ #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_6_2)
 
-		-- Workaround für BfA to use the Datatext ccorrectly
+		--[[needs to be removed after release of Shadowlands]]--
 		if D['Toc'] < 90001 then
 			C_Garrison_GetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_8_0)
 		else
