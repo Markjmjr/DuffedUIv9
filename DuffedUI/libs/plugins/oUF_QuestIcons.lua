@@ -3,110 +3,99 @@ local D, C, L = unpack(select(2, ...))
 local _, ns = ...
 local oUF = ns.oUF or oUF
 
---Lua functions
 local _G = _G
-local pairs, tonumber = pairs, tonumber
-local strmatch, strfind = strmatch, strfind
-local ceil, floor = ceil, floor
+local pairs, ipairs, ceil, floor, tonumber = pairs, ipairs, ceil, floor, tonumber
+local strmatch, strlower, strfind = strmatch, strlower, strfind
 
---WoW API / Variables
 local GetLocale = GetLocale
-local GetQuestLogIndexByID = GetQuestLogIndexByID
 local GetQuestLogSpecialItemInfo = GetQuestLogSpecialItemInfo
-local GetQuestLogTitle = GetQuestLogTitle
+local C_QuestLog_GetTitleForLogIndex = C_QuestLog.GetTitleForLogIndex
+local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
+local C_QuestLog_GetQuestIDForLogIndex = C_QuestLog.GetQuestIDForLogIndex
+
 local IsInInstance = IsInInstance
 local UnitIsPlayer = UnitIsPlayer
-local C_TaskQuest_GetQuestProgressBarInfo = C_TaskQuest.GetQuestProgressBarInfo
 local ThreatTooltip = THREAT_TOOLTIP:gsub('%%d', '%%d-')
 
-local questIconTypes = {"Item", "Loot", "Skull", "Chat"}
-local ActiveQuests = {
+local iconTypes = {'Default', 'Item', 'Skull', 'Chat'}
+local questIndexByID = {
+	--[questID] = questIndex
+}
+local activeQuests = {
 	--[questName] = questID
 }
 
-local UsedLocale = GetLocale()
-local QuestTypesLocalized = {
-	["enUS"] = {
-		["slain"] = "KILL",
-		["destroy"] = "KILL",
-		['eleminate'] = 'KILL',
-		['repel'] = 'KILL',
-		["kill"] = "KILL",
-		["defeat"] = "KILL",
-		["speak"] = "CHAT",
-		["ask"] = "CHAT",
+local typesLocalized = {
+	enUS = {
+		KILL = {'slain', 'destroy', 'eliminate', 'repel', 'kill', 'defeat'},
+		CHAT = {'speak', 'ask', 'talk', 'build'}
 	},
-	["deDE"] = {
-		["besiegen"] = "KILL",
-		["besiegt"] = "KILL",
-		["getötet"] = "KILL",
-		["töten"] = "KILL",
-		["tötet"] = "KILL",
-		["zerstört"] = "KILL",
-		["befragt"] = "CHAT",
-		["sprecht"] = "CHAT",
-		["genährt"] = "KILL",
-
+	deDE = {
+		KILL = {'besiegen', 'besiegt', 'getötet', 'töten', 'tötet', 'zerstört', 'genährt'},
+		CHAT = {'befragt', 'sprecht'}
 	},
-	["esMX"] = {
-		["slain"] = "KILL",
-		["destroyed"] = "KILL",
-		["speak"] = "CHAT",
+	ruRU = {
+		KILL = {'убит', 'уничтож', 'разбомблен', 'разбит', 'сразит'},
+		CHAT = {'поговорит', 'спрашивать', 'строить'}
 	},
-	["frFR"] = {
-		["slain"] = "KILL",
-		["destroyed"] = "KILL",
-		["speak"] = "CHAT",
+	esMX = {
+		KILL = {'matar', 'destruir', 'eliminar', 'repeler', 'derrotar'},
+		CHAT = {'hablar', 'preguntar', 'construir'}
 	},
-	["koKR"] = {
-		["slain"] = "KILL",
-		["destroyed"] = "KILL",
-		["speak"] = "CHAT",
+	ptBR = {
+		KILL = {'matar', 'destruir', 'eliminar', 'repelir', 'derrotar'},
+		CHAT = {'falar', 'perguntar', 'construir'}
 	},
-	["ptBR"] = {
-		["slain"] = "KILL",
-		["destroyed"] = "KILL",
-		["speak"] = "CHAT",
+	frFR = {
+		KILL = {'tuer', 'détruire', 'éliminer', 'repousser', 'tuer', 'vaincre'},
+		CHAT = {'parler', 'demander', 'construire'}
 	},
-	["ruRU"] = {
-		["убит"] = "KILL",
-		["уничтож"] = "KILL",
-		["разбомблен"] = "KILL",
-		["разбит"] = "KILL",
-		["сразит"] = "KILL",
-		["поговорит"] = "CHAT",
+	koKR = {
+		KILL = {'살인', '멸하다', '제거', '죽이다', '격퇴하다', '죽임', '패배'},
+		CHAT = {'말하다', '질문하다', '구축하다'}
 	},
-	["zhCN"] = {
-		["消灭"] = "KILL",
-		["摧毁"] = "KILL",
-		["获得"] = "KILL",
-		["击败"] = "KILL",
-		["交谈"] = "CHAT",
+	zhCN = {
+		KILL = {'消灭', '摧毁', '获得', '击败', '被杀', '毁灭', '击退', '杀死'},
+		CHAT = {'交谈', '说话', '询问', '建立'}
 	},
-	["zhTW"] = {
-		["slain"] = "KILL",
-		["destroyed"] = "KILL",
-		["speak"] = "CHAT",
+	zhTW = {
+		KILL = {'被殺', '毀滅', '消除', '擊退', '殺死', '打败'},
+		CHAT = {'說話', '詢問', '交談', '建立', '建设'}
 	},
 }
 
-local QuestTypes = QuestTypesLocalized[UsedLocale] or QuestTypesLocalized.enUS
+local questTypes = typesLocalized[GetLocale()] or typesLocalized.enUS
 
-local function QUEST_ACCEPTED(self, event, questLogIndex, questID)
+local function QUEST_ACCEPTED(_, _, questLogIndex, questID)
 	if questLogIndex and questLogIndex > 0 then
-		local questName = C_TaskQuest.GetQuestInfoByQuestID(questLogIndex)
+		local questName = C_QuestLog_GetTitleForLogIndex(questLogIndex)
 		if questName and (questID and questID > 0) then
-			ActiveQuests[questName] = questID
+			activeQuests[questName] = questID
+			questIndexByID[questID] = questLogIndex
 		end
 	end
 end
 
-local function QUEST_REMOVED(self, event, questID)
+local function QUEST_REMOVED(_, _, questID)
 	if not questID then return end
-	for questName, id in pairs(ActiveQuests) do
+	questIndexByID[questID] = nil
+
+	for questName, id in pairs(activeQuests) do
 		if id == questID then
-			ActiveQuests[questName] = nil
+			activeQuests[questName] = nil
 			break
+		end
+	end
+end
+
+local function CheckTextForQuest(text)
+	local x, y = strmatch(text, '(%d+)/(%d+)')
+	if x and y then
+		return floor(y - x)
+	elseif not strmatch(text, ThreatTooltip) then
+		local progress = tonumber(strmatch(text, '([%d%.]+)%%'))
+		if progress and progress <= 100 then
+			return ceil(100 - progress), true
 		end
 	end
 end
@@ -114,82 +103,76 @@ end
 local function GetQuests(unitID)
 	if IsInInstance() then return end
 
-	D.ScanTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
-	D.ScanTooltip:SetUnit(unitID)
-	D.ScanTooltip:Show()
+	D['ScanTooltip']:SetOwner(_G.UIParent, 'ANCHOR_NONE')
+	D['ScanTooltip']:SetUnit(unitID)
+	D['ScanTooltip']:Show()
 
-	local QuestList, notMyQuest
-	for i = 3, D.ScanTooltip:NumLines() do
+	local QuestList, notMyQuest, activeID
+	for i = 3, D['ScanTooltip']:NumLines() do
 		local str = _G['DuffedUI_ScanTooltipTextLeft' .. i]
 		local text = str and str:GetText()
 		if not text or text == '' then return end
 
 		if UnitIsPlayer(text) then
-			notMyQuest = text ~= D.MyName
+			notMyQuest = text ~= D['MyName']
 		elseif text and not notMyQuest then
-			local objCount, QuestType, IsPerc, logIndex, itemTex, _
+			local count, percent = CheckTextForQuest(text)
 
-			-- active quest
-			local QuestID = ActiveQuests[text]
-			if QuestID then
-				logIndex = GetQuestLogIndexByID(QuestID)
-				_, itemTex = GetQuestLogSpecialItemInfo(logIndex)
-
-				local progress = C_TaskQuest_GetQuestProgressBarInfo(QuestID)
-				if progress then
-					objCount = floor(progress)
-					IsPerc = true
-				end
+			if activeQuests[text] then -- this line comes from one line up in the tooltip
+				activeID = activeQuests[text]
 			end
 
-			-- text check, only if active quest doesnt find the objective
-			if not objCount then
-				local x, y = strmatch(text, '(%d+)/(%d+)')
-				if x and y then
-					objCount = floor(y - x)
-				elseif not strmatch(text, ThreatTooltip) then
-					local progress = tonumber(strmatch(text, '([%d%.]+)%%')) -- contains % in the text
-					if progress and progress <= 100 then
-						objCount = ceil(100 - progress)
+			if count then
+				local type, index, texture, _
+				if activeID then
+					index = questIndexByID[activeID]
+					_, texture = GetQuestLogSpecialItemInfo(index)
+				end
+
+				if texture then
+					type = 'QUEST_ITEM'
+				else
+					local lowerText = strlower(text)
+
+					-- check chat type first
+					for _, listText in ipairs(questTypes.CHAT) do
+						if strfind(lowerText, listText, nil, true) then
+							type = 'CHAT'
+							break
+						end
+					end
+
+					-- check kill type if chat type doesn't exist
+					if not type then
+						for _, listText in ipairs(questTypes.KILL) do
+							if strfind(lowerText, listText, nil, true) then
+								type = 'KILL'
+								break
+							end
+						end
 					end
 				end
-			end
 
-			if itemTex then
-				QuestType = "QUEST_ITEM"
-			elseif objCount then
-				QuestType = "LOOT"
-
-				local lowerText = text:lower()
-				for questString in pairs(QuestTypes) do
-					if strfind(lowerText, questString) then
-						QuestType = QuestTypes[questString]
-						break
-					end
-				end
-			end
-
-			if QuestType then
 				if not QuestList then QuestList = {} end
 				QuestList[#QuestList + 1] = {
-					isPerc = IsPerc,
-					itemTexture = itemTex,
-					objectiveCount = objCount,
-					questType = QuestType,
+					isPercent = percent,
+					itemTexture = texture,
+					objectiveCount = count,
+					questType = type or 'DEFAULT',
 					-- below keys are currently unused
-					questLogIndex = logIndex,
-					questID = QuestID
+					questLogIndex = index,
+					questID = activeID
 				}
 			end
 		end
 	end
 
-	D.ScanTooltip:Hide()
+	D['ScanTooltip']:Hide()
 	return QuestList
 end
 
 local function hideIcons(element)
-	for _, object in pairs(questIconTypes) do
+	for _, object in pairs(iconTypes) do
 		local icon = element[object]
 		icon:Hide()
 
@@ -203,7 +186,7 @@ local function Update(self, event, unit)
 	local element = self.QuestIcons
 	if not element then return end
 
-	if event ~= "UNIT_NAME_UPDATE" then
+	if event ~= 'UNIT_NAME_UPDATE' then
 		unit = self.unit
 	end
 
@@ -228,39 +211,37 @@ local function Update(self, event, unit)
 		local quest = QuestList[i]
 		local objectiveCount = quest.objectiveCount
 		local questType = quest.questType
-		local isPerc = quest.isPerc
+		local isPercent = quest.isPercent
 
-		if objectiveCount and (objectiveCount > 0 or isPerc) then
+		if isPercent or objectiveCount > 0 then
 			local icon
-
-			if questType == "KILL" or isPerc then
+			if questType == 'DEFAULT' then
+				icon = element.Default
+			elseif questType == 'KILL' then
 				icon = element.Skull
-			elseif questType == "LOOT" then
-				icon = element.Loot
-			elseif questType == "CHAT" then
+			elseif questType == 'CHAT' then
 				icon = element.Chat
-			elseif questType == "QUEST_ITEM" then
+			elseif questType == 'QUEST_ITEM' then
 				icon = element.Item
 			end
 
-			if not icon:IsShown() then
+			if icon and not icon:IsShown() then
 				shownCount = (shownCount and shownCount + 1) or 0
 
 				local size = icon.size or 25
-				local setPosition = icon.position or "TOPLEFT"
-				--local newPosition = E.InversePoints[setPosition]
+				local setPosition = icon.position or 'TOPLEFT'
 				local newPosition = icon.position or "TOPLEFT"
-				local offset = 2 + (shownCount * size)
+				local offset = shownCount * (5 + size)
 
 				icon:Show()
 				icon:ClearAllPoints()
-				icon:Point(newPosition, element, newPosition, (strmatch(setPosition, "LEFT") and -offset) or offset, 0)
+				icon:SetPoint(newPosition, element, newPosition, (strmatch(setPosition, 'LEFT') and -offset) or offset, 0)
 
-				if questType ~= "CHAT" and icon.Text then
-					icon.Text:SetText((isPerc and objectiveCount.."%") or objectiveCount)
+				if questType ~= 'CHAT' and icon.Text and (isPercent or objectiveCount > 1) then
+					icon.Text:SetText((isPercent and objectiveCount..'%') or objectiveCount)
 				end
 
-				if questType == "QUEST_ITEM" then
+				if questType == 'QUEST_ITEM' then
 					element.Item:SetTexture(quest.itemTexture)
 				end
 			end
@@ -286,8 +267,8 @@ local function Enable(self)
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 
-		if element.Loot:IsObjectType('Texture') and not element.Loot:GetAtlas() then
-			element.Loot:SetAtlas('Banker')
+		if element.Default:IsObjectType('Texture') and not element.Default:GetAtlas() then
+			element.Default:SetAtlas('SmallQuestBang')
 		end
 		if element.Skull:IsObjectType('Texture') and not element.Skull:GetTexture() then
 			element.Skull:SetTexture([[Interface\WorldMap\SkullGear_64Grey.PNG]])
@@ -317,6 +298,16 @@ local function Disable(self)
 		self:UnregisterEvent('QUEST_LOG_UPDATE', Path)
 		self:UnregisterEvent('UNIT_NAME_UPDATE', Path)
 		self:UnregisterEvent('PLAYER_ENTERING_WORLD', Path)
+	end
+end
+
+--initial quest scan
+for i = 1, C_QuestLog_GetNumQuestLogEntries() do
+	local questID = C_QuestLog_GetQuestIDForLogIndex(i)
+	local questName = C_QuestLog_GetTitleForLogIndex(i)
+	if questName and (questID and questID > 0) then
+		activeQuests[questName] = questID
+		questIndexByID[questID] = i
 	end
 end
 

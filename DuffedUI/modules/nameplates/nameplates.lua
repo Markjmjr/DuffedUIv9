@@ -46,7 +46,7 @@ local function HighlightPlate(self)
 	local Border = self.HealthBorder
 
 	if Border then
-		if UnitIsUnit("target", self.unit) then
+		if UnitIsUnit('target', self.unit) then
 			if not Border:IsShown() then Border:Show() end
 
 			Border:SetBackdropBorderColor(.31, .45, .63)
@@ -195,12 +195,12 @@ D['ConstructNameplates'] = function(self)
 	bar:SetStatusBarColor(0.529, 0.808, 0.922)
 	bar:SetTemplate('Transparent')
 	
-	bar.spark = bar:CreateTexture(nil, "OVERLAY")
+	bar.spark = bar:CreateTexture(nil, 'OVERLAY')
 	bar.spark:SetTexture('Interface\\CastingBar\\UI-CastingBar-Spark')
 	bar.spark:SetHeight(9)
-	bar.spark:SetBlendMode("ADD")
+	bar.spark:SetBlendMode('ADD')
 	bar.spark:SetAlpha(0.4)
-	bar.spark:SetPoint("CENTER", bar:GetStatusBarTexture(), "RIGHT", 0, 0)
+	bar.spark:SetPoint('CENTER', bar:GetStatusBarTexture(), 'RIGHT', 0, 0)
 
 	bar.progressText = bar:CreateFontString(nil, 'OVERLAY')
 	bar.progressText:SetPoint('CENTER', bar, 'CENTER', 0, 0)
@@ -212,10 +212,10 @@ D['ConstructNameplates'] = function(self)
 
 	-- Eliteicon
 	if C['nameplate']['eliteicon'] then
-		local ClassificationIndicator = health:CreateTexture(nil, "OVERLAY")
+		local ClassificationIndicator = health:CreateTexture(nil, 'OVERLAY')
 		ClassificationIndicator:ClearAllPoints()
 		ClassificationIndicator:SetSize(health:GetHeight() + 12, health:GetHeight() + 12)
-		ClassificationIndicator:SetPoint("LEFT", health, "RIGHT", 4, -2)
+		ClassificationIndicator:SetPoint('LEFT', health, 'RIGHT', 4, -2)
 		
 		self.ClassificationIndicator = ClassificationIndicator
 	end
@@ -232,11 +232,11 @@ D['ConstructNameplates'] = function(self)
 		QuestIcons:Hide()
 		QuestIcons:SetSize(size + 2, size + 2)
 
-		for _, object in pairs({'Item', 'Loot', 'Skull', 'Chat'}) do			
-			local icon = QuestIcons:CreateTexture(nil, "BORDER", nil, 1)
+		for _, object in pairs({'Default', 'Item', 'Skull', 'Chat'}) do			
+			local icon = QuestIcons:CreateTexture(nil, 'BORDER', nil, 1)
 			icon:SetPoint('CENTER')
 			icon:SetSize(size, size)
-			icon.Text = QuestIcons:CreateFontString(nil, "OVERLAY")
+			icon.Text = QuestIcons:CreateFontString(nil, 'OVERLAY')
 			icon.Text:SetFont(f, fs, ff)
 			icon.Text:SetPoint('BOTTOMLEFT', QuestIcons, 'BOTTOMLEFT', -2, -0.8)
 			icon.Text:SetShadowOffset(1.25, -1.25)
@@ -244,11 +244,10 @@ D['ConstructNameplates'] = function(self)
 
 			QuestIcons[object] = icon
 		end
-
+		
+		QuestIcons.Default:SetSize(size + 2, size + 2)
 		QuestIcons.Item:SetTexCoord(unpack(D['IconCoord']))
-
 		QuestIcons.Skull:SetSize(size + 2, size + 2)
-
 		QuestIcons.Chat:SetSize(size + 2, size + 2)
 		QuestIcons.Chat:SetTexture([[Interface\WorldMap\ChatBubble_64.PNG]])
 		QuestIcons.Chat:SetTexCoord(0, 0.5, 0.5, 1)
@@ -292,9 +291,9 @@ D['ConstructNameplates'] = function(self)
 		end)
 	end
 		
-	self:RegisterEvent("PLAYER_TARGET_CHANGED", HighlightPlate, true)
-	self:RegisterEvent("NAME_PLATE_UNIT_ADDED", HighlightPlate, true)
-	self:RegisterEvent("NAME_PLATE_UNIT_REMOVED", HighlightPlate, true)
+	self:RegisterEvent('PLAYER_TARGET_CHANGED', HighlightPlate, true)
+	self:RegisterEvent('NAME_PLATE_UNIT_ADDED', HighlightPlate, true)
+	self:RegisterEvent('NAME_PLATE_UNIT_REMOVED', HighlightPlate, true)
 	
 	-- size
 	self:SetSize(nWidth, nHeight)
