@@ -170,7 +170,7 @@ end
 local Stuffing = CreateFrame('Frame', nil, UIParent)
 Stuffing:RegisterEvent('ADDON_LOADED')
 Stuffing:RegisterEvent('PLAYER_ENTERING_WORLD')
-Stuffing:SetScript('OnEvent', function(this, event, ...)
+Stuffing:SetScript('OnEvent', function(self, event, ...)
 	if C['bags'].Enable ~= true then return	end
 
 	if IsAddOnLoaded('AdiBags')
@@ -182,7 +182,7 @@ Stuffing:SetScript('OnEvent', function(this, event, ...)
 	or IsAddOnLoaded('TBag')
 	or IsAddOnLoaded('BaudBag') then return	end
 
-	Stuffing[event](this, ...)
+	Stuffing[event](self, ...)
 end)
 
 local function Stuffing_OnShow()
@@ -254,11 +254,11 @@ local function IsRealItemLevel(link, owner, bag, slot)
 
 	local realItemLevel
 
-	D.ScanTooltip.owner = owner
-	D.ScanTooltip:SetOwner(_G.UIParent, 'ANCHOR_NONE')
-	D.ScanTooltip:SetBagItem(bag, slot)
+	D['ScanTooltip'].owner = owner
+	D['ScanTooltip']:SetOwner(_G.UIParent, 'ANCHOR_NONE')
+	D['ScanTooltip']:SetBagItem(bag, slot)
 
-	local line = _G[D.ScanTooltip:GetName() .. 'TextLeft2']
+	local line = _G[D['ScanTooltip']:GetName() .. 'TextLeft2']
 	if line then
 		local msg = line:GetText()
 		if msg and string_find(msg, S_ITEM_LEVEL) then
@@ -267,7 +267,7 @@ local function IsRealItemLevel(link, owner, bag, slot)
 				realItemLevel = itemLevel
 			end
 		else
-			line = _G[D.ScanTooltip:GetName() .. 'TextLeft3']
+			line = _G[D['ScanTooltip']:GetName() .. 'TextLeft3']
 			if line then
 				local msg = line:GetText()
 				if msg and string_find(msg, S_ITEM_LEVEL) then
@@ -1418,6 +1418,7 @@ function Stuffing:InitBags()
 	self.frame = f
 
 	f:Hide()
+	if C['bags']['ReverseLoot'] then SetInsertItemsLeftToRight(false) else SetInsertItemsLeftToRight(true) end
 end
 
 function Stuffing:Layout(isBank)
