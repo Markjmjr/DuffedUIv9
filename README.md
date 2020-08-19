@@ -20,7 +20,6 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Open Issues
 
 ## ToDo
-- Debufffilter
 - Testing
 
 ## Done
@@ -38,10 +37,12 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 - Fixed left sidebar
 - Groupframes finished
 - Skinning enabled
+- Debufffilter
 
 ## Changelog
 Date | Change
 --- | ---
+2020-08-18 | Fixed two spells<br />Update runes.lua by [Rav99](https://github.com/Rav99)<br />Update QuestIcon Lib by [Rav99](https://github.com/Rav99)<br />Debuff-filter update by [Rav99](https://github.com/Rav99)
 2020-08-17 | Removed debuff from Legion raids and dungeons<br />Moved filter for Debuffs and Buffs<br />Update extraquestbutton by [Rav99](https://github.com/Rav99)<br />Moved classtimer from testing to correct position<br />Moved filterlists for classtimer<br />Fixed SavedVar-Value for versioncheck<br />Renamed frame for UIHider<br />Removed skinning functions no longer neededy<br />Added possibility to use the datatext in BfA<br />dt mission … by [Rav99](https://github.com/Rav99)<br />update locals by [Rav99](https://github.com/Rav99)<br />Fix lua error by [Rav99](https://github.com/Rav99)<br />Skin ConfigButton … by [Rav99](https://github.com/Rav99)<br />Added frames to kill in Display and Actionbar options on default Blizzard options<br />Fixed statusframe<br />Removed deprecated SkinFunc<br />Moved rangecheck filter to seperate file<br />Fixed AuraWatch-Function<br />Fixed buff tracking on raidframes<br />Update credits
 2020-08-16 | Testing changes<br />Fixed versionscheck and rebuild the Versioning from DuffedUI
 2020-08-15 | Removed Button no longer needed<br />Attempt to fix versioncheck<br />Apply changes for skinning with Aurora<br />Fixed temporary Aurora<br />Fixed icon position on actionbars<br />Removed remaining skins<br />Removed button for Enhanced_Config<br />Added Aurora for skin support
