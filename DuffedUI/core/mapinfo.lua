@@ -1,10 +1,7 @@
 local D, C, L = unpack(select(2, ...)) 
 
 local _G = _G
-local select = select
-local pairs = pairs
-
-local Enum = _G.Enum
+local pairs = _G.pairs
 local IsFalling = _G.IsFalling
 local CreateFrame = _G.CreateFrame
 local UnitPosition = _G.UnitPosition
@@ -12,10 +9,13 @@ local GetUnitSpeed = _G.GetUnitSpeed
 local CreateVector2D = _G.CreateVector2D
 local GetRealZoneText = _G.GetRealZoneText
 local GetMinimapZoneText = _G.GetMinimapZoneText
+
 local C_Map_GetMapInfo = _G.C_Map.GetMapInfo
 local C_Map_GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local C_Map_GetWorldPosFromMapPos = _G.C_Map.GetWorldPosFromMapPos
-local MapUtil = _G.MapUtil
+
+local Enum_UIMapType = _G.Enum.UIMapType
+local MapUtil_GetMapParentInfo = _G.MapUtil.GetMapParentInfo
 
 D['MapInfo'] = {}
 
@@ -32,7 +32,7 @@ function D:MapInfo_Update()
 	D['MapInfo']['subZoneText'] = GetMinimapZoneText() or nil
 	D['MapInfo']['realZoneText'] = GetRealZoneText() or nil
 
-	local continent = mapID and MapUtil.GetMapParentInfo(mapID, Enum.UIMapType.Continent, true)
+	local continent = mapID and MapUtil_GetMapParentInfo(mapID, Enum_UIMapType.Continent, true)
 	D['MapInfo']['continentParentMapID'] = (continent and continent.parentMapID) or nil
 	D['MapInfo']['continentMapType'] = (continent and continent.mapType) or nil
 	D['MapInfo']['continentMapID'] = (continent and continent.mapID) or nil
@@ -104,15 +104,17 @@ function D:GetPlayerMapPos(mapID)
 
 	local mapRect = mapRects[mapID]
 	if not mapRect then
-		mapRect = {
-			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(0, 0))), 
-			select(2, C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(1, 1)))
-		}
-		if (not mapRect[1] == nil and mapRect[2] == nil) then mapRect[2]:Subtract(mapRect[1]) end
+		local _, pos1 = C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(0, 0))
+		local _, pos2 = C_Map_GetWorldPosFromMapPos(mapID, CreateVector2D(1, 1))
+		if not pos1 or not pos2 then return end
+
+		mapRect = {pos1, pos2}
+		mapRect[2]:Subtract(mapRect[1])
 		mapRects[mapID] = mapRect
 	end
-	if (not mapRect[1] == nil) then tempVec2D:Subtract(mapRect[1]) 	end
-	if (not mapRect[2] == nil) then return (tempVec2D.y / mapRect[2].y), (tempVec2D.x / mapRect[2].x) end
+	tempVec2D:Subtract(mapRect[1])
+
+	return (tempVec2D.y / mapRect[2].y), (tempVec2D.x / mapRect[2].x)
 end
 
 -- Code taken from LibTourist-3.0 and rewritten to fit our purpose
