@@ -7,7 +7,7 @@ local fontflag = 'THINOUTLINE'
 function WorldMap:AddMoving()
 	WorldMap.MoveButton = CreateFrame("Frame", nil, WorldMapFrame)
 	WorldMap.MoveButton:SetSize(16, 16)
-	WorldMap.MoveButton:SetPoint("TOPRIGHT", -78, -77)
+	WorldMap.MoveButton:SetPoint("TOPRIGHT", WorldMapFrameCloseButton, -55, -10)
 	WorldMap.MoveButton:SetFrameLevel(WorldMapFrameCloseButton:GetFrameLevel())
 	WorldMap.MoveButton:EnableMouse(true)
 	WorldMap.MoveButton:RegisterForDrag("LeftButton")
