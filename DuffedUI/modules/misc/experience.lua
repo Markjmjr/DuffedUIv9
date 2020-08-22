@@ -48,7 +48,7 @@ restedxpBar:Hide()
 
 local icon = xpBar:CreateTexture(nil, 'OVERLAY')
 icon:Size(16)
-icon:Point('LEFT', xpBar, 3, 1)
+icon:Point('CENTER', xpBar, 3, 1)
 icon:SetTexture([=[Interface\CharacterFrame\UI-StateIcon]=])
 icon:SetTexCoord(0, .5, 0, .421875)
 
