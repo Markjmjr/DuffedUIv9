@@ -1,11 +1,12 @@
 local D, C, L = unpack(select(2, ...)) 
-if not C['misc']['azerite'] or not IsEquippedItem(GetInventoryItemID('player', 2)) then return end
+if not C['misc']['azerite'] then return end
 
 local AZERITE_POWER_TOOLTIP_BODY = AZERITE_POWER_TOOLTIP_BODY
 local AZERITE_POWER_TOOLTIP_TITLE = AZERITE_POWER_TOOLTIP_TITLE
 local C_AzeriteItem_FindActiveAzeriteItem = C_AzeriteItem.FindActiveAzeriteItem
 local C_AzeriteItem_GetAzeriteItemXPInfo = C_AzeriteItem.GetAzeriteItemXPInfo
 local C_AzeriteItem_GetPowerLevel = C_AzeriteItem.GetPowerLevel
+local level = UnitLevel('player')
 
 local barHeight, barWidth = C['misc']['azeriteheight'], C['misc']['azeritewidth']
 local barTex, flatTex = C['media']['normTex']
@@ -40,7 +41,7 @@ function updateStatus()
 
 	local azeriteItemLocation = C_AzeriteItem_FindActiveAzeriteItem()
 
-	if not azeriteItemLocation and not InCombatLockdown() then
+	if (not azeriteItemLocation and not InCombatLockdown()) or level > 50 then
 		azeriteBar:Hide()
 		backdrop:Hide()
 	end
@@ -88,5 +89,6 @@ frame:RegisterEvent('AZERITE_ITEM_EXPERIENCE_CHANGED')
 frame:RegisterEvent('AZERITE_EMPOWERED_ITEM_SELECTION_UPDATED')
 frame:RegisterEvent('UNIT_INVENTORY_CHANGED')
 frame:RegisterEvent('RESPEC_AZERITE_EMPOWERED_ITEM_CLOSED')
+frame:RegisterEvent('PLAYER_LEVEL_UP')
 frame:RegisterEvent('PLAYER_ENTERING_WORLD')
 frame:SetScript('OnEvent', updateStatus)
