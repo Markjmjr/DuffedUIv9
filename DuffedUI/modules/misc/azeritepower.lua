@@ -1,5 +1,5 @@
 local D, C, L = unpack(select(2, ...)) 
-if not C['misc']['azerite'] then return end
+if not C['misc']['azerite'] or not IsEquippedItem(GetInventoryItemID('player', 2)) then return end
 
 local AZERITE_POWER_TOOLTIP_BODY = AZERITE_POWER_TOOLTIP_BODY
 local AZERITE_POWER_TOOLTIP_TITLE = AZERITE_POWER_TOOLTIP_TITLE
