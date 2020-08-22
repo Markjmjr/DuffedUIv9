@@ -212,6 +212,7 @@ local OnEnter = function(self)
 		D['Currency'](1149, false, true)
 		D['Currency'](1154, false, true)
 		D['Currency'](1275)
+		D['Currency'](1820, false, true)
 	end
 
 	GameTooltip:AddLine(' ')
