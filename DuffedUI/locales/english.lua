@@ -303,9 +303,10 @@ L['Slots'] = {
 
 L['xpbar'] = {
 	['xptitle'] = 'Experience:',
-	['xp'] = 'XP: %s/%s (%d%%)',
+	['xp'] = 'XP: %s / %s (%d%%)',
 	['xpremaining'] = 'Remaining: %s',
 	['xprested'] = '|cffb3e1ffRested: %s (%d%%)',
+	['level'] = 'Actual Level: |cffc41f3b%s|r',
 
 	['fctitle'] = 'Reputation: %s',
 	['standing'] = 'Standing: |c',

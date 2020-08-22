@@ -305,9 +305,10 @@ if D.Client == 'deDE' then
 
 	L['xpbar'] = {
 		['xptitle'] = 'Erfahrung',
-		['xp'] = 'XP: %s/%s (%d%%)',
+		['xp'] = 'XP: %s / %s (%d%%)',
 		['xpremaining'] = 'Benötigt: %s',
 		['xprested'] = '|cffb3e1ffAusgeruht: %s (%d%%)',
+		['level'] = 'Aktueller Level: |cffc41f3b%s|r',
 
 		['fctitle'] = 'Ansehen: %s',
 		['standing'] = 'Stand: |c',

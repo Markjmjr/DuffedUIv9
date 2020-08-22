@@ -5,6 +5,7 @@ local barHeight, barWidth = C['misc']['XPBarHeight'], C['misc']['XPBarWidth']
 local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D['Class']]
 local move = D['move']
+local level = UnitLevel('player')
 local FactionInfo = {
 	[1] = {{ 170/255, 70/255,  70/255 }, L['xpbar']['hated'], 'FFaa4646'},
 	[2] = {{ 170/255, 70/255,  70/255 }, L['xpbar']['hostile'], 'FFaa4646'},
@@ -115,6 +116,7 @@ local function updateStatus()
 		GameTooltip:ClearLines()
 		if not IsMaxLevel() then
 			GameTooltip:AddLine(L['xpbar']['xptitle'])
+			GameTooltip:AddLine(string.format(L['xpbar']['level'], level))
 			GameTooltip:AddLine(string.format(L['xpbar']['xp'], D['CommaValue'](XP), D['CommaValue'](maxXP), (XP / maxXP) * 100))
 			GameTooltip:AddLine(string.format(L['xpbar']['xpremaining'], D['CommaValue'](maxXP - XP)))
 			if restXP then GameTooltip:AddLine(string.format(L['xpbar']['xprested'], D['CommaValue'](restXP), restXP / maxXP * 100)) end
