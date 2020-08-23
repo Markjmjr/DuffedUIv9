@@ -189,6 +189,7 @@ local OnEnter = function(self)
 		D['Currency'](1755) -- Patch 8.3
 		D['Currency'](1719)
 		D['Currency'](1803)
+		D['Currency'](1728) -- Phantasma for Thorgast
 	end
 
 	if ImprovedCurrency['PvP'] then
