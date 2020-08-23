@@ -1,12 +1,12 @@
 ﻿<Ui xmlns='http://www.blizzard.com/wow/ui/'>
 	<!-- engine -->
 	<Script file='libs\LibStub\LibStub.lua' />
-	<Script file="libs\CallbackHandler-1.0\CallbackHandler-1.0.lua" />
-	<Script file="libs\Ace\AceAddon-3.0\AceAddon-3.0.lua" />
-	<Script file="libs\Ace\AceEvent-3.0\AceEvent-3.0.lua" />
-	<Script file="libs\Ace\AceConsole-3.0\AceConsole-3.0.lua" />
-	<Script file="libs\Ace\AceTimer-3.0\AceTimer-3.0.lua" />
-	<Script file="libs\Ace\AceHook-3.0\AceHook-3.0.lua" />
+	<Script file='libs\CallbackHandler-1.0\CallbackHandler-1.0.lua' />
+	<Script file='libs\Ace\AceAddon-3.0\AceAddon-3.0.lua' />
+	<Script file='libs\Ace\AceEvent-3.0\AceEvent-3.0.lua' />
+	<Script file='libs\Ace\AceConsole-3.0\AceConsole-3.0.lua' />
+	<Script file='libs\Ace\AceTimer-3.0\AceTimer-3.0.lua' />
+	<Script file='libs\Ace\AceHook-3.0\AceHook-3.0.lua' />
 	<Script file='core\init.lua' />
 	<Script file='core\constants.lua' />
 
@@ -66,6 +66,7 @@
 	<Script file='modules\tooltip\tooltip.lua' />
 	<Script file='modules\tooltip\tooltipazerite.lua' />
 	<Script file='modules\tooltip\tooltipicons.lua' />
+	<!--<Script file='modules\nameplates\WidgetContainer.lua' />-->
 	<Script file='modules\nameplates\nameplates.lua' />
 	<Script file='modules\loot\sort.lua' />
 	<Script file='modules\loot\bags.lua' />
