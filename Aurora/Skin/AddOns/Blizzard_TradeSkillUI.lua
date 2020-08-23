@@ -231,7 +231,7 @@ do --[[ AddOns\Blizzard_TradeSkillUI.xml ]]
             Skin.SimplePanelTemplate(Frame)
             Skin.UICheckButtonTemplate(Frame.HideUnownedButton)
             Skin.UIPanelButtonTemplate(Frame.CloseButton)
-            --Skin.ScrollListTemplate(Frame.ScrollList)
+            Skin.ScrollListTemplate(Frame.ScrollList)
         end
     end
     if private.isClassic then

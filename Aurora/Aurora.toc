@@ -1,4 +1,9 @@
+#@retail@
 ## Interface: 90001
+#@end-retail@
+#@non-retail@
+# ## Interface: 11303
+#@end-non-retail@
 ## Title: Aurora
 ## Notes: Minimalistic window theme.
 ## Author: Haleth/Lightsword, Gethe
@@ -15,3 +20,6 @@ Skin\skin.xml
 aurora.lua
 gui.lua
 
+#@do-not-package@
+test.lua
+#@end-do-not-package@

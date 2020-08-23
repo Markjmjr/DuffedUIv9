@@ -21,6 +21,16 @@ do --[[ FrameXML\GossipFrame.lua ]]
                 self:SetFormattedText(private.NORMAL_QUEST_DISPLAY, titleText)
             end
         end
+
+        function Hook.NPCFriendshipStatusBar_Update(frame, factionID)
+            local statusBar = _G.NPCFriendshipStatusBar
+            local id = statusBar.friendshipFactionID
+            if id and id > 0 then
+                _G.GossipGreetingScrollFrame:SetPoint("TOPLEFT", _G.GossipFrame, 4, -(private.FRAME_TITLE_HEIGHT + 45))
+            else
+                _G.GossipGreetingScrollFrame:SetPoint("TOPLEFT", _G.GossipFrame, 4, -(private.FRAME_TITLE_HEIGHT + 5))
+            end
+        end
     else
         local availDataPerQuest, activeDataPerQuest = 7, 6
         function Hook.GossipFrameAvailableQuestsUpdate(...)
@@ -56,13 +66,18 @@ do --[[ FrameXML\GossipFrame.lua ]]
     if private.isPatch then
         function Hook.GossipFrameOptionsUpdate()
             local gossipOptions = _G.C_GossipInfo.GetOptions()
+            if #gossipOptions == 0 then return end
+            private.debug("GossipFrameOptionsUpdate", #gossipOptions)
+
             for button in _G.GossipFrame.titleButtonPool:EnumerateActive() do
-                --local gossipText = gossipOptions[button:GetID()].name
-                --local color = gossipText:match("|c(%x+)%(")
-                --if color then
-                    --print("GossipFrameOptionsUpdate Found gossip color")
-                    --button:SetText(gossipText:gsub("|c(%x+)", "|cFF8888FF"))
-                --end
+                if button.type == "Gossip" then
+                    local gossipText = gossipOptions[button:GetID()].name
+                    local color = gossipText:match("|c(%x+)%(")
+                    if color then
+                        _G.print("GossipFrameOptionsUpdate", button:GetID(), ("|"):split(gossipText))
+                        button:SetText(gossipText:gsub("|c(%x+)", "|cFF8888FF"))
+                    end
+                end
             end
         end
     else
@@ -72,17 +87,18 @@ do --[[ FrameXML\GossipFrame.lua ]]
             local buttonIndex = _G.GossipFrame.buttonIndex - (numGossipOptions / gossipDataPerOption)
             for i = 1, numGossipOptions, gossipDataPerOption do
                 local gossipText = _G.select(i, ...)
-                local titleButton = _G["GossipTitleButton" .. buttonIndex]
+                local button = _G["GossipTitleButton" .. buttonIndex]
                 local color = gossipText:match("|c(%x+)%(")
                 if color then
-                    private.debug("GossipFrameOptionsUpdate", color)
-                    titleButton:SetText(gossipText:gsub("|c(%x+)", "|cFF8888FF"))
+                    -- This is for BfA war campaign related gossip options
+                    -- Alliance: FF0000FF
+                    private.debug("GossipFrameOptionsUpdate", button:GetID(), color, ("|"):split(gossipText))
+                    button:SetText(gossipText:gsub("|c(%x+)", "|cFF8888FF"))
                 end
                 buttonIndex = buttonIndex + 1
             end
         end
     end
-
 end
 
 do --[[ FrameXML\GossipFrame.xml ]]
@@ -124,8 +140,16 @@ function private.FrameXML.GossipFrame()
     -- GossipFrame --
     -----------------
     local GossipFrame = _G.GossipFrame
+    local bg
+
     if private.isRetail then
+        _G.hooksecurefunc("NPCFriendshipStatusBar_Update", Hook.NPCFriendshipStatusBar_Update)
+
         Skin.ButtonFrameTemplate(GossipFrame)
+        if private.isPatch then
+            Util.Mixin(GossipFrame.titleButtonPool, Hook.ObjectPoolMixin)
+        end
+        bg = GossipFrame.NineSlice:GetBackdropTexture("bg")
 
         -- BlizzWTF: This texture doesn't have a handle because the name it's been given already exists via the template
         select(7, GossipFrame:GetRegions()):Hide() -- GossipFrameBg
@@ -144,7 +168,7 @@ function private.FrameXML.GossipFrame()
             bottom = 75,
         })
 
-        local bg = GossipFrame:GetBackdropTexture("bg")
+        bg = GossipFrame:GetBackdropTexture("bg")
         _G.GossipFramePortrait:Hide()
         _G.GossipFrameNpcNameText:ClearAllPoints()
         _G.GossipFrameNpcNameText:SetPoint("TOPLEFT", bg)
@@ -161,14 +185,8 @@ function private.FrameXML.GossipFrame()
     _G.GossipFrameGreetingGoodbyeButton:SetPoint("BOTTOMRIGHT", -4, 4)
 
     Skin.UIPanelScrollFrameTemplate(_G.GossipGreetingScrollFrame)
-    if private.isRetail then
-        _G.GossipGreetingScrollFrame:SetPoint("TOPLEFT", GossipFrame, 4, -(private.FRAME_TITLE_HEIGHT + 4))
-        _G.GossipGreetingScrollFrame:SetPoint("BOTTOMRIGHT", GossipFrame, -23, 30)
-    else
-        local bg = GossipFrame:GetBackdropTexture("bg")
-        _G.GossipGreetingScrollFrame:SetPoint("TOPLEFT", bg, 4, -(private.FRAME_TITLE_HEIGHT + 5))
-        _G.GossipGreetingScrollFrame:SetPoint("BOTTOMRIGHT", bg, -23, 30)
-    end
+    _G.GossipGreetingScrollFrame:SetPoint("TOPLEFT", bg, 4, -(private.FRAME_TITLE_HEIGHT + 5))
+    _G.GossipGreetingScrollFrame:SetPoint("BOTTOMRIGHT", bg, -23, 30)
 
     _G.GossipGreetingScrollFrameTop:Hide()
     _G.GossipGreetingScrollFrameBottom:Hide()
@@ -192,8 +210,8 @@ function private.FrameXML.GossipFrame()
             notch:SetSize(1, 16)
         end
 
-        local bg = _G.select(7, _G.NPCFriendshipStatusBar:GetRegions())
-        bg:SetPoint("TOPLEFT", -1, 1)
-        bg:SetPoint("BOTTOMRIGHT", 1, -1)
+        local barFillBG = _G.select(7, _G.NPCFriendshipStatusBar:GetRegions())
+        barFillBG:SetPoint("TOPLEFT", -1, 1)
+        barFillBG:SetPoint("BOTTOMRIGHT", 1, -1)
     end
 end

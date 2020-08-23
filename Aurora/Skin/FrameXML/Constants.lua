@@ -12,6 +12,17 @@ private.AZERITE_COLORS = {
     Color.Create(0.7098, 0.5019, 0.1725),
 }
 
+private.COVENANT_COLORS = {
+    Kyrian = Color.Create(0.5, 0.45, 0.45),
+    Venthyr = Color.Create(0.4, 0.0, 0.0),
+    NightFae = Color.Create(0.2, 0.3, 0.4),
+    Necrolord = Color.Create(0.1, 0.4, 0.15),
+}
+private.FACTION_COLORS = {
+    Alliance = Color.Create(0.0, 0.2, 0.6),
+    Horde = Color.Create(0.5, 0.0, 0.0),
+}
+
 local Enum = {}
 Enum.ItemQuality = {
     Poor = _G.LE_ITEM_QUALITY_POOR or _G.Enum.ItemQuality.Poor,
