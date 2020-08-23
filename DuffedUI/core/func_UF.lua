@@ -38,12 +38,12 @@ end
 
 D['ColorGradient'] = function(perc, ...)
 	if perc >= 1 then
-		return select(select("#", ...) - 2, ...)
+		return select(select('#', ...) - 2, ...)
 	elseif perc <= 0 then
 		return ...
 	end
 
-	local num = select("#", ...) / 3
+	local num = select('#', ...) / 3
 	local segment, relperc = math.modf(perc * (num - 1))
 	local r1, g1, b1, r2, g2, b2 = select((segment * 3) + 1, ...)
 
@@ -532,7 +532,7 @@ end
 
 -- AuraWatch
 local function Defaults(priorityOverride)
-	return {["enable"] = true, ["priority"] = priorityOverride or 0, ["stackThreshold"] = 0}
+	return {['enable'] = true, ['priority'] = priorityOverride or 0, ['stackThreshold'] = 0}
 end
 
 -- BuffWatch: List of personal spells to show on unitframes as icon
@@ -564,16 +564,16 @@ end
 
 function D:CreateAuraWatch()
 	local class = D['Class']
-	local auras = CreateFrame("Frame", nil, self)
+	local auras = CreateFrame('Frame', nil, self)
 	auras:SetFrameLevel(self:GetFrameLevel() + 10)
-	auras:SetPoint("TOPLEFT", self, 2, -2)
-	auras:SetPoint("BOTTOMRIGHT", self, -2, 2)
+	auras:SetPoint('TOPLEFT', self, 2, -2)
+	auras:SetPoint('BOTTOMRIGHT', self, -2, 2)
 	auras.presentAlpha = 1
 	auras.missingAlpha = 0
 	auras.PostCreateIcon = D['AuraWatchPostCreateIcon']
 	auras.PostUpdateIcon = D['AuraWatchPostUpdateIcon']
 
-	if (self.unit == "pet") then auras.watched = D['BuffsTracking'].PET else auras.watched = D['BuffsTracking'][class] end
+	if (self.unit == 'pet') then auras.watched = D['BuffsTracking'].PET else auras.watched = D['BuffsTracking'][class] end
 	auras.size = C['raid']['aurawatchiconsize']
 
 	return auras
@@ -584,7 +584,7 @@ function D:AuraWatchPostCreateIcon(button)
 
 	button.count:SetFont(C['media']['font'], 8, 'THINOUTLINE')
 	button.count:ClearAllPoints()
-	button.count:SetPoint("CENTER", button, 2, -1)
+	button.count:SetPoint('CENTER', button, 2, -1)
 
 	if (button.cd) then
 		button.cd:SetAllPoints()
@@ -609,3 +609,33 @@ function D:AuraWatchPostUpdateIcon(_, button)
 		end
 	end
 end
+
+--[[do
+	function E:GetWidgetInfoID(guid)
+		return E.global.nameplate.widgetMap[guid]
+	end
+
+	function E:SetWidgetInfoID(guid, widgetID)
+		if widgetID then
+			E.global.nameplate.widgetMap[guid] = widgetID
+		end
+	end
+
+	E.MaxWidgetInfoRank = 30
+	function E:GetWidgetInfoBase(widgetID)
+		local widget = widgetID and C_UIWidgetManager_GetStatusBarWidgetVisualizationInfo(widgetID)
+		if not widget then return end
+
+		local cur = widget.barValue - widget.barMin
+		local toNext = widget.barMax - widget.barMin
+		local total = widget.barValue
+
+		local rank, maxRank
+		if widget.overrideBarText then
+			rank = tonumber(strmatch(widget.overrideBarText, '%d+'))
+			maxRank = rank == E.MaxWidgetInfoRank
+		end
+
+		return cur, toNext, total, rank, maxRank
+	end
+end]]--
