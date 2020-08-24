@@ -172,6 +172,12 @@ local OnEnter = function(self)
 		D['Currency'](1220)
 		D['Currency'](1342, false, true)
 		D['Currency'](1560)
+		D['Currency'](1822)
+		D['Currency'](1813)
+		D['Currency'](1861) -- Night Fae
+		D['Currency'](1859) -- Kyrian
+		D['Currency'](1862) -- Necrolord
+		D['Currency'](1860) -- Venthyr
 	end
 
 	if ImprovedCurrency['Raid'] then
