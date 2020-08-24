@@ -42,6 +42,12 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-08-24 | Added currency for Covenants
+2020-08-23 | Added currency Infused Ruby<br />Update for Aurora<br />Added Currency<br />Added lib for widgets on nameplates and unitframes<br />Added functions for later usecase
+2020-08-22 | Fixed jumping position of moving button for worldmap<br />Added automatic disable ffrom azerite bar<br />Added better way to hide azerite bar above 50<br />Added additional leveltext to tooltip on exp-bar on left chat<br />Moved rested icon to center of bar
+2020-08-21 | Fixed Raid Debuff Filter<br />Removed a former fix for backdrops which tainted on shared frames
+2020-08-20 | Fix map coords for newbee zones  by [Rav99](https://github.com/Rav99)
+2020-08-19 | Fixed bagsorting for now, maybe a new bagscript will come
 2020-08-18 | Fixed two spells<br />Update runes.lua by [Rav99](https://github.com/Rav99)<br />Update QuestIcon Lib by [Rav99](https://github.com/Rav99)<br />Debuff-filter update by [Rav99](https://github.com/Rav99)
 2020-08-17 | Removed debuff from Legion raids and dungeons<br />Moved filter for Debuffs and Buffs<br />Update extraquestbutton by [Rav99](https://github.com/Rav99)<br />Moved classtimer from testing to correct position<br />Moved filterlists for classtimer<br />Fixed SavedVar-Value for versioncheck<br />Renamed frame for UIHider<br />Removed skinning functions no longer neededy<br />Added possibility to use the datatext in BfA<br />dt mission … by [Rav99](https://github.com/Rav99)<br />update locals by [Rav99](https://github.com/Rav99)<br />Fix lua error by [Rav99](https://github.com/Rav99)<br />Skin ConfigButton … by [Rav99](https://github.com/Rav99)<br />Added frames to kill in Display and Actionbar options on default Blizzard options<br />Fixed statusframe<br />Removed deprecated SkinFunc<br />Moved rangecheck filter to seperate file<br />Fixed AuraWatch-Function<br />Fixed buff tracking on raidframes<br />Update credits
 2020-08-16 | Testing changes<br />Fixed versionscheck and rebuild the Versioning from DuffedUI
