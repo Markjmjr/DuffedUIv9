@@ -13,6 +13,7 @@ if GameMenuFrame_UpdateVisibleButtons then
 		if IsAddOnLoaded('Enhanced_Config') then GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight()) end
 	end)
 end
+CharacterFrameTab3:Show()
 
 -- Hover tooltip
 local orig1, orig2 = {}, {}
