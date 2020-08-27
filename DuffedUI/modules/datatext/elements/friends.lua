@@ -297,7 +297,8 @@ local function PopulateBNTable(bnIndex, bnetIDAccount, accountName, battleTag, c
 	return bnIndex
 end
 
-local function BuildBNTable(total)
+--[[Needs new function for BNGetFriendInfo]]--
+--[[local function BuildBNTable(total)
 	for _, v in pairs(tableList) do wipe(v) end
 	wipe(BNTable)
 	wipe(clientSorted)
@@ -336,7 +337,7 @@ local function BuildBNTable(total)
 	if next(clientSorted) then
 		sort(clientSorted, clientSort)
 	end
-end
+end]]--
 
 local function OnEvent(self, event, message)
 	local onlineFriends = C_FriendList_GetNumOnlineFriends()

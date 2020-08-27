@@ -44,7 +44,7 @@ end
 
 local function OnEvent(self)
 	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-	if UnitAlternatePowerInfo('player') then self:Show() else self:Hide() end
+	if UnitAlternatePowerInfo('player') then self:Show() else self:Hide() end -> removed with current build
 end
 AltPowerBar:SetScript('OnEvent', OnEvent)
 
