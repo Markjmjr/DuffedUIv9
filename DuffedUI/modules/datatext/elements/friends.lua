@@ -297,8 +297,7 @@ local function PopulateBNTable(bnIndex, bnetIDAccount, accountName, battleTag, c
 	return bnIndex
 end
 
---[[Needs new function for BNGetFriendInfo]]--
---[[local function BuildBNTable(total)
+local function BuildBNTable(total)
 	for _, v in pairs(tableList) do wipe(v) end
 	wipe(BNTable)
 	wipe(clientSorted)
@@ -309,16 +308,16 @@ end
 	local numGameAccounts
 
 	for i = 1, total do
-		bnetIDAccount, accountName, battleTag, _, characterName, bnetIDGameAccount, client, isOnline, _, isBnetAFK, isBnetDND, _, noteText, _, _, wowProjectID = BNGetFriendInfo(i)
-		if isOnline then
-			numGameAccounts = BNGetNumFriendGameAccounts(i)
-			if numGameAccounts > 0 then
+		local accountInfo = C_BattleNet.GetFriendAccountInfo(i)
+		if accountInfo and accountInfo.gameAccountInfo and accountInfo.gameAccountInfo.isOnline then
+			local numGameAccounts = C_BattleNet.GetFriendNumGameAccounts(i)
+			if numGameAccounts and numGameAccounts > 0 then
 				for y = 1, numGameAccounts do
-					hasFocus, gameCharacterName, gameClient, realmName, _, faction, race, class, _, zoneName, level, gameText, _, _, _, _, _, isGameAFK, isGameBusy, guid = BNGetFriendGameAccountInfo(i, y);
-					bnIndex = PopulateBNTable(bnIndex, bnetIDAccount, accountName, battleTag, gameCharacterName, bnetIDGameAccount, gameClient, isOnline, isBnetAFK or isGameAFK, isBnetDND or isGameBusy, noteText, wowProjectID, realmName, faction, race, class, zoneName, level, guid, gameText, hasFocus)
+					local gameAccountInfo = C_BattleNet.GetFriendGameAccountInfo(i, y)
+					bnIndex = PopulateBNTable(bnIndex, accountInfo.bnetAccountID, accountInfo.accountName, accountInfo.battleTag, gameAccountInfo.characterName, gameAccountInfo.gameAccountID, gameAccountInfo.clientProgram, gameAccountInfo.isOnline, accountInfo.isAFK or gameAccountInfo.isGameAFK, accountInfo.isDND or gameAccountInfo.isGameBusy, accountInfo.note, accountInfo.gameAccountInfo.wowProjectID, gameAccountInfo.realmName, gameAccountInfo.factionName, gameAccountInfo.raceName, gameAccountInfo.className, gameAccountInfo.areaName, gameAccountInfo.characterLevel, gameAccountInfo.playerGuid, gameAccountInfo.richPresence, gameAccountInfo.hasFocus)
 				end
 			else
-				bnIndex = PopulateBNTable(bnIndex, bnetIDAccount, accountName, battleTag, characterName, bnetIDGameAccount, client, isOnline, isBnetAFK, isBnetDND, noteText, wowProjectID)
+				bnIndex = PopulateBNTable(bnIndex, accountInfo.bnetAccountID, accountInfo.accountName, accountInfo.battleTag, accountInfo.gameAccountInfo.characterName, accountInfo.gameAccountInfo.gameAccountID, accountInfo.gameAccountInfo.clientProgram, accountInfo.gameAccountInfo.isOnline, accountInfo.isAFK, accountInfo.isDND, accountInfo.note, accountInfo.gameAccountInfo.wowProjectID)
 			end
 		end
 	end
@@ -337,7 +336,7 @@ end
 	if next(clientSorted) then
 		sort(clientSorted, clientSort)
 	end
-end]]--
+end
 
 local function OnEvent(self, event, message)
 	local onlineFriends = C_FriendList_GetNumOnlineFriends()
