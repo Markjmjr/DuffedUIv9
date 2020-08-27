@@ -39,8 +39,9 @@ local function updateTooltip(self)
 end
 
 local function onEnter(self)
-	if(not self:IsVisible()) then return end
+	if (not self:IsVisible()) or GameTooltip:IsForbidden() then return end
 
+	GameTooltip:ClearAllPoints()
 	GameTooltip_SetDefaultAnchor(GameTooltip, self)
 	self:UpdateTooltip()
 end
@@ -64,14 +65,13 @@ local function Update(self, event, unit, powerType)
 	end
 
 	local cur, max
-	local barType, min, _, _, _, _, _, _, _, _, powerName, powerTooltip = GetUnitPowerBarStrings(unit)
-	element.barType = barType
-	element.powerName = powerName
-	element.powerTooltip = powerTooltip
-	if(barType) then
+	local barInfo = GetUnitPowerBarInfo(unit);
+	if(barInfo) then
+		element.barType = barInfo.barType
+		element.powerName, element.powerTooltip = GetUnitPowerBarStrings(unit);
 		cur = UnitPower(unit, ALTERNATE_POWER_INDEX)
 		max = UnitPowerMax(unit, ALTERNATE_POWER_INDEX)
-		element:SetMinMaxValues(min, max)
+		element:SetMinMaxValues(barInfo.minPower, max)
 		element:SetValue(cur)
 	end
 
@@ -85,7 +85,7 @@ local function Update(self, event, unit, powerType)
 	* max  - the maximum value of the unit's alternative power (number)
 	--]]
 	if(element.PostUpdate) then
-		return element:PostUpdate(unit, cur, min, max)
+		return element:PostUpdate(unit, cur, barInfo and barInfo.minPower or 0, max)
 	end
 end
 
@@ -147,6 +147,7 @@ local function Enable(self, unit)
 
 		if(element:IsObjectType('StatusBar') and not element:GetStatusBarTexture()) then
 			element:SetStatusBarTexture([[Interface\TargetingFrame\UI-StatusBar]])
+			element:SetStatusBarColor(.7, .7, .6)
 		end
 
 		if(element:IsMouseEnabled()) then
@@ -173,8 +174,6 @@ local function Enable(self, unit)
 			PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_HIDE')
 			PlayerPowerBarAlt:UnregisterEvent('PLAYER_ENTERING_WORLD')
 		end
-
-		element:Hide()
 
 		return true
 	end
