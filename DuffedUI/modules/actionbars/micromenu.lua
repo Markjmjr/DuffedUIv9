@@ -204,8 +204,6 @@ function Module:OnEnable()
 
 	MicroButtonPortrait:SetAllPoints(CharacterMicroButton.backdrop)
 
-	self:SecureHook('MainMenuMicroButton_SetPushed')
-	self:SecureHook('MainMenuMicroButton_SetNormal')
 	self:SecureHook('UpdateMicroButtonsParent')
 	self:SecureHook('MoveMicroButtons', 'UpdateMicroPositionDimensions')
 	self:SecureHook('UpdateMicroButtons')
