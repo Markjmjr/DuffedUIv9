@@ -12,7 +12,8 @@ local Color, Util = Aurora.Color, Aurora.Util
 
 do --[[ FrameXML\PVEFrame.lua ]]
     function Hook.GroupFinderFrame_SelectGroupButton(index)
-        for i = 1, 4 do
+        --for i = 1, 4 do
+        for i = 1, 3 do
             local button = _G.GroupFinderFrame["groupButton"..i]
             if i == index then
                 button.bg:Show()
