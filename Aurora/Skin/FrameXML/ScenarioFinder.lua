@@ -15,7 +15,7 @@ do --[[ FrameXML\ScenarioFinder.xml ]]
     Skin.ScenarioSpecificChoiceTemplate = Skin.LFGSpecificChoiceTemplate
 end
 
-function private.FrameXML.ScenarioFinder()
+--[[function private.FrameXML.ScenarioFinder()
     local ScenarioFinderFrame = _G.ScenarioFinderFrame
     Skin.InsetFrameTemplate(ScenarioFinderFrame.Inset)
 
@@ -37,4 +37,4 @@ function private.FrameXML.ScenarioFinder()
     _G.ScenarioQueueFrameSpecificScrollFrameScrollBackgroundBottomRight:Hide()
 
     Skin.MagicButtonTemplate(_G.ScenarioQueueFrameFindGroupButton)
-end
+end]]--
