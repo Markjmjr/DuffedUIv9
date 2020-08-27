@@ -56,7 +56,7 @@
 	<Script file='modules\buffs\header.lua' />
 	<Include file='modules\datatext\load_dt.xml' />
 	<Include file='modules\actionbars\load_ab.xml' />
-	<Script file='modules\chat\chatbubbles.lua' />
+	<!--<Script file='modules\chat\chatbubbles.lua' />-->
 	<Script file='modules\chat\chatframes.lua' />
 	<Script file='modules\chat\telltarget.lua' />
 	<Script file='modules\chat\copychat.lua' />
