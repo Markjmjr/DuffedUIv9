@@ -550,10 +550,7 @@ D['Debuffids'] = {
 	[GetSpellInfo(285345)] = 3, -- Maddening Eyes of N'Zoth
 	[GetSpellInfo(285477)] = 3, -- Obscurity
 	[GetSpellInfo(285652)] = 3, -- Insatiable Torment
-}
 
---[[needs to be removed after release of Shadowlands]]--
-D['Shadowlands'] = {
 	--Shadowlands Dungeons
 	-- Halls of Atonement
 	[GetSpellInfo(335338)] = 3, -- Ritual of Woe
@@ -689,7 +686,3 @@ D['Shadowlands'] = {
 	[GetSpellInfo(328276)] = 3, -- March of the Penitent
 	[GetSpellInfo(326699)] = 3, -- Burden of Sin
 }
-
-if D['Toc'] >= 90001 then
-	table.insert( D['Debuffids'], D['Shadowlands'] )
-end
