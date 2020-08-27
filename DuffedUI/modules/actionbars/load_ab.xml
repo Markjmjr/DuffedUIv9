@@ -12,7 +12,7 @@
 	<Script file='bind.lua' />
 	<Script file='buttons.lua' />
 	<Script file='micromenu.lua' />
-
+	
 	<Frame name="GuildMicroButtonOnlineCount" movable="false" parent="GuildMicroButton">
 		<Anchors>
 			<Anchor point="BOTTOM" x="1" y="1" />
@@ -43,9 +43,9 @@
 						return
 					end
 					GuildRoster()
-					C_Timer.After(11, GuildRoster)
+					C_Timer.After(11, C_GuildInfo.GuildRoster)
 				elseif (event == "PLAYER_ENTERING_WORLD") then
-					C_Timer.After(10.5,GuildRoster)
+					C_Timer.After(10.5, C_GuildInfo.GuildRoster)
 				end
 				GuildMicroButtonOnlineCountNumber:SetText(tostring(select(3,GetNumGuildMembers())))
 			</OnEvent>
@@ -53,7 +53,7 @@
 				if (false) then
 					self.updatedelay = self.updatedelay - elapsed;
 					if (0 &gt;= self.updatedelay) then
-						GuildRoster()
+						C_GuildInfo.GuildRoster()
 						self.updatedelay = nil
 					end
 				end
