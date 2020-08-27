@@ -3,6 +3,10 @@ local D, C, L = unpack(select(2, ...))
 local _G = _G
 local WorldMap = CreateFrame('Frame', 'BackdropTemplate')
 local fontflag = 'THINOUTLINE'
+local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
+local C_Map_GetPlayerMapPosition = C_Map.GetPlayerMapPosition
+-- /dump C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit('player'), 'player'):GetXY()
+-- /dump C_Map.GetBestMapForUnit('player')
 
 function WorldMap:AddMoving()
 	WorldMap.MoveButton = CreateFrame("Frame", nil, WorldMapFrame)
@@ -48,17 +52,18 @@ function WorldMap:Coords()
 	WorldMapFrame:HookScript('OnUpdate', function(self, elapsed)
 		int = int + 1
 		if int >= 3 then
-			local UnitMap = C_Map.GetBestMapForUnit('player')
+			local UnitMap = C_Map_GetBestMapForUnit('player')
+			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
 			local x, y = 0, 0
 
-			if not C_Map.GetPlayerMapPosition(UnitMap, 'player') then
+			if not position then
 				coords.PlayerText:SetText(PLAYER..': x, x')
 				return
 			end
 			
 			if UnitMap then
-				local GetPlayerMapPosition = C_Map.GetPlayerMapPosition(UnitMap, 'player')
-				if GetPlayerMapPosition then x, y = C_Map.GetPlayerMapPosition(UnitMap, 'player'):GetXY() end
+				local GetPlayerMapPosition = C_Map_GetPlayerMapPosition(UnitMap, 'player')
+				if GetPlayerMapPosition then x, y = C_Map_GetPlayerMapPosition(UnitMap, 'player'):GetXY() end
 			end		
 			x = math.floor(100 * x)
 			y = math.floor(100 * y)
