@@ -39,8 +39,9 @@ local function updateTooltip(self)
 end
 
 local function onEnter(self)
-	if(not self:IsVisible()) then return end
+	if (not self:IsVisible()) or GameTooltip:IsForbidden() then return end
 
+	GameTooltip:ClearAllPoints()
 	GameTooltip_SetDefaultAnchor(GameTooltip, self)
 	self:UpdateTooltip()
 end
@@ -64,14 +65,15 @@ local function Update(self, event, unit, powerType)
 	end
 
 	local cur, max
-	local barType, min, _, _, _, _, _, _, _, _, powerName, powerTooltip = GetUnitPowerBarStrings(unit)
-	element.barType = barType
-	element.powerName = powerName
-	element.powerTooltip = powerTooltip
-	if(barType) then
+	local barInfo = GetUnitPowerBarInfo(unit)
+	if(barInfo) then
+		element.barType = barInfo.barType
+		element.powerName, element.powerTooltip = GetUnitPowerBarStrings(unit)
+		element.barType = barInfo.barType
+		element.powerName, element.powerTooltip = GetUnitPowerBarStrings(unit)
 		cur = UnitPower(unit, ALTERNATE_POWER_INDEX)
 		max = UnitPowerMax(unit, ALTERNATE_POWER_INDEX)
-		element:SetMinMaxValues(min, max)
+		element:SetMinMaxValues(barInfo.minPower, max)
 		element:SetValue(cur)
 	end
 
@@ -105,8 +107,8 @@ local function Visibility(self, event, unit)
 	if(unit ~= self.unit) then return end
 	local element = self.AlternativePower
 
-	local barType, _, _, _, _, hideFromOthers, showOnRaid = GetUnitPowerBarInfo(unit)
-	if(barType and (showOnRaid and (UnitInParty(unit) or UnitInRaid(unit)) or not hideFromOthers or unit == 'player' or self.realUnit == 'player')) then
+	local barInfo = GetUnitPowerBarInfo(unit)
+	if(barInfo and (showOnRaid and (UnitInParty(unit) or UnitInRaid(unit)) or not hideFromOthers or unit == 'player' or self.realUnit == 'player')) then
 		self:RegisterEvent('UNIT_POWER_UPDATE', Path)
 		self:RegisterEvent('UNIT_MAXPOWER', Path)
 
