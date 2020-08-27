@@ -1,4 +1,4 @@
-local D, C, L = unpack(select(2, ...))
+--[[local D, C, L = unpack(select(2, ...))
 if not DuffedUIInfoLeft then return end
 
 local PowerTextures = {
@@ -67,4 +67,4 @@ local function OnUpdate(self, elapsed)
 		self.TimeSinceLastUpdate = 0
 	end
 end
-AltPowerBarStatus:SetScript('OnUpdate', OnUpdate)
+AltPowerBarStatus:SetScript('OnUpdate', OnUpdate)]]--
