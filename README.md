@@ -42,6 +42,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-08-25 | Fixed guild datatext by [Rav99](https://github.com/Rav99)<br />Fixed Aurora<br />Fixed alternate power by [Rav99](https://github.com/Rav99)<br />Fixed friend datatext by [Rav99](https://github.com/Rav99)<br />Removed system font
 2020-08-24 | Added currency for Covenants
 2020-08-23 | Added currency Infused Ruby<br />Update for Aurora<br />Added Currency<br />Added lib for widgets on nameplates and unitframes<br />Added functions for later usecase
 2020-08-22 | Fixed jumping position of moving button for worldmap<br />Added automatic disable ffrom azerite bar<br />Added better way to hide azerite bar above 50<br />Added additional leveltext to tooltip on exp-bar on left chat<br />Moved rested icon to center of bar
