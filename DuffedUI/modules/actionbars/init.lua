@@ -180,9 +180,9 @@ function ab:Cooldown(start, duration, enable, charges, maxcharges, forceShowdraw
 					if Region.GetText then
 						local Font = C['media']['font']
 						
-						Region:SetFont(Font, 14, "OUTLINE")
+						Region:SetFont(Font, 12, "OUTLINE")
 						Region:SetPoint("CENTER", 1, 0)
-						Region:SetTextColor(1, 0, 0)
+						Region:SetTextColor(1, 1, 1)
 					end
 				end
 
