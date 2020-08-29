@@ -162,7 +162,7 @@ end
 function ab:StopHightlight()
 	if self.Animation and self.Animation:IsPlaying() then
 		self.Animation:Stop()
-		if self.Backdrop then self.Backdrop:SetBorderColor(unpack(C['eneral']['bordercolor'])) end
+		if self.Backdrop then self.Backdrop:SetBorderColor(unpack(C['general']['bordercolor'])) end
 	end
 end
 
