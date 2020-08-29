@@ -69,7 +69,7 @@ C['chat'] = {
 	['textright'] = true,
 	['fading'] = true,
 	['newchatbubbles'] = true,
-	['chatbubblesfontsize'] = 13,
+	['chatbubblesfontsize'] = 11,
 	['chatitemlevel'] = true,
 }
 
