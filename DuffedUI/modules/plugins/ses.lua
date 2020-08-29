@@ -162,6 +162,7 @@ local menuList = {
 	{text = _G.OPTIONS_MENU, isTitle = true, notCheckable = true},
 	{text = "", notClickable = true, notCheckable = true},
 	{text = STATUS, notCheckable = true, func = function() D['ShowStatusReport']() end},
+	{text = "ConfigUI", notCheckable = true, func = function() SlashCmdList["DUFFEDUI_CONFIGUI"]() end},
 	{text = "Bugreport", notCheckable = true, func = function() StaticPopup_Show('BUGREPORT') end},
 	{text = "Changelog", notCheckable = true, func = function() D:GetModule("Changelog"):ToggleChangeLog() end},
 	{text = "Datatexts Toggle", notCheckable = true, func = function() D['DataTexts']:ToggleDataPositions() end},

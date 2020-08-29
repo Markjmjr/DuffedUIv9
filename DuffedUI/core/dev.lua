@@ -67,3 +67,13 @@ function SlashCmdList.LUAERROR(msg)
 	end
 end
 _G.SLASH_LUAERROR1 = "/luaerror"
+
+-- ConfigFrame
+SlashCmdList["DUFFEDUI_CONFIGUI"] = function()
+	if (not DuffedUIConfig) then D['Print']("Oh no! DuffedUI Config not found!") return end
+	if (not DuffedUIConfigFrame) then DuffedUIConfig:CreateConfigWindow() end
+	if DuffedUIConfigFrame:IsVisible() then	DuffedUIConfigFrame:Hide() else	DuffedUIConfigFrame:Show() end
+end
+SLASH_DUFFEDUI_CONFIGUI1 = "/config"
+SLASH_DUFFEDUI_CONFIGUI2 = "/configui"
+SLASH_DUFFEDUI_CONFIGUI3 = "/cfg"
