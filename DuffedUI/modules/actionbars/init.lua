@@ -162,12 +162,13 @@ end
 function ab:StopHightlight()
 	if self.Animation and self.Animation:IsPlaying() then
 		self.Animation:Stop()
-		if self.Backdrop then self.Backdrop:SetBorderColor(unpack(Cg['eneral']['bordercolor'])) end
+		if self.Backdrop then self.Backdrop:SetBorderColor(unpack(C['eneral']['bordercolor'])) end
 	end
 end
 
 function ab:Cooldown(start, duration, enable, charges, maxcharges, forceShowdrawedge)
-	local Enabled = GetCVar("countdownForCooldowns")
+	local Enabled = GetCVar('countdownForCooldowns')
+	if not Enabled == 1 then SetCVar('countdownForCooldowns', 1) end
 
 	if (Enabled) then
 		if not self:IsForbidden() then
@@ -180,8 +181,8 @@ function ab:Cooldown(start, duration, enable, charges, maxcharges, forceShowdraw
 					if Region.GetText then
 						local Font = C['media']['font']
 						
-						Region:SetFont(Font, 12, "OUTLINE")
-						Region:SetPoint("CENTER", 1, 0)
+						Region:SetFont(Font, 12, 'OUTLINE')
+						Region:SetPoint('CENTER', 1, 0)
 						Region:SetTextColor(1, 1, 1)
 					end
 				end
@@ -201,7 +202,7 @@ function ab:AddHooks()
 		hooksecurefunc('ActionButton_HideOverlayGlow', ab.StopHightlight)
 	end
 	if (not IsAddOnLoaded('OmniCC') or IsAddOnLoaded('ncCooldown') or C['cooldown']['enable']) then
-		hooksecurefunc("CooldownFrame_Set", ab.Cooldown)
+		hooksecurefunc('CooldownFrame_Set', ab.Cooldown)
 	end
 end
 
