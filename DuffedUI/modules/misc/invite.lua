@@ -33,7 +33,7 @@ if C['general']['autoaccept'] then
 			end
 
 			for bnIndex = 1, BNGetNumFriends() do
-				local _, _, _, _, name = BNGetFriendInfo(bnIndex)
+				local _, _, _, _, name = C_BattleNet.GetFriendAccountInfo(bnIndex)
 				LeaderName = LeaderName:match('(.+)%-.+') or LeaderName
 				if name == LeaderName then
 					AcceptGroup()
