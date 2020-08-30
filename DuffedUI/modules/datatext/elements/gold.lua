@@ -174,10 +174,6 @@ local OnEnter = function(self)
 		D['Currency'](1560)
 		D['Currency'](1822) -- Renown
 		D['Currency'](1813) -- Reservoir Anima
-		D['Currency'](1861) -- Night Fae
-		D['Currency'](1859) -- Kyrian
-		D['Currency'](1862) -- Necrolord
-		D['Currency'](1860) -- Venthyr
 		D['Currency'](1751) -- Freed Soul
 	end
 
