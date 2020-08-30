@@ -53,7 +53,7 @@ D['HyperlinkMouseover']()
 
 -- Currencys
 local function GetInfo(id)
-	local iconString = '|T%s:16:16:0:0:64:64:4:60:4:60|t'
+	local iconString = '|T%s:12:12:0:0:64:64:4:60:4:60|t'
 	local info = C_CurrencyInfo.GetCurrencyInfo(id)
 
 	if info then
@@ -65,7 +65,6 @@ end
 
 D['Currency'] = function(id)
 	local name, num, icon = GetInfo(id)
-
 	GameTooltip:AddDoubleLine(format('%s %s', icon, name), num, 1, 1, 1, 1, 1, 1)
 end
 
