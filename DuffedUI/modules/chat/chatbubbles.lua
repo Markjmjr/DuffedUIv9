@@ -4,227 +4,84 @@ if C['chat']['newchatbubbles'] ~= true or IsAddOnLoaded('NiceBubbles') then	retu
 local Module = D:NewModule('ChatBubbles', 'AceEvent-3.0', 'AceHook-3.0')
 
 local _G = _G
-local math_abs = math.abs
-local math_floor = math.floor
-local pairs = pairs
-local select = select
-
 local CreateFrame = _G.CreateFrame
-local IsInInstance = _G.IsInInstance
-local WorldFrame = _G.WorldFrame
+local GetCVarBool = _G.GetCVarBool
+local C_ChatBubbles_GetAllChatBubbles = _G.C_ChatBubbles.GetAllChatBubbles
 
-local bubbles = {}
-local numChildren, numBubbles = -1, 0
-
-local fontsize = C['chat']['chatbubblesfontsize']
-local offsetX, offsetY = 0, 0
-
--- Textures
-local BUBBLE_TEXTURE = [[Interface\Tooltips\ChatBubble-Background]]
-
-local function getPadding()
-	return fontsize / 1.2
-end
-
-local function getMaxWidth()
-	return 400 + math_floor((fontsize - C['chat']['chatbubblesfontsize']) / 22 * 260)
-end
-
-local function getBackdrop(scale)
+local function getBackdrop()
 	return {
 		bgFile = C['media']['blank'],
 		edgeFile = C['media']['glowTex'],
-		edgeSize = 4 * scale,
+		edgeSize = 4,
 		insets = {
-			left = 4 * scale,
-			right = 4 * scale,
-			top = 4 * scale,
-			bottom = 4 * scale
+			left = 4,
+			right = 4,
+			top = 4,
+			bottom = 4
 		}
 	}
 end
 
-local Updater = CreateFrame('Frame', nil, WorldFrame)
-Updater:SetFrameStrata('TOOLTIP')
+local function ReskinChatBubble(chatbubble)
+	if chatbubble.styled then return end
 
-Updater.IsBubble = function(_, bubble)
-	if (bubble.IsForbidden and bubble:IsForbidden()) then
-		return
+	local frame = chatbubble:GetChildren()
+	if frame and not frame:IsForbidden() then
+		local bg = CreateFrame('frame', nil, parent, 'BackdropTemplate')
+		bg:SetScale(UIParent:GetEffectiveScale())
+		bg:SetInside(frame, 6, 6)
+
+		bg:SetFrameStrata("BACKGROUND")
+		frame:SetBackdrop(getBackdrop())
+		frame:SetBackdropColor(C['general']['backdropcolor'][1], C['general']['backdropcolor'][2], C['general']['backdropcolor'][3], C['general']['backdropcolor'][4])
+		frame:SetBackdropBorderColor(C['general']['bordercolor'][1], C['general']['bordercolor'][2], C['general']['bordercolor'][3], C['general']['bordercolor'][4])
+		frame.Tail:SetAlpha(0)
+		frame.String:SetFont(C['media']['font'], C['chat']['chatbubblesfontsize'], "OUTLINE")
 	end
-	local name = bubble.GetName and bubble:GetName()
-	local region = bubble.GetRegions and bubble:GetRegions()
-	if name or not region then
-		return
-	end
-	local texture = region.GetTexture and region:GetTexture()
-	return texture and texture == BUBBLE_TEXTURE
-	end or function(_, bubble)
-	local name = bubble.GetName and bubble:GetName()
-	local region = bubble.GetRegions and bubble:GetRegions()
-	if name or not region then
-		return
-	end
-	local texture = region.GetTexture and region:GetTexture()
-	return texture and texture == BUBBLE_TEXTURE
+
+	chatbubble.styled = true
 end
 
-function Updater:OnUpdate()
-	local children = select('#', WorldFrame:GetChildren())
-	if numChildren ~= children then
-		for i = 1, children do
-			local frame = select(i, WorldFrame:GetChildren())
-			if not (bubbles[frame]) and self:IsBubble(frame) then
-				self:InitBubble(frame)
-			end
+function Module:CreateChatBubbles()
+	local events = {
+		CHAT_MSG_SAY = "chatBubbles",
+		CHAT_MSG_YELL = "chatBubbles",
+		CHAT_MSG_MONSTER_SAY = "chatBubbles",
+		CHAT_MSG_MONSTER_YELL = "chatBubbles",
+		CHAT_MSG_PARTY = "chatBubblesParty",
+		CHAT_MSG_PARTY_LEADER = "chatBubblesParty",
+		CHAT_MSG_MONSTER_PARTY = "chatBubblesParty",
+	}
+
+	local bubbleHook = CreateFrame("Frame")
+
+	for event in next, events do
+		bubbleHook:RegisterEvent(event)
+	end
+
+	bubbleHook:SetScript("OnEvent", function(self, event, msg)
+		if GetCVarBool(events[event]) then
+			self.elapsed = 0
+			self:Show()
 		end
-		numChildren = children
-	end
+	end)
 
-	local scale = WorldFrame:GetHeight() / UIParent:GetHeight()
-	for bubble in pairs(bubbles) do
-		local msg = bubble and bubble.text:GetText()
-		if bubble:IsShown() and msg and (msg ~= '') then
-			bubbles[bubble]:SetFrameLevel(bubble:GetFrameLevel())
-
-			local blizzTextWidth = math_floor(bubble.text:GetWidth())
-			local blizzTextHeight = math_floor(bubble.text:GetHeight())
-			local point, _, rpoint, blizzX, blizzY = bubble.text:GetPoint()
-			local r, g, b = bubble.text:GetTextColor()
-			bubbles[bubble].color[1] = r
-			bubbles[bubble].color[2] = g
-			bubbles[bubble].color[3] = b
-			if blizzTextWidth and blizzTextHeight and point and rpoint and blizzX and blizzY then
-				if (not bubbles[bubble]:IsShown()) then
-					bubbles[bubble]:Show()
+	bubbleHook:SetScript("OnUpdate", function(self, elapsed)
+		self.elapsed = self.elapsed + elapsed
+		if self.elapsed > .1 then
+			for _, chatbubble in pairs(C_ChatBubbles_GetAllChatBubbles()) do
+				if chatbubble and not chatbubble.styled then
+				ReskinChatBubble(chatbubble)
+					chatbubble.styled = true
 				end
-				local msg = bubble.text:GetText()
-				if msg and (bubbles[bubble].last ~= msg) then
-					bubbles[bubble].text:SetText(msg or '')
-					bubbles[bubble].text:SetTextColor(r, g, b)
-					bubbles[bubble].last = msg
-					local sWidth = bubbles[bubble].text:GetStringWidth()
-					local maxWidth = getMaxWidth()
-					if sWidth > maxWidth then
-						bubbles[bubble].text:SetWidth(maxWidth)
-					else
-						bubbles[bubble].text:SetWidth(sWidth)
-					end
-				end
-				local space = getPadding()
-				local ourTextWidth = bubbles[bubble].text:GetWidth()
-				local ourTextHeight = bubbles[bubble].text:GetHeight()
-				local ourX = math_floor((blizzX - blizzTextWidth / 2) / scale - (ourTextWidth - blizzTextWidth) / 2)
-				local ourY = math_floor(blizzY / scale - (ourTextHeight - blizzTextHeight) / 2)
-				local ourWidth = math_floor(ourTextWidth + space * 2)
-				local ourHeight = math_floor(ourTextHeight + space * 2)
-				bubbles[bubble]:Hide()
-				bubbles[bubble]:SetSize(ourWidth, ourHeight)
-				local oldX, oldY = select(4, bubbles[bubble]:GetPoint())
-				if not (oldX and oldY) or ((math_abs(oldX - ourX) > .5) or (math_abs(oldY - ourY) > .5)) then
-					bubbles[bubble]:ClearAllPoints()
-					bubbles[bubble]:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', ourX, ourY)
-				end
-				bubbles[bubble]:SetBackdropColor(C['general']['backdropcolor'][1], C['general']['backdropcolor'][2], C['general']['backdropcolor'][3], C['general']['backdropcolor'][4])
-				bubbles[bubble]:SetBackdropBorderColor(r * 0.5, g * 0.5, b * 0.5, 0.9)
-				bubbles[bubble]:Show()
 			end
-			bubble.text:SetTextColor(r, g, b, 0)
-		else
-			if bubbles[bubble]:IsShown() then
-				bubbles[bubble]:Hide()
-			else
-				bubbles[bubble].last = nil
-			end
+			self:Hide()
 		end
-	end
-end
+	end)
 
-function Updater:HideBlizzard(bubble)
-	local r, g, b = bubble.text:GetTextColor()
-	bubbles[bubble].color[1] = r
-	bubbles[bubble].color[2] = g
-	bubbles[bubble].color[3] = b
-	bubble.text:SetTextColor(r, g, b, 0)
-	for region, _ in pairs(bubbles[bubble].regions) do
-		region:SetTexture(nil)
-	end
-end
-
-function Updater:ShowBlizzard(bubble)
-	bubble.text:SetTextColor(bubbles[bubble].color[1], bubbles[bubble].color[2], bubbles[bubble].color[3], 1)
-	for region, texture in pairs(bubbles[bubble].regions) do
-		region:SetTexture(texture)
-	end
-end
-
-function Updater:InitBubble(bubble)
-	numBubbles = numBubbles + 1
-
-	local space = getPadding()
-	bubbles[bubble] = CreateFrame('Frame', nil, self.BubbleBox)
-	bubbles[bubble]:Hide()
-	bubbles[bubble]:SetFrameStrata('BACKGROUND')
-	bubbles[bubble]:SetFrameLevel(numBubbles % 128 + 1)
-	bubbles[bubble]:SetBackdrop(getBackdrop(1))
-
-	bubbles[bubble].text = bubbles[bubble]:CreateFontString()
-	bubbles[bubble].text:SetPoint('BOTTOMLEFT', space, space)
-	bubbles[bubble].text:SetFontObject(ChatFont)
-	bubbles[bubble].text:SetFont(C['media']['font'], C['chat']['chatbubblesfontsize'], '')
-	bubbles[bubble].text:SetShadowOffset(-.75, -.75)
-	bubbles[bubble].text:SetShadowColor(0, 0, 0, 1)
-
-	bubbles[bubble].regions = {}
-	bubbles[bubble].color = {1, 1, 1, 1}
-
-	for i = 1, bubble:GetNumRegions() do
-		local region = select(i, bubble:GetRegions())
-		if region:GetObjectType() == 'Texture' then
-			bubbles[bubble].regions[region] = region:GetTexture()
-		elseif region:GetObjectType() == 'FontString' then
-			bubble.text = region
-		end
-	end
-
-	self:HideBlizzard(bubble)
+	bubbleHook:Hide()
 end
 
 function Module:OnInitialize()
-	self.Updater = Updater
-
-	self.BubbleBox = CreateFrame('Frame', nil, UIParent)
-	self.BubbleBox:SetAllPoints()
-	self.BubbleBox:Hide()
-
-	self.Updater.BubbleBox = self.BubbleBox
-
-	self:RegisterEvent('PLAYER_ENTERING_WORLD', 'UpdateBubbleDisplay')
-end
-
-function Module:UpdateBubbleDisplay()
-	local _, instanceType = IsInInstance()
-	if (instanceType == 'none') then
-		self.Updater:SetScript('OnUpdate', self.Updater.OnUpdate)
-	else
-		self.Updater:SetScript('OnUpdate', nil)
-		for bubble in pairs(bubbles) do
-			bubbles[bubble]:Hide()
-		end
-	end
-end
-
-function Module:OnEnable()
-	self:UpdateBubbleDisplay()
-	self.BubbleBox:Show()
-	for bubble in pairs(bubbles) do
-		self.Updater:HideBlizzard(bubble)
-	end
-end
-
-function Module:OnDisable()
-	self:UpdateBubbleDisplay()
-	self.BubbleBox:Hide()
-	for bubble in pairs(bubbles) do
-		self.Updater:ShowBlizzard(bubble)
-	end
+	self.CreateChatBubbles()
 end
