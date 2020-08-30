@@ -43,7 +43,7 @@ local function CreateBorder(f, bLayer, bOffset, bPoints, strip)
 	backgrounds:SetDrawLayer('BACKGROUND', bLayer)
 	backgrounds:SetPoint('TOPLEFT', f ,'TOPLEFT', bPoints, -bPoints)
 	backgrounds:SetPoint('BOTTOMRIGHT', f ,'BOTTOMRIGHT', -bPoints, bPoints)
-	backgrounds:SetColorTexture(C['general']['backdropcolor'][1], C['general']['backdropcolor'][2], C['general']['backdropcolor'][3], C['general']['backdropcolor'][4])
+	backgrounds:SetColorTexture(unpack(C['general']['backdropcolor']))
 
 	f:SetBorderColor()
 

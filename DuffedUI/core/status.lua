@@ -220,7 +220,7 @@ D['CreateStatusFrame'] = function()
 	StatusFrame.TitleLogoFrame.Shade:SetTexture(C['media'].shader)
 	StatusFrame.TitleLogoFrame.Shade:SetPoint('TOPLEFT', StatusFrame.TitleLogoFrame.Texture, 'TOPLEFT', -6, 6)
 	StatusFrame.TitleLogoFrame.Shade:SetPoint('BOTTOMRIGHT', StatusFrame.TitleLogoFrame.Texture, 'BOTTOMRIGHT', 6, -6)
-	StatusFrame.TitleLogoFrame.Shade:SetVertexColor(C['general']['backdropcolor'][1], C['general']['backdropcolor'][2], C['general']['backdropcolor'][3], C['general']['backdropcolor'][4] )
+	StatusFrame.TitleLogoFrame.Shade:SetVertexColor(unpack(C['general']['backdropcolor']))
 
 	--Sections
 	StatusFrame.Section1 = CreateSection(300, 125, StatusFrame, 'TOP', StatusFrame, 'TOP', -30)
