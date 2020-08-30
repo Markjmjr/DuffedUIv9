@@ -180,7 +180,6 @@ local OnEnter = function(self)
 	if ImprovedCurrency['Raid'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(L['dt']['dr'])
-		D['Currency'](1560) -- BfA
 		D['Currency'](1565)
 		D['Currency'](1580)
 		D['Currency'](1587)
