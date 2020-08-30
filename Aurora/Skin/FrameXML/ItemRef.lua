@@ -20,6 +20,9 @@ function private.FrameXML.ItemRef()
     Skin.ShoppingTooltipTemplate(_G.ItemRefShoppingTooltip2)
 
     Skin.GameTooltipTemplate(_G.ItemRefTooltip)
-    --Skin.UIPanelCloseButton(_G.ItemRefCloseButton)
-    Skin.UIPanelCloseButton(_G.ItemRefTooltip.CloseButton)
+    if private.isPatch then
+        Skin.UIPanelCloseButton(_G.ItemRefTooltip.CloseButton)
+    else
+        Skin.UIPanelCloseButton(_G.ItemRefCloseButton)
+    end
 end

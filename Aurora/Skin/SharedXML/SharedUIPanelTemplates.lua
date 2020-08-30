@@ -174,9 +174,17 @@ do -- Basic frame type skins
                 end
             end
         end
+        local function Hook_SetEnabled(self, IsEnabled)
+            if IsEnabled then
+                Hook_Enable(self)
+            else
+                Hook_Disable(self)
+            end
+        end
         function Skin.FrameTypeButton(Button, OnEnter, OnLeave)
             _G.hooksecurefunc(Button, "Enable", Hook_Enable)
             _G.hooksecurefunc(Button, "Disable", Hook_Disable)
+            _G.hooksecurefunc(Button, "SetEnabled", Hook_SetEnabled)
 
             Button:SetNormalTexture("")
             Button:SetPushedTexture("")
@@ -427,6 +435,8 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
         local layout = _G.NineSliceUtil.GetLayout(Frame:GetFrameLayoutType())
         if layout then
             Hook.NineSliceUtil.ApplyLayout(Frame, layout)
+        --else
+            --print("no layout", Frame:GetDebugName())
         end
     end
     function Skin.InsetFrameTemplate(Frame)

@@ -1,5 +1,6 @@
 local _, private = ...
 if private.isClassic then return end
+if private.isPatch then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals
@@ -15,7 +16,7 @@ do --[[ FrameXML\ScenarioFinder.xml ]]
     Skin.ScenarioSpecificChoiceTemplate = Skin.LFGSpecificChoiceTemplate
 end
 
---[[function private.FrameXML.ScenarioFinder()
+function private.FrameXML.ScenarioFinder()
     local ScenarioFinderFrame = _G.ScenarioFinderFrame
     Skin.InsetFrameTemplate(ScenarioFinderFrame.Inset)
 
@@ -37,4 +38,4 @@ end
     _G.ScenarioQueueFrameSpecificScrollFrameScrollBackgroundBottomRight:Hide()
 
     Skin.MagicButtonTemplate(_G.ScenarioQueueFrameFindGroupButton)
-end]]--
+end
