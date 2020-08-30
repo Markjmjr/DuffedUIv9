@@ -10,7 +10,6 @@ D['petbuttonspacing'] = D['Scale'](C['actionbar']['buttonspacing'])
 if GameMenuFrame_UpdateVisibleButtons then
 	hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function()
 		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight())
-		if IsAddOnLoaded('Enhanced_Config') then GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight()) end
 	end)
 end
 CharacterFrameTab3:Show()
@@ -54,6 +53,9 @@ D['HyperlinkMouseover']()
 -- Currencys
 D['Currency'] = function(id)
 	local info = C_CurrencyInfo.GetCurrencyInfo(id)
+	local tokens = GetNumWatchedTokens()
+	local r, g, b = 1, 1, 1
+
 	local function GetInfo(id)
 		local iconString = '|T%s:12:12:0:0:64:64:4:60:4:60|t'
 	
@@ -65,7 +67,15 @@ D['Currency'] = function(id)
 	end
 
 	local name, num, icon = GetInfo(id)
-	if info and info.quantity > 0 then GameTooltip:AddDoubleLine(format('%s %s', icon, name), num, 1, 1, 1, 1, 1, 1) end
+	if info and info.quantity > 0 then
+		if tokens then
+			for i = 1, tokens do
+				local backpack = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
+				if backpack.name == name then r, g, b = .77, .12, .23 end
+			end
+		end
+		GameTooltip:AddDoubleLine(format('%s %s', icon, name), num, r, g, b,r, g, b)
+	end
 end
 
 -- Button mouseover
