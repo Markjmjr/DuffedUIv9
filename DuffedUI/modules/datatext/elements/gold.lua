@@ -172,12 +172,13 @@ local OnEnter = function(self)
 		D['Currency'](1220)
 		D['Currency'](1342, false, true)
 		D['Currency'](1560)
-		D['Currency'](1822)
-		D['Currency'](1813)
+		D['Currency'](1822, false, true) -- Renown
+		D['Currency'](1813) -- Reservoir Anima
 		D['Currency'](1861) -- Night Fae
 		D['Currency'](1859) -- Kyrian
 		D['Currency'](1862) -- Necrolord
 		D['Currency'](1860) -- Venthyr
+		D['Currency'](1751) -- Freed Soul
 	end
 
 	if ImprovedCurrency['Raid'] then
@@ -196,6 +197,8 @@ local OnEnter = function(self)
 		D['Currency'](1719)
 		D['Currency'](1803)
 		D['Currency'](1728) -- Phantasma for Thorgast
+		D['Currency'](1767) -- Stygia
+		D['Currency'](1828) -- Soul Ash
 	end
 
 	if ImprovedCurrency['PvP'] then
@@ -219,7 +222,7 @@ local OnEnter = function(self)
 		D['Currency'](1149, false, true)
 		D['Currency'](1154, false, true)
 		D['Currency'](1275)
-		D['Currency'](1820, false, true)
+		D['Currency'](1820, false, true) -- Infused Ruby
 		D['Currency'](1754)
 		D['Currency'](1816)
 	end

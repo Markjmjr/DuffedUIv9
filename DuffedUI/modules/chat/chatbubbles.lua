@@ -55,9 +55,7 @@ function Module:CreateChatBubbles()
 
 	local bubbleHook = CreateFrame('Frame')
 
-	for event in next, events do
-		bubbleHook:RegisterEvent(event)
-	end
+	for event in next, events do bubbleHook:RegisterEvent(event) end
 
 	bubbleHook:SetScript('OnEvent', function(self, event, msg)
 		if GetCVarBool(events[event]) then
@@ -71,9 +69,7 @@ function Module:CreateChatBubbles()
 		if self.elapsed > .1 then
 			for _, chatbubble in pairs(C_ChatBubbles_GetAllChatBubbles()) do
 				if chatbubble and not chatbubble.styled then
-				ReskinChatBubble(chatbubble)
-					chatbubble.styled = true
-				end
+				ReskinChatBubble(chatbubble) chatbubble.styled = true end
 			end
 			self:Hide()
 		end
@@ -82,6 +78,4 @@ function Module:CreateChatBubbles()
 	bubbleHook:Hide()
 end
 
-function Module:OnInitialize()
-	self.CreateChatBubbles()
-end
+function Module:OnInitialize() self.CreateChatBubbles() end
