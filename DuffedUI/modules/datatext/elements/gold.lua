@@ -170,9 +170,9 @@ local OnEnter = function(self)
 		D['Currency'](824)
 		D['Currency'](1101)
 		D['Currency'](1220)
-		D['Currency'](1342, false, true)
+		D['Currency'](1342)
 		D['Currency'](1560)
-		D['Currency'](1822, false, true) -- Renown
+		D['Currency'](1822) -- Renown
 		D['Currency'](1813) -- Reservoir Anima
 		D['Currency'](1861) -- Night Fae
 		D['Currency'](1859) -- Kyrian
@@ -186,7 +186,7 @@ local OnEnter = function(self)
 		GameTooltip:AddLine(L['dt']['dr'])
 		D['Currency'](1560) -- BfA
 		D['Currency'](1565)
-		D['Currency'](1580, false, true)
+		D['Currency'](1580)
 		D['Currency'](1587)
 		D['Currency'](1716) -- Patch 8.1
 		D['Currency'](1710)				
@@ -204,9 +204,9 @@ local OnEnter = function(self)
 	if ImprovedCurrency['PvP'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PVP_FLAG)
-		D['Currency'](390, true)
+		D['Currency'](390)
 		D['Currency'](391)
-		D['Currency'](392, false, true)
+		D['Currency'](392)
 		D['Currency'](944)
 		D['Currency'](1268)
 		D['Currency'](1356)
@@ -219,10 +219,10 @@ local OnEnter = function(self)
 		D['Currency'](416)
 		D['Currency'](515)
 		D['Currency'](777)
-		D['Currency'](1149, false, true)
-		D['Currency'](1154, false, true)
+		D['Currency'](1149)
+		D['Currency'](1154)
 		D['Currency'](1275)
-		D['Currency'](1820, false, true) -- Infused Ruby
+		D['Currency'](1820) -- Infused Ruby
 		D['Currency'](1754)
 		D['Currency'](1816)
 	end

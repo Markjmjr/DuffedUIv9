@@ -52,23 +52,21 @@ end
 D['HyperlinkMouseover']()
 
 -- Currencys
-D['Currency'] = function(id, weekly, capped)
-	local name, amount, tex, week, weekmax, maxed, discovered = C_CurrencyInfo.GetCurrencyInfo(id)
+local function GetInfo(id)
+	local iconString = '|T%s:16:16:0:0:64:64:4:60:4:60|t'
+	local info = C_CurrencyInfo.GetCurrencyInfo(id)
 
-	local r, g, b = 1, 1, 1
-	for i = 1, GetNumWatchedTokens() do
-		local _, _, _, itemID = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
-		if id == itemID then r, g, b = .77, .12, .23 end
-	end
-
-	if (amount == 0 and r == 1) then return end
-	if weekly then
-		if discovered then GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, 'Current: ' .. amount .. ' - ' .. WEEKLY .. ': ' .. week .. ' / ' .. weekmax, r, g, b, r, g, b) end
-	elseif capped  then
-		if discovered then GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount .. ' / ' .. maxed, r, g, b, r, g, b) end
+	if info then
+		return info.name, info.quantity, (info.iconFileID and format(iconString, info.iconFileID)) or '136012'
 	else
-		if discovered then GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount, r, g, b, r, g, b) end
+		return '', '', '136012'
 	end
+end
+
+D['Currency'] = function(id)
+	local name, num, icon = GetInfo(id)
+
+	GameTooltip:AddDoubleLine(format('%s %s', icon, name), num, 1, 1, 1, 1, 1, 1)
 end
 
 -- Button mouseover
