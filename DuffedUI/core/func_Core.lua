@@ -71,7 +71,7 @@ D['Currency'] = function(id)
 		if tokens then
 			for i = 1, tokens do
 				local backpack = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
-				if backpack.name == name then r, g, b = .77, .12, .23 end
+				if backpack and backpack.name == name then r, g, b = .77, .12, .23 end
 			end
 		end
 		GameTooltip:AddDoubleLine(format('%s %s', icon, name), num, r, g, b,r, g, b)
