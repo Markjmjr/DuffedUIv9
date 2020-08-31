@@ -180,7 +180,9 @@ do --[[ AddOns\Blizzard_GarrisonUI.xml ]]
                 borderLayer = "BACKGROUND",
                 borderSublevel = -7,
             })
-            Base.SetBackdrop(Button, Color.button)
+            if not private.isPatch then
+                Base.SetBackdrop(Button, Color.button)
+            end
             t2:Hide()
             b2:Hide()
 
@@ -321,7 +323,9 @@ do --[[ AddOns\Blizzard_GarrisonUI.xml ]]
     end
     do --[[ Blizzard_OrderHallMissionUI.xml ]]
         function Skin.OrderHallMissionListButtonTemplate(Button)
+            if not private.isPatch then
             Skin.GarrisonMissionListButtonTemplate(Button)
+            end
         end
         function Skin.OrderHallMissionPageEnemyTemplate(Button)
             Skin.GarrisonMissionPageEnemyTemplate(Button)

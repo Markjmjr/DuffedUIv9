@@ -14,8 +14,10 @@ do --[[ SharedXML\HybridScrollFrame.lua ]]
             local numButtons = #self.buttons
             local numSkinned = self._auroraNumSkinned or 0
 
-            for i = numSkinned + 1, numButtons do
-                Skin[buttonTemplate](self.buttons[i])
+            if not private.isPatch then
+                for i = numSkinned + 1, numButtons do
+                    Skin[buttonTemplate](self.buttons[i])
+                end
             end
             self._auroraNumSkinned = numButtons
         end
