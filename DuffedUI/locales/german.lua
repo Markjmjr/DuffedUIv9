@@ -96,6 +96,7 @@ if D.Client == 'deDE' then
 		['text'] = 'Bewege die Maus über jeden beliebigen Aktionsbutton um ihn zu belegen. Drücke ESC, oder die rechte Maustaste, um die Belegung zu verwerfen.',
 		['save'] = 'Belegung speichern',
 		['discardbind'] = 'Belegung verwerfen',
+		['trigger'] = 'Auslöser',
 	}
 
 	L['loot'] = {

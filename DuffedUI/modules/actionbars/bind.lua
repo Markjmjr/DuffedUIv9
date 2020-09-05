@@ -31,8 +31,8 @@ local StaticPopup_Show = StaticPopup_Show
 local bind, localmacros = CreateFrame('Frame', 'HoverBind', UIParent), 0
 
 D['BindingUI'] = function()
-		if InCombatLockdown() then print('|cffffff00'..ERR_NOT_IN_COMBAT..'|r') return end
-	if not bind.loaded then
+		if InCombatLockdown() then print('|cffffff00' .. ERR_NOT_IN_COMBAT .. '|r') return end
+		if not bind.loaded then
 		local find = string.find
 		local _G = getfenv(0)
 
@@ -80,13 +80,13 @@ D['BindingUI'] = function()
 				self.button.id = SpellBook_GetSpellBookSlot(self.button)
 				self.button.name = GetSpellBookItemName(self.button.id, SpellBookFrame.bookType)
 
-				GameTooltip:AddLine(L.Bind.Trigger)
+				GameTooltip:AddLine(L['binds']['trigger'])
 				GameTooltip:Show()
 				GameTooltip:SetScript('OnHide', function(self)
 					self:SetOwner(bind, 'ANCHOR_TOP')
 					self:SetPoint('BOTTOM', bind, 'TOP', 0, 1)
 					self:AddLine(bind.button.name, 1, 1, 1)
-					bind.button.bindings = {GetBindingKey(spellmacro..' '..bind.button.name)}
+					bind.button.bindings = {GetBindingKey(spellmacro .. ' ' .. bind.button.name)}
 					if #bind.button.bindings == 0 then
 						self:AddLine('No bindings set.', .6, .6, .6)
 					else
@@ -107,12 +107,12 @@ D['BindingUI'] = function()
 				GameTooltip:SetPoint('BOTTOM', bind, 'TOP', 0, 1)
 				GameTooltip:AddLine(bind.button.name, 1, 1, 1)
 
-				bind.button.bindings = {GetBindingKey(spellmacro..' '..bind.button.name)}
+				bind.button.bindings = {GetBindingKey(spellmacro .. ' ' .. bind.button.name)}
 					if #bind.button.bindings == 0 then
 						GameTooltip:AddLine(EMPTY, .6, .6, .6)
 					else
 						GameTooltip:AddDoubleLine('Binding', 'Key', .6, .6, .6, .6, .6, .6)
-						for i = 1, #bind.button.bindings do GameTooltip:AddDoubleLine('Binding'..i, bind.button.bindings[i], 1, 1, 1) end
+						for i = 1, #bind.button.bindings do GameTooltip:AddDoubleLine('Binding' .. i, bind.button.bindings[i], 1, 1, 1) end
 					end
 				GameTooltip:Show()
 			elseif spellmacro == 'STANCE' or spellmacro == 'PET' then
@@ -122,12 +122,12 @@ D['BindingUI'] = function()
 				if not self.button.name then return end
 
 				if not self.button.id or self.button.id < 1 or self.button.id > (spellmacro=='STANCE' and 10 or 12) then
-					self.button.bindstring = 'CLICK '..self.button.name..':LeftButton'
+					self.button.bindstring = 'CLICK ' .. self.button.name .. ':LeftButton'
 				else
 					self.button.bindstring = (spellmacro=='STANCE' and 'SHAPESHIFTBUTTON' or 'BONUSACTIONBUTTON')..self.button.id
 				end
 
-				GameTooltip:AddLine('Trigger')
+				GameTooltip:AddLine(L['binds']['trigger'])
 				GameTooltip:Show()
 				GameTooltip:SetScript('OnHide', function(self)
 					self:SetOwner(bind, 'ANCHOR_TOP')
@@ -150,7 +150,7 @@ D['BindingUI'] = function()
 				if not self.button.name then return end
 
 				if not self.button.action or self.button.action < 1 or self.button.action > 132 and not self.button.keyBoundTarget then
-					self.button.bindstring = 'CLICK '..self.button.name..':LeftButton'
+					self.button.bindstring = 'CLICK ' .. self.button.name .. ':LeftButton'
 				elseif self.button.keyBoundTarget then
 					self.button.bindstring = self.button.keyBoundTarget
 				else
@@ -168,7 +168,7 @@ D['BindingUI'] = function()
 					end
 				end
 
-				GameTooltip:AddLine('Trigger')
+				GameTooltip:AddLine(L['binds']['trigger'])
 				GameTooltip:Show()
 				GameTooltip:SetScript('OnHide', function(self)
 					self:SetOwner(bind, 'ANCHOR_TOP')
@@ -190,7 +190,7 @@ D['BindingUI'] = function()
 		function bind:Listener(key)
 			if key == 'ESCAPE' or key == 'RightButton' then
 				for i = 1, #self.button.bindings do SetBinding(self.button.bindings[i]) end
-				print('All keybindings cleared for |cff00ff00'..self.button.name..'|r.')
+				print('All keybindings cleared for |cff00ff00' .. self.button.name .. '|r.')
 				self:Update(self.button, self.spellmacro)
 				if self.spellmacro~='MACRO' then GameTooltip:Hide() end
 				return
@@ -214,11 +214,11 @@ D['BindingUI'] = function()
 			local shift = IsShiftKeyDown() and 'SHIFT-' or ''
 
 			if not self.spellmacro or self.spellmacro == 'PET' or self.spellmacro == 'STANCE' then
-				SetBinding(alt..ctrl..shift..key, self.button.bindstring)
+				SetBinding(alt .. ctrl .. shift .. key, self.button.bindstring)
 			else
-				SetBinding(alt..ctrl..shift..key, self.spellmacro..' '..self.button.name)
+				SetBinding(alt .. ctrl .. shift .. key, self.spellmacro .. ' ' .. self.button.name)
 			end
-			print(alt..ctrl..shift..key..' |cff00ff00bound to |r'..self.button.name..'.')
+			print(alt .. ctrl .. shift .. key .. ' |cff00ff00bound to |r' .. self.button.name .. '.')
 			self:Update(self.button, self.spellmacro)
 			if self.spellmacro ~= 'MACRO' then GameTooltip:Hide() end
 		end
@@ -234,10 +234,10 @@ D['BindingUI'] = function()
 		function bind:Deactivate(save)
 			if save then
 				SaveBindings(2)
-				print('|cffffff00'..L['binds']['saved']..'|r')
+				print('|cffffff00' .. L['binds']['saved'] .. '|r')
 			else
 				LoadBindings(2)
-				print('|cffffff00'..L['binds']['discard']..'|r')
+				print('|cffffff00' .. L['binds']['discard'] .. '|r')
 			end
 			self.enabled = false
 			self:HideFrame()
@@ -281,13 +281,13 @@ D['BindingUI'] = function()
 		end
 
 		for i = 1, 12 do
-			local b = _G['SpellButton'..i]
+			local b = _G['SpellButton' .. i]
 			b:HookScript('OnEnter', function(self) bind:Update(self, 'SPELL') end)
 		end
 		
 		local function registermacro()
 			for i = 1, 36 do
-				local b = _G['MacroButton'..i]
+				local b = _G['MacroButton' .. i]
 				b:HookScript('OnEnter', function(self) bind:Update(self, 'MACRO') end)
 			end
 			MacroFrameTab1:HookScript('OnMouseUp', function() localmacros = 0 end)

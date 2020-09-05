@@ -95,6 +95,7 @@ L['binds'] = {
 	['text'] = 'Hover your mouse over any actionbutton to bind it. Press the escape key or right click to clear the current actionbuttons keybinding.',
 	['save'] = 'Save bindings',
 	['discardbind'] = 'Discard bindings',
+	['trigger'] = 'Trigger',
 }
 
 L['loot'] = {
