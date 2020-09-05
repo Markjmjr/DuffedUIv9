@@ -1,18 +1,36 @@
 local D, C, L = unpack(select(2, ...)) 
-local DuffedUIFonts = CreateFrame('Frame', 'DuffedUIFonts', UIParent)
+local DuffedUIFonts = CreateFrame('Frame')
 
-local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
+--[[local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
 	obj:SetFont(font, size, style)
 	if sr and sg and sb then obj:SetShadowColor(sr, sg, sb) end
 	if sox and soy then obj:SetShadowOffset(sox, soy) end
 	if r and g and b then obj:SetTextColor(r, g, b)
 	elseif r then obj:SetAlpha(r) end
+end]]--
+function DuffedUIFonts:SetFont (font, size, style, r, g, b, sr, sg, sb, sox, soy)
+	self:SetFont(font, size, style)
+
+	if sr and sg and sb then
+		self:SetShadowColor(sr, sg, sb)
+	end
+	
+	if sox and soy then
+		self:SetShadowOffset(sox, soy)
+	end
+	
+	if r and g and b then
+		self:SetTextColor(r, g, b)
+	elseif r then
+		self:SetAlpha(r)
+	end
 end
 
 DuffedUIFonts:RegisterEvent('ADDON_LOADED')
 DuffedUIFonts:SetScript('OnEvent', function(self, event, addon)
 	if addon ~= 'DuffedUI' then return end
 
+	local SetFont = self.SetFont
 	local NORMAL = C['media']['font']
 	local COMBAT = C['media']['font']
 	local NUMBER = C['media']['font']
