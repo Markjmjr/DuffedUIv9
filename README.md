@@ -18,7 +18,7 @@ All code that was inserted to continue to work during the PrePatch must be tagge
 This is to ensure that, after the release of Shadowlands, you can find the relevant jobs faster using the search term.
 
 ## Open Issues
-Nothing so far
+- Keybind-Option currently broken, Keybinds can currently only be assigned via the Blizzard menu
 
 ## ToDo
 - Testing
@@ -45,6 +45,7 @@ Nothing so far
 ## Changelog
 Date | Change
 --- | ---
+2020-09-05 | Fixed issue with remooved foont
 2020-08-31 | Update for Aurora
 2020-08-30 | Added different colors for currencies on backpack<br />Removed zero-values from currencies<br />Optimized currency function<br />Fixed size for currencies, 16x16 is too big<br />Removed currency from wrong section<br />Removed covenant specific currencies<br />Added new function for currencies<br />Added new currencies<br />Added correct visual style to chatbubbles via SetTemplate and localized config values<br />Better way too address config values<br />Update for Aurora
 2020-08-29 | Update Chatbubbles by [Rav99](https://github.com/Rav99)<br />Fixed issue with optionvalue<br />Set font color for cooldowns on actionbars to white instead of red<br />Fixed invite function<br />Update dev.lua by [Rav99](https://github.com/Rav99)<br />Optionsmenu  by [Rav99](https://github.com/Rav99)
