@@ -19,6 +19,8 @@ D['Debuffids'] = {
 	[GetSpellInfo(314411)] = 3, -- Lingering Doubt
 	[GetSpellInfo(314565)] = 3, -- Defiled Ground
 	[GetSpellInfo(314392)] = 3, -- Vile Corruption
+	-- 9.0 Shadowlands
+	[GetSpellInfo(342494)] = 3, -- Belligerent Boast (Prideful)
 
 	-- Dungeons
 	-- Freehold
