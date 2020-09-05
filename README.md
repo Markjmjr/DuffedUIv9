@@ -43,6 +43,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-09-06 | Added new Set-Function, Needs testing
 2020-09-05 | Fixed issue with removed font<br />Moved debufflistings to more separate files<br />Fixed hoverbind, DuffedUI uses now the Quickbind-Function from Blizzard and commands works as known<br />Removed all keybind-commands, except /dkb, /dkb is the new command to trigger setup for keybinds<br />Attempt to fix AltPowerBar<br />Added new font for removed system font
 2020-08-31 | Update for Aurora
 2020-08-30 | Added different colors for currencies on backpack<br />Removed zero-values from currencies<br />Optimized currency function<br />Fixed size for currencies, 16x16 is too big<br />Removed currency from wrong section<br />Removed covenant specific currencies<br />Added new function for currencies<br />Added new currencies<br />Added correct visual style to chatbubbles via SetTemplate and localized config values<br />Better way too address config values<br />Update for Aurora
