@@ -4,8 +4,6 @@ local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 
---local classcolor = ('|cff%.2x%.2x%.2x'):format(D['Color'].r * 255,D['Color'].g * 255, D['Color'].b * 255)
-
 local _G = _G
 local next = next
 local format, sort, select = format, sort, select
@@ -27,10 +25,13 @@ local C_Garrison_RequestLandingPageShipmentInfo = C_Garrison.RequestLandingPageS
 local C_Garrison_GetCompleteMissions = C_Garrison.GetCompleteMissions
 local C_Garrison_GetLooseShipments = C_Garrison.GetLooseShipments
 local C_Garrison_GetTalentTreeIDsByClassID = C_Garrison.GetTalentTreeIDsByClassID
-local C_Garrison_GetTalentTreeInfoForID = C_Garrison.GetTalentTreeInfoForID
+local C_Garrison_GetTalentTreeInfo = C_Garrison.GetTalentTreeInfo
 local C_QuestLog_IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 local C_IslandsQueue_GetIslandsWeeklyQuestID = C_IslandsQueue.GetIslandsWeeklyQuestID
 local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+local C_Covenants_GetActiveCovenantID = C_Covenants.GetActiveCovenantID
+local C_CovenantCallings_AreCallingsUnlocked = C_CovenantCallings.AreCallingsUnlocked
+local CovenantCalling_Create = CovenantCalling_Create
 local GetMaxLevelForExpansionLevel = GetMaxLevelForExpansionLevel
 local GetQuestObjectiveInfo = GetQuestObjectiveInfo
 local SecondsToTime = SecondsToTime
@@ -70,6 +71,7 @@ local MAIN_CURRENCY = 1813
 local NAZJATAR_MAP_ID = 1355
 local iconString = '|T%s:13:13:0:0:64:64:4:60:4:60|t'
 local numMissions = 0
+local callingsData = {}
 
 local Widget_IDs = {
 	['Alliance'] = {
@@ -84,6 +86,13 @@ local Widget_IDs = {
 		{L['dt']['PoenGillbrack'], 1622},
 		{L['dt']['VimBrineheart'], 1920}
 	}
+}
+
+local CovenantTreeIDs = {
+	[1] = {308, 312, 316, 320, 327},
+	[2] = {309, 314, 317, 324, 326},
+	[3] = {307, 311, 315, 319, 328},
+	[4] = {310, 313, 318, 321, 329}
 }
 
 MaxWidgetInfoRank = 30
@@ -172,26 +181,31 @@ local function AddFollowerInfo(garrisonType)
 	end
 end
 
-local function AddTalentInfo(garrisonType)
+local function AddTalentInfo(garrisonType, currentCovenant)
+	local treeInfo = {}
 	wipe(data)
-
-	data = C_Garrison_GetTalentTreeIDsByClassID(garrisonType, D.ClassID)
+	
+	if garrisonType == LE_GARRISON_TYPE_9_0 then
+		data = {unpack(CovenantTreeIDs[currentCovenant])}
+	else
+		data = C_Garrison_GetTalentTreeIDsByClassID(garrisonType, D.ClassID)
+	end
 
 	if next(data) then
 		local completeTalentID = C_Garrison_GetCompleteTalent(garrisonType)
 		if completeTalentID > 0 then
 			GameTooltip:AddLine(' ')
-			GameTooltip:AddLine(TALENTS)
+			GameTooltip:AddLine(RESEARCH_TIME_LABEL) -- was TALENTS
 
 			for _, treeID in ipairs(data) do
-				local _, _, tree = C_Garrison_GetTalentTreeInfoForID(treeID)
-				for _, talent in ipairs(tree) do
-					if talent.isBeingResearched or talent.id == completeTalentID then
-						GameTooltip:AddLine(RESEARCH_TIME_LABEL) -- 'Research Time:'
-						if talent.researchTimeRemaining and talent.researchTimeRemaining == 0 then
+				wipe(treeInfo)
+				treeInfo = C_Garrison_GetTalentTreeInfo(treeID)
+				for _, talent in ipairs(treeInfo.talents) do
+					if talent.isBeingResearched or (talent.id == completeTalentID and garrisonType ~= LE_GARRISON_TYPE_9_0) then
+						if talent.timeRemaining and talent.timeRemaining == 0 then
 							GameTooltip:AddDoubleLine(talent.name, GOAL_COMPLETED, 1, 1, 1, GREEN_FONT_COLOR:GetRGB())
 						else
-							GameTooltip:AddDoubleLine(talent.name, SecondsToTime(talent.researchTimeRemaining), 1, 1, 1, 1, 1, 1)
+							GameTooltip:AddDoubleLine(talent.name, SecondsToTime(talent.timeRemaining), 1, 1, 1, 1, 1, 1)
 						end
 					end
 				end
@@ -218,6 +232,25 @@ local OnEnter = function(self)
 	GameTooltip:AddLine(EXPANSION_NAME8, 0.77, 0.12, 0.23)
 	GameTooltip:AddDoubleLine(L['dt']['missionreport'], AddInfo(1813), nil, nil, nil, 1, 1, 1)
 	AddInProgressMissions(LE_FOLLOWER_TYPE_GARRISON_9_0)
+
+	if C_CovenantCallings_AreCallingsUnlocked() then
+		local questNum = 0
+		for _, calling in ipairs(callingsData) do
+			local callingObj = CovenantCalling_Create(calling)
+			if callingObj:GetState() == 0 then
+				questNum = questNum + 1
+			end
+		end
+		if questNum > 0 then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(format('%s %s', questNum, 'Calling Quest(s) available.'))
+		end
+	end
+
+	local currentCovenant = C_Covenants_GetActiveCovenantID()
+	if currentCovenant and currentCovenant > 0 then
+		AddTalentInfo(LE_GARRISON_TYPE_9_0, currentCovenant)
+	end
 
 	if IsShiftKeyDown() then
 		-- Battle for Azeroth
@@ -341,7 +374,9 @@ local CountCompleted = 0
 
 local function Update(self, event, ...)
 	if event == 'CURRENCY_DISPLAY_UPDATE' and select(1, ...) ~= MAIN_CURRENCY then return end
-
+	
+	if event == 'COVENANT_CALLINGS_UPDATED' then wipe(callingsData) callingsData = ... end
+	
 	if event == 'PLAYER_LOGIN' or event == 'GARRISON_SHIPMENT_RECEIVED' or (event == 'SHIPMENT_UPDATE' and select(1, ...) == true) then C_Garrison_RequestLandingPageShipmentInfo() end
 
 	if event == 'GARRISON_MISSION_NPC_OPENED' then self:RegisterEvent('GARRISON_MISSION_LIST_UPDATE') elseif event == 'GARRISON_MISSION_NPC_CLOSED' then self:UnregisterEvent('GARRISON_MISSION_LIST_UPDATE') end
