@@ -59,17 +59,17 @@ local function OnUpdate(self, elapsed)
 		local power = UnitPower('player', ALTERNATE_POWER_INDEX) or 0
 		local mpower = UnitPowerMax('player', ALTERNATE_POWER_INDEX) or 0
 		local r, g, b = oUFDuffedUI.ColorGradient(power, mpower, 0.8,0,0, 0.8,0.8,0, 0,0.8,0)
+		local value = (mpower > 0 and power / mpower) or 0
 		
 		self.powerName = powerName
 		self:SetMinMaxValues(barType.minPower, mpower)
 		self:SetValue(power)
-		AltPowerText:SetText(powerName.. ': '..power..' / '..mpower)
-		AltPowerBarStatus:SetStatusBarColor(r, g, b)
-
-		local value = (mpower > 0 and power / mpower) or 0
 		self.colorGradientValue = value
 		self.colorGradientR, self.colorGradientG, self.colorGradientB = r, g, b
 		self.TimeSinceLastUpdate = 0
+
+		AltPowerText:SetText(powerName.. ': '..power..' / '..mpower)
+		AltPowerBarStatus:SetStatusBarColor(r, g, b)
 	end
 end
 AltPowerBarStatus:SetScript('OnUpdate', OnUpdate)
