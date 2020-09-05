@@ -1,49 +1,49 @@
 local D, C, L = unpack(select(2, ...))
 if not C['actionbar']['enable'] then return end
 
-local bind = CreateFrame('Frame')
+local quickbind = CreateFrame('Frame')
 
-function bind:OnEvent(event, addon)
+function quickbind:OnEvent(event, addon)
 	if addon ~= "Blizzard_BindingUI" then return end
 	
-	local Frame = QuickKeybindFrame
-	local Header = Frame.Header
-	local Title = Frame.Header.Text
-	local Background = Frame.BG
-	local Tooltip = QuickKeybindTooltip
-	local CheckBox = Frame.characterSpecificButton
-	local Extra = Frame.phantomExtraActionButton
-	local Buttons = {
+	local frame = QuickKeybindFrame
+	local header = frame.Header
+	local title = frame.Header.Text
+	local background = frame.BG
+	local tooltip = QuickKeybindTooltip
+	local checkBox = frame.characterSpecificButton
+	local extra = frame.phantomExtraActionButton
+	local buttons = {
 		"okayButton",
 		"defaultsButton",
 		"cancelButton"
 	}
 	
-	Frame:StripTextures()
-	Frame:SetTemplate('Transparent')
-	Background:StripTextures()
-	Header:StripTextures()
-	Title:Hide()
-	Tooltip:SetTemplate()
-	CheckBox:SkinCheckBox()
+	frame:StripTextures()
+	frame:SetTemplate('Transparent')
+	background:StripTextures()
+	header:StripTextures()
+	title:Hide()
+	tooltip:SetTemplate('Transparent')
+	checkBox:SkinCheckBox()
 	
-	for _, Button in pairs(Buttons) do Frame[Button]:SkinButton() end
+	for _, button in pairs(buttons) do frame[button]:SkinButton() end
 	MultiBarBottomLeft.QuickKeybindGlow:SetAlpha(0)
 	MultiBarBottomRight.QuickKeybindGlow:SetAlpha(0)
 
 	
-	Extra:SetParent(DuffedUIHider)
+	extra:SetParent(DuffedUIHider)
 end
 
-function bind:Enable()
+function quickbind:Enable()
 	self:RegisterEvent("ADDON_LOADED")
 	self:SetScript("OnEvent", self.OnEvent)
 end
 
-bind:RegisterEvent('ADDON_LOADED')
-bind:RegisterEvent('PLAYER_ENTERING_WORLD')
-bind:SetScript('OnEvent', function(self, event, ...)
-	bind:Enable()
+quickbind:RegisterEvent('ADDON_LOADED')
+quickbind:RegisterEvent('PLAYER_ENTERING_WORLD')
+quickbind:SetScript('OnEvent', function(self, event, ...)
+	quickbind:Enable()
 end)
 
 D['BindingUI'] = function()
@@ -52,6 +52,3 @@ D['BindingUI'] = function()
 	KeyBindingFrame.quickKeybindButton:Click()
 end
 D:RegisterChatCommand('dkb', D['BindingUI'])
-
-if not IsAddOnLoaded('Bartender4') and not IsAddOnLoaded('Dominos') then D:RegisterChatCommand('kb', D['BindingUI']) end
-if not IsAddOnLoaded('HealBot') then D:RegisterChatCommand('hb', D['BindingUI']) end
