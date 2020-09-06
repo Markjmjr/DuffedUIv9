@@ -168,6 +168,15 @@ local menuList = {
 	{text = "Datatexts Toggle", notCheckable = true, func = function() D['DataTexts']:ToggleDataPositions() end},
 	{text = "Keybinds", notCheckable = true, func = function() D['BindingUI']() end},
 	{text = "MoveUI", notCheckable = true, keepShownOnClick = true, func = function() SlashCmdList["MOVING"]() end},
+	{text = BINDING_NAME_TOGGLECOMBATLOG, notCheckable = true, func = function()
+		if not LoggingCombat() then
+			LoggingCombat(true)
+			D['Print']("|cffffff00"..COMBATLOGENABLED.."|r")
+		elseif LoggingCombat() then
+			LoggingCombat(false)
+			D['Print']("|cffffff00"..COMBATLOGDISABLED.."|r")
+		end
+	end},
 	{text = RELOADUI, notCheckable = true, func = function()
 			if InCombatLockdown() then
 				_G.UIErrorsFrame:AddMessage(D['InfoColor'] .. _G.ERR_NOT_IN_COMBAT)
