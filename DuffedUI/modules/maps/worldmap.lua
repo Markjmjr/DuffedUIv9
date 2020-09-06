@@ -53,10 +53,11 @@ function WorldMap:Coords()
 		int = int + 1
 		if int >= 3 then
 			local UnitMap = C_Map_GetBestMapForUnit('player')
-			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
+			--local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
 			local x, y = 0, 0
 
-			if not position then
+			if not C_Map_GetPlayerMapPosition(UnitMap, 'player') then
+			--if not position then
 				coords.PlayerText:SetText(PLAYER..': x, x')
 				return
 			end
