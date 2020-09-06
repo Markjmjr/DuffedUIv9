@@ -183,7 +183,7 @@ function ab:Cooldown(start, duration, enable, charges, maxcharges, forceShowdraw
 						
 						Region:SetFont(Font, 12, 'OUTLINE')
 						Region:SetPoint('CENTER', 1, 0)
-						Region:SetTextColor(1, 1, 1)
+						Region:SetTextColor(1, 1, 0)
 					end
 				end
 
