@@ -87,16 +87,6 @@ L['install'] = {
 	['step4line4'] = 'Enjoy DuffedUI! Visit us at |cfffc41f3www.wowinterface.com|r!',
 }
 
-L['binds'] = {
-	['c2c_title'] = 'Mouse Bindings',
-	['combat'] = "You can't bind keys in combat",
-	['saved'] = 'All keybindings have been saved',
-	['discard'] = 'All newly set keybindings have been discarded.',
-	['text'] = 'Hover your mouse over any actionbutton to bind it. Press the escape key or right click to clear the current actionbuttons keybinding.',
-	['save'] = 'Save bindings',
-	['discardbind'] = 'Discard bindings',
-}
-
 L['loot'] = {
 	['tt_count'] = 'Count',
 	['fish'] = 'Fishy Loot',

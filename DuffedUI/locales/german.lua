@@ -88,16 +88,6 @@ if D.Client == 'deDE' then
 		['step4line4'] = 'Geniesse Dein DuffedUI! Und besuche uns doch mal auf |cfff41f3http://www.wowinterface.com|r!',
 	}
 
-	L['binds'] = {
-		['c2c_title'] = 'Mausbelegung',
-		['combat'] = 'Während eines Kampfes kannst Du keine Tasten belegen',
-		['saved'] = 'Alle Tastenbelegungen wurden gespeichert',
-		['discard'] = 'Alle neuen Tastenbelegungen wurden verworfen.',
-		['text'] = 'Bewege die Maus über jeden beliebigen Aktionsbutton um ihn zu belegen. Drücke ESC, oder die rechte Maustaste, um die Belegung zu verwerfen.',
-		['save'] = 'Belegung speichern',
-		['discardbind'] = 'Belegung verwerfen',
-	}
-
 	L['loot'] = {
 		['tt_count'] = 'Anzahl',
 		['fish'] = 'Schräger Loot',

@@ -1,18 +1,36 @@
 local D, C, L = unpack(select(2, ...)) 
-local DuffedUIFonts = CreateFrame('Frame', 'DuffedUIFonts', UIParent)
+local DuffedUIFonts = CreateFrame('Frame')
 
-local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
+--[[local SetFont = function(obj, font, size, style, r, g, b, sr, sg, sb, sox, soy)
 	obj:SetFont(font, size, style)
 	if sr and sg and sb then obj:SetShadowColor(sr, sg, sb) end
 	if sox and soy then obj:SetShadowOffset(sox, soy) end
 	if r and g and b then obj:SetTextColor(r, g, b)
 	elseif r then obj:SetAlpha(r) end
+end]]--
+function DuffedUIFonts:SetFont (font, size, style, r, g, b, sr, sg, sb, sox, soy)
+	self:SetFont(font, size, style)
+
+	if sr and sg and sb then
+		self:SetShadowColor(sr, sg, sb)
+	end
+	
+	if sox and soy then
+		self:SetShadowOffset(sox, soy)
+	end
+	
+	if r and g and b then
+		self:SetTextColor(r, g, b)
+	elseif r then
+		self:SetAlpha(r)
+	end
 end
 
 DuffedUIFonts:RegisterEvent('ADDON_LOADED')
 DuffedUIFonts:SetScript('OnEvent', function(self, event, addon)
 	if addon ~= 'DuffedUI' then return end
 
+	local SetFont = self.SetFont
 	local NORMAL = C['media']['font']
 	local COMBAT = C['media']['font']
 	local NUMBER = C['media']['font']
@@ -55,9 +73,10 @@ DuffedUIFonts:SetScript('OnEvent', function(self, event, addon)
 	SetFont(SystemFont_Med3,                    NORMAL, 13)
 	SetFont(SystemFont_OutlineThick_Huge2,      NORMAL, 20, 'THICKOUTLINE')
 	SetFont(SystemFont_Outline_Small,           NUMBER, 11, 'OUTLINE')
-	SetFont(SystemFont_Shadow_Large,            NORMAL, 15)
+	--SetFont(SystemFont_Shadow_Large,            NORMAL, 15) -- error 132 on Beta
 	SetFont(SystemFont_Shadow_Med1,             NORMAL, 11)
 	SetFont(SystemFont_Shadow_Med3,             NORMAL, 13)
+	--SetFont(SystemFont_Shadow_Outline_Huge2,    NORMAL, 20, 'OUTLINE') -- not present on beta
 	SetFont(SystemFont_Shadow_Small,            NORMAL, 11)
 	SetFont(SystemFont_Small,                   NORMAL, 11)
 	SetFont(SystemFont_Tiny,                    NORMAL, 11)
