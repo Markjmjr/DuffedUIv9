@@ -42,7 +42,7 @@
 					if ((strmatch(system_msg, self.friendon) ~= system_msg) and (strmatch(system_msg, self.friendoff) ~= system_msg) and (strmatch(system_msg, self.mergebug) ~= system_msg)) then
 						return
 					end
-					GuildRoster()
+					C_GuildInfo.GuildRoster()
 					C_Timer.After(11, C_GuildInfo.GuildRoster)
 				elseif (event == "PLAYER_ENTERING_WORLD") then
 					C_Timer.After(10.5, C_GuildInfo.GuildRoster)
