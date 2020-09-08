@@ -20,7 +20,7 @@ local icenter = CreateFrame('Frame', 'DuffedUIInfoCenter', UIParent, 'BackdropTe
 icenter:SetTemplate('Default')
 icenter:Size(378, 19)
 icenter:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 3)
-icenter:SetFrameLevel(2)
+icenter:SetFrameLevel(1)
 icenter:SetFrameStrata('BACKGROUND')
 move:RegisterFrame(DuffedUIInfoCenter)
 move:RegisterFrame(LossOfControlFrame)
