@@ -1,4 +1,5 @@
 <Ui xmlns='http://www.blizzard.com/wow/ui/'>
+	<Script file='elements\nameplates.lua' />
 	<Script file='elements\classtimer.lua' />
 	<Script file='elements\elements.lua' />
 	<Script file='elements\deathknight.lua' />

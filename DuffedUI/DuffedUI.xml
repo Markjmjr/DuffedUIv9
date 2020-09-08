@@ -69,7 +69,6 @@
 	<Script file='modules\tooltip\tooltipazerite.lua' />
 	<Script file='modules\tooltip\tooltipicons.lua' />
 	<!--<Script file='modules\nameplates\WidgetContainer.lua' />-->
-	<Script file='modules\nameplates\nameplates.lua' />
 	<Script file='modules\loot\sort.lua' />
 	<Script file='modules\loot\bags.lua' />
 	<Script file='modules\loot\bagsbar.lua' />
