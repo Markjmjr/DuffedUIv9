@@ -56,10 +56,10 @@ DuffedUIFonts:SetScript('OnEvent', function(self, event, addon)
 	SetFont(SystemFont_Med3,                    NORMAL, 13)
 	SetFont(SystemFont_OutlineThick_Huge2,      NORMAL, 20, 'THICKOUTLINE')
 	SetFont(SystemFont_Outline_Small,           NUMBER, 11, 'OUTLINE')
-	SetFont(SystemFont_Shadow_Large,            NORMAL, 16) -- error 132 on Beta
+	SetFont(SystemFont_Shadow_Large,            NORMAL, 16)
 	SetFont(SystemFont_Shadow_Med1,             NORMAL, 11)
 	SetFont(SystemFont_Shadow_Med3,             NORMAL, 13)
-	SetFont(SystemFont_Shadow_Outline_Huge2,    NORMAL, 22, 'OUTLINE') -- not present on beta
+	SetFont(SystemFont_Shadow_Outline_Huge2,    NORMAL, 22, 'OUTLINE')
 	SetFont(SystemFont_Shadow_Small,            NORMAL, 11)
 	SetFont(SystemFont_Small,                   NORMAL, 11)
 	SetFont(SystemFont_Tiny,                    NORMAL, 11)
