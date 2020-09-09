@@ -12,13 +12,10 @@ local mult = 768 / string_match(GetCVar('gxWindowedResolution'), '%d+x(%d+)') / 
 
 local function GetPerfectScale()
 	local scale = C['general']['uiscale']
-	local bestScale = math_max(0.4, math_min(1.15, 768 / D.ScreenHeight))
-	local pixelScale = 768 / D.ScreenHeight
+	local bestScale = math_max(0.4, math_min(1.15, 768 / D['ScreenHeight']))
+	local pixelScale = 768 / D['ScreenHeight']
 
-	if C['general']['autoscale'] then
-		scale = bestScale
-	end
-
+	if C['general']['autoscale'] then scale = bestScale end
 	mult = (bestScale / scale) - ((bestScale - pixelScale) / scale)
 
 	return scale
@@ -27,17 +24,13 @@ end
 local Graphic = CreateFrame('Frame')
 Graphic:RegisterEvent('PLAYER_ENTERING_WORLD')
 Graphic:SetScript('OnEvent', function(self, event)
-	if isScaling then
-		return
-	end
+	if isScaling then return end
 
 	isScaling = true
 
 	local scale = GetPerfectScale()
 	local parentScale = UIParent:GetScale()
-	if scale ~= parentScale and not InCombatLockdown() then
-		UIParent:SetScale(scale)
-	end
+	if scale ~= parentScale and not InCombatLockdown() then UIParent:SetScale(scale) end
 
 	C['general']['uiscale'] = scale
 

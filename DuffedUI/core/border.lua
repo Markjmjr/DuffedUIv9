@@ -29,27 +29,19 @@ local BorderTemplate = {
 		a = a or 1
 
 		local cache = borderCache[self]
-		for id in pairs(cache) do
-			cache[id]:SetVertexColor(r, g, b, a)
-		end
+		for id in pairs(cache) do cache[id]:SetVertexColor(r, g, b, a) end
 	end,
 
-	GetBorderColor = function(self)
-		return borderCache[self][1]:GetVertexColor()
-	end,
+	GetBorderColor = function(self) return borderCache[self][1]:GetVertexColor() end,
 
 	ShowBorder = function(self)
 		local cache = borderCache[self]
-		for id in pairs(cache) do
-			cache[id]:Show()
-		end
+		for id in pairs(cache) do cache[id]:Show() end
 	end,
 
 	HideBorder = function(self)
 		local cache = borderCache[self]
-		for id in pairs(cache) do
-			cache[id]:Hide()
-		end
+		for id in pairs(cache) do cache[id]:Hide() end
 	end
 }
 
@@ -57,9 +49,7 @@ BorderTemplate.SetBackdropBorderColor = BorderTemplate.SetBorderColor
 BorderTemplate.GetBackdropBorderColor = BorderTemplate.GetBorderColor
 
 D['CreateBorder'] = function(object, offset, size, drawLayer, drawSubLevel, path)
-	if type(object) ~= "table" or borderCache[object] or not object.CreateTexture then
-		return
-	end
+	if type(object) ~= "table" or borderCache[object] or not object.CreateTexture then return end
 
 	local drawLayer = drawLayer or borderLayer
 	local drawSubLevel = drawSubLevel or borderLevel
@@ -129,7 +119,5 @@ D['CreateBorder'] = function(object, offset, size, drawLayer, drawSubLevel, path
 
 	-- Embed our custom border template methods into the frame,
 	-- and replace some standard Blizzard API calls for compatibility.
-	for name, func in pairs(BorderTemplate) do
-		object[name] = func
-	end
+	for name, func in pairs(BorderTemplate) do object[name] = func end
 end

@@ -82,15 +82,10 @@ D['ShowPopup'] = function(self)
 	eb:SetText('')
 
 	if info.question then question:AddMessage(info.question) end
-
 	if info.answer1 then btn1.Text:SetText(info.answer1) else btn1.Text:SetText(ACCEPT) end
-
 	if info.answer2 then btn2.Text:SetText(info.answer2) else btn2.Text:SetText(CANCEL) end
-
 	if info.function1 then btn1:SetScript('OnClick', info.function1) else btn1:SetScript('OnClick', Hide) end
-
 	if info.function2 then btn2:SetScript('OnClick', info.function2) else btn2:SetScript('OnClick', Hide) end
-
 	if info.editbox then eb:Show() else eb:Hide() end
 
 	btn1:HookScript('OnClick', Hide)

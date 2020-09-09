@@ -8,6 +8,7 @@ local TestUI = function(msg)
 		print("'|cffc41f3bboss|r' or '|cffc41f3bb|r' to show boss frames")
 		print("'|cffc41f3bpet|r' or '|cffc41f3bp|r' to show pet frames")
 		print("'|cffc41f3bmaintank|r' or '|cffc41f3bmt|r' to show maintank frames")
+		print("'|cffc41f3raidframe|r' or '|cffc41f3brf|r' to show raid frames")
 	elseif msg == 'arena' or msg == 'a' then
 		for i = 1, 3 do
 			_G['oUF_Arena'..i]:Show()
@@ -29,6 +30,8 @@ local TestUI = function(msg)
 		oUF_MainTank:Show()
 		oUF_MainTank.Hide = function() end
 		oUF_MainTank.unit = 'player'
+	elseif msg == 'raidframe' or msg == 'rf' then
+		
 	end
 end
 SlashCmdList.TestUI = TestUI
@@ -45,9 +48,7 @@ end)
 end)]]
 
 -- Shorten framestack command
-SlashCmdList["FSTACK"] = function()
-	SlashCmdList.FRAMESTACK(0)
-end
+SlashCmdList["FSTACK"] = function() SlashCmdList.FRAMESTACK(0) end
 _G.SLASH_FSTACK1 = "/fs"
 
 -- Enable lua error by command

@@ -18,17 +18,13 @@ local GetSpecializationInfo = _G.GetSpecializationInfo
 local UnitLevel = _G.UnitLevel
 local GetAddOnEnableState = _G.GetAddOnEnableState
 
-local function IsAddOnEnabled(addon)
-	return GetAddOnEnableState(D['MyName'], addon) == 2
-end
+local function IsAddOnEnabled(addon) return GetAddOnEnableState(D['MyName'], addon) == 2 end
 
 local function AreOtherAddOnsEnabled()
 	local name
 	for i = 1, GetNumAddOns() do
 		name = GetAddOnInfo(i)
-		if ((name ~= 'DuffedUI' and name ~= 'DuffedUI_ConfigUI') and IsAddOnEnabled(name)) then
-			return 'Yes'
-		end
+		if ((name ~= 'DuffedUI' and name ~= 'DuffedUI_ConfigUI') and IsAddOnEnabled(name)) then return 'Yes' end
 	end
 	return 'No'
 end
@@ -45,11 +41,7 @@ local function GetDisplayMode()
 	local displayMode
 
 	if window == '1' then
-		if maximize == '1' then
-			displayMode = 'Windowed (Fullscreen)'
-		else
-			displayMode = 'Windowed'
-		end
+		if maximize == '1' then displayMode = 'Windowed (Fullscreen)' else displayMode = 'Windowed' end
 	else
 		displayMode = 'Fullscreen'
 	end
@@ -111,23 +103,13 @@ local EnglishSpecName = {
 	[73] = 'Protection'
 }
 
-local function GetSpecName()
-	return EnglishSpecName[GetSpecializationInfo(GetSpecialization())]
-end
-
-local function GetResolution()
-	return (({GetScreenResolutions()})[GetCurrentResolution()] or GetCVar('gxWindowedResolution'))
-end
-
-local function PixelBestSize()
-	return max(0.4, min(1.15, 768 / D['ScreenHeight']))
-end
+local function GetSpecName() return EnglishSpecName[GetSpecializationInfo(GetSpecialization())] end
+local function GetResolution() return (({GetScreenResolutions()})[GetCurrentResolution()] or GetCVar('gxWindowedResolution')) end
+local function PixelBestSize() return max(0.4, min(1.15, 768 / D['ScreenHeight'])) end
 
 local function PixelClip(num)
 	local str = num and tostring(num)
-	if str and strlen(str) > 4 then
-		return tonumber(strsub(str, 0, 4))
-	end
+	if str and strlen(str) > 4 then return tonumber(strsub(str, 0, 4)) end
 	return num
 end
 
@@ -180,11 +162,7 @@ D['CreateStatusFrame'] = function()
 			line.Text:SetJustifyV('MIDDLE')
 			content['Line' .. i] = line
 
-			if i == 1 then
-				content['Line' .. i]:SetPoint('TOP', content, 'TOP')
-			else
-				content['Line' .. i]:SetPoint('TOP', content['Line' .. (i - 1)], 'BOTTOM', 0, -5)
-			end
+			if i == 1 then content['Line' .. i]:SetPoint('TOP', content, 'TOP') else content['Line' .. i]:SetPoint('TOP', content['Line' .. (i - 1)], 'BOTTOM', 0, -5) end
 		end
 
 		return content
@@ -204,9 +182,7 @@ D['CreateStatusFrame'] = function()
 	StatusFrame.CloseButton:SetPoint('TOPRIGHT', 0, 1)
 	StatusFrame.CloseButton:SkinCloseButton()
 	StatusFrame.CloseButton:RegisterForClicks('AnyUp')
-	StatusFrame.CloseButton:SetScript('OnClick', function(self)
-		self:GetParent():Hide()
-	end)
+	StatusFrame.CloseButton:SetScript('OnClick', function(self) self:GetParent():Hide() end)
 
 	-- Title logo (drag to move frame)
 	StatusFrame.TitleLogoFrame = CreateFrame('Frame', nil, StatusFrame, 'TitleDragAreaTemplate')
@@ -267,9 +243,7 @@ D['CreateStatusFrame'] = function()
 	StatusFrame.Section4.Content.Button1:SetPoint('CENTER', StatusFrame.Section4.Content)
 	StatusFrame.Section4.Content.Button1:SetText('|cffC41F3BBugreport')
 	StatusFrame.Section4.Content.Button1:SkinButton()
-	StatusFrame.Section4.Content.Button1:SetScript('OnClick', function()
-		StaticPopup_Show('BUGREPORT')
-	end)
+	StatusFrame.Section4.Content.Button1:SetScript('OnClick', function() StaticPopup_Show('BUGREPORT') end)
 
 	D['StatusFrame'] = StatusFrame
 end
@@ -283,9 +257,7 @@ local function UpdateDynamicValues()
 end
 
 function D.ShowStatusReport()
-	if not D['StatusFrame'] then
-		D['CreateStatusFrame']()
-	end
+	if not D['StatusFrame'] then D['CreateStatusFrame']() end
 
 	if not D['StatusFrame']:IsShown() then
 		UpdateDynamicValues()

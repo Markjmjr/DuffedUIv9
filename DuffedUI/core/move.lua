@@ -127,12 +127,9 @@ end
 function Move:OnEnter()
 	local a1, Parent, a2, X, Y = self:GetPoint()
 
-	if (Parent and Parent.GetName) then
-		Parent = Parent:GetName()
-	end
+	if (Parent and Parent.GetName) then Parent = Parent:GetName() end
 
 	GameTooltip:SetOwner(self, 'ANCHOR_CURSOR')
-	
 	GameTooltip:AddLine('Frame Info')
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddDoubleLine('Anchor 1:', a1, 1, 1, 1)
@@ -143,9 +140,7 @@ function Move:OnEnter()
 	GameTooltip:Show()
 end
 
-function Move:OnLeave(self)
-	GameTooltip:Hide()
-end
+function Move:OnLeave(self) GameTooltip:Hide() end
 
 function Move:StartOrStopMoving()
 	if InCombatLockdown() then return print(ERR_NOT_IN_COMBAT) end

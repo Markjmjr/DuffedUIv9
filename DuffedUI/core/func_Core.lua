@@ -8,9 +8,7 @@ D['petbuttonsize'] = D['Scale'](C['actionbar']['petbuttonsize'])
 D['petbuttonspacing'] = D['Scale'](C['actionbar']['buttonspacing'])
 
 if GameMenuFrame_UpdateVisibleButtons then
-	hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function()
-		GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight())
-	end)
+	hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function() GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonStore:GetHeight()) end)
 end
 CharacterFrameTab3:Show()
 
@@ -267,7 +265,7 @@ local tip = CreateFrame('GameTooltip', 'DuffedUI_iLvlTooltip', nil, 'GameTooltip
 local function InspectItemTextures()
 	if not tip.gems then tip.gems = {} else wipe(tip.gems) end
 
-	if not tip.essences then
+	if not tip.essences then 
 		tip.essences = {}
 	else
 		for _, essences in pairs(tip.essences) do wipe(essences) end
@@ -387,17 +385,8 @@ D['CreateFontString'] = function(self, size, text, textstyle, classcolor, anchor
 	fs:SetText(text)
 	fs:SetWordWrap(false)
 
-	if classcolor and type(classcolor) == 'boolean' then
-		fs:SetTextColor(D.r, D.g, D.b)
-	elseif classcolor == 'system' then
-		fs:SetTextColor(1, .8, 0)
-	end
-
-	if anchor and x and y then
-		fs:SetPoint(anchor, x, y)
-	else
-		fs:SetPoint('CENTER', 1, 0)
-	end
+	if classcolor and type(classcolor) == 'boolean' then fs:SetTextColor(D.r, D.g, D.b) elseif classcolor == 'system' then fs:SetTextColor(1, .8, 0) end
+	if anchor and x and y then fs:SetPoint(anchor, x, y) else fs:SetPoint('CENTER', 1, 0) end
 
 	return fs
 end

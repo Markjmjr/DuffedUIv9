@@ -18,9 +18,7 @@ AddOn.Credits = GetAddOnMetadata(AddOnName, 'X-Credits')
 
 ERR_NOT_IN_RAID = ''
 
-AddOn.SetPerCharVariable = function(varName, value)
-	_G [varName] = value
-end
+AddOn.SetPerCharVariable = function(varName, value) _G [varName] = value end
 
 AddOn.LocalizedClass, AddOn.Class, AddOn.ClassID = UnitClass("player")
 AddOn.ScanTooltip = CreateFrame('GameTooltip', 'DuffedUI_ScanTooltip', _G.UIParent, 'GameTooltipTemplate')
@@ -36,17 +34,13 @@ AddOn.GUID = UnitGUID("player")
 
 AddOn.QualityColors = {}
 local qualityColors = BAG_ITEM_QUALITY_COLORS
-for index, value in pairs(qualityColors) do
-	AddOn.QualityColors[index] = {r = value.r, g = value.g, b = value.b}
-end
+for index, value in pairs(qualityColors) do AddOn.QualityColors[index] = {r = value.r, g = value.g, b = value.b} end
 AddOn.QualityColors[-1] = {r = 0, g = 0, b = 0}
 AddOn.QualityColors[Enum.ItemQuality.Poor] = {r = .61, g = .61, b = .61}
 AddOn.QualityColors[Enum.ItemQuality.Common] = {r = 0, g = 0, b = 0}
 
 AddOn.ClassList = {}
-for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	AddOn.ClassList[v] = k
-end
+for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do AddOn.ClassList[v] = k end
 AddOn.ClassColors = {}
 local colors = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS
 for class in pairs(colors) do
@@ -61,9 +55,7 @@ AddOn.r, AddOn.g, AddOn.b = AddOn.ClassColors[AddOn.Class].r, AddOn.ClassColors[
 BAG_ITEM_QUALITY_COLORS[Enum.ItemQuality.Poor] = {r = 0.62, g = 0.62, b = 0.62}
 BAG_ITEM_QUALITY_COLORS[Enum.ItemQuality.Common] = {r = 1, g = 1, b = 1}
 
-AddOn.Noop = function()
-	return
-end
+AddOn.Noop = function() return end
 
 AddOn.AddOns = {}
 AddOn.AddOnVersion = {}
@@ -78,9 +70,7 @@ do
 	AddOn.AboutPanel:Hide()
 	AddOn.AboutPanel.name = AddOn.Title
 	AddOn.AboutPanel:SetScript("OnShow", function(self)
-		if self.show then
-			return
-		end
+		if self.show then return end
 
 		local titleInfo = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 		titleInfo:SetPoint("TOPLEFT", 16, -16)
@@ -130,9 +120,7 @@ do
 		buttonGitHub:SetSize(100, 22)
 		buttonGitHub:SetPoint("TOPLEFT", titleButtons, "BOTTOMLEFT", 0, -8)
 		buttonGitHub:SkinButton()
-		buttonGitHub:SetScript("OnClick", function()
-			StaticPopup_Show('DOWNLOAD')
-		end)
+		buttonGitHub:SetScript("OnClick", function() StaticPopup_Show('DOWNLOAD') end)
 		buttonGitHub.Text = buttonGitHub:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 		buttonGitHub.Text:SetPoint("CENTER", buttonGitHub)
 		buttonGitHub.Text:SetText("|cffffd100".."GitHub".."|r")
@@ -141,9 +129,7 @@ do
 		buttonBugReport:SetSize(100, 22)
 		buttonBugReport:SetPoint("LEFT", buttonGitHub, "RIGHT", 6, 0)
 		buttonBugReport:SkinButton()
-		buttonBugReport:SetScript("OnClick", function()
-			StaticPopup_Show('BUGREPORT')
-		end)
+		buttonBugReport:SetScript("OnClick", function() StaticPopup_Show('BUGREPORT') end)
 		buttonBugReport.Text = buttonBugReport:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 		buttonBugReport.Text:SetPoint("CENTER", buttonBugReport)
 		buttonBugReport.Text:SetText("|cffffd100".."Bug Report".."|r")
@@ -165,15 +151,9 @@ do
 	AddOn.AboutPanel.Questions:Hide()
 	AddOn.AboutPanel.Questions.parent = AddOn.AboutPanel.name
 	
-	--AddOn.AboutPanel.Changelog = CreateFrame( "Frame", nil, AddOn.AboutPanel)
-	--AddOn.AboutPanel.Changelog.name = "Changelog"
-	--AddOn.AboutPanel.Changelog:Hide()
-	--AddOn.AboutPanel.Changelog.parent = AddOn.AboutPanel.name
-
 	_G.InterfaceOptions_AddCategory(AddOn.AboutPanel)
 	_G.InterfaceOptions_AddCategory(AddOn.AboutPanel.Commands)
 	_G.InterfaceOptions_AddCategory(AddOn.AboutPanel.Questions)
-	--_G.InterfaceOptions_AddCategory(AddOn.AboutPanel.Changelog)
 end
 
 function AddOn.ScanTooltipTextures(clean, grabTextures)
@@ -183,15 +163,11 @@ function AddOn.ScanTooltipTextures(clean, grabTextures)
 		local texture = tex and tex:GetTexture()
 		if texture then
 			if grabTextures then
-				if not textures then
-					textures = {}
-				end
+				if not textures then textures = {} end
 				textures[i] = texture
 			end
 
-			if clean then
-				tex:SetTexture()
-			end
+			if clean then tex:SetTexture() end
 		end
 	end
 
@@ -258,9 +234,7 @@ DuffedUIOnVarsLoaded:RegisterEvent('VARIABLES_LOADED')
 DuffedUIOnVarsLoaded:SetScript('OnEvent', function(self, event)
 	self:UnregisterEvent('VARIABLES_LOADED')
 
-	if DuffedUIData == nil then
-		DuffedUIData = {}
-	end
+	if DuffedUIData == nil then DuffedUIData = {} end
 
 	if DuffedUIData.usePerCharData then
 		local playerName = UnitName('player') .. '@' .. GetRealmName()
@@ -268,25 +242,13 @@ DuffedUIOnVarsLoaded:SetScript('OnEvent', function(self, event)
 		if DuffedUIData.perCharData ~= nil and DuffedUIData.perCharData[playerName] ~= nil then
 			local pcd = DuffedUIData.perCharData[playerName]
 
-			if DuffedUIDataPerChar == nil then
-				DuffedUIDataPerChar = pcd.DuffedUIDataPerChar
-			end
-			if ClickCast == nil then
-				ClickCast = pcd.ClickCast
-			end
-			if ImprovedCurrency == nil then
-				ImprovedCurrency = pcd.ImprovedCurrency
-			end
+			if DuffedUIDataPerChar == nil then DuffedUIDataPerChar = pcd.DuffedUIDataPerChar end
+			if ImprovedCurrency == nil then ImprovedCurrency = pcd.ImprovedCurrency end
 		end
 
 		local SetPerCharVariable = function(varName, value)
-			if DuffedUIData.perCharData == nil then
-				DuffedUIData.perCharData = {}
-			end
-
-			if DuffedUIData.perCharData[playerName] == nil then
-				DuffedUIData.perCharData[playerName] = {}
-			end
+			if DuffedUIData.perCharData == nil then DuffedUIData.perCharData = {} end
+			if DuffedUIData.perCharData[playerName] == nil then DuffedUIData.perCharData[playerName] = {} end
 
 			local pcd = DuffedUIData.perCharData[playerName]
 

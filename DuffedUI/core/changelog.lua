@@ -97,9 +97,7 @@ function Module:CreateChangelog()
 	close:SetPoint('BOTTOMRIGHT', frame, -5, 5)
 	close:SetText(CLOSE)
 	close:SetSize(95, 19)
-	close:SetScript('OnClick', function()
-		frame:Hide()
-	end)
+	close:SetScript('OnClick', function() frame:Hide() end)
 	close:StripTextures()
 	close:SkinButton()
 	close:Disable()
@@ -149,9 +147,7 @@ function Module:CountDown()
 end
 
 function Module:ToggleChangeLog()
-	if not DuffedUIChangeLog then
-		self:CreateChangelog()
-	end
+	if not DuffedUIChangeLog then self:CreateChangelog() end
 
 	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF or 857)
 
@@ -176,7 +172,5 @@ function Module:CheckVersion()
 end
 
 function Module:OnInitialize()
-	D['Delay'](6, function()
-		Module:CheckVersion()
-	end)
+	D['Delay'](6, function() Module:CheckVersion() end)
 end

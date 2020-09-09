@@ -53,9 +53,7 @@ end
 D['StatusBarColorGradient'] = function(bar, value, max)
 	local current = (not max and value) or (value and max and max ~= 0 and value / max)
 
-	if not (bar and current) then
-		return
-	end
+	if not (bar and current) then return end
 
 	local r, g, b = D['ColorGradient'](current, 0.8, 0, 0, 0.8, 0.8, 0, 0, 0.8, 0)
 	bar:SetStatusBarColor(r, g, b)
@@ -329,13 +327,13 @@ D['PostCreateAura'] = function(self, button)
 	button.Glow:SetBackdropBorderColor(0, 0, 0)
 
 	button.Animation = button:CreateAnimationGroup()
-    button.Animation:SetLooping('BOUNCE')
+	button.Animation:SetLooping('BOUNCE')
 
-    button.Animation.FadeOut = button.Animation:CreateAnimation('Alpha')
-    button.Animation.FadeOut:SetFromAlpha(1)
-    button.Animation.FadeOut:SetToAlpha(0)
-    button.Animation.FadeOut:SetDuration(.6)
-    button.Animation.FadeOut:SetSmoothing('IN_OUT')
+	button.Animation.FadeOut = button.Animation:CreateAnimation('Alpha')
+	button.Animation.FadeOut:SetFromAlpha(1)
+	button.Animation.FadeOut:SetToAlpha(0)
+	button.Animation.FadeOut:SetDuration(.6)
+	button.Animation.FadeOut:SetSmoothing('IN_OUT')
 end
 
 D['PostUpdateAura'] = function(self, unit, icon, index, offset, filter, isDebuff, duration, timeLeft)
@@ -537,7 +535,6 @@ end
 
 -- BuffWatch: List of personal spells to show on unitframes as icon
 D['AuraWatch_AddSpell'] = function(id, point, color, anyUnit, onlyShowMissing, displayText, textThreshold, xOffset, yOffset, sizeOverride)
-
 	local r, g, b = 1, 1, 1
 	if color then r, g, b = unpack(color) end
 

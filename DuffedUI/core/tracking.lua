@@ -32,16 +32,12 @@ local function checkAll()
 		if v ~= nil then
 			local s, t = issecurevariable(_G, i)
 			if (type(i) == 'string' and i:match('Duffed')) or (type(t) == 'string' and t:match('Duffed')) then
-				if type(v) == 'table' and v['GetObjectType'] then
-					add(i, v)
-				end
+				if type(v) == 'table' and v['GetObjectType'] then add(i, v) end
 			end
 		end
 	end
 end
 
 local f = CreateFrame('Frame')
-f:SetScript('OnEvent',function(self,event)
-	C_Timer.After(10, checkAll)
-end)
+f:SetScript('OnEvent',function(self,event) C_Timer.After(10, checkAll) end)
 f:RegisterEvent('PLAYER_ENTERING_WORLD')

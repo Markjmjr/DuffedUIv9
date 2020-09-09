@@ -9,7 +9,6 @@ C['general'] = {
 	['autoaccept'] = true,
 	['blizzardreskin'] = true,
 	['calendarevent'] = false,
-	['4kpp'] = false,
 	['moveblizzardframes'] = false,
 	['minimapsize'] = 144,
 	['welcome'] = true,
@@ -50,12 +49,12 @@ C['unitframes'] = {
 	['showrange'] = true,
 	['combatfade'] = false,
 	['showsolo'] = false,
-	["style"] = {
-		["Options"] = {
-			["Unitframe-Style 1"] = 1,
-			["Unitframe-Style 2"] = 2,
-			["Unitframe-Style 3"] = 3,
-			["Unitframe-Style 4"] = 4
+	['style'] = {
+		['Options'] = {
+			['Unitframe-Style 1'] = 1,
+			['Unitframe-Style 2'] = 2,
+			['Unitframe-Style 3'] = 3,
+			['Unitframe-Style 4'] = 4
 		},
 		Value = 1
 	},
@@ -153,12 +152,12 @@ C['raid'] = {
 	['frameheight'] = 35,
 	['aurawatchiconsize'] = 7,
 	['aurawatchtexturedicon'] = false,
-	["raidlayout"] = {
-		["Options"] = {
-			[DAMAGE] = "damage",
-			[HEALER] = "heal"
+	['raidlayout'] = {
+		['Options'] = {
+			[DAMAGE] = 'damage',
+			[HEALER] = 'heal'
 		},
-		["Value"] = "heal"
+		['Value'] = 'heal'
 	},
 }
 
@@ -219,8 +218,8 @@ C['bags'] = {
 	['PulseNewItem'] = true,
 	['ReverseLoot'] = true,
 	['SortInverted'] = false,
-	["BagBar"] = false,
-	["BagBarMouseover"] = false,
+	['BagBar'] = false,
+	['BagBarMouseover'] = false,
 }
 
 C['misc'] = {
@@ -244,29 +243,29 @@ C['misc'] = {
 }
 
 C['announcements'] = {
-	["Interrupt"] = {
-		["Options"] = {
-			["Disabled"] = "NONE",
-			["Emote"] = "EMOTE",
-			["Party Only"] = "PARTY",
-			["Party/Raid"] = "RAID",
-			["Raid Only"] = "RAID_ONLY",
-			["Say"] = "SAY",
-			["Yell"] = "YELL"
+	['Interrupt'] = {
+		['Options'] = {
+			['Disabled'] = 'NONE',
+			['Emote'] = 'EMOTE',
+			['Party Only'] = 'PARTY',
+			['Party/Raid'] = 'RAID',
+			['Raid Only'] = 'RAID_ONLY',
+			['Say'] = 'SAY',
+			['Yell'] = 'YELL'
 		},
-		["Value"] = "SAY"
+		['Value'] = 'SAY'
 	},
-	["Dispell"] = {
-		["Options"] = {
-			["Disabled"] = "NONE",
-			["Emote"] = "EMOTE",
-			["Party Only"] = "PARTY",
-			["Party/Raid"] = "RAID",
-			["Raid Only"] = "RAID_ONLY",
-			["Say"] = "SAY",
-			["Yell"] = "YELL"
+	['Dispell'] = {
+		['Options'] = {
+			['Disabled'] = 'NONE',
+			['Emote'] = 'EMOTE',
+			['Party Only'] = 'PARTY',
+			['Party/Raid'] = 'RAID',
+			['Raid Only'] = 'RAID_ONLY',
+			['Say'] = 'SAY',
+			['Yell'] = 'YELL'
 		},
-		["Value"] = "NONE"
+		['Value'] = 'NONE'
 	},
 	['drinkannouncement'] = false,
 }
@@ -306,9 +305,9 @@ C['merchant'] = {
 }
 
 -- Test Table
-C["uitextures"] = {
+C['uitextures'] = {
 }
 
 -- Test Table
-C["uifonts"] = {
+C['uifonts'] = {
 }
