@@ -6,16 +6,16 @@ local string_gmatch = _G.string.gmatch
 local CreateFrame = _G.CreateFrame
 
 local UI_COMMANDS = {
-	'• /disband - Disband raidgroup',
+    '• /disband - Disband raidgroup',
     '• /install - Brings up the installer again',
     '• /kb - Allows for quick keybinding',
     '• /luaerror - Enable/Disables Lua errors in your game -> on/off',
     '• /moveui - Allows you to move most the UI elements',
-	'• /rl - Allows you to reload the UI',
+    '• /rl - Allows you to reload the UI',
     '• /status - Show a window with info to help with bug reports if needed',
-	'• /switch - Switch between dps or heal layout-> /switch dps, /switch heal',
-	'• /dt toggle - Toggle the Datatexts',
-	'• /dt reset - Reset the Datatexts',
+    '• /switch - Switch between dps or heal layout-> /switch dps, /switch heal',
+    '• /dt toggle - Toggle the Datatexts',
+    '• /dt reset - Reset the Datatexts',
 }
 
 local function ModifiedString(string)
