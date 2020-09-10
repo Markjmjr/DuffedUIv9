@@ -6,12 +6,17 @@ local pairs = _G.pairs
 local string_find = _G.string.find
 local string_gsub = _G.string.gsub
 local string_match = _G.string.match
+local string_rep = _G.string.rep
 
 local GetItemInfo = _G.GetItemInfo
 local GetItemStats = _G.GetItemStats
+local IsCorruptedItem = _G.IsCorruptedItem
+local LE_ITEM_CLASS_ARMOR = _G.LE_ITEM_CLASS_ARMOR
+local LE_ITEM_CLASS_WEAPON = _G.LE_ITEM_CLASS_WEAPON
 
 local itemCache = {}
 
+-- Show itemlevel on chat hyperlinks
 local function isItemHasLevel(link)
 	local name, _, rarity, level, _, _, _, _, _, _, _, classID = GetItemInfo(link)
 	if name and level and rarity > 1 and (classID == LE_ITEM_CLASS_WEAPON or classID == LE_ITEM_CLASS_ARMOR) then
@@ -20,19 +25,39 @@ local function isItemHasLevel(link)
 	end
 end
 
+local socketWatchList = {
+	["BLUE"] = true,
+	["RED"] = true,
+	["YELLOW"] = true,
+	["COGWHEEL"] = true,
+	["HYDRAULIC"] = true,
+	["META"] = true,
+	["PRISMATIC"] = true,
+	["PUNCHCARDBLUE"] = true,
+	["PUNCHCARDRED"] = true,
+	["PUNCHCARDYELLOW"] = true,
+}
+
+local function GetSocketTexture(socket, count)
+	return string_rep("|TInterface\\ItemSocketingFrame\\UI-EmptySocket-"..socket..":0|t", count)
+end
+
 local function isItemHasGem(link)
+	local text = ""
 	local stats = GetItemStats(link)
-	for index in pairs(stats) do
-		if string_find(index, 'EMPTY_SOCKET_') then
-			return '|TInterface\\ItemSocketingFrame\\UI-EmptySocket-Prismatic:0|t'
+	for stat, count in pairs(stats) do
+		local socket = string_match(stat, "EMPTY_SOCKET_(%S+)")
+		if socket and socketWatchList[socket] then
+			text = text..GetSocketTexture(socket, count)
 		end
 	end
 
-	return ''
+	return text
 end
 
+local corruptedString = "|T3004126:0:0:0:0:64:64:5:59:5:59|t"
 local function isItemCorrupted(link)
-	return IsCorruptedItem(link) and '|T3004126:0:0:0:0:64:64:5:59:5:59|t' or ''
+	return IsCorruptedItem(link) and corruptedString or ""
 end
 
 local function convertItemLevel(link)
