@@ -1,7 +1,7 @@
-## Interface: 90001
+## Interface: 90002
 ## Title: |cffC41F3BDuffedUI|r Config UI
 ## Notes: Someday there is only pantesaur left.
-## Version: 9.0.1
+## Version: 9.0.2
 ## X-Revision: 8
 ## Author: Tohveli
 ## Editor: Tukz, Elv22
