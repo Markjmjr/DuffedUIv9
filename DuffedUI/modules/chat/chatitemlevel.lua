@@ -10,7 +10,6 @@ local string_rep = _G.string.rep
 
 local GetItemInfo = _G.GetItemInfo
 local GetItemStats = _G.GetItemStats
-local IsCorruptedItem = _G.IsCorruptedItem
 local LE_ITEM_CLASS_ARMOR = _G.LE_ITEM_CLASS_ARMOR
 local LE_ITEM_CLASS_WEAPON = _G.LE_ITEM_CLASS_WEAPON
 
@@ -55,11 +54,6 @@ local function isItemHasGem(link)
 	return text
 end
 
-local corruptedString = "|T3004126:0:0:0:0:64:64:5:59:5:59|t"
-local function isItemCorrupted(link)
-	return IsCorruptedItem(link) and corruptedString or ""
-end
-
 local function convertItemLevel(link)
 	if itemCache[link] then
 		return itemCache[link]
@@ -69,7 +63,7 @@ local function convertItemLevel(link)
 	if itemLink then
 		local name, itemLevel = isItemHasLevel(itemLink)
 		if name and itemLevel then
-			link = string_gsub(link, '|h%[(.-)%]|h', '|h['..name..'('..itemLevel..')]|h'..isItemCorrupted(itemLink)..isItemHasGem(itemLink))
+			link = string_gsub(link, '|h%[(.-)%]|h', '|h['..name..'('..itemLevel..')]|h'..isItemHasGem(itemLink))
 			itemCache[link] = link
 		end
 	end

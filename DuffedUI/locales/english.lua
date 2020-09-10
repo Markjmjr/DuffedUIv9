@@ -324,10 +324,6 @@ L['tooltip'] = {
 	['count'] = 'Count',
 	['bank'] = 'Bank',
 	['mount'] = 'Mount:',
-	['Corrupted'] = "|cffff3377[Corrupted]|r",
-	['CorruptedCraftet'] = "|cffff66cc[Corrupted (Crafted)]|r",
-	['PurifiedNew'] = "|cffaadd44[Purified (New)]|r",
-	['PurifiedOld'] = "|cffffbb00[Purified (Old)]|r",
 	['Pristine'] = "|cff66ff99[Pristine]|r",
 }
 

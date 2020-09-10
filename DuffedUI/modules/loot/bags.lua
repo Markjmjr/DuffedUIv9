@@ -55,7 +55,6 @@ local SortReagentBankBags = _G.SortReagentBankBags
 local SOUNDKIT = _G.SOUNDKIT
 local Token1, Token2, Token3 = _G.BackpackTokenFrameToken1, _G.BackpackTokenFrameToken2, _G.BackpackTokenFrameToken3
 local UIParent = _G.UIParent
-local IsCorruptedItem = IsCorruptedItem
 
 Color1 = D['RGBToHex'](unpack(C['media']['datatextcolor1']))
 Color2 = D['RGBToHex'](unpack(C['media']['datatextcolor2']))
@@ -418,10 +417,6 @@ function Stuffing:SlotUpdate(b)
 			b.frame.Azerite:Show()
 		end
 		
-		if b.frame.Corrupt and IsCorruptedItem(clink) then
-			b.frame.Corrupt:Show()
-		end
-
 		if (IsItemUnusable(clink) or b.level and b.level > D['Level']) and not locked then
 			_G[b.frame:GetName()..'IconTexture']:SetVertexColor(1, 0.1, 0.1)
 		else

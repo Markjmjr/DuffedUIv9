@@ -326,10 +326,6 @@ if D.Client == 'deDE' then
 		['count'] = 'Anzahl',
 		['bank'] = 'Bank',
 		['mount'] = 'Sitzt auf:',
-		['Corrupted'] = "|cffff3377[Verdorben]|r",
-		['CorruptedCraftet'] = "|cffff66cc[Verdorben (Hergestellt)]|r",
-		['PurifiedNew'] = "|cffaadd44[Gereinigt (Neu)]|r",
-		['PurifiedOld'] = "|cffffbb00[Gereinigt (Alt)]|r",
 		['Pristine'] = "|cff66ff99[Makellos]|r",
 	}
 
