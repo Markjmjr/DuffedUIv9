@@ -70,7 +70,7 @@ _G.StaticPopupDialogs['BUGREPORT'] = {
 function Module:CreateChangelog()
 	local frame = CreateFrame('Frame', 'DuffedUIChangeLog', UIParent, 'BackdropTemplate')
 	frame:SetPoint('CENTER')
-	frame:SetSize(445, 430)  -- was 445, 245
+	frame:SetSize(600, 430)  -- was 445, 245
 	frame:SetTemplate('Transparent')
 	frame:SetFrameStrata('TOOLTIP')
 
@@ -88,11 +88,11 @@ function Module:CreateChangelog()
 	icon.bg = icon:CreateTexture(nil, 'ARTWORK')
 	icon.bg:Point('TOPLEFT', 2, -2)
 	icon.bg:Point('BOTTOMRIGHT', -2, 2)
-	icon.bg:SetTexture(C['media'].duffed)
+	icon.bg:SetTexture(C['media']['duffed'])
 	
 	local title = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 	title:SetPoint('LEFT', icon, 'RIGHT', 3, 0)
-	title:SetSize(422, 20)
+	title:SetSize(577, 20)
 	title:SetTemplate('Transparent')
 	title.text = title:CreateFontString(nil, 'OVERLAY')
 	title.text:SetPoint('CENTER', title, 0, -1)
