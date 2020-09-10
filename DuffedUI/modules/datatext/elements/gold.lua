@@ -175,6 +175,7 @@ local OnEnter = function(self)
 		D['Currency'](1822) -- Renown
 		D['Currency'](1813) -- Reservoir Anima
 		D['Currency'](1751) -- Freed Soul
+		D['Currency'](1810) -- Willing Soul
 	end
 
 	if ImprovedCurrency['Raid'] then
