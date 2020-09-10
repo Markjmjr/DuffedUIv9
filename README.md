@@ -43,7 +43,11 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
-2020-09-06 | Added new Set-Function, Needs testing
+2020-09-10 | Update for Patch 9.0.2
+2020-09-09 | Fixed idention on table<br />Refactoring core-scripts
+2020-09-08 | Update Panels  by [Rav99](https://github.com/Rav99)<br />Fix dt's tooltip on icenter  by [Rav99](https://github.com/Rav99)<br />Removed old nameplate-folder and unnecessary code<br />Added Widget-Display to nameplates ==> needs testing <==<br />Moved nameplate-script to elements because nameplates are oUF-based and not stand alone
+2020-09-07 | Added formerly removed systemfonts back to the UI<br />Fixed issue with chat mesg if guild member login or logoff
+2020-09-06 | Added new SetFont-Function, Needs testing<br />Update SpecSwitcher by [Rav99](https://github.com/Rav99)<br />Fixed issue with instances and coords on map<br />Added removed system fonts in case they are updated again<br />Changed color from cooldowns on actionbars
 2020-09-05 | Fixed issue with removed font<br />Moved debufflistings to more separate files<br />Fixed hoverbind, DuffedUI uses now the Quickbind-Function from Blizzard and commands works as known<br />Removed all keybind-commands, except /dkb, /dkb is the new command to trigger setup for keybinds<br />Attempt to fix AltPowerBar<br />Added new font for removed system font
 2020-08-31 | Update for Aurora
 2020-08-30 | Added different colors for currencies on backpack<br />Removed zero-values from currencies<br />Optimized currency function<br />Fixed size for currencies, 16x16 is too big<br />Removed currency from wrong section<br />Removed covenant specific currencies<br />Added new function for currencies<br />Added new currencies<br />Added correct visual style to chatbubbles via SetTemplate and localized config values<br />Better way too address config values<br />Update for Aurora
