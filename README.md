@@ -43,7 +43,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
-2020-09-10 | Update for Patch 9.0.2
+2020-09-10 | Update for Patch 9.0.2<br />toc-bump
 2020-09-09 | Fixed idention on table<br />Refactoring core-scripts
 2020-09-08 | Update Panels  by [Rav99](https://github.com/Rav99)<br />Fix dt's tooltip on icenter  by [Rav99](https://github.com/Rav99)<br />Removed old nameplate-folder and unnecessary code<br />Added Widget-Display to nameplates ==> needs testing <==<br />Moved nameplate-script to elements because nameplates are oUF-based and not stand alone
 2020-09-07 | Added formerly removed systemfonts back to the UI<br />Fixed issue with chat mesg if guild member login or logoff
