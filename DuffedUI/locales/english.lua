@@ -275,6 +275,8 @@ L['dt'] = {
 	['currently'] = "|CFFFFFFFFCurrently:|r ",
 	['still'] = "Still: %.2d Hrs. und %.2d Min.",
 	['next'] = "|CFFFFFFFFNext:|r ",
+	['cfe'] = '|cffC41F3BCurrencies of early expansions:|r',
+	['cce'] = '|cffC41F3BCurrent currencies:|r',
 }
 
 L['Slots'] = {

@@ -132,6 +132,7 @@ local OnEnter = function(self)
 	GameTooltip:AddDoubleLine(FROM_TOTAL .. ' ', FormatTooltipMoney(totalGold), 1, 1, 1, 1, 1, 1)
 
 	GameTooltip:AddLine(' ')
+	GameTooltip:AddLine(L['dt']['cce'])
 	GameTooltip:AddLine(EXPANSION_NAME8)
 	D['Currency'](1751) -- Freed Soul
 	D['Currency'](1767) -- Stygia
@@ -152,6 +153,8 @@ local OnEnter = function(self)
 	end
 
 	if C['datatext']['oldcurrency'] then
+		GameTooltip:AddLine(' ')
+		GameTooltip:AddLine(L['dt']['cfe'])
 		if ImprovedCurrency[EXPANSION_NAME7] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME7)

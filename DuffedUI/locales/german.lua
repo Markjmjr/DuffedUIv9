@@ -277,6 +277,8 @@ if D.Client == 'deDE' then
 		['currently'] = "|CFFFFFFFFMomentan:|r ",
 		['still'] = "Noch: %.2d Std. und %.2d Min.",
 		['next'] = "|CFFFFFFFFNächster:|r ",
+		['cfe'] = '|cffC41F3BWährungen früher Erweiterungen:|r',
+		['cce'] = '|cffC41F3BAktuelle Währungen:|r',
 	}
 
 	L['Slots'] = {
