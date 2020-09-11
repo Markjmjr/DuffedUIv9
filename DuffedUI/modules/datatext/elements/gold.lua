@@ -3,7 +3,6 @@ local D, C, L = unpack(select(2, ...))
 local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
-local EXPANSION_NAME1 = EXPANSION_NAME1 -- 'The Burning Crusade'
 local EXPANSION_NAME2 = EXPANSION_NAME2 -- 'Wrath of the Lich King'
 local EXPANSION_NAME3 = EXPANSION_NAME3 -- 'Cataclysm'
 local EXPANSION_NAME4 = EXPANSION_NAME4 -- 'Mists of Pandaria'
