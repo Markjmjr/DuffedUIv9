@@ -250,6 +250,10 @@ local OnEnter = function(self)
 		if ImprovedCurrency[EXPANSION_NAME3] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME3)
+			D['Currency'](361) -- Illustrious Jewelcrafter's Token
+			D['Currency'](416) -- Mark of the World Tree
+			D['Currency'](614) -- Mote of Darkness
+			D['Currency'](615) -- Essence of Corrupted Deathwing
 		end
 
 		if ImprovedCurrency[EXPANSION_NAME2] then
@@ -276,7 +280,7 @@ local OnEnter = function(self)
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine('Profession Token')
 		D['Currency'](61)
-		D['Currency'](361)
+		
 		
 		
 		
@@ -289,7 +293,7 @@ local OnEnter = function(self)
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(MISCELLANEOUS)
 		D['Currency'](241)
-		D['Currency'](416)
+		
 		D['Currency'](515)
 		
 		
