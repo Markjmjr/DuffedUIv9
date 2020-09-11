@@ -149,7 +149,7 @@ local OnEnter = function(self)
 		D['Currency'](390)
 		D['Currency'](391)
 		D['Currency'](392)
-		D['Currency'](944)
+		D['Currency'](944) -- Artifact Fragment - Warlords of Draenor
 		D['Currency'](1268)
 		D['Currency'](1356) -- Echoes of Battle - Legion
 		D['Currency'](1357) -- Echoes of Domination - Legion
@@ -195,6 +195,17 @@ local OnEnter = function(self)
 		if ImprovedCurrency[EXPANSION_NAME5] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME5)
+			D['Currency'](823) -- Apexis Crystal
+			D['Currency'](824) -- Garrison Ressources
+			D['Currency'](910) -- Secret of Draenor Alchemy
+			D['Currency'](980) -- Dingy Iron Coins
+			D['Currency'](994) -- Seal of Tempered Fate
+			D['Currency'](999) -- Secret of Draenor Tailoring
+			D['Currency'](1008) -- Secret of Draenor Jewelcrafting
+			D['Currency'](1017) -- Secret of Draenor Leatherworking
+			D['Currency'](1020) -- Secret of Draenor Blacksmithing
+			D['Currency'](1101) -- Oil
+			D['Currency'](1129) -- Seal of Inevitable Fate
 		end
 
 		if ImprovedCurrency[EXPANSION_NAME4] then
@@ -253,19 +264,8 @@ local OnEnter = function(self)
 		GameTooltip:AddLine('Profession Token')
 		D['Currency'](61)
 		D['Currency'](361)
-		D['Currency'](910)
-		D['Currency'](980)
-		D['Currency'](999)
-		D['Currency'](1008)
-		D['Currency'](1017)
-		D['Currency'](1020)
-	--end
-
-	--if ImprovedCurrency['Garrison'] then
-		GameTooltip:AddLine(' ')
-		GameTooltip:AddLine('Garrison')
-		D['Currency'](824)
-		D['Currency'](1101)
+		
+		
 		
 		
 		
