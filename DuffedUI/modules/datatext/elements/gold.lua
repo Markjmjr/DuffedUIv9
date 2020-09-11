@@ -146,11 +146,7 @@ local OnEnter = function(self)
 	if ImprovedCurrency['PvP'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PVP_FLAG)
-		D['Currency'](390)
-		D['Currency'](391)
-		D['Currency'](392)
 		D['Currency'](944) -- Artifact Fragment - Warlords of Draenor
-		D['Currency'](1268)
 		D['Currency'](1356) -- Echoes of Battle - Legion
 		D['Currency'](1357) -- Echoes of Domination - Legion
 	end
