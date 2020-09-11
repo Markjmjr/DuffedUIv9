@@ -167,6 +167,7 @@ C['datatext'] = {
 	['fontsize'] = 11,
 	['ShowInCombat'] = false,
 	['battleground'] = true,
+	['oldcurrency'] = true,
 }
 
 C['cooldown'] = {

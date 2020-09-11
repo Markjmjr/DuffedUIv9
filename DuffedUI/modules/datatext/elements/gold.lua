@@ -3,6 +3,7 @@ local D, C, L = unpack(select(2, ...))
 local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
+local EXPANSION_NAME8 = EXPANSION_NAME8 -- 'Shadowlands'
 
 D['SetPerCharVariable']('ImprovedCurrency', {})
 
@@ -120,6 +121,13 @@ local OnEnter = function(self)
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddLine(L['dt']['server'])
 	GameTooltip:AddDoubleLine(FROM_TOTAL .. ' ', FormatTooltipMoney(totalGold), 1, 1, 1, 1, 1, 1)
+
+	GameTooltip:AddLine(' ')
+	GameTooltip:AddLine(EXPANSION_NAME8)
+
+	if C['datatext']['oldcurrency'] then
+
+	end
 
 	if archaeology and ImprovedCurrency['Archaeology'] then
 		GameTooltip:AddLine(' ')

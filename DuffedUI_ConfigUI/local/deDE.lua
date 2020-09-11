@@ -196,6 +196,10 @@ DuffedUIConfig['deDE'] = {
 		['battleground'] = {
 			['Name'] = 'Statistikanzeige auf dem Schlachtfeld',
 		},
+
+		['oldcurrency'] = {
+			['Name'] = 'Zeige Währungen alter Erweiterungen',
+		},
 	},
 	
 	['loot'] = {

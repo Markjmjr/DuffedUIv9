@@ -194,8 +194,12 @@ DuffedUIConfig ['enUS'] = {
 			['Name'] = 'Activate tooltip in combat',
 		},
 
-		['combatground'] = {
+		['battleground'] = {
 			['Name'] = 'Statistics on the combatfield',
+		},
+
+		['oldcurrency'] = {
+			['Name'] = 'Show currencies of old expansions',
 		},
 	},
 
