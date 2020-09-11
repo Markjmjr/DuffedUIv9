@@ -3,10 +3,10 @@ local D, C, L = unpack(select(2, ...))
 local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
-local EXPANSION_NAME5 = EXPANSION_NAME1 -- 'The Burning Crusade'
-local EXPANSION_NAME5 = EXPANSION_NAME2 -- 'Wrath of the Lich King'
-local EXPANSION_NAME5 = EXPANSION_NAME3 -- 'Cataclysm'
-local EXPANSION_NAME5 = EXPANSION_NAME4 -- 'Mists of Pandaria'
+local EXPANSION_NAME1 = EXPANSION_NAME1 -- 'The Burning Crusade'
+local EXPANSION_NAME2 = EXPANSION_NAME2 -- 'Wrath of the Lich King'
+local EXPANSION_NAME3 = EXPANSION_NAME3 -- 'Cataclysm'
+local EXPANSION_NAME4 = EXPANSION_NAME4 -- 'Mists of Pandaria'
 local EXPANSION_NAME5 = EXPANSION_NAME5 -- 'Warlords of Draenor'
 local EXPANSION_NAME6 = EXPANSION_NAME6 -- 'Legion'
 local EXPANSION_NAME7 = EXPANSION_NAME7 -- 'Battle for Azeroth'
@@ -75,13 +75,13 @@ local OnEnter = function(self)
 		if InCombatLockdown() then return end
 	end
 
-	if ImprovedCurrency['Archaeology'] == nil then ImprovedCurrency['Archaeology'] = true end
-	if ImprovedCurrency['Cooking'] == nil then ImprovedCurrency['Cooking'] = true end
-	if ImprovedCurrency['Professions'] == nil then ImprovedCurrency['Professions'] = true end
-	if ImprovedCurrency['Garrison'] == nil then ImprovedCurrency['Garrison'] = true end
-	if ImprovedCurrency['Miscellaneous'] == nil then ImprovedCurrency['Miscellaneous'] = true end
-	if ImprovedCurrency['PvP'] == nil then ImprovedCurrency['PvP'] = true end
-	if ImprovedCurrency['Raid'] == nil then ImprovedCurrency['Raid'] = true end
+	if ImprovedCurrency[EXPANSION_NAME7] == nil then ImprovedCurrency[EXPANSION_NAME7] = true end
+	if ImprovedCurrency[EXPANSION_NAME6] == nil then ImprovedCurrency[EXPANSION_NAME6] = true end
+	if ImprovedCurrency[EXPANSION_NAME5] == nil then ImprovedCurrency[EXPANSION_NAME5] = true end
+	if ImprovedCurrency[EXPANSION_NAME4] == nil then ImprovedCurrency[EXPANSION_NAME4] = true end
+	if ImprovedCurrency[EXPANSION_NAME3] == nil then ImprovedCurrency[EXPANSION_NAME3] = true end
+	if ImprovedCurrency[EXPANSION_NAME2] == nil then ImprovedCurrency[EXPANSION_NAME2] = true end
+	if ImprovedCurrency[EXPANSION_NAME1] == nil then ImprovedCurrency[EXPANSION_NAME1] = true end
 
 	local prof1, prof2, archaeology, _, cooking = GetProfessions()
 
@@ -133,10 +133,43 @@ local OnEnter = function(self)
 	GameTooltip:AddLine(EXPANSION_NAME8)
 
 	if C['datatext']['oldcurrency'] then
+		if ImprovedCurrency[EXPANSION_NAME7] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME7)
+		end
 
+		if ImprovedCurrency[EXPANSION_NAME6] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME6)
+		end
+
+		if ImprovedCurrency[EXPANSION_NAME5] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME5)
+		end
+
+		if ImprovedCurrency[EXPANSION_NAME4] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME4)
+		end
+
+		if ImprovedCurrency[EXPANSION_NAME3] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME3)
+		end
+
+		if ImprovedCurrency[EXPANSION_NAME2] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME2)
+		end
+
+		if ImprovedCurrency[EXPANSION_NAME1] then
+			GameTooltip:AddLine(' ')
+			GameTooltip:AddLine(EXPANSION_NAME1)
+		end
 	end
 
-	if archaeology and ImprovedCurrency['Archaeology'] then
+	--if archaeology and ImprovedCurrency['Archaeology'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PROFESSIONS_ARCHAEOLOGY .. ': ')
 		D['Currency'](384) -- Dwarf
@@ -157,16 +190,16 @@ local OnEnter = function(self)
 		D['Currency'](1172) -- Highborne
 		D['Currency'](1173) -- Highmountain
 		D['Currency'](1174) -- Demonic
-	end
+--	end
 
-	if cooking and ImprovedCurrency['Cooking'] then
+	--if cooking and ImprovedCurrency['Cooking'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PROFESSIONS_COOKING .. ': ')
 		D['Currency'](81)
 		D['Currency'](402)
-	end
+	--end
 
-	if ImprovedCurrency['Professions'] then
+	--if ImprovedCurrency['Professions'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine('Profession Token')
 		D['Currency'](61)
@@ -177,9 +210,9 @@ local OnEnter = function(self)
 		D['Currency'](1008)
 		D['Currency'](1017)
 		D['Currency'](1020)
-	end
+	--end
 
-	if ImprovedCurrency['Garrison'] then
+	--if ImprovedCurrency['Garrison'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine('Garrison')
 		D['Currency'](824)
@@ -191,9 +224,9 @@ local OnEnter = function(self)
 		D['Currency'](1813) -- Reservoir Anima
 		D['Currency'](1751) -- Freed Soul
 		D['Currency'](1810) -- Willing Soul
-	end
+	--end
 
-	if ImprovedCurrency['Raid'] then
+	--if ImprovedCurrency['Raid'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(L['dt']['dr'])
 		D['Currency'](1565)
@@ -210,9 +243,9 @@ local OnEnter = function(self)
 		D['Currency'](1728) -- Phantasma for Thorgast
 		D['Currency'](1767) -- Stygia
 		D['Currency'](1828) -- Soul Ash
-	end
+	--end
 
-	if ImprovedCurrency['PvP'] then
+	--if ImprovedCurrency['PvP'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PVP_FLAG)
 		D['Currency'](390)
@@ -221,9 +254,9 @@ local OnEnter = function(self)
 		D['Currency'](944)
 		D['Currency'](1268)
 		D['Currency'](1356)
-	end
+	--end
 
-	if ImprovedCurrency['Miscellaneous'] then
+	--if ImprovedCurrency['Miscellaneous'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(MISCELLANEOUS)
 		D['Currency'](241)
@@ -236,7 +269,7 @@ local OnEnter = function(self)
 		D['Currency'](1820) -- Infused Ruby
 		D['Currency'](1754)
 		D['Currency'](1816)
-	end
+	--end
 
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddDoubleLine(KEY_BUTTON1..':', L['dt']['goldbagsopen'], 1, 1, 1)
@@ -247,32 +280,30 @@ local OnEnter = function(self)
 	GameTooltip:SetTemplate('Transparent')
 end
 
-local OnLeave = function()
-	GameTooltip:Hide()
-end
+local OnLeave = function() GameTooltip:Hide() end
 
 local RightClickMenu = {
 	{ text = 'DuffedUI Improved Currency Options', isTitle = true , notCheckable = true },
-	{ text = 'Show Archaeology Fragments', checked = function() return ImprovedCurrency['Archaeology'] end, func = function()
-		if ImprovedCurrency['Archaeology'] then ImprovedCurrency['Archaeology'] = false else ImprovedCurrency['Archaeology'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME7, checked = function() return ImprovedCurrency[EXPANSION_NAME7] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME7] then ImprovedCurrency[EXPANSION_NAME7] = false else ImprovedCurrency[EXPANSION_NAME7] = true end
 	end	},
-	{ text = 'Show Profession Tokens', checked = function() return ImprovedCurrency['Professions'] end, func = function()
-		if ImprovedCurrency['Professions'] then ImprovedCurrency['Professions'] = false else ImprovedCurrency['Professions'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME6, checked = function() return ImprovedCurrency[EXPANSION_NAME6] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME6] then ImprovedCurrency[EXPANSION_NAME6] = false else ImprovedCurrency[EXPANSION_NAME6] = true end
 	end	},
-	{ text = 'Show Garrison Tokens', checked = function() return ImprovedCurrency['Garrison'] end, func = function()
-		if ImprovedCurrency['Garrison'] then ImprovedCurrency['Garrison'] = false else ImprovedCurrency['Garrison'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME5, checked = function() return ImprovedCurrency[EXPANSION_NAME5] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME5] then ImprovedCurrency[EXPANSION_NAME5] = false else ImprovedCurrency[EXPANSION_NAME5] = true end
 	end	},
-	{ text = 'Show Player vs Player Currency', checked = function() return ImprovedCurrency['PvP'] end, func = function()
-		if ImprovedCurrency['PvP'] then ImprovedCurrency['PvP'] = false else ImprovedCurrency['PvP'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME4, checked = function() return ImprovedCurrency[EXPANSION_NAME4] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME4] then ImprovedCurrency[EXPANSION_NAME4] = false else ImprovedCurrency[EXPANSION_NAME4] = true end
 	end	},
-	{ text = 'Show Dungeon and Raid Currency', checked = function() return ImprovedCurrency['Raid'] end, func = function()
-		if ImprovedCurrency['Raid'] then ImprovedCurrency['Raid'] = false else ImprovedCurrency['Raid'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME3, checked = function() return ImprovedCurrency[EXPANSION_NAME3] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME3] then ImprovedCurrency[EXPANSION_NAME3] = false else ImprovedCurrency[EXPANSION_NAME3] = true end
 	end	},
-	{ text = 'Show Cooking Awards', checked = function() return ImprovedCurrency['Cooking'] end, func = function()
-		if ImprovedCurrency['Cooking'] then ImprovedCurrency['Cooking'] = false else ImprovedCurrency['Cooking'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME2, checked = function() return ImprovedCurrency[EXPANSION_NAME2] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME2] then ImprovedCurrency[EXPANSION_NAME2] = false else ImprovedCurrency[EXPANSION_NAME2] = true end
 	end	},
-	{ text = 'Show Miscellaneous Currency', checked = function() return ImprovedCurrency['Miscellaneous'] end, func = function()
-		if ImprovedCurrency['Miscellaneous'] then ImprovedCurrency['Miscellaneous'] = false else ImprovedCurrency['Miscellaneous'] = true end
+	{ text = 'Show currency from ' .. EXPANSION_NAME1, checked = function() return ImprovedCurrency[EXPANSION_NAME1] end, func = function()
+		if ImprovedCurrency[EXPANSION_NAME1] then ImprovedCurrency[EXPANSION_NAME1] = false else ImprovedCurrency[EXPANSION_NAME1] = true end
 	end	},
 }
 
