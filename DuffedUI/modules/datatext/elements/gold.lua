@@ -81,12 +81,11 @@ local OnEnter = function(self)
 	if ImprovedCurrency[EXPANSION_NAME4] == nil then ImprovedCurrency[EXPANSION_NAME4] = true end
 	if ImprovedCurrency[EXPANSION_NAME3] == nil then ImprovedCurrency[EXPANSION_NAME3] = true end
 	if ImprovedCurrency[EXPANSION_NAME2] == nil then ImprovedCurrency[EXPANSION_NAME2] = true end
-	if ImprovedCurrency[EXPANSION_NAME1] == nil then ImprovedCurrency[EXPANSION_NAME1] = true end
 	if ImprovedCurrency['PvP'] == nil then ImprovedCurrency['PvP'] = true end
 	if ImprovedCurrency['Archaeology'] == nil then ImprovedCurrency['Archaeology'] = true end
 	if ImprovedCurrency['Miscellaneous'] == nil then ImprovedCurrency['Miscellaneous'] = true end
 
-	local prof1, prof2, archaeology, _, cooking = GetProfessions()
+	local _, _, archaeology, _, cooking = GetProfessions()
 
 	GameTooltip:SetOwner(self:GetTooltipAnchor())
 	GameTooltip:ClearLines()
@@ -136,6 +135,7 @@ local OnEnter = function(self)
 	GameTooltip:AddLine(L['dt']['cce'])
 	GameTooltip:AddLine(EXPANSION_NAME8)
 	D['Currency'](1751) -- Freed Soul
+	D['Currency'](1754) -- Argent Commendation - Shadowlands PreEvent
 	D['Currency'](1767) -- Stygia
 	D['Currency'](1810) -- Willing Soul
 	D['Currency'](1813) -- Reservoir Anima
@@ -148,15 +148,25 @@ local OnEnter = function(self)
 	if ImprovedCurrency['PvP'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PVP_FLAG)
-		D['Currency'](789) -- Bloody Coin
+		D['Currency'](391) -- Tol Barad Commendation - Cataclysm
+		D['Currency'](789) -- Bloody Coin - Mists of Pandria
 		D['Currency'](944) -- Artifact Fragment - Warlords of Draenor
+		D['Currency'](1268) -- Timeworn Artifact - Warlords of Draenor
 		D['Currency'](1356) -- Echoes of Battle - Legion
 		D['Currency'](1357) -- Echoes of Domination - Legion
+		D['Currency'](1602) -- Conquest
+		D['Currency'](1792) -- Honor
 	end
 
 	if ImprovedCurrency['Miscellaneous'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(MISCELLANEOUS)
+		if cooking then
+			D['Currency'](81) -- Epicurean's Award
+			D['Currency'](402) -- Ironpaw Token
+		end
+		D['Currency'](515) -- Darkmoon Prize Ticket
+		D['Currency'](1166) -- Timewarped Badge
 	end
 
 	if archaeology and ImprovedCurrency['Archaeology'] then
@@ -186,7 +196,6 @@ local OnEnter = function(self)
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(L['dt']['cfe'])
 		if ImprovedCurrency[EXPANSION_NAME7] then
-			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME7)
 			D['Currency'](1299) -- Brawlers Gold
 			D['Currency'](1560) -- War Resources
@@ -262,37 +271,7 @@ local OnEnter = function(self)
 			D['Currency'](61) -- Dalaran Jewelcrafter's Token
 			D['Currency'](241) -- Champion's Seal
 		end
-
-		if ImprovedCurrency[EXPANSION_NAME1] then
-			GameTooltip:AddLine(' ')
-			GameTooltip:AddLine(EXPANSION_NAME1)
-			D['Currency'](1704) -- Spirit Shard
-		end
 	end
-
-	
-
-	--if cooking and ImprovedCurrency['Cooking'] then
-		GameTooltip:AddLine(' ')
-		GameTooltip:AddLine(PROFESSIONS_COOKING .. ': ')
-		D['Currency'](81)
-		D['Currency'](402)
-	--end
-
-	--if ImprovedCurrency['Miscellaneous'] then
-		GameTooltip:AddLine(' ')
-		GameTooltip:AddLine(MISCELLANEOUS)
-		
-		
-		D['Currency'](515)
-		
-		
-		
-		
-		
-		D['Currency'](1754)
-		
-	--end
 
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddDoubleLine(KEY_BUTTON1..':', L['dt']['goldbagsopen'], 1, 1, 1)
@@ -324,9 +303,6 @@ local RightClickMenu = {
 	end	},
 	{ text = 'Show currency from ' .. EXPANSION_NAME2, checked = function() return ImprovedCurrency[EXPANSION_NAME2] end, func = function()
 		if ImprovedCurrency[EXPANSION_NAME2] then ImprovedCurrency[EXPANSION_NAME2] = false else ImprovedCurrency[EXPANSION_NAME2] = true end
-	end	},
-	{ text = 'Show currency from ' .. EXPANSION_NAME1, checked = function() return ImprovedCurrency[EXPANSION_NAME1] end, func = function()
-		if ImprovedCurrency[EXPANSION_NAME1] then ImprovedCurrency[EXPANSION_NAME1] = false else ImprovedCurrency[EXPANSION_NAME1] = true end
 	end	},
 	{ text = 'Show Player vs Player Currency', checked = function() return ImprovedCurrency['PvP'] end, func = function()
 		if ImprovedCurrency['PvP'] then ImprovedCurrency['PvP'] = false else ImprovedCurrency['PvP'] = true end
