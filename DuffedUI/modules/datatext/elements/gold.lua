@@ -151,7 +151,8 @@ local OnEnter = function(self)
 		D['Currency'](392)
 		D['Currency'](944)
 		D['Currency'](1268)
-		D['Currency'](1356)
+		D['Currency'](1356) -- Echoes of Battle - Legion
+		D['Currency'](1357) -- Echoes of Domination - Legion
 	end
 
 	if C['datatext']['oldcurrency'] then
@@ -176,8 +177,19 @@ local OnEnter = function(self)
 		if ImprovedCurrency[EXPANSION_NAME6] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME6)
+			D['Currency'](1149) -- Slightless Eye
+			D['Currency'](1154) -- Shadowy Coins
+			D['Currency'](1155) -- Ancient Mana
+			D['Currency'](1220) -- Order Ressources
+			D['Currency'](1273) -- Seal of Broken Fate
 			D['Currency'](1275) -- Curious Coin
 			D['Currency'](1508) -- Veiled Argunite
+			D['Currency'](1533) -- Wakening Essence
+			D['Currency'](1226) -- Nethershards
+			D['Currency'](1314) -- Lingering Soul Fragment
+			D['Currency'](1342) -- Legionfall War Supplies
+			D['Currency'](1355) -- Felessence
+			D['Currency'](1416) -- Coins of Air
 		end
 
 		if ImprovedCurrency[EXPANSION_NAME5] then
@@ -254,8 +266,8 @@ local OnEnter = function(self)
 		GameTooltip:AddLine('Garrison')
 		D['Currency'](824)
 		D['Currency'](1101)
-		D['Currency'](1220)
-		D['Currency'](1342)
+		
+		
 		
 		
 	--end
@@ -267,8 +279,8 @@ local OnEnter = function(self)
 		D['Currency'](416)
 		D['Currency'](515)
 		D['Currency'](777)
-		D['Currency'](1149)
-		D['Currency'](1154)
+		
+		
 		
 		
 		D['Currency'](1754)
