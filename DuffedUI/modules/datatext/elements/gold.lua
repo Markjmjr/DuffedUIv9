@@ -84,6 +84,7 @@ local OnEnter = function(self)
 	if ImprovedCurrency[EXPANSION_NAME1] == nil then ImprovedCurrency[EXPANSION_NAME1] = true end
 	if ImprovedCurrency['PvP'] == nil then ImprovedCurrency['PvP'] = true end
 	if ImprovedCurrency['Archaeology'] == nil then ImprovedCurrency['Archaeology'] = true end
+	if ImprovedCurrency['Miscellaneous'] == nil then ImprovedCurrency['Miscellaneous'] = true end
 
 	local prof1, prof2, archaeology, _, cooking = GetProfessions()
 
@@ -147,9 +148,38 @@ local OnEnter = function(self)
 	if ImprovedCurrency['PvP'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PVP_FLAG)
+		D['Currency'](789) -- Bloody Coin
 		D['Currency'](944) -- Artifact Fragment - Warlords of Draenor
 		D['Currency'](1356) -- Echoes of Battle - Legion
 		D['Currency'](1357) -- Echoes of Domination - Legion
+	end
+
+	if ImprovedCurrency['Miscellaneous'] then
+		GameTooltip:AddLine(' ')
+		GameTooltip:AddLine(MISCELLANEOUS)
+	end
+
+	if archaeology and ImprovedCurrency['Archaeology'] then
+		GameTooltip:AddLine(' ')
+		GameTooltip:AddLine(PROFESSIONS_ARCHAEOLOGY .. ': ')
+		D['Currency'](384) -- Dwarf
+		D['Currency'](385) -- Troll
+		D['Currency'](393) -- Fossil
+		D['Currency'](394) -- Night Elf
+		D['Currency'](397) -- Orc
+		D['Currency'](398) -- Draenei
+		D['Currency'](399) -- Vyrkul
+		D['Currency'](400) -- Nerubian
+		D['Currency'](401) -- Tol'vir
+		D['Currency'](676) -- Pandaren
+		D['Currency'](677) -- Mogu
+		D['Currency'](754) -- Mantid
+		D['Currency'](821) -- Draenor Clans
+		D['Currency'](828) -- Ogre
+		D['Currency'](829) -- Arakkoa
+		D['Currency'](1172) -- Highborne
+		D['Currency'](1173) -- Highmountain
+		D['Currency'](1174) -- Demonic
 	end
 
 	if C['datatext']['oldcurrency'] then
@@ -210,6 +240,11 @@ local OnEnter = function(self)
 		if ImprovedCurrency[EXPANSION_NAME4] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME4)
+			D['Currency'](697) -- Elder Charm of Good Fortune
+			D['Currency'](738) -- Lesser Charm of Good Fortune
+			D['Currency'](752) -- Mogu Rune of Fate
+			D['Currency'](776) -- Warforged Seal
+			D['Currency'](777) -- Timeless Coin
 		end
 
 		if ImprovedCurrency[EXPANSION_NAME3] then
@@ -228,28 +263,7 @@ local OnEnter = function(self)
 		end
 	end
 
-	if archaeology and ImprovedCurrency['Archaeology'] then
-		GameTooltip:AddLine(' ')
-		GameTooltip:AddLine(PROFESSIONS_ARCHAEOLOGY .. ': ')
-		D['Currency'](384) -- Dwarf
-		D['Currency'](385) -- Troll
-		D['Currency'](393) -- Fossil
-		D['Currency'](394) -- Night Elf
-		D['Currency'](397) -- Orc
-		D['Currency'](398) -- Draenei
-		D['Currency'](399) -- Vyrkul
-		D['Currency'](400) -- Nerubian
-		D['Currency'](401) -- Tol'vir
-		D['Currency'](676) -- Pandaren
-		D['Currency'](677) -- Mogu
-		D['Currency'](754) -- Mantid
-		D['Currency'](821) -- Draenor Clans
-		D['Currency'](828) -- Ogre
-		D['Currency'](829) -- Arakkoa
-		D['Currency'](1172) -- Highborne
-		D['Currency'](1173) -- Highmountain
-		D['Currency'](1174) -- Demonic
-	end
+	
 
 	--if cooking and ImprovedCurrency['Cooking'] then
 		GameTooltip:AddLine(' ')
@@ -277,7 +291,7 @@ local OnEnter = function(self)
 		D['Currency'](241)
 		D['Currency'](416)
 		D['Currency'](515)
-		D['Currency'](777)
+		
 		
 		
 		
@@ -325,6 +339,9 @@ local RightClickMenu = {
 	end },
 	{ text = 'Show Archaeology Fragments', checked = function() return ImprovedCurrency['Archaeology'] end, func = function()
 		if ImprovedCurrency['Archaeology'] then ImprovedCurrency['Archaeology'] = false else ImprovedCurrency['Archaeology'] = true end
+	end },
+	{ text = 'Show Miscellaneous Currency', checked = function() return ImprovedCurrency['Miscellaneous'] end, func = function()
+		if ImprovedCurrency['Miscellaneous'] then ImprovedCurrency['Miscellaneous'] = false else ImprovedCurrency['Miscellaneous'] = true end
 	end },
 }
 
