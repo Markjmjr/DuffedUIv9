@@ -82,6 +82,8 @@ local OnEnter = function(self)
 	if ImprovedCurrency[EXPANSION_NAME3] == nil then ImprovedCurrency[EXPANSION_NAME3] = true end
 	if ImprovedCurrency[EXPANSION_NAME2] == nil then ImprovedCurrency[EXPANSION_NAME2] = true end
 	if ImprovedCurrency[EXPANSION_NAME1] == nil then ImprovedCurrency[EXPANSION_NAME1] = true end
+	if ImprovedCurrency['PvP'] == nil then ImprovedCurrency['PvP'] = true end
+	if ImprovedCurrency['Archaeology'] == nil then ImprovedCurrency['Archaeology'] = true end
 
 	local prof1, prof2, archaeology, _, cooking = GetProfessions()
 
@@ -131,16 +133,51 @@ local OnEnter = function(self)
 
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddLine(EXPANSION_NAME8)
+	D['Currency'](1751) -- Freed Soul
+	D['Currency'](1767) -- Stygia
+	D['Currency'](1810) -- Willing Soul
+	D['Currency'](1813) -- Reservoir Anima
+	D['Currency'](1816) -- Sinstone Fragments
+	D['Currency'](1820) -- Infused Ruby
+	D['Currency'](1822) -- Renown
+	D['Currency'](1828) -- Soul Ash
+	
+
+	if ImprovedCurrency['PvP'] then
+		GameTooltip:AddLine(' ')
+		GameTooltip:AddLine(PVP_FLAG)
+		D['Currency'](390)
+		D['Currency'](391)
+		D['Currency'](392)
+		D['Currency'](944)
+		D['Currency'](1268)
+		D['Currency'](1356)
+	end
 
 	if C['datatext']['oldcurrency'] then
 		if ImprovedCurrency[EXPANSION_NAME7] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME7)
+			D['Currency'](1299) -- Brawlers Gold
+			D['Currency'](1560) -- War Resources
+			D['Currency'](1565) -- Rich Azerite Fragment
+			D['Currency'](1580) -- Seal of Wartorn Fate
+			D['Currency'](1587) -- War Supplies
+			D['Currency'](1710) -- Seafarer's Dublon
+			D['Currency'](1718) -- Titan Residuum
+			D['Currency'](1716) -- Honorbound Service Medal
+			D['Currency'](1717) -- 7th Legion Service Medal
+			D['Currency'](1719) -- Corrupted Mementos
+			D['Currency'](1721) -- Prismatic Manapearl
+			D['Currency'](1755) -- Coalescing Visions
+			D['Currency'](1803) -- Echoes of Ny'alotha
 		end
 
 		if ImprovedCurrency[EXPANSION_NAME6] then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(EXPANSION_NAME6)
+			D['Currency'](1275) -- Curious Coin
+			D['Currency'](1508) -- Veiled Argunite
 		end
 
 		if ImprovedCurrency[EXPANSION_NAME5] then
@@ -169,7 +206,7 @@ local OnEnter = function(self)
 		end
 	end
 
-	--if archaeology and ImprovedCurrency['Archaeology'] then
+	if archaeology and ImprovedCurrency['Archaeology'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(PROFESSIONS_ARCHAEOLOGY .. ': ')
 		D['Currency'](384) -- Dwarf
@@ -190,7 +227,7 @@ local OnEnter = function(self)
 		D['Currency'](1172) -- Highborne
 		D['Currency'](1173) -- Highmountain
 		D['Currency'](1174) -- Demonic
---	end
+	end
 
 	--if cooking and ImprovedCurrency['Cooking'] then
 		GameTooltip:AddLine(' ')
@@ -219,41 +256,8 @@ local OnEnter = function(self)
 		D['Currency'](1101)
 		D['Currency'](1220)
 		D['Currency'](1342)
-		D['Currency'](1560)
-		D['Currency'](1822) -- Renown
-		D['Currency'](1813) -- Reservoir Anima
-		D['Currency'](1751) -- Freed Soul
-		D['Currency'](1810) -- Willing Soul
-	--end
-
-	--if ImprovedCurrency['Raid'] then
-		GameTooltip:AddLine(' ')
-		GameTooltip:AddLine(L['dt']['dr'])
-		D['Currency'](1565)
-		D['Currency'](1580)
-		D['Currency'](1587)
-		D['Currency'](1716) -- Patch 8.1
-		D['Currency'](1710)				
-		D['Currency'](1717)
-		D['Currency'](1718)
-		D['Currency'](1721) -- Patch 8.2
-		D['Currency'](1755) -- Patch 8.3
-		D['Currency'](1719)
-		D['Currency'](1803)
-		D['Currency'](1728) -- Phantasma for Thorgast
-		D['Currency'](1767) -- Stygia
-		D['Currency'](1828) -- Soul Ash
-	--end
-
-	--if ImprovedCurrency['PvP'] then
-		GameTooltip:AddLine(' ')
-		GameTooltip:AddLine(PVP_FLAG)
-		D['Currency'](390)
-		D['Currency'](391)
-		D['Currency'](392)
-		D['Currency'](944)
-		D['Currency'](1268)
-		D['Currency'](1356)
+		
+		
 	--end
 
 	--if ImprovedCurrency['Miscellaneous'] then
@@ -265,10 +269,10 @@ local OnEnter = function(self)
 		D['Currency'](777)
 		D['Currency'](1149)
 		D['Currency'](1154)
-		D['Currency'](1275)
-		D['Currency'](1820) -- Infused Ruby
+		
+		
 		D['Currency'](1754)
-		D['Currency'](1816)
+		
 	--end
 
 	GameTooltip:AddLine(' ')
@@ -305,6 +309,12 @@ local RightClickMenu = {
 	{ text = 'Show currency from ' .. EXPANSION_NAME1, checked = function() return ImprovedCurrency[EXPANSION_NAME1] end, func = function()
 		if ImprovedCurrency[EXPANSION_NAME1] then ImprovedCurrency[EXPANSION_NAME1] = false else ImprovedCurrency[EXPANSION_NAME1] = true end
 	end	},
+	{ text = 'Show Player vs Player Currency', checked = function() return ImprovedCurrency['PvP'] end, func = function()
+		if ImprovedCurrency['PvP'] then ImprovedCurrency['PvP'] = false else ImprovedCurrency['PvP'] = true end
+	end },
+	{ text = 'Show Archaeology Fragments', checked = function() return ImprovedCurrency['Archaeology'] end, func = function()
+		if ImprovedCurrency['Archaeology'] then ImprovedCurrency['Archaeology'] = false else ImprovedCurrency['Archaeology'] = true end
+	end },
 }
 
 local DuffedUIImprovedCurrencyDropDown = CreateFrame('Frame', 'DuffedUIImprovedCurrencyDropDown', UIParent, 'UIDropDownMenuTemplate, BackdropTemplate')
