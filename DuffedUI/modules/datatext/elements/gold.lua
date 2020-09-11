@@ -3,6 +3,13 @@ local D, C, L = unpack(select(2, ...))
 local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
+local EXPANSION_NAME5 = EXPANSION_NAME1 -- 'The Burning Crusade'
+local EXPANSION_NAME5 = EXPANSION_NAME2 -- 'Wrath of the Lich King'
+local EXPANSION_NAME5 = EXPANSION_NAME3 -- 'Cataclysm'
+local EXPANSION_NAME5 = EXPANSION_NAME4 -- 'Mists of Pandaria'
+local EXPANSION_NAME5 = EXPANSION_NAME5 -- 'Warlords of Draenor'
+local EXPANSION_NAME6 = EXPANSION_NAME6 -- 'Legion'
+local EXPANSION_NAME7 = EXPANSION_NAME7 -- 'Battle for Azeroth'
 local EXPANSION_NAME8 = EXPANSION_NAME8 -- 'Shadowlands'
 
 D['SetPerCharVariable']('ImprovedCurrency', {})
