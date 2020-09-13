@@ -14,10 +14,8 @@ do --[[ SharedXML\HybridScrollFrame.lua ]]
             local numButtons = #self.buttons
             local numSkinned = self._auroraNumSkinned or 0
 
-            if not private.isPatch then
-                for i = numSkinned + 1, numButtons do
-                    Skin[buttonTemplate](self.buttons[i])
-                end
+            for i = numSkinned + 1, numButtons do
+                Skin[buttonTemplate](self.buttons[i])
             end
             self._auroraNumSkinned = numButtons
         end
@@ -25,6 +23,8 @@ do --[[ SharedXML\HybridScrollFrame.lua ]]
 end
 
 do --[[ SharedXML\HybridScrollFrame.xml ]]
+    Skin.HybridScrollBarButton = Skin.ScrollBarThumb
+
     function Skin.HybridScrollBarBackgroundTemplate(Slider)
         local parent = Slider:GetParent()
         Slider:SetPoint("TOPLEFT", parent, "TOPRIGHT", 0, -17)

@@ -14,7 +14,7 @@ do --[[ FrameXML\QuestPOI.lua ]]
         if style == "numeric" then
             poiButton = parent.poiTable.numeric[index]
             if not poiButton._auroraSkinned then
-                Skin.QuestPOINumericTemplate(poiButton)
+             -- Skin.QuestPOINumericTemplate(poiButton)
             end
         else
             for _, button in next, parent.poiTable.completed do
