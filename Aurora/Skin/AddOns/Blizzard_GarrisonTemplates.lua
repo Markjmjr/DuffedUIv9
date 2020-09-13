@@ -11,7 +11,7 @@ local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Color = Aurora.Color
 
 do --[[ AddOns\Blizzard_GarrisonTemplates.lua ]]
-    do --[[ Blizzard_GarrisonSharedTemplates.lua ]]
+    do --[[ Blizzard_GarrisonSharedTemplates ]]
         function Hook.GarrisonFollowerButton_SetCounterButton(button, followerID, index, info, lastUpdate, followerTypeID)
             local counter = button.Counters[index]
             if not counter._auroraSkinned then
@@ -34,7 +34,7 @@ do --[[ AddOns\Blizzard_GarrisonTemplates.lua ]]
             end
         end
     end
-    do --[[ Blizzard_GarrisonMissionTemplates.lua ]]
+    do --[[ Blizzard_GarrisonMissionTemplates ]]
         function Hook.GarrisonMission_RemoveFollowerFromMission(self, frame, updateValues)
             if frame.PortraitFrame then
                 -- Ship followers have frame.Portrait instead
@@ -49,7 +49,7 @@ do --[[ AddOns\Blizzard_GarrisonTemplates.lua ]]
 end
 
 do --[[ AddOns\Blizzard_GarrisonTemplates.xml ]]
-    do --[[ Blizzard_GarrisonSharedTemplates.xml ]]
+    do --[[ Blizzard_GarrisonSharedTemplates ]]
         function Skin.GarrisonUITemplate(Frame)
             Base.CreateBackdrop(Frame, private.backdrop, {
                 bg = Frame.BackgroundTile,
@@ -170,7 +170,7 @@ do --[[ AddOns\Blizzard_GarrisonTemplates.xml ]]
             Base.CropIcon(Button.Icon)
         end
     end
-    do --[[ Blizzard_GarrisonMissionTemplates.lua ]]
+    do --[[ Blizzard_GarrisonMissionTemplates ]]
         function Skin.GarrisonMissionRewardEffectsTemplate(Frame)
             Base.CropIcon(Frame.Icon)
 
@@ -298,6 +298,88 @@ do --[[ AddOns\Blizzard_GarrisonTemplates.xml ]]
         function Skin.GarrisonFollowerXPGainTemplate(Frame)
         end
         function Skin.GarrisonFollowerLevelUpTemplate(Frame)
+        end
+    end
+    do --[[ Blizzard_CovenantMissionTemplates ]]
+        function Skin.CovenantMissionBaseFrameTemplate(Frame)
+            Base.CreateBackdrop(Frame, private.backdrop, {
+                bg = Frame.BaseFrameBackground,
+
+                l = Frame.RaisedFrameEdges.BaseFrameLeftEdge,
+                r = Frame.RaisedFrameEdges.BaseFrameRightEdge,
+                t = Frame.RaisedFrameEdges.BaseFrameTopEdge,
+                b = Frame.RaisedFrameEdges.BaseFrameBottomEdge,
+
+                tl = Frame.RaisedFrameEdges.BaseFrameTopLeftCorner,
+                tr = Frame.RaisedFrameEdges.BaseFrameTopRightCorner,
+                bl = Frame.RaisedFrameEdges.BaseFrameBottomLeftCorner,
+                br = Frame.RaisedFrameEdges.BaseFrameBottomRightCorner,
+            })
+
+            Frame.BaseFrameTop:Hide()
+            Frame.BaseFrameBottom:Hide()
+            Frame.BaseFrameLeft:Hide()
+            Frame.BaseFrameRight:Hide()
+            Frame.BoardDropShadow:Hide()
+
+            Frame.BaseFrameTopLeft:Hide()
+            Frame.BaseFrameTopRight:Hide()
+            Frame.BaseFrameBottomLeft:Hide()
+            Frame.BaseFrameBottomRight:Hide()
+
+            Base.SetBackdrop(Frame, Color.frame)
+        end
+        function Skin.CovenantFollowerTabTemplate(Frame)
+            Skin.CovenantMissionBaseFrameTemplate(Frame)
+            Skin.UIPanelButtonTemplate(Frame.HealFollowerFrame.HealFollowerButton)
+            Skin.GarrisonMissionPageCostFrameTemplate(Frame.HealFollowerFrame.CostFrame)
+        end
+        function Skin.OribosScrollUpButtonTemplate(Button)
+            Skin.UIPanelScrollBarButton(Button)
+            Button:SetSize(18, 16)
+
+            local arrow = Button._auroraTextures[1]
+            Base.SetTexture(arrow, "arrowUp")
+        end
+        function Skin.OribosScrollDownButtonTemplate(Button)
+            Skin.UIPanelScrollBarButton(Button)
+            Button:SetSize(18, 16)
+
+            local arrow = Button._auroraTextures[1]
+            Base.SetTexture(arrow, "arrowDown")
+        end
+        function Skin.OribosScrollBarTemplate(Slider)
+            local trackBG, trackBackplate = Slider:GetRegions()
+            trackBG:Hide()
+            trackBackplate:Hide()
+
+            Skin.OribosScrollUpButtonTemplate(Slider.UpButton)
+            Skin.OribosScrollDownButtonTemplate(Slider.DownButton)
+            Skin.HybridScrollBarButton(Slider.thumbTexture)
+        end
+        function Skin.CovenantListWideFrameTemplate(Frame)
+            Skin.CovenantMissionBaseFrameTemplate(Frame)
+            Skin.OribosScrollBarTemplate(Frame.listScroll.scrollBar)
+        end
+        function Skin.CovenantFollowerListTemplate(Frame)
+            Skin.OribosScrollBarTemplate(Frame.listScroll.scrollBar)
+            Frame.ElevatedFrame:Hide()
+        end
+        function Skin.CovenantMissionListTemplate(Frame)
+            Skin.CovenantListWideFrameTemplate(Frame)
+            Skin.MaterialFrameTemplate(Frame.MaterialFrame)
+            Frame.MaterialFrame:SetPoint("BOTTOMRIGHT", Frame, "TOPRIGHT", -9, 9)
+            Frame.MaterialFrame:SetPoint("TOPLEFT", Frame, "TOPRIGHT", -307, 34)
+            Frame.MaterialFrame.LeftFiligree:Hide()
+            Frame.MaterialFrame.RightFiligree:Hide()
+        end
+        function Skin.CovenantMissionListButtonTemplate(Button)
+            Button.ButtonBG:SetTexture("")
+            Button.Highlight:SetTexture("")
+            Base.SetBackdrop(Button, Color.button)
+            Base.SetHighlight(Button, "backdrop")
+
+            Skin.GarrisonMissionListButtonRewardTemplate(Button.Rewards[1])
         end
     end
 end
