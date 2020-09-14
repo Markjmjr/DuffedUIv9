@@ -18,6 +18,7 @@ All code that was inserted to continue to work during the PrePatch must be tagge
 This is to ensure that, after the release of Shadowlands, you can find the relevant jobs faster using the search term.
 
 ## Open Issues
+- Tracking worldquest causes issues with objectivetracker and Aurora
 
 ## ToDo
 - Testing
@@ -43,6 +44,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-09-13 | Update Aurora by [Rav99](https://github.com/Rav99)
 2020-09-11 | Reorder Gold-DataText, Currencies now expansion specific
 2020-09-10 | Update for Patch 9.0.2<br />toc-bump<br />Added missing currency<br />Removed entire corrupted system, no longer needed with 9.0.1 or later<br />Update gem info replacement, ignore slots from artifacts by [Rav99](https://github.com/Rav99)<br />Holy Power for all pallys by [Rav99](https://github.com/Rav99)<br />Official oUF rune fix by [Rav99](https://github.com/Rav99)Changed size of changelog-frame
 2020-09-09 | Fixed idention on table<br />Refactoring core-scripts
