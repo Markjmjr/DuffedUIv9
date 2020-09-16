@@ -18,7 +18,6 @@ All code that was inserted to continue to work during the PrePatch must be tagge
 This is to ensure that, after the release of Shadowlands, you can find the relevant jobs faster using the search term.
 
 ## Open Issues
-- Tracking worldquest causes issues with objectivetracker and Aurora
 
 ## ToDo
 - Testing
