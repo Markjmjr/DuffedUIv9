@@ -17,30 +17,37 @@ do -- BlizzWTF: These are not templates, but they should be
             self:SetHighlightTexture("")
             self.settingHighlight = nil
         end
+        local function Hook_SetPushedTexture(self, texture)
+            self:GetPushedTexture():SetAlpha(0)
+        end
         local function Hook_SetNormalTexture(self, texture)
-            if self.settingTexture then return end
-            self.settingTexture = true
-            self:SetNormalTexture("")
+            self:GetNormalTexture():SetAlpha(0)
 
-            if texture == 130838 then
-                texture = "Plus"
-            elseif texture == 130821 then
-                texture = "Minus"
+            if type(texture) == "string" then
+                texture = texture:lower()
+            else
+                if texture == 130838 then
+                    texture = "plus"
+                elseif texture == 130821 then
+                    texture = "minus"
+                end
             end
 
             if texture and texture ~= "" then
-                if texture:find("Plus") then
+                if texture:find("plus") or texture:find("closed") then
                     self._plus:Show()
-                elseif texture:find("Minus") then
+                elseif texture:find("minus") or texture:find("open") then
                     self._plus:Hide()
                 end
                 self:SetBackdrop(true)
             else
                 self:SetBackdrop(false)
             end
-            self.settingTexture = nil
         end
         function Skin.ExpandOrCollapse(Button)
+            if Button:GetNormalTexture() then
+                Button:GetNormalTexture():SetAlpha(0)
+            end
             Skin.FrameTypeButton(Button)
 
             local bg = Button:GetBackdropTexture("bg")
@@ -61,6 +68,8 @@ do -- BlizzWTF: These are not templates, but they should be
                 plus
             }
             _G.hooksecurefunc(Button, "SetNormalTexture", Hook_SetNormalTexture)
+            _G.hooksecurefunc(Button, "SetNormalAtlas", Hook_SetNormalTexture)
+            _G.hooksecurefunc(Button, "SetPushedAtlas", Hook_SetPushedTexture)
             _G.hooksecurefunc(Button, "SetHighlightTexture", Hook_SetHighlightTexture)
         end
     end
@@ -191,14 +200,14 @@ do -- Basic frame type skins
             Button:SetHighlightTexture("")
             Button:SetDisabledTexture("")
 
-            function Button:SetButtonColor(color)
+            function Button:SetButtonColor(color, a)
                 self._enabledColor = color
                 self._disabledColor = Color.Lightness(color, -0.3)
 
                 if self:IsEnabled() then
-                    Base.SetBackdropColor(self, color)
+                    Base.SetBackdropColor(self, color, a)
                 else
-                    Base.SetBackdropColor(self, self._disabledColor)
+                    Base.SetBackdropColor(self, self._disabledColor, a)
                 end
             end
             function Button:GetButtonColor()
@@ -432,11 +441,24 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
 
     function Skin.NineSlicePanelTemplate(Frame)
         Frame._auroraNineSlice = true
+        Base.CreateBackdrop(Frame, private.backdrop, {
+            tl = Frame.TopLeftCorner,
+            tr = Frame.TopRightCorner,
+            bl = Frame.BottomLeftCorner,
+            br = Frame.BottomRightCorner,
+
+            t = Frame.TopEdge,
+            b = Frame.BottomEdge,
+            l = Frame.LeftEdge,
+            r = Frame.RightEdge,
+
+            bg = Frame.Center,
+        })
+
         local layout = _G.NineSliceUtil.GetLayout(Frame:GetFrameLayoutType())
+        --print("NineSlicePanelTemplate", layout, Frame:GetDebugName())
         if layout then
             Hook.NineSliceUtil.ApplyLayout(Frame, layout)
-        --else
-            --print("no layout", Frame:GetDebugName())
         end
     end
     function Skin.InsetFrameTemplate(Frame)

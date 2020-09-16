@@ -188,7 +188,7 @@ do --[[ AddOns\Blizzard_GarrisonUI.xml ]]
                 borderLayer = "BACKGROUND",
                 borderSublevel = -7,
             })
-            Base.SetBackdrop(Button, Color.button, "BackdropTemplate")
+            Base.SetBackdrop(Button, Color.button)
             t2:Hide()
             b2:Hide()
 
