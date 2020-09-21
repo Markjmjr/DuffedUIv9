@@ -9,7 +9,7 @@ local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
 local Color = Aurora.Color
 
-do --[[ FrameXML\HelpFrame.lua ]]
+do --[[ FrameXML\HelpBrowser.lua ]]
     local selected
     function Hook.HelpFrame_SetSelectedButton(button)
         if selected and selected ~= button then
@@ -22,7 +22,7 @@ do --[[ FrameXML\HelpFrame.lua ]]
     end
 end
 
-do --[[ FrameXML\HelpFrame.xml ]]
+do --[[ FrameXML\HelpBrowser.xml ]]
     function Skin.HelpFrameButtonTemplate(Button)
         Skin.FrameTypeButton(Button)
         Button.selected:SetTexture("")
@@ -47,71 +47,71 @@ do --[[ FrameXML\HelpFrame.xml ]]
     end
 end
 
-function private.FrameXML.HelpFrame()
+function private.FrameXML.HelpBrowser()
     _G.hooksecurefunc("HelpFrame_SetSelectedButton", Hook.HelpFrame_SetSelectedButton)
 
 
     ---------------
-    -- HelpFrame --
+    -- HelpBrowser --
     ---------------
-    local HelpFrame = _G.HelpFrame
-    Skin.TranslucentFrameTemplate(HelpFrame)
+    local HelpBrowser = _G.HelpBrowser
+    Skin.TranslucentFrameTemplate(HelpBrowser)
 
-    local streaks, buttonDiv, vertDivTop, vertDivBottom, vertDivMiddle = select(10, HelpFrame:GetRegions())
+    local streaks, buttonDiv, vertDivTop, vertDivBottom, vertDivMiddle = select(10, HelpBrowser:GetRegions())
     streaks:Hide()
 
     if private.isRetail then
-        Skin.DialogHeaderTemplate(HelpFrame.Header)
+        Skin.DialogHeaderTemplate(HelpBrowser.Header)
     else
-        local header = HelpFrame.header
+        local header = HelpBrowser.header
         header:SetAlpha(0)
 
         local text = header:GetRegions()
-        text:SetParent(HelpFrame)
+        text:SetParent(HelpBrowser)
         text:ClearAllPoints()
         text:SetPoint("TOPLEFT")
-        text:SetPoint("BOTTOMRIGHT", HelpFrame, "TOPRIGHT", 0, -private.FRAME_TITLE_HEIGHT)
+        text:SetPoint("BOTTOMRIGHT", HelpBrowser, "TOPRIGHT", 0, -private.FRAME_TITLE_HEIGHT)
     end
 
     Skin.UIPanelCloseButton(_G.HelpFrameCloseButton)
 
-    Skin.InsetFrameTemplate(HelpFrame.leftInset)
-    local LeftShadow, RightShadow, TopShadow, BottomShadow = select(2, HelpFrame.leftInset:GetRegions())
+    Skin.InsetFrameTemplate(HelpBrowser.leftInset)
+    local LeftShadow, RightShadow, TopShadow, BottomShadow = select(2, HelpBrowser.leftInset:GetRegions())
     LeftShadow:Hide()
     RightShadow:Hide()
     TopShadow:Hide()
     BottomShadow:Hide()
 
-    Skin.InsetFrameTemplate(HelpFrame.mainInset)
+    Skin.InsetFrameTemplate(HelpBrowser.mainInset)
 
-    Skin.HelpFrameButtonTemplate(HelpFrame.button1)
-    Hook.HelpFrame_SetSelectedButton(HelpFrame.button1)
-    Skin.HelpFrameButtonTemplate(HelpFrame.button2)
-    Skin.HelpFrameButtonTemplate(HelpFrame.button5)
-    Skin.HelpFrameButtonTemplate(HelpFrame.button3)
-    Skin.HelpFrameButtonTemplate(HelpFrame.button4)
-    Skin.HelpFrameButtonTemplate(HelpFrame.button16)
-    Skin.HelpFrameButtonTemplate(HelpFrame.button6)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button1)
+    Hook.HelpFrame_SetSelectedButton(HelpBrowser.button1)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button2)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button5)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button3)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button4)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button16)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.button6)
 
-    Skin.HelpFrameButtonTemplate(HelpFrame.asec.ticketButton)
+    Skin.HelpFrameButtonTemplate(HelpBrowser.asec.ticketButton)
     Skin.UIPanelButtonTemplate(_G.HelpFrameCharacterStuckStuck)
-    Base.CropIcon(_G.HelpFrameCharacterStuckHearthstone.IconTexture, HelpFrame.stuck)
+    Base.CropIcon(_G.HelpFrameCharacterStuckHearthstone.IconTexture, HelpBrowser.stuck)
     Base.CropIcon(_G.HelpFrameCharacterStuckHearthstone:GetPushedTexture())
     Base.CropIcon(_G.HelpFrameCharacterStuckHearthstone:GetHighlightTexture())
 
-    Skin.GameMenuButtonTemplate(HelpFrame.bug.submitButton)
+    Skin.GameMenuButtonTemplate(HelpBrowser.bug.submitButton)
     _G.HelpFrameReportBugScrollFrame:ClearAllPoints()
     _G.HelpFrameReportBugScrollFrame:SetPoint("BOTTOMLEFT", 154, 70)
     Skin.UIPanelScrollBarTemplate(_G.HelpFrameReportBugScrollFrame.ScrollBar)
-    local bugEditBorder = select(3, HelpFrame.bug:GetChildren())
+    local bugEditBorder = select(3, HelpBrowser.bug:GetChildren())
     Base.SetBackdrop(bugEditBorder, Color.frame)
     bugEditBorder:SetBackdropBorderColor(Color.button)
 
-    Skin.GameMenuButtonTemplate(HelpFrame.suggestion.submitButton)
+    Skin.GameMenuButtonTemplate(HelpBrowser.suggestion.submitButton)
     _G.HelpFrameSubmitSuggestionScrollFrame:ClearAllPoints()
     _G.HelpFrameSubmitSuggestionScrollFrame:SetPoint("BOTTOMLEFT", 154, 130)
     Skin.UIPanelScrollBarTemplate(_G.HelpFrameSubmitSuggestionScrollFrame.ScrollBar)
-    local suggestionEditBorder = select(3, HelpFrame.suggestion:GetChildren())
+    local suggestionEditBorder = select(3, HelpBrowser.suggestion:GetChildren())
     Base.SetBackdrop(suggestionEditBorder, Color.frame)
     suggestionEditBorder:SetBackdropBorderColor(Color.button)
 
@@ -119,7 +119,7 @@ function private.FrameXML.HelpFrame()
 
     buttonDiv:SetColorTexture(1, 1, 1, 0.5)
     buttonDiv:SetSize(150, 1)
-    buttonDiv:SetPoint("TOP", HelpFrame.button5, "BOTTOM", -1, -14)
+    buttonDiv:SetPoint("TOP", HelpBrowser.button5, "BOTTOM", -1, -14)
 
     vertDivTop:Hide()
     vertDivBottom:Hide()
