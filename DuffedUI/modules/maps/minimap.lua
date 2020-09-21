@@ -45,7 +45,6 @@ DuffedUITicket.Text:SetText(HELP_TICKET_EDIT)
 DuffedUITicket:SetBackdropBorderColor(255/255, 243/255,  82/255)
 DuffedUITicket.Text:SetTextColor(255/255, 243/255,  82/255)
 DuffedUITicket:SetAlpha(0)
-DuffedUITicket:SetScript("OnClick", ToggleHelpFrame)
 
 MiniMapWorldMapButton:Hide()
 MiniMapInstanceDifficulty:ClearAllPoints()
