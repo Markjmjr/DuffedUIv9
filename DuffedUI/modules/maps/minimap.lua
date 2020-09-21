@@ -1,6 +1,8 @@
 local D, C, L = unpack(select(2, ...))
 
 local move = D['move']
+local ToggleHelpFrame = ToggleHelpFrame
+
 local DuffedUIMinimap = CreateFrame('Frame', 'DuffedUIMinimap', oUFDuffedUI_PetBattleFrameHider, 'BackdropTemplate')
 DuffedUIMinimap:SetTemplate()
 DuffedUIMinimap:RegisterEvent('ADDON_LOADED')
@@ -43,16 +45,7 @@ DuffedUITicket.Text:SetText(HELP_TICKET_EDIT)
 DuffedUITicket:SetBackdropBorderColor(255/255, 243/255,  82/255)
 DuffedUITicket.Text:SetTextColor(255/255, 243/255,  82/255)
 DuffedUITicket:SetAlpha(0)
-
---[[HelpOpenTicketButton:SetParent(DuffedUITicket)
-HelpOpenTicketButton:SetFrameLevel(DuffedUITicket:GetFrameLevel() + 1)
-HelpOpenTicketButton:SetFrameStrata(DuffedUITicket:GetFrameStrata())
-HelpOpenTicketButton:ClearAllPoints()
-HelpOpenTicketButton:SetAllPoints()
-HelpOpenTicketButton:SetHighlightTexture(nil)
-HelpOpenTicketButton:SetAlpha(0)
-HelpOpenTicketButton:HookScript('OnShow', function(self) DuffedUITicket:SetAlpha(1) end)
-HelpOpenTicketButton:HookScript('OnHide', function(self) DuffedUITicket:SetAlpha(0) end)]]--
+DuffedUITicket:SetScript("OnClick", ToggleHelpFrame)
 
 MiniMapWorldMapButton:Hide()
 MiniMapInstanceDifficulty:ClearAllPoints()
