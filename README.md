@@ -43,6 +43,9 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-09-23 | Fixed itemdurability display on charscreen
+2020-09-21 | Update Aurora<br />Removed button to open Helpticket on minimap
+2020-09-18 | Update Aurora<br />Disabled HelpButton on minimap
 2020-09-16 | toc-bump<br />Update Aurora
 2020-09-13 | Update Aurora by [Rav99](https://github.com/Rav99)
 2020-09-11 | Reorder Gold-DataText, Currencies now expansion specific
