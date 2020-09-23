@@ -72,9 +72,7 @@ function Module:CreateItemTexture(slot, relF, x, y)
 end
 
 function Module:CreateItemString(frame, strType)
-	if frame.fontCreated then
-		return
-	end
+	if frame.fontCreated then return end
 
 	for index, slot in pairs(inspectSlots) do
 		if index ~= 4 then
@@ -113,9 +111,7 @@ local azeriteSlots = {
 
 local locationCache = {}
 local function GetSlotItemLocation(id)
-	if not azeriteSlots[id] then
-		return
-	end
+	if not azeriteSlots[id] then return end
 
 	local itemLocation = locationCache[id]
 	if not itemLocation then
@@ -127,21 +123,15 @@ end
 
 function Module:ItemLevel_UpdateTraits(button, id, link)
 	local empoweredItemLocation = GetSlotItemLocation(id)
-	if not empoweredItemLocation then
-		return
-	end
+	if not empoweredItemLocation then return end
 
 	local allTierInfo = D:GetModule('TooltipAzerite'):Azerite_UpdateTier(link)
-	if not allTierInfo then
-		return
-	end
+	if not allTierInfo then return end
 
 	for i = 1, 2 do
 		if not powerIDs then return end
 		local powerIDs = allTierInfo[i].azeritePowerIDs
-		if not powerIDs or powerIDs[1] == 13 then
-			break
-		end
+		if not powerIDs or powerIDs[1] == 13 then break end
 
 		for _, powerID in pairs(powerIDs) do
 			local selected = C_AzeriteEmpoweredItem_IsPowerSelected(empoweredItemLocation, powerID)
@@ -159,9 +149,7 @@ function Module:ItemLevel_UpdateTraits(button, id, link)
 end
 
 function Module:ItemLevel_SetupLevel(frame, strType, unit)
-	if not UnitExists(unit) then
-		return
-	end
+	if not UnitExists(unit) then return end
 
 	Module:CreateItemString(frame, strType)
 
@@ -182,11 +170,7 @@ function Module:ItemLevel_SetupLevel(frame, strType, unit)
 				local info = D.GetItemLevel(link, unit, index, C['misc']['gemenchantinfo'])
 				local infoType = type(info)
 				local level
-				if infoType == 'table' then
-					level = info.iLvl
-				else
-					level = info
-				end
+				if infoType == 'table' then level = info.iLvl else level = info end
 
 				if level and level > 1 and quality then
 					local color = BAG_ITEM_QUALITY_COLORS[quality]
@@ -196,9 +180,7 @@ function Module:ItemLevel_SetupLevel(frame, strType, unit)
 
 				if infoType == 'table' then
 					local enchant = info.enchantText
-					if enchant then
-						slotFrame.enchantText:SetText(enchant)
-					end
+					if enchant then slotFrame.enchantText:SetText(enchant) end
 
 					local gemStep, essenceStep = 1, 1
 					for i = 1, 10 do
@@ -216,11 +198,7 @@ function Module:ItemLevel_SetupLevel(frame, strType, unit)
 							local r = essence[4]
 							local g = essence[5]
 							local b = essence[6]
-							if r and g and b then
-								bg:SetBackdropBorderColor(r, g, b)
-							else
-								bg:SetBackdropBorderColor()
-							end
+							if r and g and b then bg:SetBackdropBorderColor(r, g, b) else bg:SetBackdropBorderColor() end
 
 							local selected = essence[1]
 							texture:SetTexture(selected)
@@ -231,23 +209,17 @@ function Module:ItemLevel_SetupLevel(frame, strType, unit)
 					end
 				end
 
-				if strType == 'Character' then
-					Module:ItemLevel_UpdateTraits(slotFrame, index, link)
-				end
+				if strType == 'Character' then Module:ItemLevel_UpdateTraits(slotFrame, index, link) end
 			end
 		end
 	end
 end
 
-function Module:ItemLevel_UpdatePlayer()
-	Module:ItemLevel_SetupLevel(CharacterFrame, 'Character', 'player')
-end
+function Module:ItemLevel_UpdatePlayer() Module:ItemLevel_SetupLevel(CharacterFrame, 'Character', 'player') end
 
 function Module:ItemLevel_UpdateInspect(...)
 	local guid = ...
-	if InspectFrame and InspectFrame.unit and UnitGUID(InspectFrame.unit) == guid then
-		Module:ItemLevel_SetupLevel(InspectFrame, 'Inspect', InspectFrame.unit)
-	end
+	if InspectFrame and InspectFrame.unit and UnitGUID(InspectFrame.unit) == guid then Module:ItemLevel_SetupLevel(InspectFrame, 'Inspect', InspectFrame.unit) end
 end
 
 function Module:ItemLevel_FlyoutUpdate(bag, slot, quality)
@@ -283,11 +255,7 @@ function Module:ItemLevel_FlyoutSetup()
 	local _, _, bags, voidStorage, slot, bag = EquipmentManager_UnpackLocation(location)
 	if voidStorage then return end
 	local quality = select(13, EquipmentManager_GetItemInfoByLocation(location))
-	if bags then
-		Module.ItemLevel_FlyoutUpdate(self, bag, slot, quality)
-	else
-		Module.ItemLevel_FlyoutUpdate(self, nil, slot, quality)
-	end
+	if bags then Module.ItemLevel_FlyoutUpdate(self, bag, slot, quality) else Module.ItemLevel_FlyoutUpdate(self, nil, slot, quality) end
 end
 
 function Module:ItemLevel_ScrappingUpdate()
@@ -305,9 +273,7 @@ function Module:ItemLevel_ScrappingUpdate()
 	end
 
 	local quality = 1
-	if self.itemLocation and not self.item:IsItemEmpty() and self.item:GetItemName() then
-		quality = self.item:GetItemQuality()
-	end
+	if self.itemLocation and not self.item:IsItemEmpty() and self.item:GetItemName() then quality = self.item:GetItemQuality() end
 	local level = D.GetItemLevel(self.itemLink)
 	local color = BAG_ITEM_QUALITY_COLORS[quality]
 	self.iLvl:SetText(level)
@@ -316,10 +282,7 @@ end
 
 function Module.ItemLevel_ScrappingShow(event, addon)
 	if addon == 'Blizzard_ScrappingMachineUI' then
-		for button in pairs(ScrappingMachineFrame.ItemSlots.scrapButtons.activeObjects) do
-			hooksecurefunc(button, 'RefreshIcon', Module.ItemLevel_ScrappingUpdate)
-		end
-
+		for button in pairs(ScrappingMachineFrame.ItemSlots.scrapButtons.activeObjects) do hooksecurefunc(button, 'RefreshIcon', Module.ItemLevel_ScrappingUpdate) end
 		D:UnregisterEvent(event, Module.ItemLevel_ScrappingShow)
 	end
 end
