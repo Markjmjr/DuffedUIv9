@@ -43,6 +43,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-09-25 | Added option to set size of debuffs on nameplates
 2020-09-23 | Fixed itemdurability display on charscreen
 2020-09-21 | Update Aurora<br />Removed button to open Helpticket on minimap
 2020-09-18 | Update Aurora<br />Disabled HelpButton on minimap
