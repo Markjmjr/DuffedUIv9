@@ -675,6 +675,10 @@ DuffedUIConfig ['enUS'] = {
 		['showperc'] = {
 			['Name'] = 'Show health in percent',
 		},
+
+		['debuffsize'] = {
+			['Name'] = 'Set size of debuffs'
+		},
 	},
 
 	['raid'] = {

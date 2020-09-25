@@ -13,6 +13,7 @@ local f, fs, ff = C['media']['font'], 8, 'THINOUTLINE'
 local nWidth, nHeight = C['nameplate']['platewidth'], C['nameplate']['plateheight']
 local pScale = C['nameplate']['platescale']
 local pDebuffs = C['nameplate']['pDebuffs']
+local sDebuffs = C['nameplate']['debuffsize']
 
 -- Set color for threat
 local function ColorHealthbarOnThreat(self,unit)
@@ -127,7 +128,7 @@ D['ConstructNameplates'] = function(self)
 	local debuffs = CreateFrame('Frame', 'NameplateDebuffs', self)
 	debuffs:SetPoint('BOTTOMLEFT', health, 'TOPLEFT', 0, 18)
 	debuffs:SetSize(nWidth, 15)
-	debuffs.size = 18
+	debuffs.size = sDebuffs
 	debuffs.num = 5
 	debuffs.disableCooldown = true
 	debuffs.onlyShowPlayer = pDebuffs

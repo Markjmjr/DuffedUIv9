@@ -670,6 +670,10 @@ DuffedUIConfig['deDE'] = {
 		['showperc'] = {
 			['Name'] = 'Lebenspunkte in Prozent anzeigen',
 		},
+
+		['debuffsize'] = {
+			['Name'] = 'Größe der Schwächungszauber'
+		},
 	},
 	
 	['raid'] = {
