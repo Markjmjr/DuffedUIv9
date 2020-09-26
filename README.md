@@ -43,6 +43,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-09-26 | Update Aurora<br />Fixed division by zero on durability display if no item is equipped
 2020-09-25 | Added option to set size of debuffs on nameplates
 2020-09-23 | Fixed itemdurability display on charscreen
 2020-09-21 | Update Aurora<br />Removed button to open Helpticket on minimap
