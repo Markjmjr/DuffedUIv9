@@ -1,9 +1,11 @@
 local _, private = ...
 
-private.AddOns = private.CreateAPI({})
+private.AddOns = {}
 
 --[==[ Some boilerplate stuff for new files
 local _, private = ...
+if private.isClassic then return end
+if private.isRetail then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals
