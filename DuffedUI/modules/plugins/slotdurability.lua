@@ -49,13 +49,14 @@ end
 
 function Module.UpdateDurability()
 	for _, item in ipairs(Slots) do
+		local SlotDurStr = GetDurStrings(item)
 		local id, _, _ = GetInventorySlotInfo(item..'Slot')
 		local v1, v2 = GetInventoryItemDurability(id)
-		v1, v2 = tonumber(v1) or 0, tonumber(v2) or 0
+		if not v1 then SlotDurStr:SetText('') end
+		v1, v2 = tonumber(v1), tonumber(v2) or 0
 		local percent = v1 / v2
-		local SlotDurStr = GetDurStrings(item)
 
-		if ((v2 ~= 0) and (percent ~= 1)) then
+		if ((v2 ~= 0) or (v1 ~= 0) and (percent ~= 1)) then
 
 			SlotDurStr:SetText('')
 			if (math.ceil(percent * 100) < 100)then
