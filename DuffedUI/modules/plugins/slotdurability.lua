@@ -52,19 +52,22 @@ function Module.UpdateDurability()
 		local SlotDurStr = GetDurStrings(item)
 		local id, _, _ = GetInventorySlotInfo(item..'Slot')
 		local v1, v2 = GetInventoryItemDurability(id)
-		if not v1 then SlotDurStr:SetText('') end
-		v1, v2 = tonumber(v1), tonumber(v2) or 0
-		local percent = v1 / v2
 
-		if ((v2 ~= 0) or (v1 ~= 0) and (percent ~= 1)) then
-
+		if not v1 then
 			SlotDurStr:SetText('')
-			if (math.ceil(percent * 100) < 100)then
-				SlotDurStr:SetTextColor(GetThresholdColour(percent))
-				SlotDurStr:SetText(math.ceil(percent * 100)..'%')
-			end
 		else
-			SlotDurStr:SetText('')
+			local percent = v1 / v2
+
+			if ((v2 ~= 0) and (percent ~= 1)) then
+
+				SlotDurStr:SetText('')
+				if (math.ceil(percent * 100) < 100)then
+					SlotDurStr:SetTextColor(GetThresholdColour(percent))
+					SlotDurStr:SetText(math.ceil(percent * 100)..'%')
+				end
+			else
+				SlotDurStr:SetText('')
+			end
 		end
 	end
 end
