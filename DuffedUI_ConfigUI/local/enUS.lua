@@ -582,18 +582,6 @@ DuffedUIConfig ['enUS'] = {
 			['Name'] = 'Show AFK camera',
 		},
 		
-		['XPBar'] = {
-			['Name'] = 'Show experience bar',
-		},
-		
-		['XPBarWidth'] = {
-			['Name'] = 'Width of experience bar',
-		},
-		
-		['XPBarHeight'] = {
-			['Name'] = 'Height of experience bar',
-		},
-		
 		['magemenu'] = {
 			['Name'] = 'Show teleport menu (only for mage)',
 		},

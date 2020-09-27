@@ -577,18 +577,6 @@ DuffedUIConfig['deDE'] = {
 			['Name'] = 'AFK Kamera anzeigen',
 		},
 		
-		['XPBar'] = {
-			['Name'] = 'Erfahrungsleiste anzeigen',
-		},
-		
-		['XPBarWidth'] = {
-			['Name'] = 'Breite Erfahrungsleiste',
-		},
-		
-		['XPBarHeight'] = {
-			['Name'] = 'Höhe Erfahrungsleiste',
-		},
-		
 		['magemenu'] = {
 			['Name'] = 'Teleportmenü anzeigen (Nur bei Magiern)',
 		},

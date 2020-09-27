@@ -1,10 +1,8 @@
 local D, C, L = unpack(select(2, ...))
-if not C['misc']['XPBar'] then return end
 
-local barHeight, barWidth = C['misc']['XPBarHeight'], C['misc']['XPBarWidth']
+local barHeight, barWidth = 5, 374
 local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D['Class']]
-local move = D['move']
 local level = UnitLevel('player')
 local FactionInfo = {
 	[1] = {{ 170/255, 70/255,  70/255 }, L['xpbar']['hated'], 'FFaa4646'},
@@ -25,12 +23,11 @@ end
 
 local backdrop = CreateFrame('Frame', 'Experience_Backdrop', UIParent, 'BackdropTemplate')
 backdrop:SetSize(barWidth, barHeight)
-backdrop:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 392, 5)
+backdrop:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 3)
 backdrop:SetBackdropColor(C['general']['backdropcolor'])
 backdrop:SetBackdropBorderColor(C['general']['backdropcolor'])
 backdrop:SetFrameStrata('LOW')
 backdrop:CreateBackdrop('Transparent')
-move:RegisterFrame(backdrop)
 
 local xpBar = CreateFrame('StatusBar',  'Experience_xpBar', backdrop, 'TextStatusBar')
 xpBar:SetWidth(barWidth)
@@ -76,7 +73,7 @@ local function updateStatus()
 	else
 		xpBar:SetMinMaxValues(min(0, XP), maxXP)
 		xpBar:SetValue(XP)
-		xpBar:SetOrientation('VERTICAL')
+		xpBar:SetOrientation('HORIZONTAL')
 
 		if restXP then
 			restedxpBar:Show()
@@ -84,7 +81,7 @@ local function updateStatus()
 			restedxpBar:SetStatusBarColor(r, g, b, .40)
 			restedxpBar:SetMinMaxValues(min(0, XP), maxXP)
 			restedxpBar:SetValue(XP + restXP)
-			restedxpBar:SetOrientation('VERTICAL')
+			restedxpBar:SetOrientation('HORIZONTAL')
 			icon:Show()
 		else
 			restedxpBar:Hide()
@@ -107,7 +104,7 @@ local function updateStatus()
 		local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
 		repBar:SetMinMaxValues(minRep, maxRep)
 		repBar:SetValue(value)
-		repBar:SetOrientation('VERTICAL')
+		repBar:SetOrientation('HORIZONTAL')
 		repBar:SetStatusBarColor(unpack(FactionInfo[rank][1]))
 	end
 

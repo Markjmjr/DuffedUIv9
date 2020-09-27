@@ -19,7 +19,7 @@ iright:SetFrameStrata('BACKGROUND')
 local icenter = CreateFrame('Frame', 'DuffedUIInfoCenter', UIParent, 'BackdropTemplate')
 icenter:SetTemplate('Default')
 icenter:Size(378, 19)
-icenter:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 3)
+icenter:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 12)
 icenter:SetFrameLevel(2)
 icenter:SetFrameStrata('BACKGROUND')
 move:RegisterFrame(DuffedUIInfoCenter)
@@ -132,11 +132,7 @@ if C['actionbar']['enable'] then
 	local DuffedUIBar3 = CreateFrame('Frame', 'DuffedUIBar3', UIParent, 'SecureHandlerStateTemplate')
 	Mixin(DuffedUIBar3, BackdropTemplateMixin)
 	if not C['actionbar']['hidepanels'] then DuffedUIBar3:SetTemplate('Transparent') end
-	if C['misc']['XPBar'] then
-		DuffedUIBar3:Point('BOTTOMLEFT', DuffedUIInfoLeft, 'BOTTOMRIGHT', 37, 0)
-	else
-		DuffedUIBar3:Point('BOTTOMLEFT', DuffedUIInfoLeft, 'BOTTOMRIGHT', 23, 0)
-	end
+	DuffedUIBar3:Point('BOTTOMLEFT', DuffedUIInfoLeft, 'BOTTOMRIGHT', 23, 0)
 	if C['actionbar']['LeftSideBar'] then
 		DuffedUIBar3:SetSize((D['SidebarButtonsize'] * 12) + (D['buttonspacing'] * 13), (D['SidebarButtonsize'] * 1) + (D['buttonspacing'] * 2))
 	else
@@ -150,11 +146,7 @@ if C['actionbar']['enable'] then
 	local DuffedUIBar4 = CreateFrame('Frame', 'DuffedUIBar4', UIParent, 'SecureHandlerStateTemplate')
 	Mixin(DuffedUIBar4, BackdropTemplateMixin)
 	if not C['actionbar']['hidepanels'] then DuffedUIBar4:SetTemplate('Transparent') end
-	if C['misc']['azerite'] then 
-		DuffedUIBar4:SetPoint('BOTTOMRIGHT', DuffedUIInfoRight, 'BOTTOMLEFT', -37, 0)
-	else
-		DuffedUIBar4:SetPoint('BOTTOMRIGHT', DuffedUIInfoRight, 'BOTTOMLEFT', -23, 0)
-	end
+	DuffedUIBar4:SetPoint('BOTTOMRIGHT', DuffedUIInfoRight, 'BOTTOMLEFT', -23, 0)
 	if C['actionbar']['RightSideBar'] then
 		DuffedUIBar4:SetSize((D['SidebarButtonsize'] * 12) + (D['buttonspacing'] * 13), (D['SidebarButtonsize'] * 1) + (D['buttonspacing'] * 2))
 	else
