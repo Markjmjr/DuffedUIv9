@@ -327,14 +327,6 @@ DuffedUIConfig ['enUS'] = {
 		['extraquestbutton'] = {
 			['Name'] = 'Show extra quest button',
 		},
-
-		['microbar'] = {
-			['Name'] = 'Show micromenu Bar',
-		},
-
-		['microbarmouseover'] = {
-			['Name'] = 'Show micro menu bar with mouseover',
-		},
 	},
 
 	['bags'] = {

@@ -323,14 +323,6 @@ DuffedUIConfig['deDE'] = {
 		['extraquestbutton'] = {
 			['Name'] = 'Extra Questbutton anzeigen',
 		},
-		
-		['microbar'] = {
-			['Name'] = 'Micromenüleiste anzeigen',
-		},
-		
-		['microbarmouseover'] = {
-			['Name'] = 'Micromenüleiste per Mouseover anzeigen',
-		},
 	},
 	['bags'] = {
 		['Enable'] = {
