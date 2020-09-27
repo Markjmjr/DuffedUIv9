@@ -55,9 +55,7 @@ local function Copy(cf)
 	FCF_SetChatWindowFontSize(cf, cf, .01)
 	local lineCt = GetLines(cf:GetRegions())
 	local text = table.concat(lines, '\n', 1, lineCt)
-	for i = 1, cf:GetNumMessages() do
-		text = text..cf:GetMessageInfo(i)..'\n'
-	end
+	for i = 1, cf:GetNumMessages() do text = text..cf:GetMessageInfo(i)..'\n' end
 	FCF_SetChatWindowFontSize(cf, cf, size)
 	if not isf then CreateCopyFrame() end
 	if frame:IsShown() then frame:Hide() return end
@@ -77,9 +75,6 @@ for i = 1, NUM_CHAT_WINDOWS do
 		if button == "LeftButton" then
 			PlaySound(111)
 			Copy(cf)
-		elseif button == "RightButton" then
-			PlaySound(36626)
-			RandomRoll(1, 100)
 		end	
 	end)
 	button:SetScript('OnEnter', function(self)
@@ -91,7 +86,6 @@ for i = 1, NUM_CHAT_WINDOWS do
 		GameTooltip:SetOwner(self, anchor, xoff, yoff)
 		GameTooltip:ClearLines()
 		GameTooltip:AddDoubleLine(KEY_BUTTON1..':', "Copy chat", 1, 1, 1)
-		GameTooltip:AddDoubleLine(KEY_BUTTON2..':', "Roll 100. You Win!", 1, 1, 1)
 		GameTooltip:Show()
 	end)
 	button:SetScript('OnLeave', function() GameTooltip:Hide() end)
