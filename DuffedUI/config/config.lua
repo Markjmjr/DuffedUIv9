@@ -132,8 +132,6 @@ C['actionbar'] = {
 	['RightSideBarDisable'] = false,
 	['hidepanels'] = false,
 	['extraquestbutton'] = true,
-	['microbar'] = false,
-	['microbarmouseover'] = false,
 }
 
 C['raid'] = {
@@ -235,8 +233,8 @@ C['misc'] = {
 	['AFKCamera'] = true,
 	['magemenu'] = false,
 	['azerite'] = true,
-	['azeritewidth'] = 5,
-	['azeriteheight'] = 162,
+	['azeritewidth'] = 140,
+	['azeriteheight'] = 5,
 	['gemenchantinfo'] = true,
 	['itemlevel'] = true,
 }

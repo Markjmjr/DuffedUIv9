@@ -54,9 +54,7 @@ local OnMouseDown = function(self, btn)
 		if (btn ~= "LeftButton") then return end
 		ToggleWorldMap()
 	else
-		if (btn == "LeftButton") then
-			ToggleWorldMap()
-		end
+		if (btn == "LeftButton") then ToggleWorldMap() end
 	end
 end
  
