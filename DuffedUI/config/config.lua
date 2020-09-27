@@ -207,8 +207,8 @@ C['auras'] = {
 }
 
 C['bags'] = {
-	['BagColumns'] = 11,
-	['BankColumns'] = 11,
+	['BagColumns'] = 10,
+	['BankColumns'] = 10,
 	['BindText'] = false,
 	['ButtonSize'] = 28,
 	['ButtonSpace'] = 4,
