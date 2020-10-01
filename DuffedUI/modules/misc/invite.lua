@@ -1,4 +1,7 @@
-local D, C, L = unpack(select(2, ...)) 
+local D, C, L = unpack(select(2, ...))
+
+local C_FriendList_GetNumFriends = C_FriendList.GetNumFriends
+local BNGetNumFriends = BNGetNumFriends
 
 if C['general']['autoaccept'] then
 	local accept = CreateFrame('Frame')
@@ -42,9 +45,9 @@ if C['general']['autoaccept'] then
 				end
 			end
 
-			if GetNumFriends() > 0 then ShowFriends() end
+			if C_FriendList_GetNumFriends() > 0 then ShowFriends() end
 
-			for friendIndex = 1, GetNumFriends() do
+			for friendIndex = 1, C_FriendList_GetNumFriends() do
 				local friendName = gsub(GetFriendInfo(friendIndex),  '-.*', '')
 				if friendName == LeaderName then
 					AcceptGroup()
