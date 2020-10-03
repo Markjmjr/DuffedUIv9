@@ -43,6 +43,8 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-10-03 | Update Aurora
+2020-10-01 | Fixed auto invite
 2020-09-28 | Update Aurora
 2020-09-27 | Changed default value for buttons per row on bags and bank<br />Moved xp bar to the center datatext panel and removed options for xp bar<br />Moved azeritebar to bottom of minimap<br />Removed microbar<br />Removed rollffunction on copychat
 2020-09-26 | Update Aurora<br />Fixed division by zero on durability display if no item is equipped
