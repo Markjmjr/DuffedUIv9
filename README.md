@@ -43,6 +43,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-10-04 | Added revision to afkcamera<br />Fixed missing concatenation<br />Added static popup to moveui-function
 2020-10-03 | Update Aurora
 2020-10-01 | Fixed auto invite
 2020-09-28 | Update Aurora
