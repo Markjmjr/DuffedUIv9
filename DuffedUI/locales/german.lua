@@ -45,6 +45,7 @@ if D.Client == 'deDE' then
 	L['ui'] = {
 		['outdated'] = 'Deine Version von DuffedUI ist veraltet. Du kannst die neuste Version auf |cffc41f3http://www.wowinterface.com|r herunter laden.',
 		['disableui'] = 'DuffedUI funktioniert mit Deiner Auflösung nicht. Möchtest Du DuffedUI deaktivieren? (Abbrechen, wenn Du es mit einer anderen Auflösung probieren möchtest)',
+		['moveui'] =  'MoveUI aktiviert',
 		['fix_ab'] = 'Etwas stimmt nicht mit den Aktionsleisten. Möchtest Du das UI neu laden um diesen Fehler zu beheben?',
 		['combattrue'] = '+ Kampfbeginn',
 		['combatfalse'] = '- Kampfende',

@@ -242,6 +242,19 @@ Move:SetScript('OnEvent', function(self, event)
 	end
 end)
 
+D['CreatePopup']['MOVEUI'] = {
+	question = L['ui']['moveui'],
+	answer1 = ACCEPT,
+	answer2 = CANCEL,
+	function1 = function()
+		Move:StartOrStopMoving()
+		ReloadUI()
+	end,
+	function2 = function()
+		Move:StartOrStopMoving()
+	end
+}
+
 SLASH_MOVING1 = '/moveui'
 SLASH_MOVING2 = '/mm'
 SlashCmdList['MOVING'] = function()
@@ -249,6 +262,7 @@ SlashCmdList['MOVING'] = function()
 
 	local Move = D['move']
 	Move:StartOrStopMoving()
+	D['ShowPopup']('MOVEUI')
 end
 
 local protection = CreateFrame('Frame')
