@@ -318,9 +318,6 @@ local DuffedUIImprovedCurrencyDropDown = CreateFrame('Frame', 'DuffedUIImprovedC
 DuffedUIImprovedCurrencyDropDown:SetTemplate('Transparent')
 
 local function RESETGOLD()
-	local myPlayerRealm = D['MyRealm']
-	local myPlayerName  = UnitName('player')
-
 	DuffedUIData['gold'] = {}
 	DuffedUIData['gold'][myPlayerRealm] = {}
 	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = GetMoney()
@@ -330,9 +327,6 @@ SlashCmdList['RESETGOLD'] = RESETGOLD
 
 local OnMouseDown = function(self, btn)
 	if btn == 'RightButton' and IsShiftKeyDown() then
-		local myPlayerRealm = D['MyRealm']
-		local myPlayerName  = UnitName('player')
-	
 		DuffedUIData['gold'] = {}
 		DuffedUIData['gold'][myPlayerRealm] = {}
 		DuffedUIData['gold'][myPlayerRealm][myPlayerName] = GetMoney()
