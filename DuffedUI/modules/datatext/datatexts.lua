@@ -98,7 +98,7 @@ function DataTexts:CreateAnchors()
 			if (i == 4) then
 				Frame:SetPoint('LEFT', DuffedUIInfoCenter, 1, 0)
 			end
-		elseif (i == 5) then			
+		elseif (i == 5) then
 			Frame:SetSize((DuffedUIInfoCenter:GetWidth()) - 280, DuffedUIInfoCenter:GetHeight() - 2)
 			
 			if (i == 5) then

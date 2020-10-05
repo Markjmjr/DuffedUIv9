@@ -41,9 +41,11 @@ local function FormatTooltipMoney(money)
 end	
 
 local Update = function(self, event)
-	if event == 'PLAYER_LOGIN' then OldMoney = GetMoney() end
+	local NewMoney = GetMoney()
 
-	local NewMoney	= GetMoney()
+	--[[if event == 'PLAYER_LOGIN' then OldMoney = GetMoney() end
+
+	local NewMoney = GetMoney()
 	local Change = NewMoney - OldMoney
 
 	if OldMoney == NewMoney then
@@ -55,7 +57,7 @@ local Update = function(self, event)
 	else 
 		Profit = Profit + Change
 	end
-	self.Text:SetText(formatMoney(NewMoney))
+	self.Text:SetText(formatMoney(NewMoney))]]--
 
 	local myPlayerName  = UnitName('player')
 	if DuffedUIData == nil then DuffedUIData = {} end
@@ -66,7 +68,20 @@ local Update = function(self, event)
 	if DuffedUIData['FavouriteItems'] == nil then DuffedUIData['FavouriteItems'] = {} end
 	DuffedUIData['Class'][myPlayerRealm][myPlayerName] = D['Class']
 	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = GetMoney()
-	OldMoney = NewMoney
+
+	local OldMoney = DuffedUIData['gold'][myPlayerRealm][myPlayerName] or NewMoney
+
+	local Change = NewMoney - OldMoney
+
+	if (OldMoney > NewMoney) then
+		Spent = Spent - Change
+	else
+		Profit = Profit + Change
+	end
+
+	self.Text:SetText(formatMoney(NewMoney))
+	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = NewMoney
+	--OldMoney = NewMoney
 end
 
 local OnEnter = function(self)
