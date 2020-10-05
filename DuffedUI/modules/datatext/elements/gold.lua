@@ -15,8 +15,9 @@ D['SetPerCharVariable']('ImprovedCurrency', {})
 
 local Profit = 0
 local Spent = 0
-local OldMoney = 0
+local OldMoney
 local myPlayerRealm = D['MyRealm']
+local myPlayerName  = UnitName('player')
 
 local function formatMoney(money)
 	local gold = floor(math.abs(money) / 10000)
@@ -40,26 +41,7 @@ local function FormatTooltipMoney(money)
 	return cash
 end	
 
-local Update = function(self, event)
-	local NewMoney = GetMoney()
-
-	--[[if event == 'PLAYER_LOGIN' then OldMoney = GetMoney() end
-
-	local NewMoney = GetMoney()
-	local Change = NewMoney - OldMoney
-
-	if OldMoney == NewMoney then
-		Profit = 0
-		Spent = 0
-		Change = 0
-	elseif OldMoney > NewMoney then
-		Spent = Spent - Change
-	else 
-		Profit = Profit + Change
-	end
-	self.Text:SetText(formatMoney(NewMoney))]]--
-
-	local myPlayerName  = UnitName('player')
+local function checkTables()
 	if DuffedUIData == nil then DuffedUIData = {} end
 	if DuffedUIData['gold'] == nil then DuffedUIData['gold'] = {} end
 	if DuffedUIData['gold'][myPlayerRealm] == nil then DuffedUIData['gold'][myPlayerRealm] = {} end
@@ -67,9 +49,12 @@ local Update = function(self, event)
 	if DuffedUIData['Class'][myPlayerRealm] == nil then DuffedUIData['Class'][myPlayerRealm] = {} end
 	if DuffedUIData['FavouriteItems'] == nil then DuffedUIData['FavouriteItems'] = {} end
 	DuffedUIData['Class'][myPlayerRealm][myPlayerName] = D['Class']
-	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = GetMoney()
+end
 
-	local OldMoney = DuffedUIData['gold'][myPlayerRealm][myPlayerName] or NewMoney
+local Update = function(self, event)
+	local NewMoney = GetMoney()
+	
+	OldMoney = OldMoney or NewMoney
 
 	local Change = NewMoney - OldMoney
 
@@ -81,7 +66,7 @@ local Update = function(self, event)
 
 	self.Text:SetText(formatMoney(NewMoney))
 	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = NewMoney
-	--OldMoney = NewMoney
+	OldMoney = NewMoney
 end
 
 local OnEnter = function(self)
@@ -134,12 +119,12 @@ local OnEnter = function(self)
 			)
 		end
 		totalGold = totalGold + thisRealmList[k]
-		end
+	end
 
-		for i = 1, #myGold do
-			local g = myGold[i]
-			GameTooltip:AddDoubleLine(g.name == D['MyName'] and g.name..' |TInterface\\COMMON\\Indicator-Green:14|t' or g.name, g.amountText, g.r, g.g, g.b, 1, 1, 1)
-		end
+	for i = 1, #myGold do
+		local g = myGold[i]
+		GameTooltip:AddDoubleLine(g.name == D['MyName'] and g.name..' |TInterface\\COMMON\\Indicator-Green:14|t' or g.name, g.amountText, g.r, g.g, g.b, 1, 1, 1)
+	end
 
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddLine(L['dt']['server'])
@@ -370,6 +355,7 @@ local function Enable(self)
 	self:SetScript('OnMouseDown', OnMouseDown)
 	self:SetScript('OnEnter', OnEnter)
 	self:SetScript('OnLeave', GameTooltip_Hide)
+	checkTables()
 	self:Update()
 end
 
