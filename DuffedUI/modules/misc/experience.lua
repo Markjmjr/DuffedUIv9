@@ -3,7 +3,6 @@ local D, C, L = unpack(select(2, ...))
 local barHeight, barWidth = 5, 374
 local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D['Class']]
-local level = UnitLevel('player')
 local FactionInfo = {
 	[1] = {{ 170/255, 70/255,  70/255 }, L['xpbar']['hated'], 'FFaa4646'},
 	[2] = {{ 170/255, 70/255,  70/255 }, L['xpbar']['hostile'], 'FFaa4646'},
@@ -62,6 +61,7 @@ mouseFrame:SetFrameLevel(3)
 
 local function updateStatus()
 	local XP, maxXP, restXP = UnitXP('player'), UnitXPMax('player'), GetXPExhaustion()
+	local level = UnitLevel('player')
 	if not maxXP or maxXP == 0 then return end
 	local percXP = math.floor((XP / maxXP) * 100)
 
