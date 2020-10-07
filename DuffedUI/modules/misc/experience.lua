@@ -1,6 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
-local barHeight, barWidth = 10, 374
+local barHeight, barWidth = 10, 373
 local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D['Class']]
 local FactionInfo = {
