@@ -43,6 +43,10 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-10-09 | Update Aurora
+2020-10-07 | Correct width for XP-bar<br />Resied XP bar for better visbility
+2020-10-06 | Moved local variable to update function
+2020-10-05 | Removed duplicate local variables<br />Update for gold datatext by humfras
 2020-10-04 | Added revision to afkcamera<br />Fixed missing concatenation<br />Added static popup to moveui-function
 2020-10-03 | Update Aurora
 2020-10-01 | Fixed auto invite
