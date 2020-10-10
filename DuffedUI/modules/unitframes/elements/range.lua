@@ -21,7 +21,7 @@ local SpellRangeTable = {}
 function Module:CreateRangeIndicator()
 		local Range = {
 		insideAlpha = 1,
-		outsideAlpha = 0.35
+		outsideAlpha = C['raid']['raidalphaoor']
 	}
 	Range.Override = Module.UpdateRange
 

@@ -1,5 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
+local Module = D:GetModule("Range")
 local ADDON_NAME, ns = ...
 local oUF = ns.oUF or oUF
 assert(oUF, 'DuffedUI was unable to locate oUF install.')
@@ -182,10 +183,7 @@ D['ConstructUFRaid'] = function(self)
 	self:RegisterEvent('PARTY_LEADER_CHANGED', D['MLAnchorUpdate'])
 	self:RegisterEvent('GROUP_ROSTER_UPDATE', D['MLAnchorUpdate'])
 
-	if C['raid']['showrange'] then
-		local range = {insideAlpha = 1, outsideAlpha = C['raid']['raidalphaoor']}
-		self.Range = range
-	end
+	if C['raid']['showrange'] then self.Range = Module.CreateRangeIndicator(self) end
 
 	if layout == 'heal' then
 		if not C['raid']['raidunitdebuffwatch'] then
