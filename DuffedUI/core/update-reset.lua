@@ -1,9 +1,10 @@
 local D, C, L = unpack(select(2, ...))
+if D['Patch'] ~= '9.0.1' then return end
 
 local update = CreateFrame('Frame')
 
 local function IsAddOnEnabled(addon)
-    return GetAddOnEnableState(D['MyName'], addon) == 2 or 1
+    return GetAddOnEnableState(D['MyName'], addon) > 0
 end
 
 function update:DisableAddOns()
@@ -16,8 +17,8 @@ function update:Load()
 
     self:DisableAddOns()
         
-    if DuffedUIData then DuffedUIData = nil end
-    if DuffedUIDataPerChar then D['SetPerCharVariable']('DuffedUIDataPerChar', nil) end
+    if DuffedUIData then DuffedUIData = {} end
+    if DuffedUIDataPerChar then D['SetPerCharVariable']('DuffedUIDataPerChar', {}) end
     
     DuffedUIData.firstlogin = true
     D['Install']()
