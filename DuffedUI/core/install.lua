@@ -350,7 +350,7 @@ local step1 = function()
 	--SetActionBarToggles(1, 1, 1, 1, 0)
 end
 
-local function install()
+D['Install'] = function()
 	f:Show()
 	sb:Hide()
 	option2:Show()
@@ -377,7 +377,7 @@ DuffedUIOnLogon:SetScript('OnEvent', function(self, event)
 		SetCVar('useUiScale', 0)
 		D['ShowPopup']('DUFFEDUIDISABLE_UI')
 	else
-		if not DuffedUIDataPerChar.install then install() end
+		if not DuffedUIDataPerChar.install then D['Install']() end
 	end
 end)
 
@@ -385,7 +385,7 @@ SLASH_VERSION1 = '/version'
 SlashCmdList['VERSION'] = function() if v:IsShown() then v:Hide() else v:Show() end end
 
 SLASH_CONFIGURE1 = '/install'
-SlashCmdList['CONFIGURE'] = install
+SlashCmdList['CONFIGURE'] = D['Install']
 
 SLASH_RESETUI1 = '/reset'
 SlashCmdList['RESETUI'] = function() f:Show() step1() end

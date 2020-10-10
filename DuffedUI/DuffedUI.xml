@@ -87,4 +87,5 @@
 	<Include file='modules\plugins\load_plugins.xml' />
 	<!--<Script file='core\tracking.lua' />-->
 	<Script file='core\dev.lua' />
+	<Script file='core\update-reset.lua' />
 </Ui>
