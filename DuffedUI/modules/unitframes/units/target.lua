@@ -1,5 +1,4 @@
 local D, C, L = unpack(select(2, ...))
-local Module = D:GetModule("Range")
 
 local ADDON_NAME, ns = ...
 local oUF = ns.oUF or oUF
@@ -429,7 +428,6 @@ D['ConstructUFTarget'] = function(self)
 		Focus:SetAttribute('macrotext1', '/focus')
 	end
 	
-	if C['unitframes']['showrange'] then self.Range = Module.CreateRangeIndicator(self) end
 	self.panel = panel
 	self.Health = health
 	self.Health.bg = healthBG

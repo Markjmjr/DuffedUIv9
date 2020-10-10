@@ -213,11 +213,7 @@ D['SpawnUF'] = function(self)
 			'template', 'oUF_DuffedUIMtt'
 		)
 		tank:SetParent(oUFDuffedUI_PetBattleFrameHider)
-		if C['chat']['rbackground'] then 
-			tank:Point('TOPLEFT', DuffedUIChatBackgroundRight, 'TOPLEFT', 2, 57)
-		else 
-			tank:Point('TOPLEFT', ChatFrame4, 'TOPLEFT', 2, 62)
-		end
+		if C['chat']['rbackground'] then tank:Point('TOPLEFT', DuffedUIChatBackgroundRight, 'TOPLEFT', 2, 57) else tank:Point('TOPLEFT', ChatFrame4, 'TOPLEFT', 2, 62) end
 		move:RegisterFrame(oUF_MainTank)
 	end
 
@@ -269,11 +265,7 @@ D['SpawnUF'] = function(self)
 			)
 			raid:SetParent(oUFDuffedUI_PetBattleFrameHider)
 			raid:SetPoint('BOTTOMLEFT', ra, 'BOTTOMLEFT', 0, 0)
-			if DuffedUIChatBackgroundLeft then 
-				ra:Point('BOTTOMLEFT', DuffedUIChatBackgroundLeft, 'TOPLEFT', 2, 8)
-			else
-				ra:Point('BOTTOMLEFT', ChatFrame1, 'TOPLEFT', 2, 33)
-			end
+			if DuffedUIChatBackgroundLeft then ra:Point('BOTTOMLEFT', DuffedUIChatBackgroundLeft, 'TOPLEFT', 2, 8) else ra:Point('BOTTOMLEFT', ChatFrame1, 'TOPLEFT', 2, 33) end
 			move:RegisterFrame(RaidAnchor)
 
 			if C['raid']['showraidpets'] then
@@ -321,11 +313,7 @@ D['SpawnUF'] = function(self)
 				'point', 'BOTTOM'
 			)
 			raid:SetParent(oUFDuffedUI_PetBattleFrameHider)
-			if DuffedUIChatBackgroundLeft then 
-				raid:Point('BOTTOMLEFT', DuffedUIChatBackgroundLeft, 'TOPLEFT', 2, 26)
-			else
-				raid:Point('BOTTOMLEFT', ChatFrame1, 'TOPLEFT', 2, 33)
-			end
+			if DuffedUIChatBackgroundLeft then raid:Point('BOTTOMLEFT', DuffedUIChatBackgroundLeft, 'TOPLEFT', 2, 26) else raid:Point('BOTTOMLEFT', ChatFrame1, 'TOPLEFT', 2, 33) end
 			move:RegisterFrame(oUF_DPS)
 		end
 	end
@@ -349,9 +337,7 @@ D['LoadUF'] = function()
 		oUF:RegisterStyle('DuffedUI', D['ConstructUF'])
 		D['SpawnUF']()
 	end
-	if C['nameplate']['active'] then
-		oUF:SpawnNamePlates(nil, nil, cvars)
-	end
+	if C['nameplate']['active'] then oUF:SpawnNamePlates(nil, nil, cvars) end
 end
 
 local LoadUF = CreateFrame('Frame')

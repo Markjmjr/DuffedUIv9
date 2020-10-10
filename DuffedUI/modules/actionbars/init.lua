@@ -31,12 +31,9 @@ function ab:DisableBlizzard()
 	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_SHOWGRID')
 	ActionBarButtonEventsFrame:UnregisterEvent('ACTIONBAR_HIDEGRID')
 	ActionBarButtonEventsFrame:UnregisterEvent('UPDATE_BINDINGS')
-	
 	PetActionBarFrame:UnregisterEvent('PET_BAR_SHOWGRID')
 	PetActionBarFrame:UnregisterEvent('PET_BAR_HIDEGRID')
-	
 	PetActionBar_ShowGrid()
-
 	MultiActionBar_Update = D['Dummy']
 end
 
@@ -79,7 +76,6 @@ function ab:UpdateStanceBar()
 
 			Button = _G[ButtonName]
 			Icon = _G[ButtonName..'Icon']
-
 			Button:SetNormalTexture('')
 
 			if i <= NumForms then
