@@ -43,6 +43,7 @@ This is to ensure that, after the release of Shadowlands, you can find the relev
 ## Changelog
 Date | Change
 --- | ---
+2020-10-10 | Last preparation for release of the UI on 9.0.1<br />Removed not used funtion<br />Removed bag bar (not needed)<br />Removed range-display on target for better visibility of debuffs, target castbar and target<br />Added reset for SavedVars
 2020-10-09 | Update Aurora
 2020-10-07 | Correct width for XP-bar<br />Resied XP bar for better visbility
 2020-10-06 | Moved local variable to update function
