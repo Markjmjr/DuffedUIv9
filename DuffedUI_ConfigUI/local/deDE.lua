@@ -376,14 +376,6 @@ DuffedUIConfig['deDE'] = {
 		['SortInverted'] = {
 			['Name'] = 'Sortierung tauschen',
 		},
-		
-		['BagBar'] = {
-			['Name'] = 'Taschenleiste anzeigen',
-		},
-		
-		['BagBarMouseover'] = {
-			['Name'] = 'Taschenleiste per Mouseover anzeigen',
-		},
 	},
 	
 	['castbar'] = {

@@ -381,14 +381,6 @@ DuffedUIConfig ['enUS'] = {
 		['SortInverted'] = {
 			['Name'] = 'Swap sort',
 		},
-
-		['BagBar'] = {
-			['Name'] = 'Show bag bar',
-		},
-
-		['BagBarMouseover'] = {
-			['Name'] = 'Show bag bar by mouseover',
-		},
 	},
 
 	['castbar'] = {

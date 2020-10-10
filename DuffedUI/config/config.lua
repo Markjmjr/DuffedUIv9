@@ -218,8 +218,6 @@ C['bags'] = {
 	['PulseNewItem'] = true,
 	['ReverseLoot'] = true,
 	['SortInverted'] = false,
-	['BagBar'] = false,
-	['BagBarMouseover'] = false,
 }
 
 C['misc'] = {
