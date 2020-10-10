@@ -1,28 +1,29 @@
 local D, C, L = unpack(select(2, ...))
 
 local update = CreateFrame('Frame')
-local db = DuffedUIDataPerChar
-local firstlogin = db.firstlogin
+
+local function IsAddOnEnabled(addon)
+    return GetAddOnEnableState(D['MyName'], addon) == 2 or 1
+end
 
 function update:DisableAddOns()
-    if IsAddOnLoaded('AddOnSkins') then DisableAddOn('AddOnSkins') end
-    if IsAddOnLoaded('ProjectAzilroka') then DisableAddOn('ProjectAzilroka') end
+    if IsAddOnEnabled('AddOnSkins') then DisableAddOn('AddOnSkins') end
+    if IsAddOnEnabled('ProjectAzilroka') then DisableAddOn('ProjectAzilroka') end
 end
 
 function update:Load()
-    if firstlogin == true then return end
+    if DuffedUIData.firstlogin == true then return end
 
     self:DisableAddOns()
         
     if DuffedUIData then DuffedUIData = nil end
     if DuffedUIDataPerChar then D['SetPerCharVariable']('DuffedUIDataPerChar', nil) end
     
-    firstlogin = true
+    DuffedUIData.firstlogin = true
     D['Install']()
 end
 
 update:RegisterEvent('PLAYER_LOGIN')
-update:RegisterEvent('PLAYER_ENTERING_WORLD')
 update:SetScript('OnEvent', function(self, event, ...)
     update:Load()
 end)
