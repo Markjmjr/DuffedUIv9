@@ -231,6 +231,7 @@ function ab:Enable()
 	self:SetupExtraButton()
 	self:AddHooks()
 	self:FixMBBR()
+	MainMenuMicroButton_SetAlertsEnabled(false, "not needed")
 	
 	self:RegisterEvent('UPDATE_BINDINGS')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -241,9 +242,5 @@ ab:RegisterEvent('ADDON_LOADED')
 ab:RegisterEvent('PLAYER_LOGIN')
 ab:RegisterEvent('PLAYER_ENTERING_WORLD')
 ab:SetScript('OnEvent', function(self, event, ...)
-	if event == 'PLAYER_LOGIN' then
-		ab:Enable()
-	elseif event == 'PLAYER_ENTERING_WORLD' then
-		ab:FixMBBR()
-	end
+	if event == 'PLAYER_LOGIN' then ab:Enable() elseif event == 'PLAYER_ENTERING_WORLD' then ab:FixMBBR() end
 end)
