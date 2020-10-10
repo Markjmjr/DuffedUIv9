@@ -510,24 +510,6 @@ D['UpdateThreat'] = function(self, event, unit)
 	end
 end
 
-D['SetGridGroupRole'] = function(self, role)
-	local lfdrole = self.GroupRoleIndicator
-	local role = UnitGroupRolesAssigned(self.unit)
-
-	if role == 'TANK' then
-		lfdrole:SetTexture(C['media'].tank)
-		lfdrole:Show()
-	elseif role == 'HEALER' then
-		lfdrole:SetTexture(C['media'].heal)
-		lfdrole:Show()
-	elseif role == 'DAMAGER' then
-		lfdrole:SetTexture(C['media'].dps)
-		lfdrole:Show()
-	else
-		lfdrole:Hide()
-	end
-end
-
 -- AuraWatch
 local function Defaults(priorityOverride)
 	return {['enable'] = true, ['priority'] = priorityOverride or 0, ['stackThreshold'] = 0}
