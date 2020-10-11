@@ -30,6 +30,8 @@ local function handleFrame(baseName, doNotReparent)
 		frame:UnregisterAllEvents()
 		frame:Hide()
 
+		-- Keep frame hidden without causing taint
+		--frame:SetParent(hiddenParent)
 		if(not doNotReparent) then
 			frame:SetParent(hiddenParent)
 		end
@@ -121,6 +123,7 @@ function oUF:DisableBlizzard(unit)
 	elseif(unit:match('nameplate%d+$')) then
 		local frame = C_NamePlate.GetNamePlateForUnit(unit)
 		if(frame and frame.UnitFrame) then
+			--handleFrame(frame.UnitFrame)
 			if(not frame.UnitFrame.isHooked) then
 				frame.UnitFrame:HookScript('OnShow', insecureOnShow)
 				frame.UnitFrame.isHooked = true

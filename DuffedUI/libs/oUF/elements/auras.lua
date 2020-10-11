@@ -1,20 +1,13 @@
 --[[
 # Element: Auras
-
 Handles creation and updating of aura icons.
-
 ## Widget
-
 Auras   - A Frame to hold `Button`s representing both buffs and debuffs.
 Buffs   - A Frame to hold `Button`s representing buffs.
 Debuffs - A Frame to hold `Button`s representing debuffs.
-
 ## Notes
-
 At least one of the above widgets must be present for the element to work.
-
 ## Options
-
 .disableMouse       - Disables mouse events (boolean)
 .disableCooldown    - Disables the cooldown spiral (boolean)
 .size               - Aura icon size. Defaults to 16 (number)
@@ -30,9 +23,7 @@ At least one of the above widgets must be present for the element to work.
                       debuffs (string)
 .tooltipAnchor      - Anchor point for the tooltip. Defaults to 'ANCHOR_BOTTOMRIGHT', however, if a frame has anchoring
                       restrictions it will be set to 'ANCHOR_CURSOR' (string)
-
 ## Options Auras
-
 .numBuffs     - The maximum number of buffs to display. Defaults to 32 (number)
 .numDebuffs   - The maximum number of debuffs to display. Defaults to 40 (number)
 .numTotal     - The maximum number of auras to display. Prioritizes buffs over debuffs. Defaults to the sum of
@@ -40,29 +31,20 @@ At least one of the above widgets must be present for the element to work.
 .gap          - Controls the creation of an invisible icon between buffs and debuffs. Defaults to false (boolean)
 .buffFilter   - Custom filter list for buffs to display. Takes priority over `filter` (string)
 .debuffFilter - Custom filter list for debuffs to display. Takes priority over `filter` (string)
-
 ## Options Buffs
-
 .num - Number of buffs to display. Defaults to 32 (number)
-
 ## Options Debuffs
-
 .num - Number of debuffs to display. Defaults to 40 (number)
-
 ## Attributes
-
 button.caster   - the unit who cast the aura (string)
 button.filter   - the filter list used to determine the visibility of the aura (string)
 button.isDebuff - indicates if the button holds a debuff (boolean)
 button.isPlayer - indicates if the aura caster is the player or their vehicle (boolean)
-
 ## Examples
-
     -- Position and size
     local Buffs = CreateFrame('Frame', nil, self)
     Buffs:SetPoint('RIGHT', self, 'LEFT')
     Buffs:SetSize(16 * 2, 16 * 16)
-
     -- Register with oUF
     self.Buffs = Buffs
 --]]
@@ -128,7 +110,6 @@ local function createAuraIcon(element, index)
 
 	--[[ Callback: Auras:PostCreateIcon(button)
 	Called after a new aura button has been created.
-
 	* self   - the widget holding the aura buttons
 	* button - the newly created aura button (Button)
 	--]]
@@ -154,12 +135,9 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 		if(not button) then
 			--[[ Override: Auras:CreateIcon(position)
 			Used to create the aura button at a given position.
-
 			* self     - the widget holding the aura buttons
 			* position - the position at which the aura button is to be created (number)
-
 			## Returns
-
 			* button - the button used to represent the aura (Button)
 			--]]
 			button = (element.CreateIcon or createAuraIcon) (element, position)
@@ -175,14 +153,11 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 
 		--[[ Override: Auras:CustomFilter(unit, button, ...)
 		Defines a custom filter that controls if the aura button should be shown.
-
 		* self   - the widget holding the aura buttons
 		* unit   - the unit on which the aura is cast (string)
 		* button - the button displaying the aura (Button)
 		* ...    - the return values from [UnitAura](http://wowprogramming.com/docs/api/UnitAura.html)
-
 		## Returns
-
 		* show - indicates whether the aura button should be shown (boolean)
 		--]]
 		local show = (element.CustomFilter or customFilter) (element, unit, button, name, texture,
@@ -233,7 +208,6 @@ local function updateIcon(element, unit, index, offset, filter, isDebuff, visibl
 
 			--[[ Callback: Auras:PostUpdateIcon(unit, button, index, position)
 			Called after the aura button has been updated.
-
 			* self        - the widget holding the aura buttons
 			* unit        - the unit on which the aura is cast (string)
 			* button      - the updated aura button (Button)
@@ -310,7 +284,6 @@ local function UpdateAuras(self, event, unit)
 	if(auras) then
 		--[[ Callback: Auras:PreUpdate(unit)
 		Called before the element has been updated.
-
 		* self - the widget holding the aura buttons
 		* unit - the unit for which the update has been triggered (string)
 		--]]
@@ -346,7 +319,6 @@ local function UpdateAuras(self, event, unit)
 
 			--[[ Callback: Auras:PostUpdateGapIcon(unit, gapButton, visibleBuffs)
 			Called after an invisible aura button has been created. Only used by Auras when the `gap` option is enabled.
-
 			* self         - the widget holding the aura buttons
 			* unit         - the unit that has the invisible aura button (string)
 			* gapButton    - the invisible aura button (Button)
@@ -371,12 +343,9 @@ local function UpdateAuras(self, event, unit)
 		local fromRange, toRange
 		--[[ Callback: Auras:PreSetPosition(max)
 		Called before the aura buttons have been (re-)anchored.
-
 		* self - the widget holding the aura buttons
 		* max  - the maximum possible number of aura buttons (number)
-
 		## Returns
-
 		* from - the offset of the first aura button to be (re-)anchored (number)
 		* to   - the offset of the last aura button to be (re-)anchored (number)
 		--]]
@@ -388,7 +357,6 @@ local function UpdateAuras(self, event, unit)
 			--[[ Override: Auras:SetPosition(from, to)
 			Used to (re-)anchor the aura buttons.
 			Called when new aura buttons have been created or if :PreSetPosition is defined.
-
 			* self - the widget that holds the aura buttons
 			* from - the offset of the first aura button to be (re-)anchored (number)
 			* to   - the offset of the last aura button to be (re-)anchored (number)
@@ -399,7 +367,6 @@ local function UpdateAuras(self, event, unit)
 
 		--[[ Callback: Auras:PostUpdate(unit)
 		Called after the element has been updated.
-
 		* self - the widget holding the aura buttons
 		* unit - the unit for which the update has been triggered (string)
 		--]]
@@ -490,9 +457,6 @@ local function Enable(self)
 			buffs.createdIcons = buffs.createdIcons or 0
 			buffs.anchoredIcons = 0
 
-			-- Avoid parenting GameTooltip to frames with anchoring restrictions,
-			-- otherwise it'll inherit said restrictions which will cause issues
-			-- with its further positioning, clamping, etc
 			if(not pcall(self.GetCenter, self)) then
 				buffs.tooltipAnchor = 'ANCHOR_CURSOR'
 			else
@@ -510,9 +474,6 @@ local function Enable(self)
 			debuffs.createdIcons = debuffs.createdIcons or 0
 			debuffs.anchoredIcons = 0
 
-			-- Avoid parenting GameTooltip to frames with anchoring restrictions,
-			-- otherwise it'll inherit said restrictions which will cause issues
-			-- with its further positioning, clamping, etc
 			if(not pcall(self.GetCenter, self)) then
 				debuffs.tooltipAnchor = 'ANCHOR_CURSOR'
 			else
@@ -530,9 +491,6 @@ local function Enable(self)
 			auras.createdIcons = auras.createdIcons or 0
 			auras.anchoredIcons = 0
 
-			-- Avoid parenting GameTooltip to frames with anchoring restrictions,
-			-- otherwise it'll inherit said restrictions which will cause issues
-			-- with its further positioning, clamping, etc
 			if(not pcall(self.GetCenter, self)) then
 				auras.tooltipAnchor = 'ANCHOR_CURSOR'
 			else

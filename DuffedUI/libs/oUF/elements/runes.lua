@@ -19,8 +19,7 @@ A default texture will be applied if the sub-widgets are StatusBars and don't ha
 
 .colorSpec - Use `self.colors.runes[specID]` to color the bar based on player's spec. `specID` is defined by the return
              value of [GetSpecialization](http://wowprogramming.com/docs/api/GetSpecialization.html) (boolean)
-.sortOrder - Sorting order. Sorts by the remaining cooldown time, 'asc' - from the least cooldown time remaining (fully
-             charged) to the most (fully depleted), 'desc' - the opposite (string?)['asc', 'desc']
+.sortOrder - Sorting order (string?)['asc', 'desc']
 
 ## Sub-Widgets Options
 
@@ -80,52 +79,25 @@ local function descSort(runeAID, runeBID)
 	end
 end
 
-local function UpdateColor(self, event)
-	local element = self.Runes
-
+local function UpdateColor(element, runeID)
 	local spec = GetSpecialization() or 0
 
 	local color
 	if(spec > 0 and spec < 4 and element.colorSpec) then
-		color = self.colors.runes[spec]
+		color = element.__owner.colors.runes[spec]
 	else
-		color = self.colors.power.RUNES
+		color = element.__owner.colors.power.RUNES
 	end
 
 	local r, g, b = color[1], color[2], color[3]
 
-	for index = 1, #element do
-		element[index]:SetStatusBarColor(r, g, b)
+	element[runeID]:SetStatusBarColor(r, g, b)
 
-		local bg = element[index].bg
-		if(bg) then
-			local mu = bg.multiplier or 1
-			bg:SetVertexColor(r * mu, g * mu, b * mu)
-		end
+	local bg = element[runeID].bg
+	if(bg) then
+		local mu = bg.multiplier or 1
+		bg:SetVertexColor(r * mu, g * mu, b * mu)
 	end
-
-	--[[ Callback: Runes:PostUpdateColor(r, g, b)
-	Called after the element color has been updated.
-
-	* self - the Runes element
-	* r    - the red component of the used color (number)[0-1]
-	* g    - the green component of the used color (number)[0-1]
-	* b    - the blue component of the used color (number)[0-1]
-	--]]
-	if(element.PostUpdateColor) then
-		element:PostUpdateColor(r, g, b)
-	end
-end
-
-local function ColorPath(self, ...)
-	--[[ Override: Runes.UpdateColor(self, event, ...)
-	Used to completely override the internal function for updating the widgets' colors.
-
-	* self  - the parent object
-	* event - the event triggering the update (string)
-	* ...   - the arguments accompanying the event
-	--]]
-	(self.Runes.UpdateColor or UpdateColor) (self, ...)
 end
 
 local function Update(self, event)
@@ -177,7 +149,21 @@ local function Update(self, event)
 	end
 end
 
-local function Path(self, ...)
+local function Path(self, event, ...)
+	local element = self.Runes
+	if(event ~= 'RUNE_POWER_UPDATE') then
+		--[[ Override: Runes:UpdateColor(runeID)
+		Used to completely override the internal function for updating the widgets' colors.
+
+		* self   - the Runes element
+		* runeID - the index of the updated rune (number)
+		--]]
+		local UpdateColorMethod = element.UpdateColor or UpdateColor
+		for index = 1, #element do
+			UpdateColorMethod(element, index)
+		end
+	end
+
 	--[[ Override: Runes.Override(self, event, ...)
 	Used to completely override the internal update function.
 
@@ -185,33 +171,27 @@ local function Path(self, ...)
 	* event - the event triggering the update (string)
 	* ...   - the arguments accompanying the event
 	--]]
-	(self.Runes.Override or Update) (self, ...)
-end
-
-local function AllPath(...)
-	Path(...)
-	ColorPath(...)
+	return (element.Override or Update) (self, event, ...)
 end
 
 local function ForceUpdate(element)
-	Path(element.__owner, 'ForceUpdate')
-	ColorPath(element.__owner, 'ForceUpdate')
+	return Path(element.__owner, 'ForceUpdate')
 end
 
 local function Enable(self, unit)
 	local element = self.Runes
-	if(element and UnitIsUnit(unit, 'player')) then
+	if(element and unit == 'player') then
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 
 		for i = 1, #element do
 			local rune = element[i]
-			if(rune:IsObjectType('StatusBar') and not (rune:GetStatusBarTexture() or rune:GetStatusBarAtlas())) then
+			if(rune:IsObjectType('StatusBar') and not rune:GetStatusBarTexture()) then
 				rune:SetStatusBarTexture([[Interface\TargetingFrame\UI-StatusBar]])
 			end
 		end
 
-		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED', ColorPath)
+		self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED', Path, true)
 		self:RegisterEvent('RUNE_POWER_UPDATE', Path, true)
 
 		return true
@@ -225,9 +205,9 @@ local function Disable(self)
 			element[i]:Hide()
 		end
 
-		self:UnregisterEvent('PLAYER_SPECIALIZATION_CHANGED', ColorPath)
+		self:UnregisterEvent('PLAYER_SPECIALIZATION_CHANGED', Path)
 		self:UnregisterEvent('RUNE_POWER_UPDATE', Path)
 	end
 end
 
-oUF:AddElement('Runes', AllPath, Enable, Disable)
+oUF:AddElement('Runes', Path, Enable, Disable)

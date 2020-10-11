@@ -49,12 +49,9 @@ local STAGGER_GREEN_INDEX = STAGGER_GREEN_INDEX or 1
 local STAGGER_YELLOW_INDEX = STAGGER_YELLOW_INDEX or 2
 local STAGGER_RED_INDEX = STAGGER_RED_INDEX or 3
 
-local function UpdateColor(self, event, unit)
-	if(unit and unit ~= self.unit) then return end
-	local element = self.Stagger
-
-	local colors = self.colors.power[BREWMASTER_POWER_BAR_NAME]
-	local perc = (element.cur or 0) / (element.max or 1)
+local function UpdateColor(element, cur, max)
+	local colors = element.__owner.colors.power[BREWMASTER_POWER_BAR_NAME]
+	local perc = cur / max
 
 	local t
 	if(perc >= STAGGER_RED_TRANSITION) then
@@ -77,18 +74,6 @@ local function UpdateColor(self, event, unit)
 				bg:SetVertexColor(r * mu, g * mu, b * mu)
 			end
 		end
-	end
-
-	--[[ Callback: Stagger:PostUpdateColor(r, g, b)
-	Called after the element color has been updated.
-
-	* self - the Stagger element
-	* r    - the red component of the used color (number)[0-1]
-	* g    - the green component of the used color (number)[0-1]
-	* b    - the blue component of the used color (number)[0-1]
-	--]]
-	if(element.PostUpdateColor) then
-		element:PostUpdateColor(r, g, b)
 	end
 end
 
@@ -113,8 +98,14 @@ local function Update(self, event, unit)
 	element:SetMinMaxValues(0, max)
 	element:SetValue(cur)
 
-	element.cur = cur
-	element.max = max
+	--[[ Override: Stagger:UpdateColor(cur, max)
+	Used to completely override the internal function for updating the widget's colors.
+
+	* self - the Stagger element
+	* cur  - the amount of staggered damage (number)
+	* max  - the player's maximum possible health value (number)
+	--]]
+	element:UpdateColor(cur, max)
 
 	--[[ Callback: Stagger:PostUpdate(cur, max)
 	Called after the element has been updated.
@@ -136,16 +127,7 @@ local function Path(self, ...)
 	* event - the event triggering the update (string)
 	* unit  - the unit accompanying the event (string)
 	--]]
-	(self.Stagger.Override or Update)(self, ...);
-
-	--[[ Override: Stagger.UpdateColor(self, event, unit)
-	Used to completely override the internal function for updating the widgets' colors.
-
-	* self  - the parent object
-	* event - the event triggering the update (string)
-	* unit  - the unit accompanying the event (string)
-	--]]
-	(self.Stagger.UpdateColor or UpdateColor) (self, ...)
+	return (self.Stagger.Override or Update)(self, ...)
 end
 
 local function Visibility(self, event, unit)
@@ -160,7 +142,7 @@ local function Visibility(self, event, unit)
 			self:RegisterEvent('UNIT_AURA', Path)
 		end
 
-		Path(self, event, unit)
+		return Path(self, event, unit)
 	end
 end
 
@@ -172,24 +154,28 @@ local function VisibilityPath(self, ...)
 	* event - the event triggering the update (string)
 	* unit  - the unit accompanying the event (string)
 	--]]
-	(self.Stagger.OverrideVisibility or Visibility)(self, ...)
+	return (self.Stagger.OverrideVisibility or Visibility)(self, ...)
 end
 
 local function ForceUpdate(element)
-	VisibilityPath(element.__owner, 'ForceUpdate', element.__owner.unit)
+	return VisibilityPath(element.__owner, 'ForceUpdate', element.__owner.unit)
 end
 
-local function Enable(self, unit)
+local function Enable(self)
 	local element = self.Stagger
-	if(element and UnitIsUnit(unit, 'player')) then
+	if(element) then
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 
 		self:RegisterEvent('UNIT_DISPLAYPOWER', VisibilityPath)
 		self:RegisterEvent('PLAYER_TALENT_UPDATE', VisibilityPath, true)
 
-		if(element:IsObjectType('StatusBar') and not (element:GetStatusBarTexture() or element:GetStatusBarAtlas())) then
+		if(element:IsObjectType('StatusBar') and not element:GetStatusBarTexture()) then
 			element:SetStatusBarTexture([[Interface\TargetingFrame\UI-StatusBar]])
+		end
+
+		if(not element.UpdateColor) then
+			element.UpdateColor = UpdateColor
 		end
 
 		MonkStaggerBar:UnregisterEvent('PLAYER_ENTERING_WORLD')
@@ -197,6 +183,8 @@ local function Enable(self, unit)
 		MonkStaggerBar:UnregisterEvent('UNIT_DISPLAYPOWER')
 		MonkStaggerBar:UnregisterEvent('UNIT_EXITED_VEHICLE')
 		MonkStaggerBar:UnregisterEvent('UPDATE_VEHICLE_ACTIONBAR')
+
+		element:Hide()
 
 		return true
 	end

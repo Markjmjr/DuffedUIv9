@@ -8,13 +8,13 @@ local TestUI = function(msg)
 		print("'|cffc41f3bboss|r' or '|cffc41f3bb|r' to show boss frames")
 		print("'|cffc41f3bpet|r' or '|cffc41f3bp|r' to show pet frames")
 		print("'|cffc41f3bmaintank|r' or '|cffc41f3bmt|r' to show maintank frames")
-		print("'|cffc41f3raidframe|r' or '|cffc41f3brf|r' to show raid frames")
+		print("'|cffc41f3braidheal|r' or '|cffc41f3brhf|r' to show raid frames")
+		print("'|cffc41f3braiddps|r' or '|cffc41f3brdf|r' to show raid frames")
 	elseif msg == 'arena' or msg == 'a' then
 		for i = 1, 3 do
 			_G['oUF_Arena'..i]:Show()
 			_G['oUF_Arena'..i].Hide = function() end
 			_G['oUF_Arena'..i].unit = 'player'
-			_G['oUF_Arena'..i].Trinket.Icon:SetTexture('Interface\\Icons\\INV_Jewelry_Necklace_37')
 		end
 	elseif msg == 'boss' or msg == 'b' then
 		for i = 1, 3 do
@@ -30,8 +30,18 @@ local TestUI = function(msg)
 		oUF_MainTank:Show()
 		oUF_MainTank.Hide = function() end
 		oUF_MainTank.unit = 'player'
-	elseif msg == 'raidframe' or msg == 'rf' then
-		
+	elseif msg == 'raidheal' or msg == 'rhf' then
+		for i = 1, 40  do
+			_G['oUF_Heal'..i]:Show()
+			_G['ouf_Heal'..i].Hide = function() end
+			_G['oUF_Heal'..i].unit = 'player'
+		end
+	elseif msg == 'raiddps' or  msg == 'rdf' then
+		for i = 1, 40  do
+			_G['oUF_DPS'..i]:Show()
+			_G['ouf_DPS'..i].Hide = function() end
+			_G['oUF_DPS'..i].unit = 'player'
+		end
 	end
 end
 SlashCmdList.TestUI = TestUI

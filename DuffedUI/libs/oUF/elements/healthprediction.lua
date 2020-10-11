@@ -23,8 +23,10 @@ A default texture will be applied to the Texture widgets if they don't have a te
 
 ## Options
 
-.maxOverflow - The maximum amount of overflow past the end of the health bar. Set this to 1 to disable the overflow.
-               Defaults to 1.05 (number)
+.maxOverflow     - The maximum amount of overflow past the end of the health bar. Set this to 1 to disable the overflow.
+                   Defaults to 1.05 (number)
+.frequentUpdates - Indicates whether to use UNIT_HEALTH_FREQUENT instead of UNIT_HEALTH. Use this if .frequentUpdates is
+                   also set on the Health element (boolean)
 
 ## Examples
 
@@ -75,6 +77,7 @@ A default texture will be applied to the Texture widgets if they don't have a te
         overAbsorb = overAbsorb,
         overHealAbsorb = overHealAbsorb,
         maxOverflow = 1.05,
+        frequentUpdates = true,
     }
 --]]
 
@@ -215,7 +218,10 @@ local function Enable(self)
 		element.__owner = self
 		element.ForceUpdate = ForceUpdate
 
-		self:RegisterEvent('UNIT_HEALTH', Path)
+		if(element.frequentUpdates) then
+			self:RegisterEvent('UNIT_HEALTH', Path)
+		end
+
 		self:RegisterEvent('UNIT_MAXHEALTH', Path)
 		self:RegisterEvent('UNIT_HEAL_PREDICTION', Path)
 		self:RegisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
@@ -296,6 +302,7 @@ local function Disable(self)
 
 		self:UnregisterEvent('UNIT_HEALTH', Path)
 		self:UnregisterEvent('UNIT_MAXHEALTH', Path)
+		--self:UnregisterEvent('UNIT_HEALTH_FREQUENT', Path)
 		self:UnregisterEvent('UNIT_HEAL_PREDICTION', Path)
 		self:UnregisterEvent('UNIT_ABSORB_AMOUNT_CHANGED', Path)
 		self:UnregisterEvent('UNIT_HEAL_ABSORB_AMOUNT_CHANGED', Path)
