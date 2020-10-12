@@ -53,14 +53,14 @@ function WorldMap:Coords()
 	WorldMapFrame:HookScript('OnUpdate', function(self, elapsed)
 		int = int + 1
 		if int >= 5 then
-			local UnitMap = C_Map_GetBestMapForUnit('player')
-			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
-			local x, y = 0, 0
-
 			if IsInInstance() then
 				coords.PlayerText:SetText(PLAYER..': x, x')
 				return
 			end
+
+			local UnitMap = C_Map_GetBestMapForUnit('player')
+			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
+			local x, y = 0, 0
 			
 			if UnitMap then
 				local GetPlayerMapPosition = C_Map_GetPlayerMapPosition(UnitMap, 'player')
@@ -93,8 +93,7 @@ function WorldMap:Enable()
 	self:Coords()
 end
 
-WorldMap:RegisterEvent('ADDON_LOADED')
-WorldMap:RegisterEvent('PLAYER_ENTERING_WORLD')
+WorldMap:RegisterEvent('PLAYER_LOGIN')
 WorldMap:SetScript('OnEvent', function(self, event, ...)
 	WorldMap:Enable()
 end)
