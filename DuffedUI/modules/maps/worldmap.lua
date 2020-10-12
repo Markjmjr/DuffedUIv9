@@ -5,6 +5,7 @@ local WorldMap = CreateFrame('Frame', 'BackdropTemplate')
 local fontflag = 'THINOUTLINE'
 local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
 local C_Map_GetPlayerMapPosition = C_Map.GetPlayerMapPosition
+local IsInInstance = IsInInstance
 -- /dump C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit('player'), 'player'):GetXY()
 -- /dump C_Map.GetBestMapForUnit('player')
 
@@ -51,13 +52,12 @@ function WorldMap:Coords()
 	local int = 0
 	WorldMapFrame:HookScript('OnUpdate', function(self, elapsed)
 		int = int + 1
-		if int >= 3 then
+		if int >= 5 then
 			local UnitMap = C_Map_GetBestMapForUnit('player')
 			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
-			--print(position)
 			local x, y = 0, 0
 
-			if not (UnitMap and position) then
+			if IsInInstance() then
 				coords.PlayerText:SetText(PLAYER..': x, x')
 				return
 			end
