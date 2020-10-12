@@ -102,7 +102,6 @@ function WorldMap:Enable()
 	self:Coords()
 end
 
-
 WorldMap:RegisterEvent('PLAYER_LOGIN')
 WorldMap:SetScript('OnEvent', function(self, event, ...)
 	WorldMap:Enable()
