@@ -10,6 +10,7 @@ local IsInInstance = IsInInstance
 -- /dump C_Map.GetBestMapForUnit('player')
 
 function WorldMap:AddMoving()
+	if WorldMap.MoveButton then return end
 	WorldMap.MoveButton = CreateFrame("Frame", nil, WorldMapFrame)
 	WorldMap.MoveButton:SetSize(16, 16)
 	WorldMap.MoveButton:SetPoint("TOPRIGHT", WorldMapFrameCloseButton, -55, -10)
@@ -37,6 +38,7 @@ function WorldMap:AddMoving()
 end
 
 function WorldMap:Coords()
+	if CoordsFrame then return end
 	local coords = CreateFrame('Frame', 'CoordsFrame', WorldMapFrame)
 	local fontheight = 11 * 1.1
 	coords:SetFrameLevel(90)
@@ -53,29 +55,36 @@ function WorldMap:Coords()
 	WorldMapFrame:HookScript('OnUpdate', function(self, elapsed)
 		int = int + 1
 		if int >= 5 then
+			
 			if IsInInstance() then
-				coords.PlayerText:SetText(PLAYER..': x, x')
+				coords.PlayerText:SetText(' ')
+				coords.MouseText:SetText(' ')
 				return
 			end
-
-			local UnitMap = C_Map_GetBestMapForUnit('player')
-			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
-			local x, y = 0, 0
 			
-			if UnitMap then
-				local GetPlayerMapPosition = C_Map_GetPlayerMapPosition(UnitMap, 'player')
-				if GetPlayerMapPosition then x, y = C_Map_GetPlayerMapPosition(UnitMap, 'player'):GetXY() end
-			end		
-			x = math.floor(100 * x)
-			y = math.floor(100 * y)
-			if x ~= 0 and y ~= 0 then coords.PlayerText:SetText(PLAYER..': '..x..', '..y) else coords.PlayerText:SetText(' ') end
-
-			local x, y = WorldMapFrame.ScrollContainer:GetNormalizedCursorPosition()
-			if x and y and x >= 0 and y >= 0 then
+			if WorldMapFrame.ScrollContainer:IsMouseOver() then
+				local x, y = WorldMapFrame.ScrollContainer:GetNormalizedCursorPosition()
 				coords.MouseText:SetFormattedText('Cursor: %.2f, %.2f', x * 100, y * 100)
 			else
 				coords.MouseText:SetText(' ')
 			end
+			
+			local UnitMap = C_Map_GetBestMapForUnit('player')
+			if not UnitMap then
+				coords.PlayerText:SetText(PLAYER..': x, x')
+				return
+			end
+			
+			local position = C_Map_GetPlayerMapPosition(UnitMap, 'player')
+			if not position then
+				coords.PlayerText:SetText(PLAYER..': x, x')
+				return
+			end
+			local x, y = position.x or 0, position.y or 0
+			x = math.floor(100 * x)
+			y = math.floor(100 * y)
+			if x ~= 0 and y ~= 0 then coords.PlayerText:SetText(PLAYER..': '..x..', '..y) else coords.PlayerText:SetText(' ') end
+
 			int = 0
 		end
 	end)
@@ -92,6 +101,7 @@ function WorldMap:Enable()
 	self:AddMoving()
 	self:Coords()
 end
+
 
 WorldMap:RegisterEvent('PLAYER_LOGIN')
 WorldMap:SetScript('OnEvent', function(self, event, ...)
