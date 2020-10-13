@@ -1,7 +1,15 @@
-﻿## [9.0.1.2] - 2020-10-10 ##
+﻿## [9.0.1.3] - 2020-10-12 ##
 ### Fixed ###
 
-  * Error when entering a pet battle
+  * [retail] Some dropdown menus did not use the configured frame alpha
+  * [retail] Error when bounty tutorial is shown
+
+
+
+## [9.0.1.2] - 2020-10-10 ##
+### Fixed ###
+
+  * [retail] Error when entering a pet battle
 
 
 
@@ -176,6 +184,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
+[9.0.1.3]: https://github.com/Haleth/Aurora/compare/9.0.1.2...9.0.1.3
 [9.0.1.2]: https://github.com/Haleth/Aurora/compare/9.0.1.1...9.0.1.2
 [9.0.1.1]: https://github.com/Haleth/Aurora/compare/9.0.1.0...9.0.1.1
 [9.0.1.0]: https://github.com/Haleth/Aurora/compare/8.3.0.8...9.0.1.0
