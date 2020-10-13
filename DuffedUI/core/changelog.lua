@@ -13,15 +13,12 @@ local CLOSE = _G.CLOSE
 local ChangeLogData = {
 	"Changes:",
 		--"• ",
-		"• Update Aurora",
-		"• Fixed durability display on charscreen",
-		"• Fixed auto invite",
-		"• Moved Azerite Bar to minimap",
-		"• Moved XP-Bar underneath the center datatext",
-		"• Removed microbar",
+		"• Release for World of Warcraft - Shadowlands 9.0.2 & PrePatch 9.0.1",
+		"• Full changelog => https://github.com/liquidbase/DuffedUIv9/blob/master/README.md",
+		"• Overall there are to many changes",
 	" ",
 	"Important:",
-		"|cffC41F3BTo add all changes please reset the UI and make a fresh install!|r",
+		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also deactivated!|r",
 		"• Please Report all bugs on the issue tracker =>\n https://github.com/liquidbase/DuffedUIv9/issues",
 }
 

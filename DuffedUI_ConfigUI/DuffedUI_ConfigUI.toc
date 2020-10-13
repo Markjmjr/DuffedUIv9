@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90001
 ## Title: |cffC41F3BDuffedUI|r Config UI
 ## Notes: Someday there is only pantesaur left.
 ## Version: 9.0.2
