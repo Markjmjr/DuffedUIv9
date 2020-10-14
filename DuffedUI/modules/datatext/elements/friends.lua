@@ -19,7 +19,7 @@ local BNRequestInviteFriend = BNRequestInviteFriend
 local BNSetCustomMessage = BNSetCustomMessage
 local ChatFrame_SendBNetTell = ChatFrame_SendBNetTell
 local GetDisplayedInviteType = GetDisplayedInviteType
-local GetFriendInfo = GetFriendInfo
+local C_FriendList_GetFriendInfo = C_FriendList.GetFriendInfo
 local C_FriendList_GetNumFriends = C_FriendList.GetNumFriends
 local C_FriendList_GetNumOnlineFriends = C_FriendList.GetNumOnlineFriends
 local GetQuestDifficultyColor = GetQuestDifficultyColor
@@ -174,7 +174,7 @@ local function BuildFriendTable(total)
 	wipe(friendTable)
 	local _, name, level, class, area, connected, status, note, guid
 	for i = 1, total do
-		name, level, class, area, connected, status, note, _, guid = GetFriendInfo(i)
+		name, level, class, area, connected, status, note, _, guid = C_FriendList_GetFriendInfo(i)
 
 		if status == '<'..AFK..'>' then
 			status = statusTable[1]
