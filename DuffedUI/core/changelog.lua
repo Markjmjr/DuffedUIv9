@@ -15,6 +15,7 @@ local ChangeLogData = {
 		--"• ",
 		"• Fixed friend datatext",
 		"• Fixed auto invite",
+		"• Moved coords on worldmap to better position if World Quest Tracker is loaded.",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also\ndeactivated!|r",
