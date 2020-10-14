@@ -47,10 +47,10 @@ function WorldMap:Coords()
 	coords:FontString('MouseText', C['media']['font'], fontheight, fontflag)
 	coords.PlayerText:SetTextColor(235 / 255, 245 / 255, 0 / 255)
 	coords.PlayerText:SetText('Player: x, x')
-	coords.PlayerText:SetPoint('TOPLEFT', WorldMapFrame.ScrollContainer, 'TOPLEFT', 5, -25)
+	coords.PlayerText:SetPoint('TOPLEFT', WorldMapFrame.ScrollContainer, 'TOPLEFT', 5, -5)
 	coords.MouseText:SetTextColor(235 / 255, 245 / 255, 0 / 255)
 	coords.MouseText:SetText('Cursor: x, x')
-	coords.MouseText:SetPoint('TOPLEFT', WorldMapFrame.ScrollContainer, 'TOPLEFT', 5, -40)
+	coords.MouseText:SetPoint('TOPLEFT', WorldMapFrame.ScrollContainer, 'TOPLEFT', 5, -20)
 	
 	local int = 0
 	WorldMapFrame:HookScript('OnUpdate', function(self, elapsed)
