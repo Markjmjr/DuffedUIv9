@@ -1,6 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 
 local C_FriendList_GetNumFriends = C_FriendList.GetNumFriends
+local C_FriendList_GetFriendInfo = C_FriendList.GetFriendInfo
 local BNGetNumFriends = BNGetNumFriends
 
 if C['general']['autoaccept'] then
@@ -48,7 +49,7 @@ if C['general']['autoaccept'] then
 			if C_FriendList_GetNumFriends() > 0 then ShowFriends() end
 
 			for friendIndex = 1, C_FriendList_GetNumFriends() do
-				local friendName = gsub(GetFriendInfo(friendIndex),  '-.*', '')
+				local friendName = gsub(C_FriendList_GetFriendInfo(friendIndex),  '-.*', '')
 				if friendName == LeaderName then
 					AcceptGroup()
 					self.HideStaticPopup = true
