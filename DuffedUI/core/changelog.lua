@@ -13,9 +13,8 @@ local CLOSE = _G.CLOSE
 local ChangeLogData = {
 	"Changes:",
 		--"• ",
-		"• Release for World of Warcraft - Shadowlands 9.0.2 & PrePatch 9.0.1",
-		"• Full changelog => https://github.com/liquidbase/DuffedUIv9/blob/master/README.md",
-		"• Overall there are to many changes",
+		"• Fixed friend datatext",
+		"• Fixed auto invite",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also\ndeactivated!|r",
