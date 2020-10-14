@@ -18,8 +18,9 @@ local ChangeLogData = {
 		"• Overall there are to many changes",
 	" ",
 	"Important:",
-		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also deactivated!|r",
-		"• Please Report all bugs on the issue tracker =>\n https://github.com/liquidbase/DuffedUIv9/issues",
+		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also\ndeactivated!|r",
+		"• ",
+		"• Please Report all bugs on the issue tracker => https://github.com/liquidbase/DuffedUIv9/issues",
 }
 
 local function ModifiedString(string)
