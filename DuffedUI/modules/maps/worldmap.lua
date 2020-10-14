@@ -9,11 +9,6 @@ local IsInInstance = IsInInstance
 -- /dump C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit('player'), 'player'):GetXY()
 -- /dump C_Map.GetBestMapForUnit('player')
 
-function WorldMap:Position()
-	WorldMapFrame:ClearAllPoints()
-	WorldMapFrame:SetPoint('TOPLEFT', UIParent, 'TOPLEFT', 15, -125)
-end
-
 function WorldMap:AddMoving()
 	if WorldMap.MoveButton then return end
 	WorldMap.MoveButton = CreateFrame("Frame", nil, WorldMapFrame)
@@ -104,7 +99,6 @@ function WorldMap:Enable()
 		SetCVar("miniWorldMap", 1)
 		ToggleWorldMap()
 	end
-	self:Position()
 	self:AddMoving()
 	self:Coords()
 end
