@@ -11,6 +11,7 @@ local PlaySound = _G.PlaySound
 local CLOSE = _G.CLOSE
 
 local ChangeLogData = {
+	-- 115 chars per line
 	"Changes:",
 		--"• ",
 		"• Fixed friend datatext",
