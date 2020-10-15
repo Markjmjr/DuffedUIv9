@@ -18,9 +18,10 @@ local ChangeLogData = {
 		"• Moved coords on worldmap to better position if World Quest Tracker is loaded.",
 	" ",
 	"Important:",
-		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also\ndeactivated!|r",
-		"• ",
-		"• Please Report all bugs on the issue tracker => https://github.com/liquidbase/DuffedUIv9/issues",
+		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
+		"|cffC41F3Bdeactivated!|r",
+		" ",
+		"Please Report all bugs on the issue tracker => https://github.com/liquidbase/DuffedUIv9/issues",
 }
 
 local function ModifiedString(string)
@@ -124,7 +125,7 @@ function Module:CreateChangelog()
 
 			button.Text = button:CreateFontString(nil, 'OVERLAY')
 			button.Text:SetFont(C['media']['font'], 11)
-			button.Text:SetPoint('CENTER')
+			button.Text:SetPoint('LEFT')
 			button.Text:SetPoint('LEFT', 0, 0)
 			button.Text:SetText(string)
 			button.Text:SetWordWrap(true)
