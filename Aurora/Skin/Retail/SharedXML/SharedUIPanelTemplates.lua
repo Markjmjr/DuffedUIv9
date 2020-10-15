@@ -588,6 +588,16 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
 
         Skin.ScrollBarThumb(Slider:GetThumbTexture())
     end
+    function Skin.MinimalScrollBarWithBorderTemplate(Slider)
+        Slider.Track:Hide()
+        Skin.UIPanelScrollUpButtonTemplate(Slider.ScrollUpButton)
+        Skin.UIPanelScrollDownButtonTemplate(Slider.ScrollDownButton)
+        Slider.ScrollUpBorder:Hide()
+        Slider.ScrollDownBorder:Hide()
+        Slider.Border:Hide()
+
+        Skin.ScrollBarThumb(Slider:GetThumbTexture())
+    end
     function Skin.MinimalScrollFrameTemplate(ScrollFrame)
         Skin.MinimalScrollBarTemplate(ScrollFrame.ScrollBar)
     end
@@ -736,11 +746,17 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
             end)
         end)
         Skin.FrameTypeButton(Button)
+        Button:SetBackdropOption("offsets", {
+            left = 5,
+            right = 5,
+            top = 5,
+            bottom = 5
+        })
     end
     function Skin.BigRedThreeSliceButtonTemplate(Button)
         Skin.ThreeSliceButtonTemplate(Button)
     end
-    function Skin.SharedButtonTemplate(Button)
+    function Skin.SharedButtonLargeTemplate(Button)
         Skin.BigRedThreeSliceButtonTemplate(Button)
     end
     function Skin.SharedButtonSmallTemplate(Button)

@@ -1,4 +1,20 @@
-﻿## [9.0.1.3] - 2020-10-12 ##
+﻿## [9.0.1.4] - 2020-10-14 ##
+### Added ###
+
+  * [retail] New player guide sign-up skin
+
+### Changed ###
+
+  * [retail] Updated barber shop skin
+
+### Fixed ###
+
+  * [retail] Chat frame had an extra backdrop
+  * [retail] Gossip options were black
+
+
+
+## [9.0.1.3] - 2020-10-12 ##
 ### Fixed ###
 
   * [retail] Some dropdown menus did not use the configured frame alpha
@@ -184,6 +200,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
+[9.0.1.4]: https://github.com/Haleth/Aurora/compare/9.0.1.3...9.0.1.4
 [9.0.1.3]: https://github.com/Haleth/Aurora/compare/9.0.1.2...9.0.1.3
 [9.0.1.2]: https://github.com/Haleth/Aurora/compare/9.0.1.1...9.0.1.2
 [9.0.1.1]: https://github.com/Haleth/Aurora/compare/9.0.1.0...9.0.1.1
