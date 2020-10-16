@@ -14,9 +14,8 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Fixed friend datatext",
-		"• Fixed auto invite",
-		"• Moved coords on worldmap to better position if World Quest Tracker is loaded.",
+		"• Update Aurora",
+		"• Fixed Holypower for all Paladin specs",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
